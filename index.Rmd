@@ -1,0 +1,10 @@
+--- 
+title: "Data Visualization with ggplot2"
+author: "Aravind Hebbali"
+site: bookdown::bookdown_site
+documentclass: book
+link-citations: yes
+description: "Learn to visualize data with ggplot2."
+---
+
+# Welcome {-}

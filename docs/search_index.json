@@ -1,0 +1,18 @@
+[
+["index.html", "Data Visualization with ggplot2 Welcome", " Data Visualization with ggplot2 Aravind Hebbali Welcome "],
+["intro.html", "Chapter 1 Introduction", " Chapter 1 Introduction "],
+["quicktour.html", "Chapter 2 Quick Tour", " Chapter 2 Quick Tour "],
+["geoms.html", "Chapter 3 Geoms", " Chapter 3 Geoms "],
+["aesthetics.html", "Chapter 4 Aesthetics", " Chapter 4 Aesthetics "],
+["labels.html", "Chapter 5 Labels", " Chapter 5 Labels "],
+["textann.html", "Chapter 6 Text Annotations", " Chapter 6 Text Annotations "],
+["scatter.html", "Chapter 7 Scatter Plots", " Chapter 7 Scatter Plots "],
+["line.html", "Chapter 8 Line Graphs", " Chapter 8 Line Graphs "],
+["bar.html", "Chapter 9 Bar Plots", " Chapter 9 Bar Plots "],
+["box.html", "Chapter 10 Box Plots", " Chapter 10 Box Plots "],
+["hist.html", "Chapter 11 Histograms", " Chapter 11 Histograms "],
+["legend.html", "Chapter 12 Legends", " Chapter 12 Legends "],
+["facet.html", "Chapter 13 Faceting", " Chapter 13 Faceting "],
+["themes.html", "Chapter 14 Themes", " Chapter 14 Themes "],
+["references.html", "References", " References "]
+]
