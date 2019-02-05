@@ -48,6 +48,71 @@
 
 
 
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -67,19 +132,208 @@
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
-<li class="chapter" data-level="2" data-path="quicktour.html"><a href="quicktour.html"><i class="fa fa-check"></i><b>2</b> Quick Tour</a></li>
-<li class="chapter" data-level="3" data-path="geoms.html"><a href="geoms.html"><i class="fa fa-check"></i><b>3</b> Geoms</a></li>
-<li class="chapter" data-level="4" data-path="aesthetics.html"><a href="aesthetics.html"><i class="fa fa-check"></i><b>4</b> Aesthetics</a></li>
-<li class="chapter" data-level="5" data-path="labels.html"><a href="labels.html"><i class="fa fa-check"></i><b>5</b> Labels</a></li>
-<li class="chapter" data-level="6" data-path="textann.html"><a href="textann.html"><i class="fa fa-check"></i><b>6</b> Text Annotations</a></li>
-<li class="chapter" data-level="7" data-path="scatter.html"><a href="scatter.html"><i class="fa fa-check"></i><b>7</b> Scatter Plots</a></li>
-<li class="chapter" data-level="8" data-path="line.html"><a href="line.html"><i class="fa fa-check"></i><b>8</b> Line Graphs</a></li>
-<li class="chapter" data-level="9" data-path="bar.html"><a href="bar.html"><i class="fa fa-check"></i><b>9</b> Bar Plots</a></li>
-<li class="chapter" data-level="10" data-path="box.html"><a href="box.html"><i class="fa fa-check"></i><b>10</b> Box Plots</a></li>
-<li class="chapter" data-level="11" data-path="hist.html"><a href="hist.html"><i class="fa fa-check"></i><b>11</b> Histograms</a></li>
+<li class="chapter" data-level="2" data-path="quicktour.html"><a href="quicktour.html"><i class="fa fa-check"></i><b>2</b> Quick Tour</a><ul>
+<li class="chapter" data-level="2.1" data-path="quicktour.html"><a href="quicktour.html#introduction"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="quicktour.html"><a href="quicktour.html#libraries-code-data"><i class="fa fa-check"></i><b>2.2</b> Libraries, Code &amp; Data</a></li>
+<li class="chapter" data-level="2.3" data-path="quicktour.html"><a href="quicktour.html#scatter-plot"><i class="fa fa-check"></i><b>2.3</b> Scatter Plot</a></li>
+<li class="chapter" data-level="2.4" data-path="quicktour.html"><a href="quicktour.html#bar-plot"><i class="fa fa-check"></i><b>2.4</b> Bar Plot</a></li>
+<li class="chapter" data-level="2.5" data-path="quicktour.html"><a href="quicktour.html#box-plot"><i class="fa fa-check"></i><b>2.5</b> Box Plot</a></li>
+<li class="chapter" data-level="2.6" data-path="quicktour.html"><a href="quicktour.html#line-chart"><i class="fa fa-check"></i><b>2.6</b> Line Chart</a></li>
+<li class="chapter" data-level="2.7" data-path="quicktour.html"><a href="quicktour.html#histogram"><i class="fa fa-check"></i><b>2.7</b> Histogram</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="geoms.html"><a href="geoms.html"><i class="fa fa-check"></i><b>3</b> Geoms</a><ul>
+<li class="chapter" data-level="3.1" data-path="geoms.html"><a href="geoms.html#introduction-1"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="geoms.html"><a href="geoms.html#libraries-code-data-1"><i class="fa fa-check"></i><b>3.2</b> Libraries, Code &amp; Data</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="geoms.html"><a href="geoms.html#data"><i class="fa fa-check"></i><b>3.2.1</b> Data</a></li>
+<li class="chapter" data-level="3.2.2" data-path="geoms.html"><a href="geoms.html#data-dictionary"><i class="fa fa-check"></i><b>3.2.2</b> Data Dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="geoms.html"><a href="geoms.html#point"><i class="fa fa-check"></i><b>3.3</b> Point</a></li>
+<li class="chapter" data-level="3.4" data-path="geoms.html"><a href="geoms.html#regression-line"><i class="fa fa-check"></i><b>3.4</b> Regression Line</a></li>
+<li class="chapter" data-level="3.5" data-path="geoms.html"><a href="geoms.html#bar"><i class="fa fa-check"></i><b>3.5</b> Bar</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="geoms.html"><a href="geoms.html#frequency"><i class="fa fa-check"></i><b>3.5.1</b> Frequency</a></li>
+<li class="chapter" data-level="3.5.2" data-path="geoms.html"><a href="geoms.html#weight"><i class="fa fa-check"></i><b>3.5.2</b> Weight</a></li>
+<li class="chapter" data-level="3.5.3" data-path="geoms.html"><a href="geoms.html#stacked-bar-plot"><i class="fa fa-check"></i><b>3.5.3</b> Stacked Bar Plot</a></li>
+<li class="chapter" data-level="3.5.4" data-path="geoms.html"><a href="geoms.html#horizontal-bar-plot"><i class="fa fa-check"></i><b>3.5.4</b> Horizontal Bar Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="geoms.html"><a href="geoms.html#columns"><i class="fa fa-check"></i><b>3.6</b> Columns</a></li>
+<li class="chapter" data-level="3.7" data-path="geoms.html"><a href="geoms.html#boxplot"><i class="fa fa-check"></i><b>3.7</b> Boxplot</a></li>
+<li class="chapter" data-level="3.8" data-path="geoms.html"><a href="geoms.html#histogram-1"><i class="fa fa-check"></i><b>3.8</b> Histogram</a></li>
+<li class="chapter" data-level="3.9" data-path="geoms.html"><a href="geoms.html#line"><i class="fa fa-check"></i><b>3.9</b> Line</a><ul>
+<li class="chapter" data-level="3.9.1" data-path="geoms.html"><a href="geoms.html#data-1"><i class="fa fa-check"></i><b>3.9.1</b> Data</a></li>
+<li class="chapter" data-level="3.9.2" data-path="geoms.html"><a href="geoms.html#horizontal-line"><i class="fa fa-check"></i><b>3.9.2</b> Horizontal Line</a></li>
+<li class="chapter" data-level="3.9.3" data-path="geoms.html"><a href="geoms.html#vertical-line"><i class="fa fa-check"></i><b>3.9.3</b> Vertical Line</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="geoms.html"><a href="geoms.html#label"><i class="fa fa-check"></i><b>3.10</b> Label</a></li>
+<li class="chapter" data-level="3.11" data-path="geoms.html"><a href="geoms.html#text"><i class="fa fa-check"></i><b>3.11</b> Text</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="aesthetics.html"><a href="aesthetics.html"><i class="fa fa-check"></i><b>4</b> Aesthetics</a><ul>
+<li class="chapter" data-level="4.1" data-path="aesthetics.html"><a href="aesthetics.html#introduction-2"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="aesthetics.html"><a href="aesthetics.html#libraries-code-data-2"><i class="fa fa-check"></i><b>4.2</b> Libraries, Code &amp; Data</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="aesthetics.html"><a href="aesthetics.html#data-2"><i class="fa fa-check"></i><b>4.2.1</b> Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="aesthetics.html"><a href="aesthetics.html#data-dictionary-1"><i class="fa fa-check"></i><b>4.2.2</b> Data Dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="aesthetics.html"><a href="aesthetics.html#color"><i class="fa fa-check"></i><b>4.3</b> Color</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="aesthetics.html"><a href="aesthetics.html#point-1"><i class="fa fa-check"></i><b>4.3.1</b> Point</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="aesthetics.html"><a href="aesthetics.html#line-chart-1"><i class="fa fa-check"></i><b>4.4</b> Line Chart</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="aesthetics.html"><a href="aesthetics.html#data-3"><i class="fa fa-check"></i><b>4.4.1</b> Data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="aesthetics.html"><a href="aesthetics.html#bar-plots"><i class="fa fa-check"></i><b>4.5</b> Bar Plots</a></li>
+<li class="chapter" data-level="4.6" data-path="aesthetics.html"><a href="aesthetics.html#histograms"><i class="fa fa-check"></i><b>4.6</b> Histograms</a></li>
+<li class="chapter" data-level="4.7" data-path="aesthetics.html"><a href="aesthetics.html#box-plots"><i class="fa fa-check"></i><b>4.7</b> Box Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="labels.html"><a href="labels.html"><i class="fa fa-check"></i><b>5</b> Labels</a><ul>
+<li class="chapter" data-level="5.1" data-path="labels.html"><a href="labels.html#introduction-3"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="labels.html"><a href="labels.html#basic-plot"><i class="fa fa-check"></i><b>5.2</b> Basic Plot</a></li>
+<li class="chapter" data-level="5.3" data-path="labels.html"><a href="labels.html#title-subtitle"><i class="fa fa-check"></i><b>5.3</b> Title &amp; Subtitle</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="labels.html"><a href="labels.html#ggtitle"><i class="fa fa-check"></i><b>5.3.1</b> ggtitle()</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="labels.html"><a href="labels.html#axis-labels"><i class="fa fa-check"></i><b>5.4</b> Axis Labels</a></li>
+<li class="chapter" data-level="5.5" data-path="labels.html"><a href="labels.html#labs"><i class="fa fa-check"></i><b>5.5</b> Labs</a></li>
+<li class="chapter" data-level="5.6" data-path="labels.html"><a href="labels.html#axis-range"><i class="fa fa-check"></i><b>5.6</b> Axis Range</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="labels.html"><a href="labels.html#x-axis"><i class="fa fa-check"></i><b>5.6.1</b> X Axis</a></li>
+<li class="chapter" data-level="5.6.2" data-path="labels.html"><a href="labels.html#y-axis"><i class="fa fa-check"></i><b>5.6.2</b> Y Axis</a></li>
+<li class="chapter" data-level="5.6.3" data-path="labels.html"><a href="labels.html#expand-limits"><i class="fa fa-check"></i><b>5.6.3</b> Expand Limits</a></li>
+<li class="chapter" data-level="5.6.4" data-path="labels.html"><a href="labels.html#remove-axis-labels"><i class="fa fa-check"></i><b>5.6.4</b> Remove Axis Labels</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="labels.html"><a href="labels.html#format-title-axis-labels"><i class="fa fa-check"></i><b>5.7</b> Format Title &amp; Axis Labels</a><ul>
+<li class="chapter" data-level="5.7.1" data-path="labels.html"><a href="labels.html#color-1"><i class="fa fa-check"></i><b>5.7.1</b> Color</a></li>
+<li class="chapter" data-level="5.7.2" data-path="labels.html"><a href="labels.html#font-family"><i class="fa fa-check"></i><b>5.7.2</b> Font Family</a></li>
+<li class="chapter" data-level="5.7.3" data-path="labels.html"><a href="labels.html#font-face"><i class="fa fa-check"></i><b>5.7.3</b> Font Face</a></li>
+<li class="chapter" data-level="5.7.4" data-path="labels.html"><a href="labels.html#font-size"><i class="fa fa-check"></i><b>5.7.4</b> Font Size</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="labels.html"><a href="labels.html#horizontal-alignment"><i class="fa fa-check"></i><b>5.8</b> Horizontal Alignment</a></li>
+<li class="chapter" data-level="5.9" data-path="labels.html"><a href="labels.html#putting-it-all-together"><i class="fa fa-check"></i><b>5.9</b> Putting it all together…</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="labels.html"><a href="labels.html#title"><i class="fa fa-check"></i><b>5.9.1</b> Title</a></li>
+<li class="chapter" data-level="5.9.2" data-path="labels.html"><a href="labels.html#x-axis-label"><i class="fa fa-check"></i><b>5.9.2</b> X axis label</a></li>
+<li class="chapter" data-level="5.9.3" data-path="labels.html"><a href="labels.html#y-axis-label"><i class="fa fa-check"></i><b>5.9.3</b> Y axis label</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="textann.html"><a href="textann.html"><i class="fa fa-check"></i><b>6</b> Text Annotations</a><ul>
+<li class="chapter" data-level="6.1" data-path="textann.html"><a href="textann.html#introduction-4"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="textann.html"><a href="textann.html#annotate"><i class="fa fa-check"></i><b>6.2</b> Annotate</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="textann.html"><a href="textann.html#add-text"><i class="fa fa-check"></i><b>6.2.1</b> Add Text</a></li>
+<li class="chapter" data-level="6.2.2" data-path="textann.html"><a href="textann.html#color-2"><i class="fa fa-check"></i><b>6.2.2</b> Color</a></li>
+<li class="chapter" data-level="6.2.3" data-path="textann.html"><a href="textann.html#size"><i class="fa fa-check"></i><b>6.2.3</b> Size</a></li>
+<li class="chapter" data-level="6.2.4" data-path="textann.html"><a href="textann.html#font"><i class="fa fa-check"></i><b>6.2.4</b> Font</a></li>
+<li class="chapter" data-level="6.2.5" data-path="textann.html"><a href="textann.html#angle"><i class="fa fa-check"></i><b>6.2.5</b> Angle</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="textann.html"><a href="textann.html#putting-it-all-together.."><i class="fa fa-check"></i><b>6.3</b> Putting it all together..</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="scatter.html"><a href="scatter.html"><i class="fa fa-check"></i><b>7</b> Scatter Plots</a><ul>
+<li class="chapter" data-level="7.1" data-path="scatter.html"><a href="scatter.html#introduction-5"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="scatter.html"><a href="scatter.html#basic-plot-1"><i class="fa fa-check"></i><b>7.2</b> Basic Plot</a></li>
+<li class="chapter" data-level="7.3" data-path="scatter.html"><a href="scatter.html#jitter"><i class="fa fa-check"></i><b>7.3</b> Jitter</a></li>
+<li class="chapter" data-level="7.4" data-path="scatter.html"><a href="scatter.html#aesthetics-1"><i class="fa fa-check"></i><b>7.4</b> Aesthetics</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="scatter.html"><a href="scatter.html#specify-values"><i class="fa fa-check"></i><b>7.4.1</b> Specify Values</a></li>
+<li class="chapter" data-level="7.4.2" data-path="scatter.html"><a href="scatter.html#map-variables"><i class="fa fa-check"></i><b>7.4.2</b> Map Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="scatter.html"><a href="scatter.html#regression-line-1"><i class="fa fa-check"></i><b>7.5</b> Regression Line</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="scatter.html"><a href="scatter.html#intercept-slope"><i class="fa fa-check"></i><b>7.5.1</b> Intercept &amp; Slope</a></li>
+<li class="chapter" data-level="7.5.2" data-path="scatter.html"><a href="scatter.html#add-line"><i class="fa fa-check"></i><b>7.5.2</b> Add Line</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="geoms.html"><a href="geoms.html#line"><i class="fa fa-check"></i><b>8</b> Line Graphs</a><ul>
+<li class="chapter" data-level="8.1" data-path="line.html"><a href="line.html"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="line.html"><a href="line.html#case-study"><i class="fa fa-check"></i><b>8.2</b> Case Study</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="line.html"><a href="line.html#data-4"><i class="fa fa-check"></i><b>8.2.1</b> Data</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="line.html"><a href="line.html#line-chart-2"><i class="fa fa-check"></i><b>8.3</b> Line Chart</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="line.html"><a href="line.html#line-color"><i class="fa fa-check"></i><b>8.3.1</b> Line Color</a></li>
+<li class="chapter" data-level="8.3.2" data-path="line.html"><a href="line.html#line-type"><i class="fa fa-check"></i><b>8.3.2</b> Line Type</a></li>
+<li class="chapter" data-level="8.3.3" data-path="line.html"><a href="line.html#line-size"><i class="fa fa-check"></i><b>8.3.3</b> Line Size</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="line.html"><a href="line.html#multiple-lines"><i class="fa fa-check"></i><b>8.4</b> Multiple Lines</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="line.html"><a href="line.html#modify-data"><i class="fa fa-check"></i><b>8.4.1</b> Modify Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="geoms.html"><a href="geoms.html#bar"><i class="fa fa-check"></i><b>9</b> Bar Plots</a><ul>
+<li class="chapter" data-level="9.1" data-path="bar.html"><a href="bar.html"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="bar.html"><a href="bar.html#data-5"><i class="fa fa-check"></i><b>9.2</b> Data</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="bar.html"><a href="bar.html#data-dictionary-2"><i class="fa fa-check"></i><b>9.2.1</b> Data Dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="bar.html"><a href="bar.html#basic-plot-2"><i class="fa fa-check"></i><b>9.3</b> Basic Plot</a></li>
+<li class="chapter" data-level="9.4" data-path="bar.html"><a href="bar.html#bar-color"><i class="fa fa-check"></i><b>9.4</b> Bar Color</a></li>
+<li class="chapter" data-level="9.5" data-path="bar.html"><a href="bar.html#stacked-bar-plot-1"><i class="fa fa-check"></i><b>9.5</b> Stacked Bar Plot</a></li>
+<li class="chapter" data-level="9.6" data-path="bar.html"><a href="bar.html#grouped-bar-plot"><i class="fa fa-check"></i><b>9.6</b> Grouped Bar Plot</a></li>
+<li class="chapter" data-level="9.7" data-path="bar.html"><a href="bar.html#proportional-bar-plot"><i class="fa fa-check"></i><b>9.7</b> Proportional Bar Plot</a></li>
+<li class="chapter" data-level="9.8" data-path="bar.html"><a href="bar.html#horizontal-bar-plot-1"><i class="fa fa-check"></i><b>9.8</b> Horizontal Bar Plot</a></li>
+<li class="chapter" data-level="9.9" data-path="bar.html"><a href="bar.html#bar-line"><i class="fa fa-check"></i><b>9.9</b> Bar Line</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="box.html"><a href="box.html"><i class="fa fa-check"></i><b>10</b> Box Plots</a><ul>
+<li class="chapter" data-level="10.1" data-path="box.html"><a href="box.html#introduction-8"><i class="fa fa-check"></i><b>10.1</b> Introduction</a></li>
+<li class="chapter" data-level="10.2" data-path="box.html"><a href="box.html#structure"><i class="fa fa-check"></i><b>10.2</b> Structure</a></li>
+<li class="chapter" data-level="10.3" data-path="box.html"><a href="box.html#data-6"><i class="fa fa-check"></i><b>10.3</b> Data</a></li>
+<li class="chapter" data-level="10.4" data-path="box.html"><a href="box.html#single-plot"><i class="fa fa-check"></i><b>10.4</b> Single Plot</a></li>
+<li class="chapter" data-level="10.5" data-path="box.html"><a href="box.html#compare-distributions"><i class="fa fa-check"></i><b>10.5</b> Compare Distributions</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="box.html"><a href="box.html#data-7"><i class="fa fa-check"></i><b>10.5.1</b> Data</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="box.html"><a href="box.html#horizontal-box-plot"><i class="fa fa-check"></i><b>10.6</b> Horizontal Box Plot</a><ul>
+<li class="chapter" data-level="10.6.1" data-path="box.html"><a href="box.html#notch"><i class="fa fa-check"></i><b>10.6.1</b> Notch</a></li>
+<li class="chapter" data-level="10.6.2" data-path="box.html"><a href="box.html#jitter-1"><i class="fa fa-check"></i><b>10.6.2</b> Jitter</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="box.html"><a href="box.html#outliers"><i class="fa fa-check"></i><b>10.7</b> Outliers</a></li>
+<li class="chapter" data-level="10.8" data-path="box.html"><a href="box.html#aesthetics-2"><i class="fa fa-check"></i><b>10.8</b> Aesthetics</a><ul>
+<li class="chapter" data-level="10.8.1" data-path="box.html"><a href="box.html#specify-values-1"><i class="fa fa-check"></i><b>10.8.1</b> Specify Values</a></li>
+</ul></li>
+<li class="chapter" data-level="10.9" data-path="box.html"><a href="box.html#map-variables-1"><i class="fa fa-check"></i><b>10.9</b> Map Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="hist.html"><a href="hist.html"><i class="fa fa-check"></i><b>11</b> Histograms</a><ul>
+<li class="chapter" data-level="11.1" data-path="hist.html"><a href="hist.html#introduction-9"><i class="fa fa-check"></i><b>11.1</b> Introduction</a></li>
+<li class="chapter" data-level="11.2" data-path="hist.html"><a href="hist.html#data-8"><i class="fa fa-check"></i><b>11.2</b> Data</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="hist.html"><a href="hist.html#data-dictionary-3"><i class="fa fa-check"></i><b>11.2.1</b> Data Dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="hist.html"><a href="hist.html#plot"><i class="fa fa-check"></i><b>11.3</b> Plot</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="hist.html"><a href="hist.html#specify-bins"><i class="fa fa-check"></i><b>11.3.1</b> Specify Bins</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="hist.html"><a href="hist.html#aesthetics-3"><i class="fa fa-check"></i><b>11.4</b> Aesthetics</a></li>
+<li class="chapter" data-level="11.5" data-path="hist.html"><a href="hist.html#putting-it-all-together-1"><i class="fa fa-check"></i><b>11.5</b> Putting it all together…</a></li>
+<li class="chapter" data-level="11.6" data-path="hist.html"><a href="hist.html#bin-width"><i class="fa fa-check"></i><b>11.6</b> Bin Width</a></li>
+<li class="chapter" data-level="11.7" data-path="hist.html"><a href="hist.html#line-type-1"><i class="fa fa-check"></i><b>11.7</b> Line Type</a></li>
+<li class="chapter" data-level="11.8" data-path="hist.html"><a href="hist.html#line-size-1"><i class="fa fa-check"></i><b>11.8</b> Line Size</a></li>
+<li class="chapter" data-level="11.9" data-path="hist.html"><a href="hist.html#map-variables-2"><i class="fa fa-check"></i><b>11.9</b> Map Variables</a></li>
+</ul></li>
 <li class="chapter" data-level="12" data-path="legend.html"><a href="legend.html"><i class="fa fa-check"></i><b>12</b> Legends</a></li>
-<li class="chapter" data-level="13" data-path="facet.html"><a href="facet.html"><i class="fa fa-check"></i><b>13</b> Faceting</a></li>
-<li class="chapter" data-level="14" data-path="themes.html"><a href="themes.html"><i class="fa fa-check"></i><b>14</b> Themes</a></li>
+<li class="chapter" data-level="13" data-path="facet.html"><a href="facet.html"><i class="fa fa-check"></i><b>13</b> Faceting</a><ul>
+<li class="chapter" data-level="13.1" data-path="facet.html"><a href="facet.html#introduction-10"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="facet.html"><a href="facet.html#grid"><i class="fa fa-check"></i><b>13.2</b> Grid</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="facet.html"><a href="facet.html#vertical"><i class="fa fa-check"></i><b>13.2.1</b> Vertical</a></li>
+<li class="chapter" data-level="13.2.2" data-path="facet.html"><a href="facet.html#horizontal"><i class="fa fa-check"></i><b>13.2.2</b> Horizontal</a></li>
+<li class="chapter" data-level="13.2.3" data-path="facet.html"><a href="facet.html#vertical-horizontal"><i class="fa fa-check"></i><b>13.2.3</b> Vertical &amp; Horizontal</a></li>
+<li class="chapter" data-level="13.2.4" data-path="facet.html"><a href="facet.html#scales"><i class="fa fa-check"></i><b>13.2.4</b> Scales</a></li>
+<li class="chapter" data-level="13.2.5" data-path="facet.html"><a href="facet.html#switch-labels"><i class="fa fa-check"></i><b>13.2.5</b> Switch Labels</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="facet.html"><a href="facet.html#wrap"><i class="fa fa-check"></i><b>13.3</b> Wrap</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="facet.html"><a href="facet.html#specify-rows"><i class="fa fa-check"></i><b>13.3.1</b> Specify Rows</a></li>
+<li class="chapter" data-level="13.3.2" data-path="facet.html"><a href="facet.html#specify-columns"><i class="fa fa-check"></i><b>13.3.2</b> Specify Columns</a></li>
+<li class="chapter" data-level="13.3.3" data-path="facet.html"><a href="facet.html#scales-1"><i class="fa fa-check"></i><b>13.3.3</b> Scales</a></li>
+<li class="chapter" data-level="13.3.4" data-path="facet.html"><a href="facet.html#rows-columns"><i class="fa fa-check"></i><b>13.3.4</b> Rows &amp; Columns</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="themes.html"><a href="themes.html"><i class="fa fa-check"></i><b>14</b> Themes</a><ul>
+<li class="chapter" data-level="14.1" data-path="themes.html"><a href="themes.html#introduction-11"><i class="fa fa-check"></i><b>14.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.2" data-path="themes.html"><a href="themes.html#basic-plot-3"><i class="fa fa-check"></i><b>14.2</b> Basic Plot</a></li>
+<li class="chapter" data-level="14.3" data-path="themes.html"><a href="themes.html#axis"><i class="fa fa-check"></i><b>14.3</b> Axis</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="themes.html"><a href="themes.html#text-1"><i class="fa fa-check"></i><b>14.3.1</b> Text</a></li>
+<li class="chapter" data-level="14.3.2" data-path="themes.html"><a href="themes.html#ticks"><i class="fa fa-check"></i><b>14.3.2</b> Ticks</a></li>
+<li class="chapter" data-level="14.3.3" data-path="themes.html"><a href="themes.html#line-1"><i class="fa fa-check"></i><b>14.3.3</b> Line</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="themes.html"><a href="themes.html#legend-1"><i class="fa fa-check"></i><b>14.4</b> Legend</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="themes.html"><a href="themes.html#background"><i class="fa fa-check"></i><b>14.4.1</b> Background</a></li>
+<li class="chapter" data-level="14.4.2" data-path="themes.html"><a href="themes.html#text-2"><i class="fa fa-check"></i><b>14.4.2</b> Text</a></li>
+<li class="chapter" data-level="14.4.3" data-path="themes.html"><a href="themes.html#title-1"><i class="fa fa-check"></i><b>14.4.3</b> Title</a></li>
+<li class="chapter" data-level="14.4.4" data-path="themes.html"><a href="themes.html#position"><i class="fa fa-check"></i><b>14.4.4</b> Position</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="themes.html"><a href="themes.html#themes-1"><i class="fa fa-check"></i><b>14.5</b> Themes</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="themes.html"><a href="themes.html#classic-dark-on-light"><i class="fa fa-check"></i><b>14.5.1</b> Classic Dark on Light</a></li>
+<li class="chapter" data-level="14.5.2" data-path="themes.html"><a href="themes.html#default-gray"><i class="fa fa-check"></i><b>14.5.2</b> Default Gray</a></li>
+<li class="chapter" data-level="14.5.3" data-path="themes.html"><a href="themes.html#light"><i class="fa fa-check"></i><b>14.5.3</b> Light</a></li>
+<li class="chapter" data-level="14.5.4" data-path="themes.html"><a href="themes.html#minimal"><i class="fa fa-check"></i><b>14.5.4</b> Minimal</a></li>
+<li class="chapter" data-level="14.5.5" data-path="themes.html"><a href="themes.html#dark"><i class="fa fa-check"></i><b>14.5.5</b> Dark</a></li>
+<li class="chapter" data-level="14.5.6" data-path="themes.html"><a href="themes.html#classic"><i class="fa fa-check"></i><b>14.5.6</b> Classic</a></li>
+<li class="chapter" data-level="14.5.7" data-path="themes.html"><a href="themes.html#void-empty"><i class="fa fa-check"></i><b>14.5.7</b> Void (Empty)</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -102,7 +356,109 @@
             <section class="normal" id="section-">
 <div id="quicktour" class="section level1">
 <h1><span class="header-section-number">Chapter 2</span> Quick Tour</h1>
+<div id="introduction" class="section level2">
+<h2><span class="header-section-number">2.1</span> Introduction</h2>
+<p>In this chapter, we will learn to quickly build a set
+of plots that are routinely used to explore data using <code>qplot()</code>. It can be
+used to quickly create plots but also has certain limitations. Nevertheless, if
+you want to quickly explore data using a single function, <code>qplot()</code> is your friend.</p>
+</div>
+<div id="libraries-code-data" class="section level2">
+<h2><span class="header-section-number">2.2</span> Libraries, Code &amp; Data</h2>
+<p>We will use the following libraries in this chapter:</p>
+<ul>
+<li><a href="http://readr.tidyverse.org/">readr</a></li>
+<li><a href="http://ggplot2.tidyverse.org/">ggplot2</a></li>
+</ul>
+<p>All the data sets used in this chapter can be found <a href="https://github.com/rsquaredacademy/datasets">here</a>
+and code can be downloaded from <a href="https://gist.github.com/rsquaredacademy/3b25fa07c60d44d561819d2c6ab77978">here</a>.</p>
+</div>
+<div id="scatter-plot" class="section level2">
+<h2><span class="header-section-number">2.3</span> Scatter Plot</h2>
+<p>Scatter plots are used to examine the relationship between two continuous
+variables. The relationship can be examined across the levels of a categorical
+variable as well. Let us begin by creating scatter plots. The first two inputs
+are the variables/columns representing the X and Y axis. The next input is the
+name of the data set.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars)</a></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/gg2-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>If you want the relationship between the two variables to be represented by
+both points and line, use the <code>geom</code> argument and supply it the values using a
+character vector.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;point&#39;</span>, <span class="st">&#39;line&#39;</span>))</a></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/gg3-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>The color of the points can be mapped to a categorical variable, in our case
+<code>cyl</code>, using the color argument. Ensure that the variable is categorical using
+<code>factor()</code>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars, <span class="dt">color =</span> <span class="kw">factor</span>(cyl))</a></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/gg4-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>The shape and size of the points can also be mapped to variables using the
+<code>shape</code> and <code>size</code> argument as shown in the below examples.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars, <span class="dt">shape =</span> <span class="kw">factor</span>(cyl))</a></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/gg5-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Ensure that size is mapped to a continuous variable.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars, <span class="dt">size =</span> qsec)</a></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/gg6-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bar-plot" class="section level2">
+<h2><span class="header-section-number">2.4</span> Bar Plot</h2>
+<p>A bar plot represents data in rectangular bars. The length of the bars are
+proportional to the values they represent. Bar plots can be either horizontal
+or vertical. The X axis of the plot represents the levels or the categories and
+the Y axis represents the frequency/count of the variable.</p>
+<p>To create a bar plot, the first input must be a categorical variable. You can
+convert a variable to type <code>factor</code> (R equivalent of categorical) using the
+<code>factor()</code> function. The next input is the name of the data set and the final
+input is the <code>geom</code> which is supplied the value <code>'bar'</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">qplot</span>(<span class="kw">factor</span>(cyl), <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;bar&#39;</span>))</a></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/gg7-1.png" width="576" style="display: block; margin: auto;" />
+You can create a stacked bar plot using the <code>fill</code> argument and mapping it to
+another categorical variable.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">qplot</span>(<span class="kw">factor</span>(cyl), <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;bar&#39;</span>), <span class="dt">fill =</span> <span class="kw">factor</span>(am))</a></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/gg8-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="box-plot" class="section level2">
+<h2><span class="header-section-number">2.5</span> Box Plot</h2>
+<p>The box plot is a standardized way of displaying the distribution of data
+based on the five number summary: minimum, first quartile, median, third
+quartile, and maximum. Box plots are useful for detecting outliers and for
+comparing distributions. It shows the shape, central tendancy and variability
+of the data.</p>
+<p>Box plots can be created by supplying the value <code>'boxplot'</code> to the <code>geom</code>
+argument. The firstinput must be a categorical variable and the second must be
+a continuous variable.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">qplot</span>(<span class="kw">factor</span>(cyl), mpg, <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;boxplot&#39;</span>))</a></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/gg9-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>Unlike <code>plot()</code>, we cannot create box plots using a single variable. If you are
+not comparing the distribution of a variable across the levels of a categorical
+variable, you must supply the value <code>1</code> as the first input as show below.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">qplot</span>(<span class="kw">factor</span>(<span class="dv">1</span>), mpg, <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;boxplot&#39;</span>))</a></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/gg10-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="line-chart" class="section level2">
+<h2><span class="header-section-number">2.6</span> Line Chart</h2>
+<p>Line charts are used to examing trends across time. To create a line chart,
+supply the value <code>'line'</code> to the <code>geom</code> argument. The first two inputs should
+be names of the columns/variables representing the X and Y axis, and the third
+input must be the name of the data set.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">qplot</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy, <span class="dt">data =</span> economics, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;line&#39;</span>))</a></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/gg12-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>The appearance of the line can be modified using the <code>color</code> argument as shown below.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">qplot</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy, <span class="dt">data =</span> economics, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;line&#39;</span>),</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">      <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>)</a></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/gg13-1.png" width="576" style="display: block; margin: auto;" /></p>
+</div>
+<div id="histogram" class="section level2">
+<h2><span class="header-section-number">2.7</span> Histogram</h2>
+<p>A histogram is a plot that can be used to examine the shape and spread of
+continuous data. It looks very similar to a bar graph and can be used to detect
+outliers and skewness in data. A histogram is created using the <code>bins</code> argument
+as shown below. The first input is the name of the continuous variable and the
+second is the name of the data set.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">qplot</span>(mpg, <span class="dt">data =</span> mtcars, <span class="dt">bins =</span> <span class="dv">5</span>)</a></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/gg14-1.png" width="576" style="display: block; margin: auto;" /></p>
 
+</div>
 </div>
             </section>
 
@@ -145,7 +501,8 @@ gitbook.start({
 },
 "download": null,
 "toc": {
-"collapse": "subsection"
+"collapse": "subsection",
+"scroll_highlight": true
 }
 });
 });

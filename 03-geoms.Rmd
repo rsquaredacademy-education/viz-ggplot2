@@ -1,2 +1,267 @@
 # Geoms {#geoms}
 
+## Introduction
+
+In this chapter, we will create some of the most routinely 
+used plots to explore data using the `geom_*` functions. 
+
+```{r geoms1, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(readr)
+library(tibble)
+```
+
+## Libraries, Code & Data
+
+We will use the following libraries in this chapter:
+
+- [readr](http://readr.tidyverse.org/)
+- [ggplot2](http://ggplot2.tidyverse.org/)
+- [tibble](http://tibble.tidyverse.org/)
+- [dplyr](http://dplyr.tidyverse.org/)
+
+All the data sets used in this chapter can be found [here](https://github.com/rsquaredacademy/datasets) and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/2d0d5d5b60d0ef0f4d1b227c8fb0335d).
+
+### Data
+
+```{r use, eval=TRUE, message=FALSE}
+ecom <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')
+ecom
+```
+
+### Data Dictionary
+
+- id: row id
+- referrer: referrer website/search engine
+- os: operating system
+- browser: browser
+- device: device used to visit the website
+- n_pages: number of pages visited
+- duration: time spent on the website (in seconds)
+- repeat: frequency of visits
+- country: country of origin
+- purchase: whether visitor purchased
+- order_value: order value of visitor (in dollars)
+
+## Point
+
+A scatter plot displays the relationship between two continuous variables. In 
+ggplot2, we can build a scatter plot using `geom_point()`. Scatter plots can 
+show you visually 
+
+- the strength of the relationship between the variables 
+- the direction of the relationship between the variables 
+- and whether outliers exist
+
+The variables representing the X and Y axis can be specified either in `ggplot()`
+or in `geom_point()`. We will learn to modify the appearance of the points in a 
+different post.
+
+```{r geoms2, fig.align='center'}
+ggplot(ecom, aes(x = n_pages, y = duration)) + 
+  geom_point()
+```
+
+## Regression Line
+
+A regression line can be fit using either:
+
+- `geom_abline()`
+- `geom_smooth()`
+
+If you are using `geom_abline()`, you need to specify the intercept and slope 
+as shown in the below example:
+
+```{r geoms5, fig.align='center'}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() + 
+  geom_abline(intercept = 37.285, slope = -5.344)
+```
+
+If you are using `geom_smooth()`, you need to specify the method of fitting the
+line, which can be `lm` or `loess`. You also need to indicate whether the 
+confidence interval must be displayed using the `se` argument.
+
+```{r geoms6, fig.align='center'}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_smooth(method = 'lm', se = TRUE)
+```
+
+Here we use the `'loess'` method to fit the regression line.
+
+```{r geoms7, fig.align='center'}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_smooth(method = 'loess', se = FALSE)
+```
+
+## Bar 
+
+Bar plots present grouped data with rectangular bars. The bars may represent 
+the frequency of the groups or values. Bar plots can be: 
+
+- horizontal 
+- vertical
+- grouped
+- stacked 
+- proportional
+
+### Frequency
+
+```{r geoms8, fig.align='center'}
+ggplot(ecom, aes(x = factor(device))) +
+  geom_bar()
+```
+
+### Weight
+
+If the bars should represent a continuous variable, use the `weight` argument
+within `aes()`. In the below example, the bars do not represent the count of 
+devices, instead, they represent the total order value for each device type.
+
+```{r geoms9, fig.align='center'}
+ggplot(ecom, aes(x = factor(device))) +
+  geom_bar(aes(weight = order_value))
+```
+
+### Stacked Bar Plot
+
+To create a stacked bar plot, the `fill` argument must be mapped to a 
+categorical variable. 
+
+```{r geoms10, fig.align='center'}
+ggplot(ecom, aes(x = factor(device))) +
+  geom_bar(aes(fill = purchase))
+```
+
+### Horizontal Bar Plot
+
+A horizontal bar plot can be created by flipping the coordinate axes using the
+`coord_flip()` function.
+
+```{r geoms11, fig.align='center'}
+ggplot(ecom, aes(x = factor(device))) +
+  geom_bar(aes(fill = purchase)) +
+  coord_flip()
+```
+
+## Columns
+
+If the data has already been summarized, you can use `geom_col()` instead of 
+`geom_bar()`. In the below example, we have the total visits for each device
+type. The data has already been summarized and as such we cannot use `geom_bar()`.
+
+```{r geoms12, fig.align='center', fig.height=4}
+device <- c('laptop', 'mobile', 'tablet')
+visits <- c(30000, 12000, 5000)
+traffic <- tibble::tibble(device, visits)
+ggplot(traffic, aes(x = device, y = visits)) +
+  geom_col(fill = 'blue') 
+```
+
+## Boxplot
+
+The box plot is a standardized way of displaying the distribution of data 
+based on the five number summary: minimum, first quartile, median, third 
+quartile, and maximum. Box plots are useful for detecting outliers and for 
+comparing distributions. It shows the shape, central tendancy and variability 
+of the data. Use `geom_boxplot()` to create a box plot.
+
+```{r geoms13, fig.align='center'}
+ggplot(ecom, aes(x = factor(device), y = n_pages)) +
+  geom_boxplot()
+```
+
+## Histogram
+
+A histogram is a plot that can be used to examine the shape and spread of 
+continuous data. It looks very similar to a bar graph and can be used to detect 
+outliers and skewness in data. Use `geom_histogram()` to create a histogram.
+
+
+```{r geoms15, fig.align='center'}
+ggplot(ecom, aes(x = duration)) +
+  geom_histogram()
+```
+
+You can control the number of bins using the `bins` argument.
+
+```{r geoms16, fig.align='center'}
+ggplot(ecom, aes(x = duration)) +
+  geom_histogram(bins = 5)
+```
+
+## Line
+
+Line charts are used to examine trends over time. We will use a different data 
+set for exploring line plots.
+
+### Data
+
+```{r import2, eval=TRUE, message=FALSE}
+gdp <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')
+gdp
+```
+
+Use `geom_line()` to create a line chart. In the below plot, we chart the GDP 
+of India, the fastest growing economy in emerging markets, across years.
+
+```{r geomline1, fig.align='center'}
+ggplot(gdp, aes(year, india)) +
+  geom_line()
+```
+
+The color and line type can be modified using the `color` and `linetype` 
+arguments. We will explore the different line types in an upcoming post.
+
+```{r geomline2, fig.align='center'}
+ggplot(gdp, aes(year, india)) +
+  geom_line(color = 'blue', linetype = 'dashed')
+```
+
+Add horizontal or vertical lines using
+
+- `geom_hline()`
+- `geom_vline()`
+
+### Horizontal Line
+
+To add a horizontal line, the Y axis intercept must be supplied using the 
+`yintercept` argument.
+
+```{r geoms4, fig.align='center'}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_hline(yintercept = 30) 
+```
+
+### Vertical Line
+
+For the vertical line, the X axis intercept must be supplied using the 
+`xintercept` argument.
+
+```{r geoms3, fig.align='center'}
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_vline(xintercept = 5) 
+```
+
+
+## Label
+
+You can label the points using `geom_label()`.
+
+```{r geoms20, fig.align='center'}
+ggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +
+  geom_label()
+```
+
+## Text
+
+`geom_text()` offers another way to add text to the plots. We will learn to 
+modify the appearance and location of the text in another post.
+
+```{r geoms19, fig.align='center'}
+ggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +
+  geom_text(check_overlap = TRUE, size = 2)
+```

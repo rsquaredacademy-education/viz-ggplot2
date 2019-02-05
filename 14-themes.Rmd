@@ -1,2 +1,177 @@
 # Themes {#themes}
 
+## Introduction
+
+In this final chapter, we will learn to modify the appearance of all non data 
+components of the plot such as:
+
+- axis
+- legend
+- panel
+- plot area
+- background
+- margin
+- facets
+
+```{r load, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
+library(ggplot2)
+library(readr)
+```
+
+## Basic Plot
+
+We will continue with the scatter plot examining the relationship between 
+displacement and miles per gallon from the the mtcars data set.
+
+```{r theme1, fig.align='center'}
+p <- ggplot(mtcars) +
+  geom_point(aes(disp, mpg))
+p
+```
+
+## Axis 
+
+### Text
+
+The `axis.title.x` argument can be used to modify the appearance of the `X` 
+axis. In the below example, we modify the color and size of the title using
+the `element_text()` function. Remember, whenever you are trying to modify the
+appearance of a theme element which is a text, you must use `element_text()`.
+
+You can use `axis.title.y` to modify the `Y` axis title and to modify the 
+title of both the axis together, use `axis.title`.
+
+```{r theme2, fig.align='center'}
+p + theme(axis.title.x = element_text(color = "red", size = 10, face = "italic"))
+```
+
+### Ticks
+
+To modify the appearance of the axis ticks, use the `axis.ticks` argument. You can
+change the color, size, linetype and length of the ticks using the `element_line()`
+function as shown below. 
+
+```{r theme5, fig.align='center'}
+p + theme(axis.ticks = element_line(color = 'blue', size = 1.25, linetype = 2), 
+          axis.ticks.length = unit(1, "cm"))
+```
+
+### Line
+
+The `axis.line` argument should be used to modify the appearance of the 
+axis lines. You can change the color, size and linetype of the line using
+the `element_line()` function.
+
+```{r theme6, fig.align='center'}
+p + theme(axis.line = element_line(color = 'red', size = 1.5, linetype = 3))
+```
+
+## Legend
+
+Now, let us look at modifying the non-data components of a legend.
+
+```{r theme7, fig.align='center'}
+p <- ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl), shape = factor(gear)))
+p
+```
+
+### Background 
+
+The background of the legend can be modified using the `legend.background`
+argument. You can change the background color, the border color and line type
+using `element_rect()`.
+
+```{r theme30, fig.align='center'}
+p + theme(legend.background = element_rect(fill = 'gray', linetype = 3,  
+          color = "black"))
+```
+
+### Text 
+
+The appearance of the text can be modified using the `legend.text` argument.
+You can change the color, size and font using the `element_text()` function.
+
+```{r theme34, fig.align='center'}
+p + theme(legend.text = element_text(color = 'green', face = 'italic'))
+```
+
+### Title 
+
+The appearance fo the title of the legend can be modified using the 
+`legend.title` argument. You can change the color, size, font and alignment
+using `element_text()`.
+
+```{r theme35, fig.align='center'}
+p + theme(legend.title = element_text(color = 'blue', face = 'bold'),
+          legend.title.align = 0.1)
+```
+
+### Position 
+
+The position and direction of the legend can be changed using:
+
+- `legend.position`
+- and `legend.direction`
+
+```{r theme36, fig.align='center'}
+p + theme(legend.position = "top", legend.direction = "horizontal")
+```
+
+## Themes
+
+### Classic Dark on Light
+
+```{r theme17, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_bw()
+```
+
+### Default Gray
+
+```{r theme18, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_gray()
+```
+
+### Light
+
+```{r theme19, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_light()
+```
+
+### Minimal
+
+```{r theme20, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_minimal()
+```
+
+### Dark
+
+```{r theme21, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_dark()
+```
+
+### Classic
+
+```{r theme22, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_classic()
+```
+
+### Void (Empty)
+
+```{r theme23, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg)) +
+  theme_void()
+```

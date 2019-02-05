@@ -1,4 +1,4 @@
-book_filename: "Data Visualization with ggplot2"
+book_filename: "data-visualization-with-ggplot2"
 delete_merged_file: true
 output_dir: "docs"
 language:

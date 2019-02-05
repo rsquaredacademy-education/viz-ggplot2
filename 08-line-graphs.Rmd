@@ -1,2 +1,152 @@
 # Line Graphs {#line}
 
+## Introduction
+
+In this chapter, we will learn to:
+
+- build 
+    - simple line chart
+    - grouped line chart
+- map aesthetics to variables
+- modify line
+    - color
+    - type
+    - size
+
+```{r line, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+```
+
+## Case Study
+
+We will use a data set related to GDP growth rate. You can download it from 
+[here](https://github.com/rsquaredacademy/datasets/blob/master/gdp.csv). It 
+contains GDP (Gross Domestic Product) growth data for the BRICS (Brazil, 
+Russia, India, China, South Africa) for the years 2000 to 2005.
+
+### Data
+
+```{r import200, eval=TRUE, message=FALSE}
+gdp <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')
+gdp
+```
+
+## Line Chart
+
+To create a line chart, use `geom_line()`. In the below example, we examine the
+GDP growth rate trend of India for the years 2000 to 2005.
+
+```{r line100, fig.align='center'}
+ggplot(gdp, aes(year, india)) +
+  geom_line()
+```
+
+### Line Color
+
+To modify the color of the line, use the `color` argument and supply it a valid
+color name. In the below example, we modify the color of the line to `'blue'`. 
+Remember that the `color` argument should be outside `aes()`.
+
+```{r line1, fig.align='center'}
+ggplot(gdp, aes(year, india)) +
+  geom_line(color = 'blue')
+```
+
+### Line Type
+
+The line type can be modified using the `linetype` argument. It can take 7 different
+values. You can specify the line type either using numbers or words as shown below:
+
+- 0 : blank
+- 1 : solid
+- 2 : dashed
+- 3 : dotted
+- 4 : dotdash
+- 5 : longdash
+- 6 : twodash
+
+Let us modify the line type to dashed style by supplying the value `2` to the
+`linetype` argument.
+
+```{r line2, fig.align='center'}
+ggplot(gdp, aes(year, india)) +
+  geom_line(linetype = 2)
+```
+
+The above example can be recreated by supplying the value `'dashed'` instead 
+of `2`.
+
+```{r line3, fig.align='center'}
+ggplot(gdp, aes(year, india)) +
+  geom_line(linetype = 'dashed')
+```
+
+### Line Size
+
+The width of the line can be modified using the `size` argument. It can take 
+any value above 0 as input.
+
+```{r line4, fig.align='center'}
+ggplot(gdp, aes(year, india)) +
+  geom_line(size = 2)
+```
+
+## Multiple Lines
+
+### Modify Data
+
+Now let us map the aesthetics to the variables. The data used in the above 
+example cannot be used as we need a variable with country names. We will use 
+`gather()` function from the `tidyr` package to reshape the data.
+
+```{r line5, fig.align='center'}
+gdp2 <- gdp %>% 
+  select(year, growth, india, china) %>% 
+  gather(key = country, value = gdp, -year)
+
+gdp2
+```
+
+In the original data, to plot GDP trend of multiple countries we will have to 
+use `geom_line()` multiple times. But in the reshaped data, we have the 
+country names as one of the variables and this can be used along with the 
+`group` argument to plot data of multiple countries with a single line of code 
+as shown below. By mapping country to the `group` argument, we have plotted 
+data of all countries.
+
+```{r line6, fig.align='center'}
+ggplot(gdp2, aes(year, gdp, group = country)) +
+  geom_line()
+```
+
+In the above plot, we cannot distinguish between the lines and there is no way
+to identify which line represents which country. To make it easier to identify
+the trend of different countries, let us map the `color` argument to the 
+variable country as shown below. Now, each country will be represented by line 
+of different color.
+
+```{r line7, fig.align='center'}
+ggplot(gdp2, aes(year, gdp, group = country)) +
+  geom_line(aes(color = country))
+```
+
+We can map `linetype` argument to country as well. In this case, each country
+will be represented by a different line type.
+
+```{r line8, fig.align='center'}
+ggplot(gdp2, aes(year, gdp, group = country)) +
+  geom_line(aes(linetype = country))
+```
+
+We can map the width of the line to the variable country as well. But in this 
+case, the plot does not look either elegant or intuitive. 
+
+```{r line9, fig.align='center'}
+ggplot(gdp2, aes(year, gdp, group = country)) +
+  geom_line(aes(size = country))
+```
+
+Remember that in all the above cases, we mapped the arguments to a variable 
+inside `aes()`.

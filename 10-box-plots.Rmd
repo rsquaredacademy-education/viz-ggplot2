@@ -1,2 +1,232 @@
 # Box Plots {#box}
 
+## Introduction
+
+In this chapter, we will learn to:
+
+- build box plots
+- modify box 
+    - color
+    - fill
+    - alpha
+    - line size
+    - line type
+- modify outlier 
+    - color
+    - shape 
+    - size 
+    - alpha
+
+The box plot is a standardized way of displaying the distribution of data. It 
+is useful for detecting outliers and for comparing distributions and shows the 
+shape, central tendancy and variability of the data.
+
+## Structure
+
+- the body of the boxplot consists of a "box" (hence, the name), which goes from the first quartile (Q1) to the third quartile (Q3)
+- within the box, a vertical line is drawn at the Q2, the median of the data set
+- two horizontal lines, called whiskers, extend from the front and back of the box 
+- the front whisker goes from Q1 to the smallest non-outlier in the data set, and the back whisker goes from Q3 to the largest non-outlier
+- if the data set includes one or more outliers, they are plotted separately as points on the chart
+
+
+```{r box, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
+library(ggplot2)
+library(readr)
+```
+
+## Data
+
+We are going to use two different data sets in this chapter. Both the data sets have the same data but are in 
+different formats. 
+
+```{r show, eval=TRUE, message=FALSE}
+daily_returns <- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/tickers.csv')
+daily_returns
+```
+
+## Single Plot
+
+If you are not comparing the distribution of continuous data, you can create 
+box plot for a single variable. Unlike `plot()`, where we could just use 
+1 input, in ggplot2, we must specify a value for the X axis and it must be
+categorical data. Since we are not comparing distributions, we will use `1`
+as the value for the X axis and wrap it inside `factor()` to treat it as a
+categorical variable. In the below example, we examine the distribution of 
+stock returns of Apple. 
+
+```{r box2, fig.align='center'}
+ggplot(daily_returns) +
+  geom_boxplot(aes(x = factor(1), y = AAPL))
+```
+
+## Compare Distributions
+
+### Data
+
+For the rest of the chapter, we will use the below data set. Instead of 5 columns, 
+we have two columns. One for the stock names and another for returns. 
+
+```{r show2, eval=TRUE, message=FALSE}
+tidy_returns <- 
+  read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/tidy_tickers.csv',
+  col_types = list(col_factor(levels = c('AAPL', 'AMZN', 'FB', 'GOOG', 'MSFT')), col_double()))
+tidy_returns
+```
+
+With the above data, let us create a box plot where we compate the distribution
+of stock returns of different companies. We map X axis to the column with stock 
+names and Y axis to the column with stock returns. Note that, the column names 
+are wrapped inside `aes()`.
+
+```{r box3, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns))
+```
+
+To create a horizontal bar plot, we can use `coord_flip()` which will flip the
+coordinate axes.
+
+## Horizontal Box Plot
+
+```{r box4, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns)) +
+  coord_flip()
+```
+
+### Notch
+
+Notches are used to compare medians. You can use the `notch` argument and set
+it to `TRUE`. 
+
+```{r box5, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns),
+    notch = TRUE) 
+```
+
+### Jitter
+
+Just for comparison, let us plot the returns as points on top of the box plot
+using `geom_jitter()`. We modify the color of the points using the `color`
+argument and the spread using the `width` argument.
+
+```{r box6, fig.align='center'}
+ggplot(tidy_returns, aes(x = stock, y = returns)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.2, color = 'blue')
+```
+
+## Outliers
+
+To highlight extreme observations, we can modify the appearance of outliers 
+using the following:
+
+- color
+- shape
+- size
+- alpha
+
+To modify the color of the outliers, use the `outlier.color` argument. The 
+color can be specified either using its name or the associated hex code.
+
+```{r box7, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns), outlier.color = 'red')
+```
+
+The shape of the outlier can be modified using the `outlier.shape` argument.
+It can take values between `0` and `25`.
+
+```{r box9, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns), outlier.shape = 23) 
+```
+
+The size of the outlier can be modified using the `outlier.size` argument. It 
+can take any value greater than `0`.
+
+```{r box10, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns), outlier.size = 3) 
+```
+
+You can play around with the transparency of the outlier using the 
+`outlier.alpha` argument. It can take values between `0` and `1`.
+
+```{r box11, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns), outlier.color = 'blue', outlier.alpha = 0.3) 
+```
+
+## Aesthetics
+
+The appearance of the box can be controlled using the following:
+
+- color
+- fill
+- alpha
+- line type
+- line width
+
+### Specify Values 
+
+The background color of the box can be modified using the `fill` argument. The 
+color can be specified either using its name or the associated hex code.
+
+```{r box12, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns), fill = c('blue', 'red', 'green', 'yellow', 'brown')) 
+```
+
+To modify the transparency of the background color, use the `alpha` argument. It 
+can take any value between `0` and `1`.
+
+```{r box14, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns), fill = 'blue', alpha = 0.3) 
+```
+
+The color of the border can be modified using the `color` argument. The 
+color can be specified either using its name or the associated hex code.
+
+```{r box15, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns), color = c('blue', 'red', 'green', 'yellow', 'brown')) 
+```
+
+The width of the border can be changed using the `size` argument. It can take
+any value greater than `0`.
+
+```{r box17, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns), size = 1.5) 
+```
+
+To change the line type of the border, use the `linetype` argument. It can take
+any value between `0` and `6`.
+
+```{r box18, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns), linetype = 2) 
+```
+
+## Map Variables
+
+Instead of specifying values, we can map `fill` and `color` to variables as 
+well. In the below example, we map `fill` to the variable stock. It assigns
+different colors to the different stocks.
+
+```{r box13, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns, fill = stock)) 
+```
+
+Let us map `color` to the variable stock. It will assign different colors
+to the box borders.
+
+```{r box16, fig.align='center'}
+ggplot(tidy_returns) +
+  geom_boxplot(aes(x = stock, y = returns, color = stock)) 
+```
