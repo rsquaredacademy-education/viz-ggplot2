@@ -2,9 +2,9 @@ bookdown::gitbook:
   css: style.css
   config:
     toc:
-      collapse: subsection
+      collapse: section
       scroll_highlight: yes
       before: |
-        <li><a href="./">Data Visualization with ggplot2</a></li>
+        <li><a href="https://github.com/rsquaredacademy-education/viz-ggplot2/">Data Visualization with ggplot2</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
