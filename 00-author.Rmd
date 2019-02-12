@@ -1,0 +1,19 @@
+# About the Author {-}
+
+[Aravind Hebbali](https://www.aravindhebbali.com) is the founder of 
+[Rsquared Academy](https://www.rsquaredacademy.com). He earned his Masters in 
+Economics from [Madras School of Economics](https://www.mse.ac.in). As an 
+active R user, he has authored several R packages such as 
+
+- [olsrr](https://olsrr.rsquaredacademy.com)
+- [rfm](https://rfm.rsquaredacademy.com)
+- [descriptr](https://descriptr.rsquaredacademy.com)
+- [blorr](https://blorr.rsquaredacademy.com)
+- [xplorerr](https://xplorerr.rsquaredacademy.com)
+
+In 2015, he founded [Rsquared Academy](https://www.rsquaredacademy.com), a 
+free and open source education initiative with focus on data science and 
+analytics. Apart from self paced online courses, Rsquared Academy offers 
+customized learning modules for corporates and universities. 
+
+You can find him on [GitHub](https://github.com/aravindhebbali).

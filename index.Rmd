@@ -7,8 +7,20 @@ link-citations: yes
 description: "Learn to visualize data with ggplot2."
 ---
 
-# Welcome {-}
+# Preface {-}
 
-<img src="img/viz-ggplot2.png" width="300" height="375" alt="Cover image" />
+```{r fig.align='center', echo=FALSE, out.width="60%"}
+knitr::include_graphics('img/viz-ggplot2.png')
+```
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
+
+## Structure of the book {-}
+
+## Software information {-}
+
+The R session information when compiling this book is shown below:
+
+```{r session}
+sessionInfo()
+```
