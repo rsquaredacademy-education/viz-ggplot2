@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Data Visualization with ggplot2</title>
-  <meta name="description" content="Learn to visualize data with ggplot2.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Quick Tour | Data Visualization with ggplot2</title>
+  <meta name="description" content="Learn to visualize data with ggplot2." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Data Visualization with ggplot2" />
+  <meta property="og:title" content="Chapter 1 Quick Tour | Data Visualization with ggplot2" />
   <meta property="og:type" content="book" />
   
   
@@ -17,29 +16,31 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Data Visualization with ggplot2" />
+  <meta name="twitter:title" content="Chapter 1 Quick Tour | Data Visualization with ggplot2" />
   
   <meta name="twitter:description" content="Learn to visualize data with ggplot2." />
   
 
-<meta name="author" content="Aravind Hebbali">
+<meta name="author" content="Aravind Hebbali" />
 
 
-<meta name="date" content="2019-02-13">
+<meta name="date" content="2020-06-20" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="about-the-author.html">
-<link rel="next" href="geoms.html">
+<link rel="prev" href="about-the-author.html"/>
+<link rel="next" href="geoms.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -47,31 +48,41 @@
 
 
 
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57270671-37"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-57270671-37');
+</script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +91,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -382,24 +393,24 @@ variables. The relationship can be examined across the levels of a categorical
 variable as well. Let us begin by creating scatter plots. The first two inputs
 are the variables/columns representing the X and Y axis. The next input is the
 name of the data set.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="quicktour.html#cb3-1"></a><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/gg2-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>If you want the relationship between the two variables to be represented by
 both points and line, use the <code>geom</code> argument and supply it the values using a
 character vector.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;point&#39;</span>, <span class="st">&#39;line&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="quicktour.html#cb4-1"></a><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;point&#39;</span>, <span class="st">&#39;line&#39;</span>))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/gg3-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>The color of the points can be mapped to a categorical variable, in our case
 <code>cyl</code>, using the color argument. Ensure that the variable is categorical using
 <code>factor()</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars, <span class="dt">color =</span> <span class="kw">factor</span>(cyl))</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="quicktour.html#cb5-1"></a><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars, <span class="dt">color =</span> <span class="kw">factor</span>(cyl))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/gg4-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>The shape and size of the points can also be mapped to variables using the
 <code>shape</code> and <code>size</code> argument as shown in the below examples.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars, <span class="dt">shape =</span> <span class="kw">factor</span>(cyl))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="quicktour.html#cb6-1"></a><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars, <span class="dt">shape =</span> <span class="kw">factor</span>(cyl))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/gg5-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Ensure that size is mapped to a continuous variable.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars, <span class="dt">size =</span> qsec)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="quicktour.html#cb7-1"></a><span class="kw">qplot</span>(disp, mpg, <span class="dt">data =</span> mtcars, <span class="dt">size =</span> qsec)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/gg6-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="bar-plot" class="section level2">
@@ -412,11 +423,11 @@ the Y axis represents the frequency/count of the variable.</p>
 convert a variable to type <code>factor</code> (R equivalent of categorical) using the
 <code>factor()</code> function. The next input is the name of the data set and the final
 input is the <code>geom</code> which is supplied the value <code>'bar'</code>.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">qplot</span>(<span class="kw">factor</span>(cyl), <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;bar&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="quicktour.html#cb8-1"></a><span class="kw">qplot</span>(<span class="kw">factor</span>(cyl), <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;bar&#39;</span>))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/gg7-1.png" width="576" style="display: block; margin: auto;" />
 You can create a stacked bar plot using the <code>fill</code> argument and mapping it to
 another categorical variable.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">qplot</span>(<span class="kw">factor</span>(cyl), <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;bar&#39;</span>), <span class="dt">fill =</span> <span class="kw">factor</span>(am))</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="quicktour.html#cb9-1"></a><span class="kw">qplot</span>(<span class="kw">factor</span>(cyl), <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;bar&#39;</span>), <span class="dt">fill =</span> <span class="kw">factor</span>(am))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/gg8-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="box-plot" class="section level2">
@@ -429,12 +440,12 @@ of the data.</p>
 <p>Box plots can be created by supplying the value <code>'boxplot'</code> to the <code>geom</code>
 argument. The firstinput must be a categorical variable and the second must be
 a continuous variable.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">qplot</span>(<span class="kw">factor</span>(cyl), mpg, <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;boxplot&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="quicktour.html#cb10-1"></a><span class="kw">qplot</span>(<span class="kw">factor</span>(cyl), mpg, <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;boxplot&#39;</span>))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/gg9-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Unlike <code>plot()</code>, we cannot create box plots using a single variable. If you are
 not comparing the distribution of a variable across the levels of a categorical
 variable, you must supply the value <code>1</code> as the first input as show below.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">qplot</span>(<span class="kw">factor</span>(<span class="dv">1</span>), mpg, <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;boxplot&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="quicktour.html#cb11-1"></a><span class="kw">qplot</span>(<span class="kw">factor</span>(<span class="dv">1</span>), mpg, <span class="dt">data =</span> mtcars, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;boxplot&#39;</span>))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/gg10-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="line-chart" class="section level2">
@@ -443,11 +454,11 @@ variable, you must supply the value <code>1</code> as the first input as show be
 supply the value <code>'line'</code> to the <code>geom</code> argument. The first two inputs should
 be names of the columns/variables representing the X and Y axis, and the third
 input must be the name of the data set.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">qplot</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy, <span class="dt">data =</span> economics, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;line&#39;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="quicktour.html#cb12-1"></a><span class="kw">qplot</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy, <span class="dt">data =</span> economics, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;line&#39;</span>))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/gg12-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>The appearance of the line can be modified using the <code>color</code> argument as shown below.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">qplot</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy, <span class="dt">data =</span> economics, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;line&#39;</span>),</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">      <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="quicktour.html#cb13-1"></a><span class="kw">qplot</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> unemploy, <span class="dt">data =</span> economics, <span class="dt">geom =</span> <span class="kw">c</span>(<span class="st">&#39;line&#39;</span>),</span>
+<span id="cb13-2"><a href="quicktour.html#cb13-2"></a>      <span class="dt">color =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/gg13-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="histogram" class="section level2">
@@ -457,7 +468,7 @@ continuous data. It looks very similar to a bar graph and can be used to detect
 outliers and skewness in data. A histogram is created using the <code>bins</code> argument
 as shown below. The first input is the name of the continuous variable and the
 second is the name of the data set.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">qplot</span>(mpg, <span class="dt">data =</span> mtcars, <span class="dt">bins =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="quicktour.html#cb14-1"></a><span class="kw">qplot</span>(mpg, <span class="dt">data =</span> mtcars, <span class="dt">bins =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/gg14-1.png" width="576" style="display: block; margin: auto;" /></p>
 
 </div>
@@ -473,11 +484,13 @@ second is the name of the data set.</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -485,12 +498,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -498,6 +510,14 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

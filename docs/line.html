@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Data Visualization with ggplot2</title>
-  <meta name="description" content="Learn to visualize data with ggplot2.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Line Graphs | Data Visualization with ggplot2</title>
+  <meta name="description" content="Learn to visualize data with ggplot2." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Data Visualization with ggplot2" />
+  <meta property="og:title" content="Chapter 7 Line Graphs | Data Visualization with ggplot2" />
   <meta property="og:type" content="book" />
   
   
@@ -17,29 +16,31 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Data Visualization with ggplot2" />
+  <meta name="twitter:title" content="Chapter 7 Line Graphs | Data Visualization with ggplot2" />
   
   <meta name="twitter:description" content="Learn to visualize data with ggplot2." />
   
 
-<meta name="author" content="Aravind Hebbali">
+<meta name="author" content="Aravind Hebbali" />
 
 
-<meta name="date" content="2019-02-13">
+<meta name="date" content="2020-06-20" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="scatter.html">
-<link rel="next" href="bar.html">
+<link rel="prev" href="scatter.html"/>
+<link rel="next" href="bar.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -47,31 +48,41 @@
 
 
 
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57270671-37"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-57270671-37');
+</script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +91,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -384,9 +395,9 @@ contains GDP (Gross Domestic Product) growth data for the BRICS (Brazil,
 Russia, India, China, South Africa) for the years 2000 to 2005.</p>
 <div id="data-4" class="section level3">
 <h3><span class="header-section-number">7.2.1</span> Data</h3>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">gdp &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="line.html#cb118-1"></a>gdp &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv&#39;</span>)</span></code></pre></div>
 <pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">gdp</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="line.html#cb120-1"></a>gdp</span></code></pre></div>
 <pre><code>## # A tibble: 6 x 6
 ##      X1     X year       growth india china
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -402,16 +413,16 @@ Russia, India, China, South Africa) for the years 2000 to 2005.</p>
 <h2><span class="header-section-number">7.3</span> Line Chart</h2>
 <p>To create a line chart, use <code>geom_line()</code>. In the below example, we examine the
 GDP growth rate trend of India for the years 2000 to 2005.</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb117-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="line.html#cb122-1"></a><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></span>
+<span id="cb122-2"><a href="line.html#cb122-2"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/line100-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="line-color" class="section level3">
 <h3><span class="header-section-number">7.3.1</span> Line Color</h3>
 <p>To modify the color of the line, use the <code>color</code> argument and supply it a valid
 color name. In the below example, we modify the color of the line to <code>'blue'</code>.
 Remember that the <code>color</code> argument should be outside <code>aes()</code>.</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb118-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="line.html#cb123-1"></a><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></span>
+<span id="cb123-2"><a href="line.html#cb123-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/line1-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="line-type" class="section level3">
@@ -429,21 +440,21 @@ values. You can specify the line type either using numbers or words as shown bel
 </ul>
 <p>Let us modify the line type to dashed style by supplying the value <code>2</code> to the
 <code>linetype</code> argument.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb119-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">linetype =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="line.html#cb124-1"></a><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></span>
+<span id="cb124-2"><a href="line.html#cb124-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">linetype =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/line2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The above example can be recreated by supplying the value <code>'dashed'</code> instead
 of <code>2</code>.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb120-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">linetype =</span> <span class="st">&#39;dashed&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="line.html#cb125-1"></a><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></span>
+<span id="cb125-2"><a href="line.html#cb125-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">linetype =</span> <span class="st">&#39;dashed&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/line3-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="line-size" class="section level3">
 <h3><span class="header-section-number">7.3.3</span> Line Size</h3>
 <p>The width of the line can be modified using the <code>size</code> argument. It can take
 any value above 0 as input.</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1"><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb121-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="line.html#cb126-1"></a><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></span>
+<span id="cb126-2"><a href="line.html#cb126-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/line4-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -454,11 +465,11 @@ any value above 0 as input.</p>
 <p>Now let us map the aesthetics to the variables. The data used in the above
 example cannot be used as we need a variable with country names. We will use
 <code>gather()</code> function from the <code>tidyr</code> package to reshape the data.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">gdp2 &lt;-<span class="st"> </span>gdp <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb122-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(year, growth, india, china) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb122-3" data-line-number="3"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> country, <span class="dt">value =</span> gdp, <span class="op">-</span>year)</a>
-<a class="sourceLine" id="cb122-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb122-5" data-line-number="5">gdp2</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="line.html#cb127-1"></a>gdp2 &lt;-<span class="st"> </span>gdp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-2"><a href="line.html#cb127-2"></a><span class="st">  </span><span class="kw">select</span>(year, growth, india, china) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb127-3"><a href="line.html#cb127-3"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> country, <span class="dt">value =</span> gdp, <span class="op">-</span>year)</span>
+<span id="cb127-4"><a href="line.html#cb127-4"></a></span>
+<span id="cb127-5"><a href="line.html#cb127-5"></a>gdp2</span></code></pre></div>
 <pre><code>## # A tibble: 18 x 3
 ##    year       country   gdp
 ##    &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
@@ -486,26 +497,26 @@ country names as one of the variables and this can be used along with the
 <code>group</code> argument to plot data of multiple countries with a single line of code
 as shown below. By mapping country to the <code>group</code> argument, we have plotted
 data of all countries.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1"><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb124-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="line.html#cb129-1"></a><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></span>
+<span id="cb129-2"><a href="line.html#cb129-2"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/line6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>In the above plot, we cannot distinguish between the lines and there is no way
 to identify which line represents which country. To make it easier to identify
 the trend of different countries, let us map the <code>color</code> argument to the
 variable country as shown below. Now, each country will be represented by line
 of different color.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb125-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> country))</a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="line.html#cb130-1"></a><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></span>
+<span id="cb130-2"><a href="line.html#cb130-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> country))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/line7-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can map <code>linetype</code> argument to country as well. In this case, each country
 will be represented by a different line type.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1"><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype =</span> country))</a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="line.html#cb131-1"></a><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></span>
+<span id="cb131-2"><a href="line.html#cb131-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype =</span> country))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/line8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We can map the width of the line to the variable country as well. But in this
 case, the plot does not look either elegant or intuitive.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb127-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">size =</span> country))</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="line.html#cb132-1"></a><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></span>
+<span id="cb132-2"><a href="line.html#cb132-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">size =</span> country))</span></code></pre></div>
 <pre><code>## Warning: Using size for a discrete variable is not advised.</code></pre>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/line9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Remember that in all the above cases, we mapped the arguments to a variable
@@ -525,11 +536,13 @@ inside <code>aes()</code>.</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -537,12 +550,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -550,6 +562,14 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

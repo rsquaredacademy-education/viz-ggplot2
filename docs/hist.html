@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Data Visualization with ggplot2</title>
-  <meta name="description" content="Learn to visualize data with ggplot2.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Histograms | Data Visualization with ggplot2</title>
+  <meta name="description" content="Learn to visualize data with ggplot2." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Data Visualization with ggplot2" />
+  <meta property="og:title" content="Chapter 10 Histograms | Data Visualization with ggplot2" />
   <meta property="og:type" content="book" />
   
   
@@ -17,29 +16,31 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Data Visualization with ggplot2" />
+  <meta name="twitter:title" content="Chapter 10 Histograms | Data Visualization with ggplot2" />
   
   <meta name="twitter:description" content="Learn to visualize data with ggplot2." />
   
 
-<meta name="author" content="Aravind Hebbali">
+<meta name="author" content="Aravind Hebbali" />
 
 
-<meta name="date" content="2019-02-13">
+<meta name="date" content="2020-06-20" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="box.html">
-<link rel="next" href="legend.html">
+<link rel="prev" href="box.html"/>
+<link rel="next" href="legend.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -47,31 +48,41 @@
 
 
 
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57270671-37"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-57270671-37');
+</script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +91,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -387,8 +398,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="data-8" class="section level2">
 <h2><span class="header-section-number">10.2</span> Data</h2>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1">ecom &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv&#39;</span>)</a>
-<a class="sourceLine" id="cb160-2" data-line-number="2">ecom</a></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="hist.html#cb165-1"></a>ecom &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv&#39;</span>)</span>
+<span id="cb165-2"><a href="hist.html#cb165-2"></a>ecom</span></code></pre></div>
 <pre><code>## # A tibble: 1,000 x 11
 ##       id referrer device bouncers n_visit n_pages duration country purchase
 ##    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;lgl&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;lgl&gt;   
@@ -426,8 +437,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To create a histogram, we will use <code>geom_histogram()</code> and specify the variable
 name within <code>aes()</code>. In the below example, we create histogram of the variable
 <code>n_visit</code>.</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="kw">ggplot</span>(ecom) <span class="op">+</span></a>
-<a class="sourceLine" id="cb162-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit))</a></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="hist.html#cb167-1"></a><span class="kw">ggplot</span>(ecom) <span class="op">+</span></span>
+<span id="cb167-2"><a href="hist.html#cb167-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit))</span></code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/hist2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="specify-bins" class="section level3">
@@ -435,8 +446,8 @@ name within <code>aes()</code>. In the below example, we create histogram of the
 <p>The default number of bins in ggplot2 is <code>30</code>. You can modify the number of
 bins using the <code>bins</code> argument. In the below example, we create a histogram
 with 7 bins.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1"><span class="kw">ggplot</span>(ecom) <span class="op">+</span></a>
-<a class="sourceLine" id="cb164-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">7</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="hist.html#cb169-1"></a><span class="kw">ggplot</span>(ecom) <span class="op">+</span></span>
+<span id="cb169-2"><a href="hist.html#cb169-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">7</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/hist4-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -446,26 +457,26 @@ with 7 bins.</p>
 appearance. We will begin with the background color. Use the <code>fill</code> argument
 to modify the background color of the histogram. In the below case, we change
 the color of the histogram to ‘blue’.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="kw">ggplot</span>(ecom) <span class="op">+</span></a>
-<a class="sourceLine" id="cb165-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">7</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="hist.html#cb170-1"></a><span class="kw">ggplot</span>(ecom) <span class="op">+</span></span>
+<span id="cb170-2"><a href="hist.html#cb170-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">7</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/hist3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As we have learnt before, the transparency of the background color can be
 modified using the <code>alpha</code> argument. It can take any value between <code>0</code> and <code>1</code>.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="kw">ggplot</span>(ecom) <span class="op">+</span></a>
-<a class="sourceLine" id="cb166-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">7</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="hist.html#cb171-1"></a><span class="kw">ggplot</span>(ecom) <span class="op">+</span></span>
+<span id="cb171-2"><a href="hist.html#cb171-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">7</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">alpha =</span> <span class="fl">0.3</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/hist11-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The color of the histogram border can be modified using the <code>color</code> argument.
 The color can be specified either using its name or the associated hex code.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="kw">ggplot</span>(ecom) <span class="op">+</span></a>
-<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">7</span>, <span class="dt">fill =</span> <span class="st">&#39;white&#39;</span>, <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="hist.html#cb172-1"></a><span class="kw">ggplot</span>(ecom) <span class="op">+</span></span>
+<span id="cb172-2"><a href="hist.html#cb172-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">7</span>, <span class="dt">fill =</span> <span class="st">&#39;white&#39;</span>, <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/hist8-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="putting-it-all-together-1" class="section level2">
 <h2><span class="header-section-number">10.5</span> Putting it all together…</h2>
 <p>Let us modify the bins, the background and border color of the histogram in
 the below example.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="kw">ggplot</span>(ecom) <span class="op">+</span></a>
-<a class="sourceLine" id="cb168-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">7</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">color =</span> <span class="st">&#39;white&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="hist.html#cb173-1"></a><span class="kw">ggplot</span>(ecom) <span class="op">+</span></span>
+<span id="cb173-2"><a href="hist.html#cb173-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">7</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">color =</span> <span class="st">&#39;white&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/hist9-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="bin-width" class="section level2">
@@ -475,26 +486,26 @@ the below example.</p>
 of the number of bins. As you can see, in the below example, we do not use
 the <code>bins</code> argument when using the <code>binwidth</code> argument. You can use either of
 them but not both.</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="kw">ggplot</span>(ecom) <span class="op">+</span></a>
-<a class="sourceLine" id="cb169-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">binwidth =</span> <span class="dv">2</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">color =</span> <span class="st">&#39;black&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="hist.html#cb174-1"></a><span class="kw">ggplot</span>(ecom) <span class="op">+</span></span>
+<span id="cb174-2"><a href="hist.html#cb174-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">binwidth =</span> <span class="dv">2</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">color =</span> <span class="st">&#39;black&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/hist5-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="line-type-1" class="section level2">
 <h2><span class="header-section-number">10.7</span> Line Type</h2>
 <p>The line type of the histogram border can be modified using the <code>linetype</code>
 argument. It can take any integer value between <code>0</code> and <code>6</code>.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="kw">ggplot</span>(ecom) <span class="op">+</span></a>
-<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">5</span>, <span class="dt">fill =</span> <span class="st">&#39;white&#39;</span>, </a>
-<a class="sourceLine" id="cb170-3" data-line-number="3">    <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="hist.html#cb175-1"></a><span class="kw">ggplot</span>(ecom) <span class="op">+</span></span>
+<span id="cb175-2"><a href="hist.html#cb175-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">5</span>, <span class="dt">fill =</span> <span class="st">&#39;white&#39;</span>, </span>
+<span id="cb175-3"><a href="hist.html#cb175-3"></a>    <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/hist6-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="line-size-1" class="section level2">
 <h2><span class="header-section-number">10.8</span> Line Size</h2>
 <p>Use the <code>size</code> argument to modify the width of the border of the histogram bins.
 It can take any value greater than <code>0</code>.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="kw">ggplot</span>(ecom) <span class="op">+</span></a>
-<a class="sourceLine" id="cb171-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">5</span>, <span class="dt">fill =</span> <span class="st">&#39;white&#39;</span>, </a>
-<a class="sourceLine" id="cb171-3" data-line-number="3">    <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">size =</span> <span class="fl">1.25</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="hist.html#cb176-1"></a><span class="kw">ggplot</span>(ecom) <span class="op">+</span></span>
+<span id="cb176-2"><a href="hist.html#cb176-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit), <span class="dt">bins =</span> <span class="dv">5</span>, <span class="dt">fill =</span> <span class="st">&#39;white&#39;</span>, </span>
+<span id="cb176-3"><a href="hist.html#cb176-3"></a>    <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>, <span class="dt">size =</span> <span class="fl">1.25</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/hist10-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="map-variables-2" class="section level2">
@@ -502,8 +513,8 @@ It can take any value greater than <code>0</code>.</p>
 <p>You can map the aesthetics to variables as well. In the below example, we map
 <code>fill</code> to the device variable. You can try mapping color, linetype and size to
 variables as well.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1"><span class="kw">ggplot</span>(ecom) <span class="op">+</span></a>
-<a class="sourceLine" id="cb172-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit, <span class="dt">fill =</span> device), <span class="dt">bins =</span> <span class="dv">7</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="hist.html#cb177-1"></a><span class="kw">ggplot</span>(ecom) <span class="op">+</span></span>
+<span id="cb177-2"><a href="hist.html#cb177-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(n_visit, <span class="dt">fill =</span> device), <span class="dt">bins =</span> <span class="dv">7</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/hist7-1.png" width="672" style="display: block; margin: auto;" /></p>
 
 </div>
@@ -519,11 +530,13 @@ variables as well.</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -531,12 +544,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -544,6 +556,14 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Data Visualization with ggplot2</title>
-  <meta name="description" content="Learn to visualize data with ggplot2.">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Aesthetics | Data Visualization with ggplot2</title>
+  <meta name="description" content="Learn to visualize data with ggplot2." />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Data Visualization with ggplot2" />
+  <meta property="og:title" content="Chapter 3 Aesthetics | Data Visualization with ggplot2" />
   <meta property="og:type" content="book" />
   
   
@@ -17,29 +16,31 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Data Visualization with ggplot2" />
+  <meta name="twitter:title" content="Chapter 3 Aesthetics | Data Visualization with ggplot2" />
   
   <meta name="twitter:description" content="Learn to visualize data with ggplot2." />
   
 
-<meta name="author" content="Aravind Hebbali">
+<meta name="author" content="Aravind Hebbali" />
 
 
-<meta name="date" content="2019-02-13">
+<meta name="date" content="2020-06-20" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="geoms.html">
-<link rel="next" href="labels.html">
+<link rel="prev" href="geoms.html"/>
+<link rel="next" href="labels.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -47,31 +48,41 @@
 
 
 
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57270671-37"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-57270671-37');
+</script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +91,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -387,8 +398,8 @@ the <code>aes()</code> function. We will look at both methods in the following s
 and code can be downloaded from <a href="https://gist.github.com/rsquaredacademy/a596a4604b2ebda163313caa272f05cd">here</a>.</p>
 <div id="data-2" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Data</h3>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">ecom &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv&#39;</span>)</a>
-<a class="sourceLine" id="cb40-2" data-line-number="2">ecom</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="aesthetics.html#cb42-1"></a>ecom &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv&#39;</span>)</span>
+<span id="cb42-2"><a href="aesthetics.html#cb42-2"></a>ecom</span></code></pre></div>
 <pre><code>## # A tibble: 1,000 x 11
 ##       id referrer device bouncers n_visit n_pages duration country purchase
 ##    &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;lgl&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;   &lt;lgl&gt;   
@@ -434,67 +445,67 @@ for the different geoms we learnt in the previous chapter.</p>
 shapes and border for others. The <code>fill</code> argument is used to specify the
 background for some shapes and will not work with other shapes. Let us look at
 an example:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg, <span class="dt">color =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="aesthetics.html#cb44-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg, <span class="dt">color =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span></span>
+<span id="cb44-2"><a href="aesthetics.html#cb44-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes2-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>We can map the variable to color in the <code>geom_point()</code> function as well since
 it inherits the data from the <code>ggplot()</code> function.</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">factor</span>(cyl)))</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="aesthetics.html#cb45-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></span>
+<span id="cb45-2"><a href="aesthetics.html#cb45-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> <span class="kw">factor</span>(cyl)))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes3-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>If you do not want to map a variable to color, you can specify it separately
 using the <code>color</code> argument but in this case it should be outside the <code>aes()</code>
 function.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="aesthetics.html#cb46-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></span>
+<span id="cb46-2"><a href="aesthetics.html#cb46-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes4-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Now we will change the shape of the points to understand the difference between
 <code>color</code> and <code>fill</code> arguments. It can be again mapped to variables or values.
 Let us map shape to variables.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg, <span class="dt">shape =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="aesthetics.html#cb47-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg, <span class="dt">shape =</span> <span class="kw">factor</span>(cyl))) <span class="op">+</span></span>
+<span id="cb47-2"><a href="aesthetics.html#cb47-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes5-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Let us map shape to <code>cyl</code> in the <code>geom_point()</code> function. Remember, when you
 are mapping an aesthetic to a variable, it must be inside <code>aes()</code>.</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> <span class="kw">factor</span>(cyl)))</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="aesthetics.html#cb48-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></span>
+<span id="cb48-2"><a href="aesthetics.html#cb48-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> <span class="kw">factor</span>(cyl)))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes6-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Instead of mapping shape to a variable, let us specify a value for shape. In
 this case, <code>shape</code> is not wrapped inside <code>aes()</code> as we are not mapping it to
 a variable.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="aesthetics.html#cb49-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></span>
+<span id="cb49-2"><a href="aesthetics.html#cb49-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">5</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes7-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Let us specify a color for the point using <code>color</code> argument.</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="aesthetics.html#cb50-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></span>
+<span id="cb50-2"><a href="aesthetics.html#cb50-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">5</span>, <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes8-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Background color cannot be added for all shapes. In the below example, we try
 to modify the background color using the <code>fill</code> argument but it does not work.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">5</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="aesthetics.html#cb51-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></span>
+<span id="cb51-2"><a href="aesthetics.html#cb51-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">5</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes9-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Since the shape number is now greater than 21, <code>fill</code> argument will add background color
 in the below case.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">22</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="aesthetics.html#cb52-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></span>
+<span id="cb52-2"><a href="aesthetics.html#cb52-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">22</span>, <span class="dt">fill =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes10-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>In shapes greater than number 21, <code>color</code> argument will modify the border of the shape.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">22</span>, <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="aesthetics.html#cb53-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></span>
+<span id="cb53-2"><a href="aesthetics.html#cb53-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">shape =</span> <span class="dv">22</span>, <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes11-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Let us map size of points to a variable. It is advised to map size only to
 continuous variables and not categorical variables.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg, <span class="dt">size =</span> disp)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="aesthetics.html#cb54-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg, <span class="dt">size =</span> disp)) <span class="op">+</span></span>
+<span id="cb54-2"><a href="aesthetics.html#cb54-2"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes12-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>If you map size to categorical variables, ggplot2 will throw a warning.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="aesthetics.html#cb55-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></span>
+<span id="cb55-2"><a href="aesthetics.html#cb55-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes13-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>To modify the opacity of the color, use the <code>alpha</code> argument.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="kw">factor</span>(cyl)), <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="aesthetics.html#cb56-1"></a><span class="kw">ggplot</span>(mtcars, <span class="kw">aes</span>(<span class="dt">x =</span> disp, <span class="dt">y =</span> mpg)) <span class="op">+</span></span>
+<span id="cb56-2"><a href="aesthetics.html#cb56-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">alpha =</span> <span class="kw">factor</span>(cyl)), <span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
 <pre><code>## Warning: Using alpha for a discrete variable is not advised.</code></pre>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes14-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
@@ -512,35 +523,35 @@ contains GDP (Gross Domestic Product) growth data for the BRICS (Brazil,
 Russia, India, China, South Africa) for the years 2000 to 2005.</p>
 <div id="data-3" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Data</h3>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">gdp &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="aesthetics.html#cb58-1"></a>gdp &lt;-<span class="st"> </span>readr<span class="op">::</span><span class="kw">read_csv</span>(<span class="st">&#39;https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv&#39;</span>)</span></code></pre></div>
 <pre><code>## Warning: Missing column names filled in: &#39;X1&#39; [1]</code></pre>
 <p>A line chart can be created using <code>geom_line()</code>. In the below example, we
 examine the GDP trend of India and modify the color of the line to <code>'blue'</code>.</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb58-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="aesthetics.html#cb60-1"></a><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></span>
+<span id="cb60-2"><a href="aesthetics.html#cb60-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">color =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes15-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>To modify the line type, use the <code>linetype</code> argument. It can take values
 between 1 and 5.</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1"><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb59-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">linetype =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="aesthetics.html#cb61-1"></a><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></span>
+<span id="cb61-2"><a href="aesthetics.html#cb61-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">linetype =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes16-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>The line type can also be mentioned in the following way:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1"><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">linetype =</span> <span class="st">&#39;dashed&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="aesthetics.html#cb62-1"></a><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></span>
+<span id="cb62-2"><a href="aesthetics.html#cb62-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">linetype =</span> <span class="st">&#39;dashed&#39;</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes17-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>The width of the line can be modified using the <code>size</code> argument.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1"><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb61-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="aesthetics.html#cb63-1"></a><span class="kw">ggplot</span>(gdp, <span class="kw">aes</span>(year, india)) <span class="op">+</span></span>
+<span id="cb63-2"><a href="aesthetics.html#cb63-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes18-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Now let us map the aesthetics to the variables. The data used in the above
 example cannot be used as we need a variable with country names. We will use
 <code>gather()</code> function from the <code>tidyr</code> package to reshape the data.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">gdp2 &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb62-2" data-line-number="2"><span class="st">  </span>gdp <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(year, growth, india, china) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb62-4" data-line-number="4"><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> country, <span class="dt">value =</span> gdp, <span class="op">-</span>year)</a>
-<a class="sourceLine" id="cb62-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb62-6" data-line-number="6">gdp2</a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="aesthetics.html#cb64-1"></a>gdp2 &lt;-<span class="st"> </span></span>
+<span id="cb64-2"><a href="aesthetics.html#cb64-2"></a><span class="st">  </span>gdp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb64-3"><a href="aesthetics.html#cb64-3"></a><span class="st">  </span><span class="kw">select</span>(year, growth, india, china) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb64-4"><a href="aesthetics.html#cb64-4"></a><span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> country, <span class="dt">value =</span> gdp, <span class="op">-</span>year)</span>
+<span id="cb64-5"><a href="aesthetics.html#cb64-5"></a></span>
+<span id="cb64-6"><a href="aesthetics.html#cb64-6"></a>gdp2</span></code></pre></div>
 <pre><code>## # A tibble: 18 x 3
 ##    year       country   gdp
 ##    &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
@@ -568,22 +579,22 @@ between the lines as their color, width and line type are the same. We have
 easily plotted the GDP trend of all countries using the <code>group</code> argument. Now,
 let us ensure that we can distinguish and identidy them using different
 aesthetics.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb64-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="aesthetics.html#cb66-1"></a><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></span>
+<span id="cb66-2"><a href="aesthetics.html#cb66-2"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes20-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Let us begin by ensuring that the lines have different color using the
 <code>color</code> argument within <code>aes()</code> and assigning it the variable <code>country</code>.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> country))</a></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="aesthetics.html#cb67-1"></a><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></span>
+<span id="cb67-2"><a href="aesthetics.html#cb67-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">color =</span> country))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes21-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Instead of color, now we modify the line type using the <code>linetype</code> argument.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype =</span> country))</a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="aesthetics.html#cb68-1"></a><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></span>
+<span id="cb68-2"><a href="aesthetics.html#cb68-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">linetype =</span> country))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes22-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>In the below instance, we assign different width to the lines using the <code>size</code>
 argument.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb67-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">size =</span> country))</a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="aesthetics.html#cb69-1"></a><span class="kw">ggplot</span>(gdp2, <span class="kw">aes</span>(year, gdp, <span class="dt">group =</span> country)) <span class="op">+</span></span>
+<span id="cb69-2"><a href="aesthetics.html#cb69-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">size =</span> country))</span></code></pre></div>
 <pre><code>## Warning: Using size for a discrete variable is not advised.</code></pre>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes23-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>Before we wrap up, let us quickly see how we can map aesthetics to variables
@@ -593,23 +604,23 @@ for different plots.</p>
 <div id="bar-plots" class="section level2">
 <h2><span class="header-section-number">3.5</span> Bar Plots</h2>
 <p>Here we create a stacked bar plot by mapping <code>fill</code> to <code>purchase</code>.</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1"><span class="kw">ggplot</span>(ecom, <span class="kw">aes</span>(device, <span class="dt">fill =</span> purchase)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb69-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="aesthetics.html#cb71-1"></a><span class="kw">ggplot</span>(ecom, <span class="kw">aes</span>(device, <span class="dt">fill =</span> purchase)) <span class="op">+</span></span>
+<span id="cb71-2"><a href="aesthetics.html#cb71-2"></a><span class="st">  </span><span class="kw">geom_bar</span>()</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes24-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="histograms" class="section level2">
 <h2><span class="header-section-number">3.6</span> Histograms</h2>
 <p>Instead of a bar chart, we create a histogram and again map <code>fill</code> to
 <code>purchase</code>.</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">ggplot</span>(ecom) <span class="op">+</span></a>
-<a class="sourceLine" id="cb70-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(duration, <span class="dt">fill =</span> purchase), <span class="dt">bins =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="aesthetics.html#cb72-1"></a><span class="kw">ggplot</span>(ecom) <span class="op">+</span></span>
+<span id="cb72-2"><a href="aesthetics.html#cb72-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(duration, <span class="dt">fill =</span> purchase), <span class="dt">bins =</span> <span class="dv">10</span>)</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes25-1.png" width="576" style="display: block; margin: auto;" /></p>
 </div>
 <div id="box-plots" class="section level2">
 <h2><span class="header-section-number">3.7</span> Box Plots</h2>
 <p>We repeat the same exercise below, but replace the bar plot with a box plot.</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">ggplot</span>(ecom) <span class="op">+</span></a>
-<a class="sourceLine" id="cb71-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(device, duration, <span class="dt">fill =</span> purchase))</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="aesthetics.html#cb73-1"></a><span class="kw">ggplot</span>(ecom) <span class="op">+</span></span>
+<span id="cb73-2"><a href="aesthetics.html#cb73-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(device, duration, <span class="dt">fill =</span> purchase))</span></code></pre></div>
 <p><img src="data-visualization-with-ggplot2_files/figure-html/aes26-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>In all the above cases, you can observe that when we are mapping aesthetics
 such as color, fill, shape, size or linetype to variables, they are all wrapped
@@ -628,11 +639,13 @@ inside <code>aes()</code>.</p>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -640,12 +653,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -653,6 +665,14 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
