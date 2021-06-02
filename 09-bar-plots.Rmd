@@ -1,4 +1,4 @@
-# Bar Plots {#bar}
+# Bar Plots {#ggplot2-bar-plot}
 
 ## Introduction
 
@@ -26,7 +26,7 @@ library(readr)
 ```{r import201, eval=TRUE, message=FALSE}
 ecom <- read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/ecom.csv',
   col_types = list(col_factor(levels = c('Desktop', 'Mobile', 'Tablet')), 
-  col_factor(levels = c(TRUE, FALSE)), col_factor(levels = c(TRUE, FALSE)), 
+  col_logical(), col_logical(), 
   col_factor(levels = c('Affiliates', 'Direct', 'Display', 'Organic', 'Paid', 'Referral', 'Social'))))
 ecom
 ```

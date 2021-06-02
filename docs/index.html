@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Data Visualization with ggplot2</title>
   <meta name="description" content="Learn to visualize data with ggplot2." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Data Visualization with ggplot2" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Aravind Hebbali" />
 
 
-<meta name="date" content="2020-06-20" />
+<meta name="date" content="2021-06-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 
 <link rel="next" href="about-the-author.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57270671-37"></script>
 <script>
@@ -62,18 +65,18 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -93,7 +96,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -126,6 +129,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -142,210 +146,250 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://github.com/rsquaredacademy-education/viz-ggplot2/">Data Visualization with ggplot2</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-information"><i class="fa fa-check"></i>Software information</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
-<li class="chapter" data-level="1" data-path="quicktour.html"><a href="quicktour.html"><i class="fa fa-check"></i><b>1</b> Quick Tour</a><ul>
-<li class="chapter" data-level="1.1" data-path="quicktour.html"><a href="quicktour.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
-<li class="chapter" data-level="1.2" data-path="quicktour.html"><a href="quicktour.html#libraries-code-data"><i class="fa fa-check"></i><b>1.2</b> Libraries, Code &amp; Data</a></li>
-<li class="chapter" data-level="1.3" data-path="quicktour.html"><a href="quicktour.html#scatter-plot"><i class="fa fa-check"></i><b>1.3</b> Scatter Plot</a></li>
-<li class="chapter" data-level="1.4" data-path="quicktour.html"><a href="quicktour.html#bar-plot"><i class="fa fa-check"></i><b>1.4</b> Bar Plot</a></li>
-<li class="chapter" data-level="1.5" data-path="quicktour.html"><a href="quicktour.html#box-plot"><i class="fa fa-check"></i><b>1.5</b> Box Plot</a></li>
-<li class="chapter" data-level="1.6" data-path="quicktour.html"><a href="quicktour.html#line-chart"><i class="fa fa-check"></i><b>1.6</b> Line Chart</a></li>
-<li class="chapter" data-level="1.7" data-path="quicktour.html"><a href="quicktour.html#histogram"><i class="fa fa-check"></i><b>1.7</b> Histogram</a></li>
+<li class="chapter" data-level="1" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html"><i class="fa fa-check"></i><b>1</b> Quick Tour</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#libraries-code-data"><i class="fa fa-check"></i><b>1.2</b> Libraries, Code &amp; Data</a></li>
+<li class="chapter" data-level="1.3" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#scatter-plot"><i class="fa fa-check"></i><b>1.3</b> Scatter Plot</a></li>
+<li class="chapter" data-level="1.4" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#bar-plot"><i class="fa fa-check"></i><b>1.4</b> Bar Plot</a></li>
+<li class="chapter" data-level="1.5" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#box-plot"><i class="fa fa-check"></i><b>1.5</b> Box Plot</a></li>
+<li class="chapter" data-level="1.6" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#line-chart"><i class="fa fa-check"></i><b>1.6</b> Line Chart</a></li>
+<li class="chapter" data-level="1.7" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#histogram"><i class="fa fa-check"></i><b>1.7</b> Histogram</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="geoms.html"><a href="geoms.html"><i class="fa fa-check"></i><b>2</b> Geoms</a><ul>
-<li class="chapter" data-level="2.1" data-path="geoms.html"><a href="geoms.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
-<li class="chapter" data-level="2.2" data-path="geoms.html"><a href="geoms.html#libraries-code-data-1"><i class="fa fa-check"></i><b>2.2</b> Libraries, Code &amp; Data</a><ul>
-<li class="chapter" data-level="2.2.1" data-path="geoms.html"><a href="geoms.html#data"><i class="fa fa-check"></i><b>2.2.1</b> Data</a></li>
-<li class="chapter" data-level="2.2.2" data-path="geoms.html"><a href="geoms.html#data-dictionary"><i class="fa fa-check"></i><b>2.2.2</b> Data Dictionary</a></li>
+<li class="chapter" data-level="2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html"><i class="fa fa-check"></i><b>2</b> Geoms</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#libraries-code-data-1"><i class="fa fa-check"></i><b>2.2</b> Libraries, Code &amp; Data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#data"><i class="fa fa-check"></i><b>2.2.1</b> Data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#data-dictionary"><i class="fa fa-check"></i><b>2.2.2</b> Data Dictionary</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="geoms.html"><a href="geoms.html#point"><i class="fa fa-check"></i><b>2.3</b> Point</a></li>
-<li class="chapter" data-level="2.4" data-path="geoms.html"><a href="geoms.html#regression-line"><i class="fa fa-check"></i><b>2.4</b> Regression Line</a></li>
-<li class="chapter" data-level="2.5" data-path="geoms.html"><a href="geoms.html#bar"><i class="fa fa-check"></i><b>2.5</b> Bar</a><ul>
-<li class="chapter" data-level="2.5.1" data-path="geoms.html"><a href="geoms.html#frequency"><i class="fa fa-check"></i><b>2.5.1</b> Frequency</a></li>
-<li class="chapter" data-level="2.5.2" data-path="geoms.html"><a href="geoms.html#weight"><i class="fa fa-check"></i><b>2.5.2</b> Weight</a></li>
-<li class="chapter" data-level="2.5.3" data-path="geoms.html"><a href="geoms.html#stacked-bar-plot"><i class="fa fa-check"></i><b>2.5.3</b> Stacked Bar Plot</a></li>
-<li class="chapter" data-level="2.5.4" data-path="geoms.html"><a href="geoms.html#horizontal-bar-plot"><i class="fa fa-check"></i><b>2.5.4</b> Horizontal Bar Plot</a></li>
+<li class="chapter" data-level="2.3" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#point"><i class="fa fa-check"></i><b>2.3</b> Point</a></li>
+<li class="chapter" data-level="2.4" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#regression-line"><i class="fa fa-check"></i><b>2.4</b> Regression Line</a></li>
+<li class="chapter" data-level="2.5" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#bar"><i class="fa fa-check"></i><b>2.5</b> Bar</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#frequency"><i class="fa fa-check"></i><b>2.5.1</b> Frequency</a></li>
+<li class="chapter" data-level="2.5.2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#weight"><i class="fa fa-check"></i><b>2.5.2</b> Weight</a></li>
+<li class="chapter" data-level="2.5.3" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#stacked-bar-plot"><i class="fa fa-check"></i><b>2.5.3</b> Stacked Bar Plot</a></li>
+<li class="chapter" data-level="2.5.4" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#horizontal-bar-plot"><i class="fa fa-check"></i><b>2.5.4</b> Horizontal Bar Plot</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="geoms.html"><a href="geoms.html#columns"><i class="fa fa-check"></i><b>2.6</b> Columns</a></li>
-<li class="chapter" data-level="2.7" data-path="geoms.html"><a href="geoms.html#boxplot"><i class="fa fa-check"></i><b>2.7</b> Boxplot</a></li>
-<li class="chapter" data-level="2.8" data-path="geoms.html"><a href="geoms.html#histogram-1"><i class="fa fa-check"></i><b>2.8</b> Histogram</a></li>
-<li class="chapter" data-level="2.9" data-path="geoms.html"><a href="geoms.html#line"><i class="fa fa-check"></i><b>2.9</b> Line</a><ul>
-<li class="chapter" data-level="2.9.1" data-path="geoms.html"><a href="geoms.html#data-1"><i class="fa fa-check"></i><b>2.9.1</b> Data</a></li>
-<li class="chapter" data-level="2.9.2" data-path="geoms.html"><a href="geoms.html#horizontal-line"><i class="fa fa-check"></i><b>2.9.2</b> Horizontal Line</a></li>
-<li class="chapter" data-level="2.9.3" data-path="geoms.html"><a href="geoms.html#vertical-line"><i class="fa fa-check"></i><b>2.9.3</b> Vertical Line</a></li>
+<li class="chapter" data-level="2.6" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#columns"><i class="fa fa-check"></i><b>2.6</b> Columns</a></li>
+<li class="chapter" data-level="2.7" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#boxplot"><i class="fa fa-check"></i><b>2.7</b> Boxplot</a></li>
+<li class="chapter" data-level="2.8" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#histogram-1"><i class="fa fa-check"></i><b>2.8</b> Histogram</a></li>
+<li class="chapter" data-level="2.9" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#line"><i class="fa fa-check"></i><b>2.9</b> Line</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#data-1"><i class="fa fa-check"></i><b>2.9.1</b> Data</a></li>
+<li class="chapter" data-level="2.9.2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#horizontal-line"><i class="fa fa-check"></i><b>2.9.2</b> Horizontal Line</a></li>
+<li class="chapter" data-level="2.9.3" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#vertical-line"><i class="fa fa-check"></i><b>2.9.3</b> Vertical Line</a></li>
 </ul></li>
-<li class="chapter" data-level="2.10" data-path="geoms.html"><a href="geoms.html#label"><i class="fa fa-check"></i><b>2.10</b> Label</a></li>
-<li class="chapter" data-level="2.11" data-path="geoms.html"><a href="geoms.html#text"><i class="fa fa-check"></i><b>2.11</b> Text</a></li>
+<li class="chapter" data-level="2.10" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#label"><i class="fa fa-check"></i><b>2.10</b> Label</a></li>
+<li class="chapter" data-level="2.11" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#text"><i class="fa fa-check"></i><b>2.11</b> Text</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="aesthetics.html"><a href="aesthetics.html"><i class="fa fa-check"></i><b>3</b> Aesthetics</a><ul>
-<li class="chapter" data-level="3.1" data-path="aesthetics.html"><a href="aesthetics.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
-<li class="chapter" data-level="3.2" data-path="aesthetics.html"><a href="aesthetics.html#libraries-code-data-2"><i class="fa fa-check"></i><b>3.2</b> Libraries, Code &amp; Data</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="aesthetics.html"><a href="aesthetics.html#data-2"><i class="fa fa-check"></i><b>3.2.1</b> Data</a></li>
-<li class="chapter" data-level="3.2.2" data-path="aesthetics.html"><a href="aesthetics.html#data-dictionary-1"><i class="fa fa-check"></i><b>3.2.2</b> Data Dictionary</a></li>
+<li class="chapter" data-level="3" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html"><i class="fa fa-check"></i><b>3</b> Aesthetics</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#libraries-code-data-2"><i class="fa fa-check"></i><b>3.2</b> Libraries, Code &amp; Data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#data-2"><i class="fa fa-check"></i><b>3.2.1</b> Data</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#data-dictionary-1"><i class="fa fa-check"></i><b>3.2.2</b> Data Dictionary</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="aesthetics.html"><a href="aesthetics.html#color"><i class="fa fa-check"></i><b>3.3</b> Color</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="aesthetics.html"><a href="aesthetics.html#point-1"><i class="fa fa-check"></i><b>3.3.1</b> Point</a></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#color"><i class="fa fa-check"></i><b>3.3</b> Color</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#point-1"><i class="fa fa-check"></i><b>3.3.1</b> Point</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="aesthetics.html"><a href="aesthetics.html#line-chart-1"><i class="fa fa-check"></i><b>3.4</b> Line Chart</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="aesthetics.html"><a href="aesthetics.html#data-3"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#line-chart-1"><i class="fa fa-check"></i><b>3.4</b> Line Chart</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#data-3"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="aesthetics.html"><a href="aesthetics.html#bar-plots"><i class="fa fa-check"></i><b>3.5</b> Bar Plots</a></li>
-<li class="chapter" data-level="3.6" data-path="aesthetics.html"><a href="aesthetics.html#histograms"><i class="fa fa-check"></i><b>3.6</b> Histograms</a></li>
-<li class="chapter" data-level="3.7" data-path="aesthetics.html"><a href="aesthetics.html#box-plots"><i class="fa fa-check"></i><b>3.7</b> Box Plots</a></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#bar-plots"><i class="fa fa-check"></i><b>3.5</b> Bar Plots</a></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#histograms"><i class="fa fa-check"></i><b>3.6</b> Histograms</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#box-plots"><i class="fa fa-check"></i><b>3.7</b> Box Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="labels.html"><a href="labels.html"><i class="fa fa-check"></i><b>4</b> Labels</a><ul>
-<li class="chapter" data-level="4.1" data-path="labels.html"><a href="labels.html#introduction-3"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="labels.html"><a href="labels.html#basic-plot"><i class="fa fa-check"></i><b>4.2</b> Basic Plot</a></li>
-<li class="chapter" data-level="4.3" data-path="labels.html"><a href="labels.html#title-subtitle"><i class="fa fa-check"></i><b>4.3</b> Title &amp; Subtitle</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="labels.html"><a href="labels.html#ggtitle"><i class="fa fa-check"></i><b>4.3.1</b> ggtitle()</a></li>
+<li class="chapter" data-level="4" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html"><i class="fa fa-check"></i><b>4</b> Labels</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#introduction-3"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#basic-plot"><i class="fa fa-check"></i><b>4.2</b> Basic Plot</a></li>
+<li class="chapter" data-level="4.3" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#title-subtitle"><i class="fa fa-check"></i><b>4.3</b> Title &amp; Subtitle</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#ggtitle"><i class="fa fa-check"></i><b>4.3.1</b> ggtitle()</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="labels.html"><a href="labels.html#axis-labels"><i class="fa fa-check"></i><b>4.4</b> Axis Labels</a></li>
-<li class="chapter" data-level="4.5" data-path="labels.html"><a href="labels.html#labs"><i class="fa fa-check"></i><b>4.5</b> Labs</a></li>
-<li class="chapter" data-level="4.6" data-path="labels.html"><a href="labels.html#axis-range"><i class="fa fa-check"></i><b>4.6</b> Axis Range</a><ul>
-<li class="chapter" data-level="4.6.1" data-path="labels.html"><a href="labels.html#x-axis"><i class="fa fa-check"></i><b>4.6.1</b> X Axis</a></li>
-<li class="chapter" data-level="4.6.2" data-path="labels.html"><a href="labels.html#y-axis"><i class="fa fa-check"></i><b>4.6.2</b> Y Axis</a></li>
-<li class="chapter" data-level="4.6.3" data-path="labels.html"><a href="labels.html#expand-limits"><i class="fa fa-check"></i><b>4.6.3</b> Expand Limits</a></li>
-<li class="chapter" data-level="4.6.4" data-path="labels.html"><a href="labels.html#remove-axis-labels"><i class="fa fa-check"></i><b>4.6.4</b> Remove Axis Labels</a></li>
+<li class="chapter" data-level="4.4" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#axis-labels"><i class="fa fa-check"></i><b>4.4</b> Axis Labels</a></li>
+<li class="chapter" data-level="4.5" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#labs"><i class="fa fa-check"></i><b>4.5</b> Labs</a></li>
+<li class="chapter" data-level="4.6" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#axis-range"><i class="fa fa-check"></i><b>4.6</b> Axis Range</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#x-axis"><i class="fa fa-check"></i><b>4.6.1</b> X Axis</a></li>
+<li class="chapter" data-level="4.6.2" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#y-axis"><i class="fa fa-check"></i><b>4.6.2</b> Y Axis</a></li>
+<li class="chapter" data-level="4.6.3" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#expand-limits"><i class="fa fa-check"></i><b>4.6.3</b> Expand Limits</a></li>
+<li class="chapter" data-level="4.6.4" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#remove-axis-labels"><i class="fa fa-check"></i><b>4.6.4</b> Remove Axis Labels</a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="labels.html"><a href="labels.html#format-title-axis-labels"><i class="fa fa-check"></i><b>4.7</b> Format Title &amp; Axis Labels</a><ul>
-<li class="chapter" data-level="4.7.1" data-path="labels.html"><a href="labels.html#color-1"><i class="fa fa-check"></i><b>4.7.1</b> Color</a></li>
-<li class="chapter" data-level="4.7.2" data-path="labels.html"><a href="labels.html#font-family"><i class="fa fa-check"></i><b>4.7.2</b> Font Family</a></li>
-<li class="chapter" data-level="4.7.3" data-path="labels.html"><a href="labels.html#font-face"><i class="fa fa-check"></i><b>4.7.3</b> Font Face</a></li>
-<li class="chapter" data-level="4.7.4" data-path="labels.html"><a href="labels.html#font-size"><i class="fa fa-check"></i><b>4.7.4</b> Font Size</a></li>
+<li class="chapter" data-level="4.7" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#format-title-axis-labels"><i class="fa fa-check"></i><b>4.7</b> Format Title &amp; Axis Labels</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#color-1"><i class="fa fa-check"></i><b>4.7.1</b> Color</a></li>
+<li class="chapter" data-level="4.7.2" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#font-family"><i class="fa fa-check"></i><b>4.7.2</b> Font Family</a></li>
+<li class="chapter" data-level="4.7.3" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#font-face"><i class="fa fa-check"></i><b>4.7.3</b> Font Face</a></li>
+<li class="chapter" data-level="4.7.4" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#font-size"><i class="fa fa-check"></i><b>4.7.4</b> Font Size</a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="labels.html"><a href="labels.html#horizontal-alignment"><i class="fa fa-check"></i><b>4.8</b> Horizontal Alignment</a></li>
-<li class="chapter" data-level="4.9" data-path="labels.html"><a href="labels.html#putting-it-all-together"><i class="fa fa-check"></i><b>4.9</b> Putting it all together…</a><ul>
-<li class="chapter" data-level="4.9.1" data-path="labels.html"><a href="labels.html#title"><i class="fa fa-check"></i><b>4.9.1</b> Title</a></li>
-<li class="chapter" data-level="4.9.2" data-path="labels.html"><a href="labels.html#x-axis-label"><i class="fa fa-check"></i><b>4.9.2</b> X axis label</a></li>
-<li class="chapter" data-level="4.9.3" data-path="labels.html"><a href="labels.html#y-axis-label"><i class="fa fa-check"></i><b>4.9.3</b> Y axis label</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="textann.html"><a href="textann.html"><i class="fa fa-check"></i><b>5</b> Text Annotations</a><ul>
-<li class="chapter" data-level="5.1" data-path="textann.html"><a href="textann.html#introduction-4"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
-<li class="chapter" data-level="5.2" data-path="textann.html"><a href="textann.html#annotate"><i class="fa fa-check"></i><b>5.2</b> Annotate</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="textann.html"><a href="textann.html#add-text"><i class="fa fa-check"></i><b>5.2.1</b> Add Text</a></li>
-<li class="chapter" data-level="5.2.2" data-path="textann.html"><a href="textann.html#color-2"><i class="fa fa-check"></i><b>5.2.2</b> Color</a></li>
-<li class="chapter" data-level="5.2.3" data-path="textann.html"><a href="textann.html#size"><i class="fa fa-check"></i><b>5.2.3</b> Size</a></li>
-<li class="chapter" data-level="5.2.4" data-path="textann.html"><a href="textann.html#font"><i class="fa fa-check"></i><b>5.2.4</b> Font</a></li>
-<li class="chapter" data-level="5.2.5" data-path="textann.html"><a href="textann.html#angle"><i class="fa fa-check"></i><b>5.2.5</b> Angle</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="textann.html"><a href="textann.html#putting-it-all-together.."><i class="fa fa-check"></i><b>5.3</b> Putting it all together..</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="scatter.html"><a href="scatter.html"><i class="fa fa-check"></i><b>6</b> Scatter Plots</a><ul>
-<li class="chapter" data-level="6.1" data-path="scatter.html"><a href="scatter.html#introduction-5"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
-<li class="chapter" data-level="6.2" data-path="scatter.html"><a href="scatter.html#basic-plot-1"><i class="fa fa-check"></i><b>6.2</b> Basic Plot</a></li>
-<li class="chapter" data-level="6.3" data-path="scatter.html"><a href="scatter.html#jitter"><i class="fa fa-check"></i><b>6.3</b> Jitter</a></li>
-<li class="chapter" data-level="6.4" data-path="scatter.html"><a href="scatter.html#aesthetics-1"><i class="fa fa-check"></i><b>6.4</b> Aesthetics</a><ul>
-<li class="chapter" data-level="6.4.1" data-path="scatter.html"><a href="scatter.html#specify-values"><i class="fa fa-check"></i><b>6.4.1</b> Specify Values</a></li>
-<li class="chapter" data-level="6.4.2" data-path="scatter.html"><a href="scatter.html#map-variables"><i class="fa fa-check"></i><b>6.4.2</b> Map Variables</a></li>
-</ul></li>
-<li class="chapter" data-level="6.5" data-path="scatter.html"><a href="scatter.html#regression-line-1"><i class="fa fa-check"></i><b>6.5</b> Regression Line</a><ul>
-<li class="chapter" data-level="6.5.1" data-path="scatter.html"><a href="scatter.html#intercept-slope"><i class="fa fa-check"></i><b>6.5.1</b> Intercept &amp; Slope</a></li>
-<li class="chapter" data-level="6.5.2" data-path="scatter.html"><a href="scatter.html#add-line"><i class="fa fa-check"></i><b>6.5.2</b> Add Line</a></li>
+<li class="chapter" data-level="4.8" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#horizontal-alignment"><i class="fa fa-check"></i><b>4.8</b> Horizontal Alignment</a></li>
+<li class="chapter" data-level="4.9" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#putting-it-all-together"><i class="fa fa-check"></i><b>4.9</b> Putting it all together…</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#title"><i class="fa fa-check"></i><b>4.9.1</b> Title</a></li>
+<li class="chapter" data-level="4.9.2" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#x-axis-label"><i class="fa fa-check"></i><b>4.9.2</b> X axis label</a></li>
+<li class="chapter" data-level="4.9.3" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#y-axis-label"><i class="fa fa-check"></i><b>4.9.3</b> Y axis label</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="geoms.html"><a href="geoms.html#line"><i class="fa fa-check"></i><b>7</b> Line Graphs</a><ul>
-<li class="chapter" data-level="7.1" data-path="line.html"><a href="line.html"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="line.html"><a href="line.html#case-study"><i class="fa fa-check"></i><b>7.2</b> Case Study</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="line.html"><a href="line.html#data-4"><i class="fa fa-check"></i><b>7.2.1</b> Data</a></li>
+<li class="chapter" data-level="5" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html"><i class="fa fa-check"></i><b>5</b> Text Annotations</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#introduction-4"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#annotate"><i class="fa fa-check"></i><b>5.2</b> Annotate</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#add-text"><i class="fa fa-check"></i><b>5.2.1</b> Add Text</a></li>
+<li class="chapter" data-level="5.2.2" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#color-2"><i class="fa fa-check"></i><b>5.2.2</b> Color</a></li>
+<li class="chapter" data-level="5.2.3" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#size"><i class="fa fa-check"></i><b>5.2.3</b> Size</a></li>
+<li class="chapter" data-level="5.2.4" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#font"><i class="fa fa-check"></i><b>5.2.4</b> Font</a></li>
+<li class="chapter" data-level="5.2.5" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#angle"><i class="fa fa-check"></i><b>5.2.5</b> Angle</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="line.html"><a href="line.html#line-chart-2"><i class="fa fa-check"></i><b>7.3</b> Line Chart</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="line.html"><a href="line.html#line-color"><i class="fa fa-check"></i><b>7.3.1</b> Line Color</a></li>
-<li class="chapter" data-level="7.3.2" data-path="line.html"><a href="line.html#line-type"><i class="fa fa-check"></i><b>7.3.2</b> Line Type</a></li>
-<li class="chapter" data-level="7.3.3" data-path="line.html"><a href="line.html#line-size"><i class="fa fa-check"></i><b>7.3.3</b> Line Size</a></li>
+<li class="chapter" data-level="5.3" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#putting-it-all-together.."><i class="fa fa-check"></i><b>5.3</b> Putting it all together..</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="line.html"><a href="line.html#multiple-lines"><i class="fa fa-check"></i><b>7.4</b> Multiple Lines</a><ul>
-<li class="chapter" data-level="7.4.1" data-path="line.html"><a href="line.html#modify-data"><i class="fa fa-check"></i><b>7.4.1</b> Modify Data</a></li>
+<li class="chapter" data-level="6" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html"><i class="fa fa-check"></i><b>6</b> Scatter Plots</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#introduction-5"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#basic-plot-1"><i class="fa fa-check"></i><b>6.2</b> Basic Plot</a></li>
+<li class="chapter" data-level="6.3" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#jitter"><i class="fa fa-check"></i><b>6.3</b> Jitter</a></li>
+<li class="chapter" data-level="6.4" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#aesthetics"><i class="fa fa-check"></i><b>6.4</b> Aesthetics</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#specify-values"><i class="fa fa-check"></i><b>6.4.1</b> Specify Values</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#map-variables"><i class="fa fa-check"></i><b>6.4.2</b> Map Variables</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="geoms.html"><a href="geoms.html#bar"><i class="fa fa-check"></i><b>8</b> Bar Plots</a><ul>
-<li class="chapter" data-level="8.1" data-path="bar.html"><a href="bar.html"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
-<li class="chapter" data-level="8.2" data-path="bar.html"><a href="bar.html#data-5"><i class="fa fa-check"></i><b>8.2</b> Data</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="bar.html"><a href="bar.html#data-dictionary-2"><i class="fa fa-check"></i><b>8.2.1</b> Data Dictionary</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="bar.html"><a href="bar.html#basic-plot-2"><i class="fa fa-check"></i><b>8.3</b> Basic Plot</a></li>
-<li class="chapter" data-level="8.4" data-path="bar.html"><a href="bar.html#bar-color"><i class="fa fa-check"></i><b>8.4</b> Bar Color</a></li>
-<li class="chapter" data-level="8.5" data-path="bar.html"><a href="bar.html#stacked-bar-plot-1"><i class="fa fa-check"></i><b>8.5</b> Stacked Bar Plot</a></li>
-<li class="chapter" data-level="8.6" data-path="bar.html"><a href="bar.html#grouped-bar-plot"><i class="fa fa-check"></i><b>8.6</b> Grouped Bar Plot</a></li>
-<li class="chapter" data-level="8.7" data-path="bar.html"><a href="bar.html#proportional-bar-plot"><i class="fa fa-check"></i><b>8.7</b> Proportional Bar Plot</a></li>
-<li class="chapter" data-level="8.8" data-path="bar.html"><a href="bar.html#horizontal-bar-plot-1"><i class="fa fa-check"></i><b>8.8</b> Horizontal Bar Plot</a></li>
-<li class="chapter" data-level="8.9" data-path="bar.html"><a href="bar.html#bar-line"><i class="fa fa-check"></i><b>8.9</b> Bar Line</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="box.html"><a href="box.html"><i class="fa fa-check"></i><b>9</b> Box Plots</a><ul>
-<li class="chapter" data-level="9.1" data-path="box.html"><a href="box.html#introduction-8"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
-<li class="chapter" data-level="9.2" data-path="box.html"><a href="box.html#structure"><i class="fa fa-check"></i><b>9.2</b> Structure</a></li>
-<li class="chapter" data-level="9.3" data-path="box.html"><a href="box.html#data-6"><i class="fa fa-check"></i><b>9.3</b> Data</a></li>
-<li class="chapter" data-level="9.4" data-path="box.html"><a href="box.html#single-plot"><i class="fa fa-check"></i><b>9.4</b> Single Plot</a></li>
-<li class="chapter" data-level="9.5" data-path="box.html"><a href="box.html#compare-distributions"><i class="fa fa-check"></i><b>9.5</b> Compare Distributions</a><ul>
-<li class="chapter" data-level="9.5.1" data-path="box.html"><a href="box.html#data-7"><i class="fa fa-check"></i><b>9.5.1</b> Data</a></li>
-</ul></li>
-<li class="chapter" data-level="9.6" data-path="box.html"><a href="box.html#horizontal-box-plot"><i class="fa fa-check"></i><b>9.6</b> Horizontal Box Plot</a><ul>
-<li class="chapter" data-level="9.6.1" data-path="box.html"><a href="box.html#notch"><i class="fa fa-check"></i><b>9.6.1</b> Notch</a></li>
-<li class="chapter" data-level="9.6.2" data-path="box.html"><a href="box.html#jitter-1"><i class="fa fa-check"></i><b>9.6.2</b> Jitter</a></li>
-</ul></li>
-<li class="chapter" data-level="9.7" data-path="box.html"><a href="box.html#outliers"><i class="fa fa-check"></i><b>9.7</b> Outliers</a></li>
-<li class="chapter" data-level="9.8" data-path="box.html"><a href="box.html#aesthetics-2"><i class="fa fa-check"></i><b>9.8</b> Aesthetics</a><ul>
-<li class="chapter" data-level="9.8.1" data-path="box.html"><a href="box.html#specify-values-1"><i class="fa fa-check"></i><b>9.8.1</b> Specify Values</a></li>
-</ul></li>
-<li class="chapter" data-level="9.9" data-path="box.html"><a href="box.html#map-variables-1"><i class="fa fa-check"></i><b>9.9</b> Map Variables</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="hist.html"><a href="hist.html"><i class="fa fa-check"></i><b>10</b> Histograms</a><ul>
-<li class="chapter" data-level="10.1" data-path="hist.html"><a href="hist.html#introduction-9"><i class="fa fa-check"></i><b>10.1</b> Introduction</a></li>
-<li class="chapter" data-level="10.2" data-path="hist.html"><a href="hist.html#data-8"><i class="fa fa-check"></i><b>10.2</b> Data</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="hist.html"><a href="hist.html#data-dictionary-3"><i class="fa fa-check"></i><b>10.2.1</b> Data Dictionary</a></li>
-</ul></li>
-<li class="chapter" data-level="10.3" data-path="hist.html"><a href="hist.html#plot"><i class="fa fa-check"></i><b>10.3</b> Plot</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="hist.html"><a href="hist.html#specify-bins"><i class="fa fa-check"></i><b>10.3.1</b> Specify Bins</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="hist.html"><a href="hist.html#aesthetics-3"><i class="fa fa-check"></i><b>10.4</b> Aesthetics</a></li>
-<li class="chapter" data-level="10.5" data-path="hist.html"><a href="hist.html#putting-it-all-together-1"><i class="fa fa-check"></i><b>10.5</b> Putting it all together…</a></li>
-<li class="chapter" data-level="10.6" data-path="hist.html"><a href="hist.html#bin-width"><i class="fa fa-check"></i><b>10.6</b> Bin Width</a></li>
-<li class="chapter" data-level="10.7" data-path="hist.html"><a href="hist.html#line-type-1"><i class="fa fa-check"></i><b>10.7</b> Line Type</a></li>
-<li class="chapter" data-level="10.8" data-path="hist.html"><a href="hist.html#line-size-1"><i class="fa fa-check"></i><b>10.8</b> Line Size</a></li>
-<li class="chapter" data-level="10.9" data-path="hist.html"><a href="hist.html#map-variables-2"><i class="fa fa-check"></i><b>10.9</b> Map Variables</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="legend.html"><a href="legend.html"><i class="fa fa-check"></i><b>11</b> Legends</a></li>
-<li class="chapter" data-level="12" data-path="facet.html"><a href="facet.html"><i class="fa fa-check"></i><b>12</b> Faceting</a><ul>
-<li class="chapter" data-level="12.1" data-path="facet.html"><a href="facet.html#introduction-10"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
-<li class="chapter" data-level="12.2" data-path="facet.html"><a href="facet.html#grid"><i class="fa fa-check"></i><b>12.2</b> Grid</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="facet.html"><a href="facet.html#vertical"><i class="fa fa-check"></i><b>12.2.1</b> Vertical</a></li>
-<li class="chapter" data-level="12.2.2" data-path="facet.html"><a href="facet.html#horizontal"><i class="fa fa-check"></i><b>12.2.2</b> Horizontal</a></li>
-<li class="chapter" data-level="12.2.3" data-path="facet.html"><a href="facet.html#vertical-horizontal"><i class="fa fa-check"></i><b>12.2.3</b> Vertical &amp; Horizontal</a></li>
-<li class="chapter" data-level="12.2.4" data-path="facet.html"><a href="facet.html#scales"><i class="fa fa-check"></i><b>12.2.4</b> Scales</a></li>
-<li class="chapter" data-level="12.2.5" data-path="facet.html"><a href="facet.html#switch-labels"><i class="fa fa-check"></i><b>12.2.5</b> Switch Labels</a></li>
-</ul></li>
-<li class="chapter" data-level="12.3" data-path="facet.html"><a href="facet.html#wrap"><i class="fa fa-check"></i><b>12.3</b> Wrap</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="facet.html"><a href="facet.html#specify-rows"><i class="fa fa-check"></i><b>12.3.1</b> Specify Rows</a></li>
-<li class="chapter" data-level="12.3.2" data-path="facet.html"><a href="facet.html#specify-columns"><i class="fa fa-check"></i><b>12.3.2</b> Specify Columns</a></li>
-<li class="chapter" data-level="12.3.3" data-path="facet.html"><a href="facet.html#scales-1"><i class="fa fa-check"></i><b>12.3.3</b> Scales</a></li>
-<li class="chapter" data-level="12.3.4" data-path="facet.html"><a href="facet.html#rows-columns"><i class="fa fa-check"></i><b>12.3.4</b> Rows &amp; Columns</a></li>
+<li class="chapter" data-level="6.5" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#regression-line-1"><i class="fa fa-check"></i><b>6.5</b> Regression Line</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#intercept-slope"><i class="fa fa-check"></i><b>6.5.1</b> Intercept &amp; Slope</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#add-line"><i class="fa fa-check"></i><b>6.5.2</b> Add Line</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="themes.html"><a href="themes.html"><i class="fa fa-check"></i><b>13</b> Themes</a><ul>
-<li class="chapter" data-level="13.1" data-path="themes.html"><a href="themes.html#introduction-11"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
-<li class="chapter" data-level="13.2" data-path="themes.html"><a href="themes.html#basic-plot-3"><i class="fa fa-check"></i><b>13.2</b> Basic Plot</a></li>
-<li class="chapter" data-level="13.3" data-path="themes.html"><a href="themes.html#axis"><i class="fa fa-check"></i><b>13.3</b> Axis</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="themes.html"><a href="themes.html#text-1"><i class="fa fa-check"></i><b>13.3.1</b> Text</a></li>
-<li class="chapter" data-level="13.3.2" data-path="themes.html"><a href="themes.html#ticks"><i class="fa fa-check"></i><b>13.3.2</b> Ticks</a></li>
-<li class="chapter" data-level="13.3.3" data-path="themes.html"><a href="themes.html#line-1"><i class="fa fa-check"></i><b>13.3.3</b> Line</a></li>
+<li class="chapter" data-level="7" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html"><i class="fa fa-check"></i><b>7</b> Line Graphs</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#introduction-6"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#case-study"><i class="fa fa-check"></i><b>7.2</b> Case Study</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#data-4"><i class="fa fa-check"></i><b>7.2.1</b> Data</a></li>
 </ul></li>
-<li class="chapter" data-level="13.4" data-path="themes.html"><a href="themes.html#legend-1"><i class="fa fa-check"></i><b>13.4</b> Legend</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="themes.html"><a href="themes.html#background"><i class="fa fa-check"></i><b>13.4.1</b> Background</a></li>
-<li class="chapter" data-level="13.4.2" data-path="themes.html"><a href="themes.html#text-2"><i class="fa fa-check"></i><b>13.4.2</b> Text</a></li>
-<li class="chapter" data-level="13.4.3" data-path="themes.html"><a href="themes.html#title-1"><i class="fa fa-check"></i><b>13.4.3</b> Title</a></li>
-<li class="chapter" data-level="13.4.4" data-path="themes.html"><a href="themes.html#position"><i class="fa fa-check"></i><b>13.4.4</b> Position</a></li>
+<li class="chapter" data-level="7.3" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#line-chart-2"><i class="fa fa-check"></i><b>7.3</b> Line Chart</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#line-color"><i class="fa fa-check"></i><b>7.3.1</b> Line Color</a></li>
+<li class="chapter" data-level="7.3.2" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#line-type"><i class="fa fa-check"></i><b>7.3.2</b> Line Type</a></li>
+<li class="chapter" data-level="7.3.3" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#line-size"><i class="fa fa-check"></i><b>7.3.3</b> Line Size</a></li>
 </ul></li>
-<li class="chapter" data-level="13.5" data-path="themes.html"><a href="themes.html#themes-1"><i class="fa fa-check"></i><b>13.5</b> Themes</a><ul>
-<li class="chapter" data-level="13.5.1" data-path="themes.html"><a href="themes.html#classic-dark-on-light"><i class="fa fa-check"></i><b>13.5.1</b> Classic Dark on Light</a></li>
-<li class="chapter" data-level="13.5.2" data-path="themes.html"><a href="themes.html#default-gray"><i class="fa fa-check"></i><b>13.5.2</b> Default Gray</a></li>
-<li class="chapter" data-level="13.5.3" data-path="themes.html"><a href="themes.html#light"><i class="fa fa-check"></i><b>13.5.3</b> Light</a></li>
-<li class="chapter" data-level="13.5.4" data-path="themes.html"><a href="themes.html#minimal"><i class="fa fa-check"></i><b>13.5.4</b> Minimal</a></li>
-<li class="chapter" data-level="13.5.5" data-path="themes.html"><a href="themes.html#dark"><i class="fa fa-check"></i><b>13.5.5</b> Dark</a></li>
-<li class="chapter" data-level="13.5.6" data-path="themes.html"><a href="themes.html#classic"><i class="fa fa-check"></i><b>13.5.6</b> Classic</a></li>
-<li class="chapter" data-level="13.5.7" data-path="themes.html"><a href="themes.html#void-empty"><i class="fa fa-check"></i><b>13.5.7</b> Void (Empty)</a></li>
+<li class="chapter" data-level="7.4" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#multiple-lines"><i class="fa fa-check"></i><b>7.4</b> Multiple Lines</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#modify-data"><i class="fa fa-check"></i><b>7.4.1</b> Modify Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html"><i class="fa fa-check"></i><b>8</b> Bar Plots</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#introduction-7"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#data-5"><i class="fa fa-check"></i><b>8.2</b> Data</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#data-dictionary-2"><i class="fa fa-check"></i><b>8.2.1</b> Data Dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#basic-plot-2"><i class="fa fa-check"></i><b>8.3</b> Basic Plot</a></li>
+<li class="chapter" data-level="8.4" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#bar-color"><i class="fa fa-check"></i><b>8.4</b> Bar Color</a></li>
+<li class="chapter" data-level="8.5" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#stacked-bar-plot-1"><i class="fa fa-check"></i><b>8.5</b> Stacked Bar Plot</a></li>
+<li class="chapter" data-level="8.6" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#grouped-bar-plot"><i class="fa fa-check"></i><b>8.6</b> Grouped Bar Plot</a></li>
+<li class="chapter" data-level="8.7" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#proportional-bar-plot"><i class="fa fa-check"></i><b>8.7</b> Proportional Bar Plot</a></li>
+<li class="chapter" data-level="8.8" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#horizontal-bar-plot-1"><i class="fa fa-check"></i><b>8.8</b> Horizontal Bar Plot</a></li>
+<li class="chapter" data-level="8.9" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#bar-line"><i class="fa fa-check"></i><b>8.9</b> Bar Line</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html"><i class="fa fa-check"></i><b>9</b> Box Plots</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#introduction-8"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#structure"><i class="fa fa-check"></i><b>9.2</b> Structure</a></li>
+<li class="chapter" data-level="9.3" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#data-6"><i class="fa fa-check"></i><b>9.3</b> Data</a></li>
+<li class="chapter" data-level="9.4" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#single-plot"><i class="fa fa-check"></i><b>9.4</b> Single Plot</a></li>
+<li class="chapter" data-level="9.5" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#compare-distributions"><i class="fa fa-check"></i><b>9.5</b> Compare Distributions</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#data-7"><i class="fa fa-check"></i><b>9.5.1</b> Data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#horizontal-box-plot"><i class="fa fa-check"></i><b>9.6</b> Horizontal Box Plot</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#notch"><i class="fa fa-check"></i><b>9.6.1</b> Notch</a></li>
+<li class="chapter" data-level="9.6.2" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#jitter-1"><i class="fa fa-check"></i><b>9.6.2</b> Jitter</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#outliers"><i class="fa fa-check"></i><b>9.7</b> Outliers</a></li>
+<li class="chapter" data-level="9.8" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#aesthetics-1"><i class="fa fa-check"></i><b>9.8</b> Aesthetics</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#specify-values-1"><i class="fa fa-check"></i><b>9.8.1</b> Specify Values</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#map-variables-1"><i class="fa fa-check"></i><b>9.9</b> Map Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html"><i class="fa fa-check"></i><b>10</b> Histograms</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#introduction-9"><i class="fa fa-check"></i><b>10.1</b> Introduction</a></li>
+<li class="chapter" data-level="10.2" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#data-8"><i class="fa fa-check"></i><b>10.2</b> Data</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#data-dictionary-3"><i class="fa fa-check"></i><b>10.2.1</b> Data Dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#plot"><i class="fa fa-check"></i><b>10.3</b> Plot</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#specify-bins"><i class="fa fa-check"></i><b>10.3.1</b> Specify Bins</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#aesthetics-2"><i class="fa fa-check"></i><b>10.4</b> Aesthetics</a></li>
+<li class="chapter" data-level="10.5" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#putting-it-all-together-1"><i class="fa fa-check"></i><b>10.5</b> Putting it all together…</a></li>
+<li class="chapter" data-level="10.6" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#bin-width"><i class="fa fa-check"></i><b>10.6</b> Bin Width</a></li>
+<li class="chapter" data-level="10.7" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#line-type-1"><i class="fa fa-check"></i><b>10.7</b> Line Type</a></li>
+<li class="chapter" data-level="10.8" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#line-size-1"><i class="fa fa-check"></i><b>10.8</b> Line Size</a></li>
+<li class="chapter" data-level="10.9" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#map-variables-2"><i class="fa fa-check"></i><b>10.9</b> Map Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="ggplot2-legends.html"><a href="ggplot2-legends.html"><i class="fa fa-check"></i><b>11</b> Legends</a></li>
+<li class="chapter" data-level="12" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html"><i class="fa fa-check"></i><b>12</b> Faceting</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#introduction-10"><i class="fa fa-check"></i><b>12.1</b> Introduction</a></li>
+<li class="chapter" data-level="12.2" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#grid"><i class="fa fa-check"></i><b>12.2</b> Grid</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#vertical"><i class="fa fa-check"></i><b>12.2.1</b> Vertical</a></li>
+<li class="chapter" data-level="12.2.2" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#horizontal"><i class="fa fa-check"></i><b>12.2.2</b> Horizontal</a></li>
+<li class="chapter" data-level="12.2.3" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#vertical-horizontal"><i class="fa fa-check"></i><b>12.2.3</b> Vertical &amp; Horizontal</a></li>
+<li class="chapter" data-level="12.2.4" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#scales"><i class="fa fa-check"></i><b>12.2.4</b> Scales</a></li>
+<li class="chapter" data-level="12.2.5" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#switch-labels"><i class="fa fa-check"></i><b>12.2.5</b> Switch Labels</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#wrap"><i class="fa fa-check"></i><b>12.3</b> Wrap</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#specify-rows"><i class="fa fa-check"></i><b>12.3.1</b> Specify Rows</a></li>
+<li class="chapter" data-level="12.3.2" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#specify-columns"><i class="fa fa-check"></i><b>12.3.2</b> Specify Columns</a></li>
+<li class="chapter" data-level="12.3.3" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#scales-1"><i class="fa fa-check"></i><b>12.3.3</b> Scales</a></li>
+<li class="chapter" data-level="12.3.4" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#rows-columns"><i class="fa fa-check"></i><b>12.3.4</b> Rows &amp; Columns</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html"><i class="fa fa-check"></i><b>13</b> Themes</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#introduction-11"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#basic-plot-3"><i class="fa fa-check"></i><b>13.2</b> Basic Plot</a></li>
+<li class="chapter" data-level="13.3" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#axis"><i class="fa fa-check"></i><b>13.3</b> Axis</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#text-1"><i class="fa fa-check"></i><b>13.3.1</b> Text</a></li>
+<li class="chapter" data-level="13.3.2" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#ticks"><i class="fa fa-check"></i><b>13.3.2</b> Ticks</a></li>
+<li class="chapter" data-level="13.3.3" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#line-1"><i class="fa fa-check"></i><b>13.3.3</b> Line</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#legend"><i class="fa fa-check"></i><b>13.4</b> Legend</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#background"><i class="fa fa-check"></i><b>13.4.1</b> Background</a></li>
+<li class="chapter" data-level="13.4.2" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#text-2"><i class="fa fa-check"></i><b>13.4.2</b> Text</a></li>
+<li class="chapter" data-level="13.4.3" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#title-1"><i class="fa fa-check"></i><b>13.4.3</b> Title</a></li>
+<li class="chapter" data-level="13.4.4" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#position"><i class="fa fa-check"></i><b>13.4.4</b> Position</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#themes"><i class="fa fa-check"></i><b>13.5</b> Themes</a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#classic-dark-on-light"><i class="fa fa-check"></i><b>13.5.1</b> Classic Dark on Light</a></li>
+<li class="chapter" data-level="13.5.2" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#default-gray"><i class="fa fa-check"></i><b>13.5.2</b> Default Gray</a></li>
+<li class="chapter" data-level="13.5.3" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#light"><i class="fa fa-check"></i><b>13.5.3</b> Light</a></li>
+<li class="chapter" data-level="13.5.4" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#minimal"><i class="fa fa-check"></i><b>13.5.4</b> Minimal</a></li>
+<li class="chapter" data-level="13.5.5" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#dark"><i class="fa fa-check"></i><b>13.5.5</b> Dark</a></li>
+<li class="chapter" data-level="13.5.6" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#classic"><i class="fa fa-check"></i><b>13.5.6</b> Classic</a></li>
+<li class="chapter" data-level="13.5.7" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#void-empty"><i class="fa fa-check"></i><b>13.5.7</b> Void (Empty)</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -370,7 +414,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Data Visualization with ggplot2</h1>
 <p class="author"><em>Aravind Hebbali</em></p>
-<p class="date"><em>2020-06-20</em></p>
+<p class="date" style="margin-top: 1.5em;"><em>2021-06-02</em></p>
 </div>
 <div id="preface" class="section level1 unnumbered">
 <h1>Preface</h1>
@@ -379,26 +423,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="software-information" class="section level2 unnumbered">
 <h2>Software information</h2>
 <p>The R session information when compiling this book is shown below:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1"></a><span class="kw">sessionInfo</span>()</span></code></pre></div>
-<pre><code>## R version 4.0.0 (2020-04-24)
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sessionInfo</span>()</span></code></pre></div>
+<pre><code>## R version 4.1.0 (2021-05-18)
 ## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18362)
+## Running under: Windows 10 x64 (build 19042)
 ## 
 ## Matrix products: default
 ## 
 ## locale:
-## [1] LC_COLLATE=English_India.1252  LC_CTYPE=English_India.1252   
-## [3] LC_MONETARY=English_India.1252 LC_NUMERIC=C                  
-## [5] LC_TIME=English_India.1252    
+## [1] LC_COLLATE=English_United States.1252 
+## [2] LC_CTYPE=English_United States.1252   
+## [3] LC_MONETARY=English_United States.1252
+## [4] LC_NUMERIC=C                          
+## [5] LC_TIME=English_United States.1252    
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] compiler_4.0.0  magrittr_1.5    bookdown_0.18   tools_4.0.0    
-##  [5] htmltools_0.4.0 rstudioapi_0.11 yaml_2.2.1      Rcpp_1.0.4.6   
-##  [9] stringi_1.4.6   rmarkdown_2.1   knitr_1.27      stringr_1.4.0  
-## [13] xfun_0.13       digest_0.6.25   rlang_0.4.6     evaluate_0.14</code></pre>
+##  [1] bookdown_0.22     digest_0.6.27     R6_2.5.0          jsonlite_1.7.2   
+##  [5] magrittr_2.0.1    evaluate_0.14     highr_0.9         stringi_1.6.2    
+##  [9] rlang_0.4.11      rstudioapi_0.13   jquerylib_0.1.4   bslib_0.2.5.1    
+## [13] rmarkdown_2.8     tools_4.1.0       stringr_1.4.0     xfun_0.23        
+## [17] yaml_2.2.1        compiler_4.1.0    htmltools_0.5.1.1 knitr_1.33       
+## [21] sass_0.4.0</code></pre>
 <p>We do not add prompts (<code>&gt;</code> and <code>+</code>) to R source code in this book, and we comment out the text output with two hashes <code>##</code> by default, as you can see from the R session information above. This is for your convenience when you want to copy and run the code (the text output will be ignored since it is commented out). Package names are in bold text (e.g., <strong>rmarkdown</strong>), and function names are followed by parentheses (e.g., <code>bookdown::render_book()</code>). The double-colon operator <code>::</code> means accessing an object from a package.</p>
 
 </div>
@@ -432,6 +480,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

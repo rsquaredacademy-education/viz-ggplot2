@@ -1,4 +1,4 @@
-# Quick Tour {#quicktour}
+# Quick Tour {#ggplot2-quicktour}
 
 ## Introduction
 

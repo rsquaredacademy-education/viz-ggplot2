@@ -1,4 +1,4 @@
-# Geoms {#geoms}
+# Geoms {#ggplot2-geoms}
 
 ## Introduction
 

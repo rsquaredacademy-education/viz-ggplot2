@@ -1,4 +1,4 @@
-# Faceting {#facet}
+# Faceting {#ggplot2-facets}
 
 ## Introduction
 

@@ -1,2 +1,2 @@
-# Legends {#legend}
+# Legends {#ggplot2-legends}
 

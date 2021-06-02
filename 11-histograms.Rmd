@@ -1,4 +1,4 @@
-# Histograms {#hist}
+# Histograms {#ggplot2-histogram}
 
 ## Introduction
 

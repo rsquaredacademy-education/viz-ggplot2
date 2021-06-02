@@ -1,4 +1,4 @@
-# Scatter Plots {#scatter}
+# Scatter Plots {#ggplot2-scatter-plot}
 
 ## Introduction
 

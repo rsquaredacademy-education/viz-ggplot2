@@ -1,4 +1,4 @@
-# Line Graphs {#line}
+# Line Graphs {#ggplot2-line-graph}
 
 ## Introduction
 

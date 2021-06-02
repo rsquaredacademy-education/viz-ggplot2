@@ -1,4 +1,4 @@
-# Themes {#themes}
+# Themes {#ggplot2-themes}
 
 ## Introduction
 

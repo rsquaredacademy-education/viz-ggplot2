@@ -1,4 +1,4 @@
-# Aesthetics {#aesthetics}
+# Aesthetics {#ggplot2-aesthetics}
 
 ## Introduction
 

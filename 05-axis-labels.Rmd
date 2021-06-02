@@ -1,4 +1,4 @@
-# Labels {#labels}
+# Labels {#ggplot2-labels}
 
 ## Introduction
 

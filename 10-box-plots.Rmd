@@ -1,4 +1,4 @@
-# Box Plots {#box}
+# Box Plots {#ggplot2-box-plot}
 
 ## Introduction
 

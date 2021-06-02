@@ -1,4 +1,4 @@
-# Text Annotations {#textann}
+# Text Annotations {#ggplot2-text-annotations}
 
 ## Introduction
 
