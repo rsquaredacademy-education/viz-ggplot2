@@ -65,7 +65,7 @@
   force = true
 
 [[redirects]]
-  from = "https://viz-ggplot2.rsquaredacademy.com/facets.html"
+  from = "https://viz-ggplot2.rsquaredacademy.com/facet.html"
   to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-facets.html"
   status = 301
   force = true
