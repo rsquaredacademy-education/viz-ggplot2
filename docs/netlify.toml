@@ -1,0 +1,78 @@
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/quicktour.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-quicktour.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/geoms.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-geoms.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/aesthetics.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-aesthetics.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/labels.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-labels.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/textann.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-text-annotations.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/scatter.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-scatter-plot.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/line.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-line-graph.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/bar.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-bar-plot.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/box.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-box-plot.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/hist.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-histogram.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/legend.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-legends.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/facets.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-facets.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/themes.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-themes.html"
+  status = 301
+  force = true
+
