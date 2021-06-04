@@ -136,6 +136,16 @@ bin-width
 line-type-1
 line-size-1
 map-variables-2
+ggplot2-modify-axis
+continuous-axis
+putting-it-all-together..-1
+y-axis---continuous
+discrete-axis
+axis-label
+axis-tick-labels
+axis-breaks
+axis-position
+putting-it-all-together-2
 ggplot2-legends
 ggplot2-facets
 introduction-10
