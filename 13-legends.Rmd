@@ -1,2 +1,0 @@
-# Legends {#ggplot2-legends}
-

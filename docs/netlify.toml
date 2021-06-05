@@ -60,7 +60,7 @@
 
 [[redirects]]
   from = "https://viz-ggplot2.rsquaredacademy.com/legend.html"
-  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-legends.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-legend.html"
   status = 301
   force = true
 

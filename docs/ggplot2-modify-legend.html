@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 Modify Legend | Data Visualization with ggplot2</title>
+  <meta name="description" content="Learn to visualize data with ggplot2." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 12 Modify Legend | Data Visualization with ggplot2" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Learn to visualize data with ggplot2." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 12 Modify Legend | Data Visualization with ggplot2" />
+  
+  <meta name="twitter:description" content="Learn to visualize data with ggplot2." />
+  
+
+<meta name="author" content="Aravind Hebbali" />
+
+
+<meta name="date" content="2021-06-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ggplot2-modify-axis.html"/>
+<link rel="next" href="ggplot2-facets.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57270671-37"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-57270671-37');
+</script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="https://github.com/rsquaredacademy-education/viz-ggplot2/">Data Visualization with ggplot2</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-information"><i class="fa fa-check"></i>Software information</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+<li class="chapter" data-level="1" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html"><i class="fa fa-check"></i><b>1</b> Quick Tour</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#libraries-code-data"><i class="fa fa-check"></i><b>1.2</b> Libraries, Code &amp; Data</a></li>
+<li class="chapter" data-level="1.3" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#scatter-plot"><i class="fa fa-check"></i><b>1.3</b> Scatter Plot</a></li>
+<li class="chapter" data-level="1.4" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#bar-plot"><i class="fa fa-check"></i><b>1.4</b> Bar Plot</a></li>
+<li class="chapter" data-level="1.5" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#box-plot"><i class="fa fa-check"></i><b>1.5</b> Box Plot</a></li>
+<li class="chapter" data-level="1.6" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#line-chart"><i class="fa fa-check"></i><b>1.6</b> Line Chart</a></li>
+<li class="chapter" data-level="1.7" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#histogram"><i class="fa fa-check"></i><b>1.7</b> Histogram</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html"><i class="fa fa-check"></i><b>2</b> Geoms</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#libraries-code-data-1"><i class="fa fa-check"></i><b>2.2</b> Libraries, Code &amp; Data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#data"><i class="fa fa-check"></i><b>2.2.1</b> Data</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#data-dictionary"><i class="fa fa-check"></i><b>2.2.2</b> Data Dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#point"><i class="fa fa-check"></i><b>2.3</b> Point</a></li>
+<li class="chapter" data-level="2.4" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#regression-line"><i class="fa fa-check"></i><b>2.4</b> Regression Line</a></li>
+<li class="chapter" data-level="2.5" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#bar"><i class="fa fa-check"></i><b>2.5</b> Bar</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#frequency"><i class="fa fa-check"></i><b>2.5.1</b> Frequency</a></li>
+<li class="chapter" data-level="2.5.2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#weight"><i class="fa fa-check"></i><b>2.5.2</b> Weight</a></li>
+<li class="chapter" data-level="2.5.3" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#stacked-bar-plot"><i class="fa fa-check"></i><b>2.5.3</b> Stacked Bar Plot</a></li>
+<li class="chapter" data-level="2.5.4" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#horizontal-bar-plot"><i class="fa fa-check"></i><b>2.5.4</b> Horizontal Bar Plot</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#columns"><i class="fa fa-check"></i><b>2.6</b> Columns</a></li>
+<li class="chapter" data-level="2.7" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#boxplot"><i class="fa fa-check"></i><b>2.7</b> Boxplot</a></li>
+<li class="chapter" data-level="2.8" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#histogram-1"><i class="fa fa-check"></i><b>2.8</b> Histogram</a></li>
+<li class="chapter" data-level="2.9" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#line"><i class="fa fa-check"></i><b>2.9</b> Line</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#data-1"><i class="fa fa-check"></i><b>2.9.1</b> Data</a></li>
+<li class="chapter" data-level="2.9.2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#horizontal-line"><i class="fa fa-check"></i><b>2.9.2</b> Horizontal Line</a></li>
+<li class="chapter" data-level="2.9.3" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#vertical-line"><i class="fa fa-check"></i><b>2.9.3</b> Vertical Line</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#label"><i class="fa fa-check"></i><b>2.10</b> Label</a></li>
+<li class="chapter" data-level="2.11" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#text"><i class="fa fa-check"></i><b>2.11</b> Text</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html"><i class="fa fa-check"></i><b>3</b> Aesthetics</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.2" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#libraries-code-data-2"><i class="fa fa-check"></i><b>3.2</b> Libraries, Code &amp; Data</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#data-2"><i class="fa fa-check"></i><b>3.2.1</b> Data</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#data-dictionary-1"><i class="fa fa-check"></i><b>3.2.2</b> Data Dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#color"><i class="fa fa-check"></i><b>3.3</b> Color</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#point-1"><i class="fa fa-check"></i><b>3.3.1</b> Point</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#line-chart-1"><i class="fa fa-check"></i><b>3.4</b> Line Chart</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#data-3"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#bar-plots"><i class="fa fa-check"></i><b>3.5</b> Bar Plots</a></li>
+<li class="chapter" data-level="3.6" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#histograms"><i class="fa fa-check"></i><b>3.6</b> Histograms</a></li>
+<li class="chapter" data-level="3.7" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#box-plots"><i class="fa fa-check"></i><b>3.7</b> Box Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html"><i class="fa fa-check"></i><b>4</b> Labels</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#introduction-3"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#basic-plot"><i class="fa fa-check"></i><b>4.2</b> Basic Plot</a></li>
+<li class="chapter" data-level="4.3" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#title-subtitle"><i class="fa fa-check"></i><b>4.3</b> Title &amp; Subtitle</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#ggtitle"><i class="fa fa-check"></i><b>4.3.1</b> ggtitle()</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#axis-labels"><i class="fa fa-check"></i><b>4.4</b> Axis Labels</a></li>
+<li class="chapter" data-level="4.5" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#labs"><i class="fa fa-check"></i><b>4.5</b> Labs</a></li>
+<li class="chapter" data-level="4.6" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#axis-range"><i class="fa fa-check"></i><b>4.6</b> Axis Range</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#x-axis"><i class="fa fa-check"></i><b>4.6.1</b> X Axis</a></li>
+<li class="chapter" data-level="4.6.2" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#y-axis"><i class="fa fa-check"></i><b>4.6.2</b> Y Axis</a></li>
+<li class="chapter" data-level="4.6.3" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#expand-limits"><i class="fa fa-check"></i><b>4.6.3</b> Expand Limits</a></li>
+<li class="chapter" data-level="4.6.4" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#remove-axis-labels"><i class="fa fa-check"></i><b>4.6.4</b> Remove Axis Labels</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#format-title-axis-labels"><i class="fa fa-check"></i><b>4.7</b> Format Title &amp; Axis Labels</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#color-1"><i class="fa fa-check"></i><b>4.7.1</b> Color</a></li>
+<li class="chapter" data-level="4.7.2" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#font-family"><i class="fa fa-check"></i><b>4.7.2</b> Font Family</a></li>
+<li class="chapter" data-level="4.7.3" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#font-face"><i class="fa fa-check"></i><b>4.7.3</b> Font Face</a></li>
+<li class="chapter" data-level="4.7.4" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#font-size"><i class="fa fa-check"></i><b>4.7.4</b> Font Size</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#horizontal-alignment"><i class="fa fa-check"></i><b>4.8</b> Horizontal Alignment</a></li>
+<li class="chapter" data-level="4.9" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#putting-it-all-together"><i class="fa fa-check"></i><b>4.9</b> Putting it all together…</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#title"><i class="fa fa-check"></i><b>4.9.1</b> Title</a></li>
+<li class="chapter" data-level="4.9.2" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#x-axis-label"><i class="fa fa-check"></i><b>4.9.2</b> X axis label</a></li>
+<li class="chapter" data-level="4.9.3" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#y-axis-label"><i class="fa fa-check"></i><b>4.9.3</b> Y axis label</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html"><i class="fa fa-check"></i><b>5</b> Text Annotations</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#introduction-4"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#annotate"><i class="fa fa-check"></i><b>5.2</b> Annotate</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#add-text"><i class="fa fa-check"></i><b>5.2.1</b> Add Text</a></li>
+<li class="chapter" data-level="5.2.2" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#color-2"><i class="fa fa-check"></i><b>5.2.2</b> Color</a></li>
+<li class="chapter" data-level="5.2.3" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#size"><i class="fa fa-check"></i><b>5.2.3</b> Size</a></li>
+<li class="chapter" data-level="5.2.4" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#font"><i class="fa fa-check"></i><b>5.2.4</b> Font</a></li>
+<li class="chapter" data-level="5.2.5" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#angle"><i class="fa fa-check"></i><b>5.2.5</b> Angle</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#putting-it-all-together.."><i class="fa fa-check"></i><b>5.3</b> Putting it all together..</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html"><i class="fa fa-check"></i><b>6</b> Scatter Plots</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#introduction-5"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#basic-plot-1"><i class="fa fa-check"></i><b>6.2</b> Basic Plot</a></li>
+<li class="chapter" data-level="6.3" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#jitter"><i class="fa fa-check"></i><b>6.3</b> Jitter</a></li>
+<li class="chapter" data-level="6.4" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#aesthetics"><i class="fa fa-check"></i><b>6.4</b> Aesthetics</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#specify-values"><i class="fa fa-check"></i><b>6.4.1</b> Specify Values</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#map-variables"><i class="fa fa-check"></i><b>6.4.2</b> Map Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#regression-line-1"><i class="fa fa-check"></i><b>6.5</b> Regression Line</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#intercept-slope"><i class="fa fa-check"></i><b>6.5.1</b> Intercept &amp; Slope</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#add-line"><i class="fa fa-check"></i><b>6.5.2</b> Add Line</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html"><i class="fa fa-check"></i><b>7</b> Line Graphs</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#introduction-6"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#case-study"><i class="fa fa-check"></i><b>7.2</b> Case Study</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#data-4"><i class="fa fa-check"></i><b>7.2.1</b> Data</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#line-chart-2"><i class="fa fa-check"></i><b>7.3</b> Line Chart</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#line-color"><i class="fa fa-check"></i><b>7.3.1</b> Line Color</a></li>
+<li class="chapter" data-level="7.3.2" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#line-type"><i class="fa fa-check"></i><b>7.3.2</b> Line Type</a></li>
+<li class="chapter" data-level="7.3.3" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#line-size"><i class="fa fa-check"></i><b>7.3.3</b> Line Size</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#multiple-lines"><i class="fa fa-check"></i><b>7.4</b> Multiple Lines</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#modify-data"><i class="fa fa-check"></i><b>7.4.1</b> Modify Data</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html"><i class="fa fa-check"></i><b>8</b> Bar Plots</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#introduction-7"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#data-5"><i class="fa fa-check"></i><b>8.2</b> Data</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#data-dictionary-2"><i class="fa fa-check"></i><b>8.2.1</b> Data Dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#basic-plot-2"><i class="fa fa-check"></i><b>8.3</b> Basic Plot</a></li>
+<li class="chapter" data-level="8.4" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#bar-color"><i class="fa fa-check"></i><b>8.4</b> Bar Color</a></li>
+<li class="chapter" data-level="8.5" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#stacked-bar-plot-1"><i class="fa fa-check"></i><b>8.5</b> Stacked Bar Plot</a></li>
+<li class="chapter" data-level="8.6" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#grouped-bar-plot"><i class="fa fa-check"></i><b>8.6</b> Grouped Bar Plot</a></li>
+<li class="chapter" data-level="8.7" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#proportional-bar-plot"><i class="fa fa-check"></i><b>8.7</b> Proportional Bar Plot</a></li>
+<li class="chapter" data-level="8.8" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#horizontal-bar-plot-1"><i class="fa fa-check"></i><b>8.8</b> Horizontal Bar Plot</a></li>
+<li class="chapter" data-level="8.9" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#bar-line"><i class="fa fa-check"></i><b>8.9</b> Bar Line</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html"><i class="fa fa-check"></i><b>9</b> Box Plots</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#introduction-8"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
+<li class="chapter" data-level="9.2" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#structure"><i class="fa fa-check"></i><b>9.2</b> Structure</a></li>
+<li class="chapter" data-level="9.3" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#data-6"><i class="fa fa-check"></i><b>9.3</b> Data</a></li>
+<li class="chapter" data-level="9.4" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#single-plot"><i class="fa fa-check"></i><b>9.4</b> Single Plot</a></li>
+<li class="chapter" data-level="9.5" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#compare-distributions"><i class="fa fa-check"></i><b>9.5</b> Compare Distributions</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#data-7"><i class="fa fa-check"></i><b>9.5.1</b> Data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#horizontal-box-plot"><i class="fa fa-check"></i><b>9.6</b> Horizontal Box Plot</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#notch"><i class="fa fa-check"></i><b>9.6.1</b> Notch</a></li>
+<li class="chapter" data-level="9.6.2" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#jitter-1"><i class="fa fa-check"></i><b>9.6.2</b> Jitter</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#outliers"><i class="fa fa-check"></i><b>9.7</b> Outliers</a></li>
+<li class="chapter" data-level="9.8" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#aesthetics-1"><i class="fa fa-check"></i><b>9.8</b> Aesthetics</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#specify-values-1"><i class="fa fa-check"></i><b>9.8.1</b> Specify Values</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#map-variables-1"><i class="fa fa-check"></i><b>9.9</b> Map Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html"><i class="fa fa-check"></i><b>10</b> Histograms</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#introduction-9"><i class="fa fa-check"></i><b>10.1</b> Introduction</a></li>
+<li class="chapter" data-level="10.2" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#data-8"><i class="fa fa-check"></i><b>10.2</b> Data</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#data-dictionary-3"><i class="fa fa-check"></i><b>10.2.1</b> Data Dictionary</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#plot"><i class="fa fa-check"></i><b>10.3</b> Plot</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#specify-bins"><i class="fa fa-check"></i><b>10.3.1</b> Specify Bins</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#aesthetics-2"><i class="fa fa-check"></i><b>10.4</b> Aesthetics</a></li>
+<li class="chapter" data-level="10.5" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#putting-it-all-together-1"><i class="fa fa-check"></i><b>10.5</b> Putting it all together…</a></li>
+<li class="chapter" data-level="10.6" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#bin-width"><i class="fa fa-check"></i><b>10.6</b> Bin Width</a></li>
+<li class="chapter" data-level="10.7" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#line-type-1"><i class="fa fa-check"></i><b>10.7</b> Line Type</a></li>
+<li class="chapter" data-level="10.8" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#line-size-1"><i class="fa fa-check"></i><b>10.8</b> Line Size</a></li>
+<li class="chapter" data-level="10.9" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#map-variables-2"><i class="fa fa-check"></i><b>10.9</b> Map Variables</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html"><i class="fa fa-check"></i><b>11</b> Modify Axis</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#continuous-axis"><i class="fa fa-check"></i><b>11.1</b> Continuous Axis</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#putting-it-all-together..-1"><i class="fa fa-check"></i><b>11.1.1</b> Putting it all together..</a></li>
+<li class="chapter" data-level="11.1.2" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#y-axis---continuous"><i class="fa fa-check"></i><b>11.1.2</b> Y Axis - Continuous</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#discrete-axis"><i class="fa fa-check"></i><b>11.2</b> Discrete Axis</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#axis-label"><i class="fa fa-check"></i><b>11.2.1</b> Axis Label</a></li>
+<li class="chapter" data-level="11.2.2" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#axis-tick-labels"><i class="fa fa-check"></i><b>11.2.2</b> Axis Tick Labels</a></li>
+<li class="chapter" data-level="11.2.3" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#axis-breaks"><i class="fa fa-check"></i><b>11.2.3</b> Axis Breaks</a></li>
+<li class="chapter" data-level="11.2.4" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#axis-position"><i class="fa fa-check"></i><b>11.2.4</b> Axis Position</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#putting-it-all-together-2"><i class="fa fa-check"></i><b>11.3</b> Putting it all together…</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html"><i class="fa fa-check"></i><b>12</b> Modify Legend</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#color-5"><i class="fa fa-check"></i><b>12.1</b> Color</a>
+<ul>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#basic-plot-3"><i class="fa fa-check"></i>Basic Plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#values"><i class="fa fa-check"></i>Values</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#title-1"><i class="fa fa-check"></i>Title</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#limits"><i class="fa fa-check"></i>Limits</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#labels"><i class="fa fa-check"></i>Labels</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#breaks"><i class="fa fa-check"></i>Breaks</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#putting-it-all-together-3"><i class="fa fa-check"></i>Putting it all together…</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#fill"><i class="fa fa-check"></i><b>12.2</b> Fill</a>
+<ul>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#plot-1"><i class="fa fa-check"></i>Plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#title-2"><i class="fa fa-check"></i>Title</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#values-1"><i class="fa fa-check"></i>Values</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#labels-1"><i class="fa fa-check"></i>Labels</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#limits-1"><i class="fa fa-check"></i>Limits</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#breaks-1"><i class="fa fa-check"></i>Breaks</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#putting-it-all-together-4"><i class="fa fa-check"></i>Putting it all together…</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#shape-2"><i class="fa fa-check"></i><b>12.3</b> Shape</a>
+<ul>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#plot-2"><i class="fa fa-check"></i>Plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#title-3"><i class="fa fa-check"></i>Title</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#values-2"><i class="fa fa-check"></i>Values</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#labels-2"><i class="fa fa-check"></i>Labels</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#limits-2"><i class="fa fa-check"></i>Limits</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#breaks-2"><i class="fa fa-check"></i>Breaks</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#putting-it-all-together-5"><i class="fa fa-check"></i>Putting it all together…</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#size-3"><i class="fa fa-check"></i><b>12.4</b> Size</a>
+<ul>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#plot-3"><i class="fa fa-check"></i>Plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#title-4"><i class="fa fa-check"></i>Title</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#range"><i class="fa fa-check"></i>Range</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#limits-3"><i class="fa fa-check"></i>Limits</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#breaks-3"><i class="fa fa-check"></i>Breaks</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#labels-3"><i class="fa fa-check"></i>Labels</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#putting-it-all-together-6"><i class="fa fa-check"></i>Putting it all together…</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#transparency"><i class="fa fa-check"></i><b>12.5</b> Transparency</a>
+<ul>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#plot-4"><i class="fa fa-check"></i>Plot</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#title-5"><i class="fa fa-check"></i>Title</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#breaks-4"><i class="fa fa-check"></i>Breaks</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#limits-4"><i class="fa fa-check"></i>Limits</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#range-1"><i class="fa fa-check"></i>Range</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#labels-4"><i class="fa fa-check"></i>Labels</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#putting-it-all-together-7"><i class="fa fa-check"></i>Putting it all together…</a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#guide"><i class="fa fa-check"></i><b>12.6</b> Guide</a>
+<ul>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#title-6"><i class="fa fa-check"></i>Title</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#label-1"><i class="fa fa-check"></i>Label</a></li>
+<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#legend-bar"><i class="fa fa-check"></i>Legend Bar</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html"><i class="fa fa-check"></i><b>13</b> Faceting</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#introduction-10"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
+<li class="chapter" data-level="13.2" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#grid"><i class="fa fa-check"></i><b>13.2</b> Grid</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#vertical"><i class="fa fa-check"></i><b>13.2.1</b> Vertical</a></li>
+<li class="chapter" data-level="13.2.2" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#horizontal"><i class="fa fa-check"></i><b>13.2.2</b> Horizontal</a></li>
+<li class="chapter" data-level="13.2.3" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#vertical-horizontal"><i class="fa fa-check"></i><b>13.2.3</b> Vertical &amp; Horizontal</a></li>
+<li class="chapter" data-level="13.2.4" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#scales"><i class="fa fa-check"></i><b>13.2.4</b> Scales</a></li>
+<li class="chapter" data-level="13.2.5" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#switch-labels"><i class="fa fa-check"></i><b>13.2.5</b> Switch Labels</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#wrap"><i class="fa fa-check"></i><b>13.3</b> Wrap</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#specify-rows"><i class="fa fa-check"></i><b>13.3.1</b> Specify Rows</a></li>
+<li class="chapter" data-level="13.3.2" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#specify-columns"><i class="fa fa-check"></i><b>13.3.2</b> Specify Columns</a></li>
+<li class="chapter" data-level="13.3.3" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#scales-1"><i class="fa fa-check"></i><b>13.3.3</b> Scales</a></li>
+<li class="chapter" data-level="13.3.4" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#rows-columns"><i class="fa fa-check"></i><b>13.3.4</b> Rows &amp; Columns</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html"><i class="fa fa-check"></i><b>14</b> Themes</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#introduction-11"><i class="fa fa-check"></i><b>14.1</b> Introduction</a></li>
+<li class="chapter" data-level="14.2" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#basic-plot-4"><i class="fa fa-check"></i><b>14.2</b> Basic Plot</a></li>
+<li class="chapter" data-level="14.3" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#axis"><i class="fa fa-check"></i><b>14.3</b> Axis</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#text-1"><i class="fa fa-check"></i><b>14.3.1</b> Text</a></li>
+<li class="chapter" data-level="14.3.2" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#ticks-1"><i class="fa fa-check"></i><b>14.3.2</b> Ticks</a></li>
+<li class="chapter" data-level="14.3.3" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#line-1"><i class="fa fa-check"></i><b>14.3.3</b> Line</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#legend"><i class="fa fa-check"></i><b>14.4</b> Legend</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#background"><i class="fa fa-check"></i><b>14.4.1</b> Background</a></li>
+<li class="chapter" data-level="14.4.2" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#text-2"><i class="fa fa-check"></i><b>14.4.2</b> Text</a></li>
+<li class="chapter" data-level="14.4.3" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#title-7"><i class="fa fa-check"></i><b>14.4.3</b> Title</a></li>
+<li class="chapter" data-level="14.4.4" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#position"><i class="fa fa-check"></i><b>14.4.4</b> Position</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#themes"><i class="fa fa-check"></i><b>14.5</b> Themes</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#classic-dark-on-light"><i class="fa fa-check"></i><b>14.5.1</b> Classic Dark on Light</a></li>
+<li class="chapter" data-level="14.5.2" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#default-gray"><i class="fa fa-check"></i><b>14.5.2</b> Default Gray</a></li>
+<li class="chapter" data-level="14.5.3" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#light"><i class="fa fa-check"></i><b>14.5.3</b> Light</a></li>
+<li class="chapter" data-level="14.5.4" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#minimal"><i class="fa fa-check"></i><b>14.5.4</b> Minimal</a></li>
+<li class="chapter" data-level="14.5.5" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#dark"><i class="fa fa-check"></i><b>14.5.5</b> Dark</a></li>
+<li class="chapter" data-level="14.5.6" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#classic"><i class="fa fa-check"></i><b>14.5.6</b> Classic</a></li>
+<li class="chapter" data-level="14.5.7" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#void-empty"><i class="fa fa-check"></i><b>14.5.7</b> Void (Empty)</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Visualization with ggplot2</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ggplot2-modify-legend" class="section level1" number="12">
+<h1><span class="header-section-number">Chapter 12</span> Modify Legend</h1>
+<p>In this chapter, we will focus on modifying the appearance of legend of plots when
+the aesthetics are mapped to variables.</p>
+<div id="color-5" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> Color</h2>
+<p>We will learn to modify the following when <code>color</code> is mapped to categorical variables:</p>
+<ul>
+<li>title</li>
+<li>breaks</li>
+<li>limits</li>
+<li>labels</li>
+<li>values</li>
+</ul>
+<div id="basic-plot-3" class="section level3 unnumbered">
+<h3>Basic Plot</h3>
+<p>Let us start with a scatter plot examining the relationship between displacement
+and miles per gallon from the mtcars data set. We will map the color of the points
+to the <code>cyl</code> variable.</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="ggplot2-modify-legend.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb191-2"><a href="ggplot2-modify-legend.html#cb191-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl)))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As you can see, the legend acts as a guide for the <code>color</code> aesthetic. Now, let
+us learn to modify the different aspects of the legend.</p>
+</div>
+<div id="values" class="section level3 unnumbered">
+<h3>Values</h3>
+<p>To change the default colors in the legend, use the <code>values</code> argument and
+supply a character vector of color names. The number of colors specified
+must be equal to the number of levels in the categorical variable mapped.
+In the below example, <code>cyl</code> has 3 levels (4, 6, 8) and hence we have specified
+3 colors.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="ggplot2-modify-legend.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb192-2"><a href="ggplot2-modify-legend.html#cb192-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb192-3"><a href="ggplot2-modify-legend.html#cb192-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg3-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="title-1" class="section level3 unnumbered">
+<h3>Title</h3>
+<p>In the previous example, the title of the legend (<code>factor(cyl)</code>) is not very
+intuitive. If the user does not know the underlying data, they will not be able
+to make any sense out of it. Let us change it to <code>Cylinders</code> using the <code>name</code>
+argument.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="ggplot2-modify-legend.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb193-2"><a href="ggplot2-modify-legend.html#cb193-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb193-3"><a href="ggplot2-modify-legend.html#cb193-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">&quot;Cylinders&quot;</span>, </span>
+<span id="cb193-4"><a href="ggplot2-modify-legend.html#cb193-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Now, the user will know that the different colors represent number of cylinders in
+the car.</p>
+</div>
+<div id="limits" class="section level3 unnumbered">
+<h3>Limits</h3>
+<p>Let us assume that we want to modify the data to be displayed i.e. instead of
+examining the relationship between mileage and displacement for all cars, we
+desire to look at only cars with at least 6 cylinders. One way to approach this
+would be to filter the data using <code>filter</code> from dplyr and then visualize it.
+Instead, we will use the <code>limits</code> argument and filter the data for visualization.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="ggplot2-modify-legend.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb194-2"><a href="ggplot2-modify-legend.html#cb194-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb194-3"><a href="ggplot2-modify-legend.html#cb194-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">8</span>))</span></code></pre></div>
+<pre><code>## Warning: Continuous limits supplied to discrete scale.
+## Did you mean `limits = factor(...)` or `scale_*_continuous()`?</code></pre>
+<pre><code>## Warning: Removed 11 rows containing missing values (geom_point).</code></pre>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As you can see above, <code>ggplot2</code> returns a warning message indicating data related
+to 4 cylinders has been dropped. If you observe the legend, it now represents
+only 4 and 6 cylinders.</p>
+</div>
+<div id="labels" class="section level3 unnumbered">
+<h3>Labels</h3>
+<p>The labels in the legend can be modified using the <code>labels</code> argument. Let us
+change the labels to <code>Four</code>, <code>Six</code> and <code>Eight</code> in the next example. Ensure that
+the labels are intuitive and easy to interpret for the end user of the plot.</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="ggplot2-modify-legend.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb197-2"><a href="ggplot2-modify-legend.html#cb197-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb197-3"><a href="ggplot2-modify-legend.html#cb197-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb197-4"><a href="ggplot2-modify-legend.html#cb197-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Four&#39;</span>, <span class="st">&#39;Six&#39;</span>, <span class="st">&#39;Eight&#39;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg6-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="breaks" class="section level3 unnumbered">
+<h3>Breaks</h3>
+<p>When there are large number of levels in the mapped variable, you may not
+want the labels in the legend to represent all of them. In such cases, we can
+use the breaks argument and specify the labels to be used. In the below case,
+we use the <code>breaks</code> argument to ensure that the labels in legend represent
+two levels (4, 8) of the mapped variable.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="ggplot2-modify-legend.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb198-2"><a href="ggplot2-modify-legend.html#cb198-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb198-3"><a href="ggplot2-modify-legend.html#cb198-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb198-4"><a href="ggplot2-modify-legend.html#cb198-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg7-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="putting-it-all-together-3" class="section level3 unnumbered">
+<h3>Putting it all together…</h3>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="ggplot2-modify-legend.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb199-2"><a href="ggplot2-modify-legend.html#cb199-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb199-3"><a href="ggplot2-modify-legend.html#cb199-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">&quot;Cylinders&quot;</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb199-4"><a href="ggplot2-modify-legend.html#cb199-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Four&#39;</span>, <span class="st">&#39;Six&#39;</span>, <span class="st">&#39;Eight&#39;</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>))</span></code></pre></div>
+<pre><code>## Warning: Continuous limits supplied to discrete scale.
+## Did you mean `limits = factor(...)` or `scale_*_continuous()`?</code></pre>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg8-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="fill" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> Fill</h2>
+<p>we will learn to modify the following using <code>scale_fill_manual()</code> when <code>fill</code> is mapped to categorical variables:</p>
+<ul>
+<li>title</li>
+<li>breaks</li>
+<li>limits</li>
+<li>labels</li>
+<li>values</li>
+</ul>
+<div id="plot-1" class="section level3 unnumbered">
+<h3>Plot</h3>
+<p>Let us start with a scatter plot examining the relationship between
+displacement and miles per gallon from the mtcars data set. We will map <code>fill</code>
+to the <code>cyl</code> variable.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="ggplot2-modify-legend.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb201-2"><a href="ggplot2-modify-legend.html#cb201-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>)</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg9-1.png" width="672" /></p>
+<p>As you can see, the legend acts as a guide for the <code>color</code> aesthetic. Now, let
+us learn to modify the different aspects of the legend.</p>
+</div>
+<div id="title-2" class="section level3 unnumbered">
+<h3>Title</h3>
+<p>The title of the legend (<code>factor(cyl)</code>) is not very intuitive. If the user
+does not know the underlying data, they will not be able to make any sense out
+of it. Let us change it to <code>Cylinders</code> using the <code>name</code> argument.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="ggplot2-modify-legend.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb202-2"><a href="ggplot2-modify-legend.html#cb202-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>) <span class="sc">+</span></span>
+<span id="cb202-3"><a href="ggplot2-modify-legend.html#cb202-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Cylinders&quot;</span>, </span>
+<span id="cb202-4"><a href="ggplot2-modify-legend.html#cb202-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg10-1.png" width="672" /></p>
+</div>
+<div id="values-1" class="section level3 unnumbered">
+<h3>Values</h3>
+<p>To change the default colors in the legend, use the <code>values</code> argument and
+supply a character vector of color names. The number of colors specified
+must be equal to the number of levels in the categorical variable mapped.
+In the below example, <code>cyl</code> has 3 levels (4, 6, 8) and hence we have specified
+3 colors.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="ggplot2-modify-legend.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb203-2"><a href="ggplot2-modify-legend.html#cb203-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>) <span class="sc">+</span></span>
+<span id="cb203-3"><a href="ggplot2-modify-legend.html#cb203-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg11-1.png" width="672" /></p>
+</div>
+<div id="labels-1" class="section level3 unnumbered">
+<h3>Labels</h3>
+<p>The labels in the legend can be modified using the <code>labels</code> argument. Let us
+change the labels to <code>Four</code>, <code>Six</code> and <code>Eight</code> in the next example. Ensure that
+the labels are intuitive and easy to interpret for the end user of the plot.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="ggplot2-modify-legend.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb204-2"><a href="ggplot2-modify-legend.html#cb204-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>) <span class="sc">+</span></span>
+<span id="cb204-3"><a href="ggplot2-modify-legend.html#cb204-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb204-4"><a href="ggplot2-modify-legend.html#cb204-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Four&#39;</span>, <span class="st">&#39;Six&#39;</span>, <span class="st">&#39;Eight&#39;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg12-1.png" width="672" /></p>
+</div>
+<div id="limits-1" class="section level3 unnumbered">
+<h3>Limits</h3>
+<p>Let us assume that we want to modify the data to be displayed i.e. instead of
+examining the relationship between mileage and displacement for all cars, we
+desire to look at only cars with at least 6 cylinders. One way to approach this
+would be to filter the data using <code>filter</code> from dplyr and then visualize it.
+Instead, we will use the <code>limits</code> argument and filter the data for visualization.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="ggplot2-modify-legend.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb205-2"><a href="ggplot2-modify-legend.html#cb205-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>) <span class="sc">+</span></span>
+<span id="cb205-3"><a href="ggplot2-modify-legend.html#cb205-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb205-4"><a href="ggplot2-modify-legend.html#cb205-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">8</span>))</span></code></pre></div>
+<pre><code>## Warning: Continuous limits supplied to discrete scale.
+## Did you mean `limits = factor(...)` or `scale_*_continuous()`?</code></pre>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg13-1.png" width="672" /></p>
+<p>As you can see above, <code>ggplot2</code> returns a warning message indicating data related
+to 4 cylinders has been dropped. If you observe the legend, it now represents
+only 4 and 6 cylinders.</p>
+</div>
+<div id="breaks-1" class="section level3 unnumbered">
+<h3>Breaks</h3>
+<p>When there are large number of levels in the mapped variable, you may not
+want the labels in the legend to represent all of them. In such cases, we can
+use the breaks argument and specify the labels to be used. In the below case,
+we use the <code>breaks</code> argument to ensure that the labels in legend represent
+two levels (4, 8) of the mapped variable.</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="ggplot2-modify-legend.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb207-2"><a href="ggplot2-modify-legend.html#cb207-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>) <span class="sc">+</span></span>
+<span id="cb207-3"><a href="ggplot2-modify-legend.html#cb207-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb207-4"><a href="ggplot2-modify-legend.html#cb207-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg14-1.png" width="672" /></p>
+</div>
+<div id="putting-it-all-together-4" class="section level3 unnumbered">
+<h3>Putting it all together…</h3>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="ggplot2-modify-legend.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb208-2"><a href="ggplot2-modify-legend.html#cb208-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>) <span class="sc">+</span></span>
+<span id="cb208-3"><a href="ggplot2-modify-legend.html#cb208-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Cylinders&quot;</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb208-4"><a href="ggplot2-modify-legend.html#cb208-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Four&#39;</span>, <span class="st">&#39;Six&#39;</span>, <span class="st">&#39;Eight&#39;</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>))</span></code></pre></div>
+<pre><code>## Warning: Continuous limits supplied to discrete scale.
+## Did you mean `limits = factor(...)` or `scale_*_continuous()`?</code></pre>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg15-1.png" width="672" /></p>
+</div>
+</div>
+<div id="shape-2" class="section level2" number="12.3">
+<h2><span class="header-section-number">12.3</span> Shape</h2>
+<p>We will learn to modify the following using <code>scale_shape_manual</code> when <code>shape</code> is mapped to categorical variables:</p>
+<ul>
+<li>title</li>
+<li>breaks</li>
+<li>limits</li>
+<li>labels</li>
+<li>values</li>
+</ul>
+<div id="plot-2" class="section level3 unnumbered">
+<h3>Plot</h3>
+<p>Let us start with a scatter plot examining the relationship between displacement
+and miles per gallon from the mtcars data set. We will map the shape of the points
+to the <code>cyl</code> variable.</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="ggplot2-modify-legend.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb210-2"><a href="ggplot2-modify-legend.html#cb210-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl)))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As you can see, the legend acts as a guide for the <code>shape</code> aesthetic. Now, let
+us learn to modify the different aspects of the legend.</p>
+</div>
+<div id="title-3" class="section level3 unnumbered">
+<h3>Title</h3>
+<p>The title of the legend (<code>factor(cyl)</code>) is not very intuitive. If the user does
+not know the underlying data, they will not be able to make any sense out of it.
+Let us change it to <code>Cylinders</code> using the <code>name</code> argument.</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="ggplot2-modify-legend.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb211-2"><a href="ggplot2-modify-legend.html#cb211-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb211-3"><a href="ggplot2-modify-legend.html#cb211-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">name =</span> <span class="st">&quot;Cylinders&quot;</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">24</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>If you have mapped shape/size to a discrete variable which has less than six
+categories, you can use <code>scale_shape()</code>.</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="ggplot2-modify-legend.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb212-2"><a href="ggplot2-modify-legend.html#cb212-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb212-3"><a href="ggplot2-modify-legend.html#cb212-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape</span>(<span class="at">name =</span> <span class="st">&#39;Cylinders&#39;</span>)</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg18-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="values-2" class="section level3 unnumbered">
+<h3>Values</h3>
+<p>To change the default shapes in the legend, use the <code>values</code> argument and
+supply a numeric vector of shapes. The number of shapes specified
+must be equal to the number of levels in the categorical variable mapped.
+In the below example, <code>cyl</code> has 3 levels (4, 6, 8) and hence we have specified
+3 different shapes.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="ggplot2-modify-legend.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb213-2"><a href="ggplot2-modify-legend.html#cb213-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb213-3"><a href="ggplot2-modify-legend.html#cb213-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">24</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg19-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="labels-2" class="section level3 unnumbered">
+<h3>Labels</h3>
+<p>The labels in the legend can be modified using the <code>labels</code> argument. Let us
+change the labels to <code>Four</code>, <code>Six</code> and <code>Eight</code> in the next example. Ensure that
+the labels are intuitive and easy to interpret for the end user of the plot.</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="ggplot2-modify-legend.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb214-2"><a href="ggplot2-modify-legend.html#cb214-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb214-3"><a href="ggplot2-modify-legend.html#cb214-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">24</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Four&#39;</span>, <span class="st">&#39;Six&#39;</span>, <span class="st">&#39;Eight&#39;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg20-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="limits-2" class="section level3 unnumbered">
+<h3>Limits</h3>
+<p>Let us assume that we want to modify the data to be displayed i.e. instead of
+examining the relationship between mileage and displacement for all cars, we
+desire to look at only cars with at least 6 cylinders. One way to approach this
+would be to filter the data using <code>filter</code> from dplyr and then visualize it.
+Instead, we will use the <code>limits</code> argument and filter the data for visualization.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="ggplot2-modify-legend.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb215-2"><a href="ggplot2-modify-legend.html#cb215-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb215-3"><a href="ggplot2-modify-legend.html#cb215-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">8</span>))</span></code></pre></div>
+<pre><code>## Warning: Continuous limits supplied to discrete scale.
+## Did you mean `limits = factor(...)` or `scale_*_continuous()`?</code></pre>
+<pre><code>## Warning: Removed 11 rows containing missing values (geom_point).</code></pre>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As you can see above, <code>ggplot2</code> returns a warning message indicating data related
+to 4 cylinders has been dropped. If you observe the legend, it now represents
+only 4 and 6 cylinders.</p>
+</div>
+<div id="breaks-2" class="section level3 unnumbered">
+<h3>Breaks</h3>
+<p>When there are large number of levels in the mapped variable, you may not
+want the labels in the legend to represent all of them. In such cases, we can
+use the breaks argument and specify the labels to be used. In the below case,
+we use the <code>breaks</code> argument to ensure that the labels in legend represent
+two levels (4, 8) of the mapped variable.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="ggplot2-modify-legend.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb218-2"><a href="ggplot2-modify-legend.html#cb218-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb218-3"><a href="ggplot2-modify-legend.html#cb218-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">24</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg22-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="putting-it-all-together-5" class="section level3 unnumbered">
+<h3>Putting it all together…</h3>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="ggplot2-modify-legend.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb219-2"><a href="ggplot2-modify-legend.html#cb219-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb219-3"><a href="ggplot2-modify-legend.html#cb219-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">name =</span> <span class="st">&quot;Cylinders&quot;</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;Six&#39;</span>, <span class="st">&#39;Eight&#39;</span>),  </span>
+<span id="cb219-4"><a href="ggplot2-modify-legend.html#cb219-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">8</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">8</span>))</span></code></pre></div>
+<pre><code>## Warning: Continuous limits supplied to discrete scale.
+## Did you mean `limits = factor(...)` or `scale_*_continuous()`?</code></pre>
+<pre><code>## Warning: Removed 11 rows containing missing values (geom_point).</code></pre>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg23-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="size-3" class="section level2" number="12.4">
+<h2><span class="header-section-number">12.4</span> Size</h2>
+<p>We will learn to modify the following using <code>scale_size_continuous</code> when <code>size</code> aesthetic is mapped to variables:</p>
+<ul>
+<li>title</li>
+<li>breaks</li>
+<li>limits</li>
+<li>range</li>
+<li>labels</li>
+<li>values</li>
+</ul>
+<div id="plot-3" class="section level3 unnumbered">
+<h3>Plot</h3>
+<p>Let us start with a scatter plot examining the relationship between displacement
+and miles per gallon from the mtcars data set. We will map the size of the points
+to the <code>hp</code> variable. Remember, <code>size</code> must always be mapped to a continuous
+variable.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="ggplot2-modify-legend.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb222-2"><a href="ggplot2-modify-legend.html#cb222-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg24-1.png" width="672" /></p>
+<p>As you can see, the legend acts as a guide for the <code>size</code> aesthetic. Now, let
+us learn to modify the different aspects of the legend.</p>
+</div>
+<div id="title-4" class="section level3 unnumbered">
+<h3>Title</h3>
+<p>The title of the legend (<code>hp</code>) is not very intuitive. If the user does
+not know the underlying data, they will not be able to make any sense out of it.
+Let us change it to <code>Horsepower</code> using the <code>name</code> argument.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="ggplot2-modify-legend.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb223-2"><a href="ggplot2-modify-legend.html#cb223-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp)) <span class="sc">+</span></span>
+<span id="cb223-3"><a href="ggplot2-modify-legend.html#cb223-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Horsepower&quot;</span>)</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg25-1.png" width="672" /></p>
+</div>
+<div id="range" class="section level3 unnumbered">
+<h3>Range</h3>
+<p>The range of the size of points can be modified using the <code>range</code> argument. We
+need to specify a lower and upper range using a numeric vector. In the below
+example, we use <code>range</code> and supply the lower and upper limits as <code>3</code> and <code>6</code>.
+The size of the points will now lie between <code>3</code> and <code>6</code> only.</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="ggplot2-modify-legend.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb224-2"><a href="ggplot2-modify-legend.html#cb224-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp)) <span class="sc">+</span></span>
+<span id="cb224-3"><a href="ggplot2-modify-legend.html#cb224-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg26-1.png" width="672" /></p>
+</div>
+<div id="limits-3" class="section level3 unnumbered">
+<h3>Limits</h3>
+<p>Let us assume that we want to modify the data to be displayed i.e. instead of
+examining the relationship between mileage and displacement for all cars, we
+desire to look at only cars whose horsepower is between <code>100</code> and <code>350</code>.
+One way to approach this would be to filter the data using <code>filter</code> from dplyr
+and then visualize it. Instead, we will use the <code>limits</code> argument and filter
+the data for visualization.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="ggplot2-modify-legend.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb225-2"><a href="ggplot2-modify-legend.html#cb225-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp)) <span class="sc">+</span></span>
+<span id="cb225-3"><a href="ggplot2-modify-legend.html#cb225-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">350</span>))</span></code></pre></div>
+<pre><code>## Warning: Removed 9 rows containing missing values (geom_point).</code></pre>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg27-1.png" width="672" /></p>
+</div>
+<div id="breaks-3" class="section level3 unnumbered">
+<h3>Breaks</h3>
+<p>When the range of the variable mapped to size is large, you may not
+want the labels in the legend to represent all of them. In such cases, we can
+use the breaks argument and specify the labels to be used. In the below case,
+we use the <code>breaks</code> argument to ensure that the labels in legend represent
+certain midpoints (125, 200, 275) of the mapped variable.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="ggplot2-modify-legend.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb227-2"><a href="ggplot2-modify-legend.html#cb227-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp)) <span class="sc">+</span></span>
+<span id="cb227-3"><a href="ggplot2-modify-legend.html#cb227-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">125</span>, <span class="dv">200</span>, <span class="dv">275</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg28-1.png" width="672" /></p>
+</div>
+<div id="labels-3" class="section level3 unnumbered">
+<h3>Labels</h3>
+<p>The labels in the legend can be modified using the <code>labels</code> argument. Let us
+change the labels to “1 Hundred”, “2 Hundred” and “3 Hundred” in the next example.
+Ensure that the labels are intuitive and easy to interpret for the end user of
+the plot.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="ggplot2-modify-legend.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb228-2"><a href="ggplot2-modify-legend.html#cb228-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp)) <span class="sc">+</span></span>
+<span id="cb228-3"><a href="ggplot2-modify-legend.html#cb228-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>),</span>
+<span id="cb228-4"><a href="ggplot2-modify-legend.html#cb228-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;1 Hundred&quot;</span>, <span class="st">&quot;2 Hundred&quot;</span>, <span class="st">&quot;3 Hundred&quot;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg29-1.png" width="672" /></p>
+</div>
+<div id="putting-it-all-together-6" class="section level3 unnumbered">
+<h3>Putting it all together…</h3>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="ggplot2-modify-legend.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb229-2"><a href="ggplot2-modify-legend.html#cb229-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp)) <span class="sc">+</span></span>
+<span id="cb229-3"><a href="ggplot2-modify-legend.html#cb229-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Horsepower&quot;</span>, <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>), </span>
+<span id="cb229-4"><a href="ggplot2-modify-legend.html#cb229-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">400</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>),</span>
+<span id="cb229-5"><a href="ggplot2-modify-legend.html#cb229-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;1 Hundred&quot;</span>, <span class="st">&quot;2 Hundred&quot;</span>, <span class="st">&quot;3 Hundred&quot;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg30-1.png" width="672" /></p>
+</div>
+</div>
+<div id="transparency" class="section level2" number="12.5">
+<h2><span class="header-section-number">12.5</span> Transparency</h2>
+<p>We will learn to modify the following using <code>scale_alpha_continuous()</code> when <code>alpha</code> or transparency is mapped to variables:</p>
+<ul>
+<li>title</li>
+<li>breaks</li>
+<li>limits</li>
+<li>range</li>
+<li>labels</li>
+<li>values</li>
+</ul>
+<div id="plot-4" class="section level3 unnumbered">
+<h3>Plot</h3>
+<p>Let us start with a scatter plot examining the relationship between displacement
+and miles per gallon from the mtcars data set. We will map the transparency of
+the points to the <code>hp</code> variable. Remember, <code>alpha</code> must always be mapped to a
+continuous variable.</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="ggplot2-modify-legend.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb230-2"><a href="ggplot2-modify-legend.html#cb230-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg31-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>As you can see, the legend acts as a guide for the <code>alpha</code> aesthetic. Now, let
+us learn to modify the different aspects of the legend.</p>
+</div>
+<div id="title-5" class="section level3 unnumbered">
+<h3>Title</h3>
+<p>The title of the legend (<code>hp</code>) is not very intuitive. If the user does
+not know the underlying data, they will not be able to make any sense out of it.
+Let us change it to <code>Horsepower</code> using the <code>name</code> argument.</p>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="ggplot2-modify-legend.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb231-2"><a href="ggplot2-modify-legend.html#cb231-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="sc">+</span></span>
+<span id="cb231-3"><a href="ggplot2-modify-legend.html#cb231-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="st">&quot;Horsepower&quot;</span>)</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg32-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="breaks-4" class="section level3 unnumbered">
+<h3>Breaks</h3>
+<p>When the range of the variable mapped to size is large, you may not
+want the labels in the legend to represent all of them. In such cases, we can
+use the breaks argument and specify the labels to be used. In the below case,
+we use the <code>breaks</code> argument to ensure that the labels in legend represent
+certain midpoints (125, 200, 275) of the mapped variable.</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="ggplot2-modify-legend.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb232-2"><a href="ggplot2-modify-legend.html#cb232-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="sc">+</span></span>
+<span id="cb232-3"><a href="ggplot2-modify-legend.html#cb232-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">125</span>, <span class="dv">200</span>, <span class="dv">275</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg33-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="limits-4" class="section level3 unnumbered">
+<h3>Limits</h3>
+<p>Let us assume that we want to modify the data to be displayed i.e. instead of
+examining the relationship between mileage and displacement for all cars, we
+desire to look at only cars whose horsepower is between <code>100</code> and <code>350</code>.
+One way to approach this would be to filter the data using <code>filter</code> from dplyr
+and then visualize it. Instead, we will use the <code>limits</code> argument and filter
+the data for visualization.</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="ggplot2-modify-legend.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb233-2"><a href="ggplot2-modify-legend.html#cb233-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="sc">+</span></span>
+<span id="cb233-3"><a href="ggplot2-modify-legend.html#cb233-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">350</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg34-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="range-1" class="section level3 unnumbered">
+<h3>Range</h3>
+<p>The range of the transparency of points can be modified using the <code>range</code>
+argument. We need to specify a lower and upper range using a numeric vector.
+In the below example, we use <code>range</code> and supply the lower and upper limits as
+<code>0.4</code> and <code>0.8</code>. The transparency of the points will now lie between <code>0.4</code> and
+<code>0.8</code> only.</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="ggplot2-modify-legend.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb234-2"><a href="ggplot2-modify-legend.html#cb234-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="sc">+</span></span>
+<span id="cb234-3"><a href="ggplot2-modify-legend.html#cb234-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.8</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg35-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="labels-4" class="section level3 unnumbered">
+<h3>Labels</h3>
+<p>The labels in the legend can be modified using the <code>labels</code> argument. Let us
+change the labels to “1 Hundred”, “2 Hundred” and “3 Hundred” in the next example.
+Ensure that the labels are intuitive and easy to interpret for the end user of
+the plot.</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="ggplot2-modify-legend.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb235-2"><a href="ggplot2-modify-legend.html#cb235-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="sc">+</span></span>
+<span id="cb235-3"><a href="ggplot2-modify-legend.html#cb235-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>),</span>
+<span id="cb235-4"><a href="ggplot2-modify-legend.html#cb235-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;1 Hundred&quot;</span>, <span class="st">&quot;2 Hundred&quot;</span>, </span>
+<span id="cb235-5"><a href="ggplot2-modify-legend.html#cb235-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">&quot;3 Hundred&quot;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg36-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="putting-it-all-together-7" class="section level3 unnumbered">
+<h3>Putting it all together…</h3>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="ggplot2-modify-legend.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb236-2"><a href="ggplot2-modify-legend.html#cb236-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">&#39;blue&#39;</span>) <span class="sc">+</span></span>
+<span id="cb236-3"><a href="ggplot2-modify-legend.html#cb236-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="st">&quot;Horsepower&quot;</span>, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>),</span>
+<span id="cb236-4"><a href="ggplot2-modify-legend.html#cb236-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">350</span>), <span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.8</span>),</span>
+<span id="cb236-5"><a href="ggplot2-modify-legend.html#cb236-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;1 Hundred&quot;</span>, <span class="st">&quot;2 Hundred&quot;</span>, <span class="st">&quot;3 Hundred&quot;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg37-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="guide" class="section level2" number="12.6">
+<h2><span class="header-section-number">12.6</span> Guide</h2>
+<p>In this section, we will learn to modify</p>
+<ul>
+<li>title</li>
+<li>label</li>
+<li>and bar</li>
+</ul>
+<p>So far, we have learnt to modify the components of a legend using <code>scale_*</code>
+family of functions. Now, we will use the <code>guide</code> argument and supply it
+values using the <code>guide_legend()</code> function.</p>
+<div id="title-6" class="section level3 unnumbered">
+<h3>Title</h3>
+<div id="title-alignment" class="section level4 unnumbered">
+<h4>Title Alignment</h4>
+<p>The horizontal alignment of the title can be managed using the <code>title.hjust</code>
+argument. It can take any value between <code>0</code> and <code>1</code>.</p>
+<ul>
+<li>0 (left)</li>
+<li>1 (right)</li>
+</ul>
+<p>In the below example, we align the title to the center by assigning the value
+<code>0.5</code>.</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="ggplot2-modify-legend.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb237-2"><a href="ggplot2-modify-legend.html#cb237-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb237-3"><a href="ggplot2-modify-legend.html#cb237-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">&quot;Cylinders&quot;</span>, <span class="at">title.hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg38-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="title-alignment-vertical" class="section level4 unnumbered">
+<h4>Title Alignment (Vertical)</h4>
+<p>To manage the vertical alignment of the title, use <code>title.vjust</code>.</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="ggplot2-modify-legend.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> hp)) <span class="sc">+</span></span>
+<span id="cb238-2"><a href="ggplot2-modify-legend.html#cb238-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">guide =</span> <span class="fu">guide_colorbar</span>(</span>
+<span id="cb238-3"><a href="ggplot2-modify-legend.html#cb238-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Horsepower&quot;</span>, <span class="at">title.position =</span> <span class="st">&quot;top&quot;</span>, <span class="at">title.vjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg39-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="title-position" class="section level4 unnumbered">
+<h4>Title Position</h4>
+<p>The position of the title can be managed using <code>title.posiiton</code> argument. It
+can be positioned at:</p>
+<ul>
+<li>top</li>
+<li>bottom</li>
+<li>left</li>
+<li>right</li>
+</ul>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="ggplot2-modify-legend.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb239-2"><a href="ggplot2-modify-legend.html#cb239-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb239-3"><a href="ggplot2-modify-legend.html#cb239-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">&quot;Cylinders&quot;</span>, <span class="at">title.hjust =</span> <span class="fl">0.5</span>, </span>
+<span id="cb239-4"><a href="ggplot2-modify-legend.html#cb239-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">title.position =</span> <span class="st">&quot;top&quot;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg40-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="label-1" class="section level3 unnumbered">
+<h3>Label</h3>
+<div id="label-position" class="section level4 unnumbered">
+<h4>Label Position</h4>
+<p>The position of the label can be managed using the <code>label.position</code> argument.
+It can be positioned at:</p>
+<ul>
+<li>top</li>
+<li>bottom</li>
+<li>left</li>
+<li>right</li>
+</ul>
+<p>In the below example, we position the label at right.</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="ggplot2-modify-legend.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb240-2"><a href="ggplot2-modify-legend.html#cb240-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb240-3"><a href="ggplot2-modify-legend.html#cb240-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">label.position =</span> <span class="st">&quot;right&quot;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg41-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="label-alignment" class="section level4 unnumbered">
+<h4>Label Alignment</h4>
+<p>The horizontal alignment of the label can be managed using the <code>label.hjust</code>
+argument. It can take any value between <code>0</code> and <code>1</code>.</p>
+<ul>
+<li>0 (left)</li>
+<li>1 (right)</li>
+</ul>
+<p>In the below example, we align the label to the center by assigning the value
+<code>0.5</code>.</p>
+<ul>
+<li>alignment
+<ul>
+<li>0 (left)</li>
+<li>1 (right)</li>
+</ul></li>
+</ul>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="ggplot2-modify-legend.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb241-2"><a href="ggplot2-modify-legend.html#cb241-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb241-3"><a href="ggplot2-modify-legend.html#cb241-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">label.hjust =</span> <span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg42-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="labels-alignment-vertical" class="section level4 unnumbered">
+<h4>Labels Alignment (Vertical)</h4>
+<p>The vertical alignment of the label can be managed using the <code>label.vjust</code>
+argument.</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="ggplot2-modify-legend.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb242-2"><a href="ggplot2-modify-legend.html#cb242-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> hp)) <span class="sc">+</span></span>
+<span id="cb242-3"><a href="ggplot2-modify-legend.html#cb242-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">guide =</span> <span class="fu">guide_colorbar</span>(</span>
+<span id="cb242-4"><a href="ggplot2-modify-legend.html#cb242-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">label.vjust =</span> <span class="fl">0.8</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg43-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="direction" class="section level4 unnumbered">
+<h4>Direction</h4>
+<p>The direction of the label can be either horizontal or veritcal and it can be
+set using the <code>direction</code> argument.</p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="ggplot2-modify-legend.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb243-2"><a href="ggplot2-modify-legend.html#cb243-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb243-3"><a href="ggplot2-modify-legend.html#cb243-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">direction =</span> <span class="st">&quot;horizontal&quot;</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg44-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="rows" class="section level4 unnumbered">
+<h4>Rows</h4>
+<p>The label can be spread across multiple rows using the <code>nrow</code> argument. In the
+below example, the label is spread across 2 rows.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="ggplot2-modify-legend.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb244-2"><a href="ggplot2-modify-legend.html#cb244-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb244-3"><a href="ggplot2-modify-legend.html#cb244-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">nrow =</span> <span class="dv">2</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg45-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="reverse" class="section level4 unnumbered">
+<h4>Reverse</h4>
+<p>The order of the labels can be reversed using the <code>reverse</code> argument. We need
+to supply logical values i.e. either <code>TRUE</code> or <code>FALSE</code>. If <code>TRUE</code>, the order
+will be reversed.</p>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="ggplot2-modify-legend.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb245-2"><a href="ggplot2-modify-legend.html#cb245-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb245-3"><a href="ggplot2-modify-legend.html#cb245-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg46-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="putting-it-all-together-8" class="section level4 unnumbered">
+<h4>Putting it all together…</h4>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="ggplot2-modify-legend.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb246-2"><a href="ggplot2-modify-legend.html#cb246-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>, <span class="st">&quot;green&quot;</span>),</span>
+<span id="cb246-3"><a href="ggplot2-modify-legend.html#cb246-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">&quot;Cylinders&quot;</span>, <span class="at">title.hjust =</span> <span class="fl">0.5</span>, </span>
+<span id="cb246-4"><a href="ggplot2-modify-legend.html#cb246-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">title.position =</span> <span class="st">&quot;top&quot;</span>, <span class="at">label.position =</span> <span class="st">&quot;right&quot;</span>, </span>
+<span id="cb246-5"><a href="ggplot2-modify-legend.html#cb246-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">direction =</span> <span class="st">&quot;horizontal&quot;</span>, <span class="at">label.hjust =</span> <span class="fl">0.5</span>, <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">reverse =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb246-6"><a href="ggplot2-modify-legend.html#cb246-6" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg47-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="legend-bar" class="section level3 unnumbered">
+<h3>Legend Bar</h3>
+<p>So far we have looked at modifying components of the legend when it acts as a
+guide for <code>color</code>, <code>fill</code> or <code>shape</code> i.e. when the aesthetics have been mapped
+to a categorical variable. In this section, you will learn about
+<code>guide_colorbar()</code> which will allow us to modify the legend when the aesthetics
+are mapped to a continuous variable.</p>
+<div id="plot-5" class="section level4 unnumbered">
+<h4>Plot</h4>
+<p>Let us start with a scatter plot examining the relationship between displacement
+and miles per gallon from the mtcars data set. We will map the color of the points
+to the <code>hp</code> variable.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="ggplot2-modify-legend.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb247-2"><a href="ggplot2-modify-legend.html#cb247-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> hp))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg48-1.png" width="672" /></p>
+</div>
+<div id="width" class="section level4 unnumbered">
+<h4>Width</h4>
+<p>The width of the bar can be modified using the <code>barwidth</code> argument. It is used
+inside the <code>guide_colorbar()</code> function which itself is supplied to the <code>guide</code>
+argument of <code>scale_color_continuous()</code>.</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="ggplot2-modify-legend.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb248-2"><a href="ggplot2-modify-legend.html#cb248-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> hp)) <span class="sc">+</span></span>
+<span id="cb248-3"><a href="ggplot2-modify-legend.html#cb248-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">guide =</span> <span class="fu">guide_colorbar</span>(</span>
+<span id="cb248-4"><a href="ggplot2-modify-legend.html#cb248-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">barwidth =</span> <span class="dv">10</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg49-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="height" class="section level4 unnumbered">
+<h4>Height</h4>
+<p>Similarly, the height of the bar can be modified using the <code>barheight</code> argument.</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="ggplot2-modify-legend.html#cb249-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb249-2"><a href="ggplot2-modify-legend.html#cb249-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> hp)) <span class="sc">+</span></span>
+<span id="cb249-3"><a href="ggplot2-modify-legend.html#cb249-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">guide =</span> <span class="fu">guide_colorbar</span>(</span>
+<span id="cb249-4"><a href="ggplot2-modify-legend.html#cb249-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">barheight =</span> <span class="dv">3</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg50-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bins" class="section level4 unnumbered">
+<h4>Bins</h4>
+<p>The <code>nbin</code> argument allows us to specify the number of bins in the bar.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="ggplot2-modify-legend.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb250-2"><a href="ggplot2-modify-legend.html#cb250-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> hp)) <span class="sc">+</span></span>
+<span id="cb250-3"><a href="ggplot2-modify-legend.html#cb250-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">guide =</span> <span class="fu">guide_colorbar</span>(</span>
+<span id="cb250-4"><a href="ggplot2-modify-legend.html#cb250-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">nbin =</span> <span class="dv">4</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg51-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="ticks" class="section level4 unnumbered">
+<h4>Ticks</h4>
+<p>The ticks of the bar can be removed using the <code>ticks</code> argument and setting it
+to <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="ggplot2-modify-legend.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb251-2"><a href="ggplot2-modify-legend.html#cb251-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> hp)) <span class="sc">+</span></span>
+<span id="cb251-3"><a href="ggplot2-modify-legend.html#cb251-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">guide =</span> <span class="fu">guide_colorbar</span>(</span>
+<span id="cb251-4"><a href="ggplot2-modify-legend.html#cb251-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ticks =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg52-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="upperlower-limits" class="section level4 unnumbered">
+<h4>Upper/Lower Limits</h4>
+<p>The upper and lower limits of the bars can be drawn or undrawn using the
+<code>draw.ulim</code> and <code>draw.llim</code> arguments. They both accept logical values.</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="ggplot2-modify-legend.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb252-2"><a href="ggplot2-modify-legend.html#cb252-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> hp)) <span class="sc">+</span></span>
+<span id="cb252-3"><a href="ggplot2-modify-legend.html#cb252-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_continuous</span>(<span class="at">guide =</span> <span class="fu">guide_colorbar</span>(</span>
+<span id="cb252-4"><a href="ggplot2-modify-legend.html#cb252-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">draw.ulim =</span> <span class="cn">TRUE</span>, <span class="at">draw.llim =</span> <span class="cn">FALSE</span>))</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg53-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="guides-color-shape-size" class="section level4" number="12.6.0.1">
+<h4><span class="header-section-number">12.6.0.1</span> Guides: Color, Shape &amp; Size</h4>
+<p>The <code>guides()</code> function can be used to create multiple legends to act as a
+guide for <code>color</code>, <code>shape</code>, <code>size</code> etc. as shown below. First, we map color,
+shape and size to different variables. Next, in the <code>guides()</code> function, we
+supply values to each of the above aesthetics to indicate the type of legend.</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="ggplot2-modify-legend.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb253-2"><a href="ggplot2-modify-legend.html#cb253-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> hp, </span>
+<span id="cb253-3"><a href="ggplot2-modify-legend.html#cb253-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">size =</span> qsec, <span class="at">shape =</span> <span class="fu">factor</span>(gear))) <span class="sc">+</span> </span>
+<span id="cb253-4"><a href="ggplot2-modify-legend.html#cb253-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="st">&quot;colorbar&quot;</span>, <span class="at">shape =</span> <span class="st">&quot;legend&quot;</span>, <span class="at">size =</span> <span class="st">&quot;legend&quot;</span>)</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg54-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="guides-title" class="section level4 unnumbered">
+<h4>Guides: Title</h4>
+<p>To modify the components of the different legends, we must use the
+<code>guide_*</code> family of functions. In the below example, we use <code>guide_colorbar()</code>
+for the legend acting as guide for color mapped to a continuous variable and
+<code>guide_legend()</code> for the legends acting as guide for shape/size mapped to
+categorical variables.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="ggplot2-modify-legend.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb254-2"><a href="ggplot2-modify-legend.html#cb254-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> hp, <span class="at">size =</span> wt, <span class="at">shape =</span> <span class="fu">factor</span>(gear))) <span class="sc">+</span> </span>
+<span id="cb254-3"><a href="ggplot2-modify-legend.html#cb254-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_colorbar</span>(<span class="at">title =</span> <span class="st">&quot;Horsepower&quot;</span>),</span>
+<span id="cb254-4"><a href="ggplot2-modify-legend.html#cb254-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">&quot;Weight&quot;</span>), <span class="at">size =</span> <span class="fu">guide_legend</span>(<span class="at">title =</span> <span class="st">&quot;Gear&quot;</span>)</span>
+<span id="cb254-5"><a href="ggplot2-modify-legend.html#cb254-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p><img src="data-visualization-with-ggplot2_files/figure-html/leg55-1.png" width="672" style="display: block; margin: auto;" /></p>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ggplot2-modify-axis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ggplot2-facets.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>
