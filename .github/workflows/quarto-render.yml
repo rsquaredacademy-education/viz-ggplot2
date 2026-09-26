@@ -1,30 +1,49 @@
-name: Quarto render check
+name: Render book
 
 on:
   push:
     branches: [master]
   pull_request:
+  workflow_dispatch:
 
 jobs:
   render:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
-          tinytex: false
+          version: "1.7.32"
+
+      - name: Install Typst (PDF engine)
+        run: quarto install tool typst --no-prompt
+
       - uses: r-lib/actions/setup-r@v2
         with:
           r-version: "4.5"
+          use-public-rspm: true
+
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: |
+            knitr
+            rmarkdown
             ggplot2
             dplyr
             readr
             tidyr
-      - name: Render book
+
+      - name: Render book (HTML + PDF + EPUB)
         run: quarto render
+
+      - name: Verify preserved slugs and multi-format output
+        run: |
+          for f in index about-the-author ggplot2-quicktour ggplot2-geoms ggplot2-aesthetics ggplot2-labels ggplot2-text-annotations ggplot2-scatter-plot ggplot2-line-graph ggplot2-bar-plot ggplot2-box-plot ggplot2-histogram ggplot2-modify-axis ggplot2-modify-legend ggplot2-facets ggplot2-themes; do
+            test -f "_book/$f.html" || { echo "MISSING SLUG: _book/$f.html"; exit 1; }
+          done
+          ls _book/*.pdf _book/*.epub
+
       - name: Upload preview
         uses: actions/upload-artifact@v4
         with:
