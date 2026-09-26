@@ -1,0 +1,45 @@
+project:
+  type: book
+  output-dir: _book
+
+book:
+  title: "Data Visualization with ggplot2"
+  author: "Aravind Hebbali"
+  site-url: https://viz-ggplot2.rsquaredacademy.com/
+  chapters:
+    - index.qmd
+    - about-the-author.qmd
+    - ggplot2-quicktour.qmd
+    - ggplot2-geoms.qmd
+    - ggplot2-aesthetics.qmd
+    - ggplot2-labels.qmd
+    - ggplot2-text-annotations.qmd
+    - ggplot2-scatter-plot.qmd
+    - ggplot2-line-graph.qmd
+    - ggplot2-bar-plot.qmd
+    - ggplot2-box-plot.qmd
+    - ggplot2-histogram.qmd
+    - ggplot2-modify-axis.qmd
+    - ggplot2-modify-legend.qmd
+    - ggplot2-facets.qmd
+    - ggplot2-themes.qmd
+
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+    search: true
+    code-copy: true
+    fig-align: center
+    fig-dpi: 192
+    include-in-header: google-analytics.html
+    repo-url: https://github.com/rsquaredacademy-education/viz-ggplot2/
+  pdf:
+    pdf-engine: typst
+    toc: true
+  epub:
+    toc: true
+
+execute:
+  warning: false
