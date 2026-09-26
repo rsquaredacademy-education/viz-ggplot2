@@ -71,7 +71,7 @@ ensure that the length of the `breaks` and `labels` are same.
 ggplot(mtcars) +
   geom_point(aes(disp, mpg)) +
   scale_x_continuous(breaks = c(150, 300, 450),
-    labels = c('One Hundred Fifty', 'Three Hundred', 'Four Hundred Fifity'))
+    labels = c('One Hundred Fifty', 'Three Hundred', 'Four Hundred Fifty'))
 ```
 
 The position of the axes can be changed using the `position` argument. In the 

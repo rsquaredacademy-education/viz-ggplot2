@@ -592,7 +592,7 @@ ggplot(mtcars) + geom_point(aes(disp, mpg, color = hp)) +
 
 #### Title Position {.unnumbered}
 
-The position of the title can be managed using `title.posiiton` argument. It 
+The position of the title can be managed using `title.position` argument. It 
 can be positioned at:
 
 - top
@@ -663,7 +663,7 @@ ggplot(mtcars) +
 
 #### Direction {.unnumbered}
 
-The direction of the label can be either horizontal or veritcal and it can be 
+The direction of the label can be either horizontal or vertical and it can be 
 set using the `direction` argument. 
 
 ```{r leg44, fig.align='center'}

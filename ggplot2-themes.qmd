@@ -98,7 +98,7 @@ p + theme(legend.text = element_text(color = 'green', face = 'italic'))
 
 ### Title 
 
-The appearance fo the title of the legend can be modified using the 
+The appearance of the title of the legend can be modified using the 
 `legend.title` argument. You can change the color, size, font and alignment
 using `element_text()`.
 
