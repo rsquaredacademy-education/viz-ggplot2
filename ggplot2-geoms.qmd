@@ -34,14 +34,14 @@ ecom
 
 - id: row id
 - referrer: referrer website/search engine
-- os: operating system
-- browser: browser
 - device: device used to visit the website
+- bouncers: whether the visit bounced (single page viewed)
+- n_visit: number of visits
 - n_pages: number of pages visited
 - duration: time spent on the website (in seconds)
-- repeat: frequency of visits
 - country: country of origin
 - purchase: whether visitor purchased
+- order_items: number of items ordered
 - order_value: order value of visitor (in dollars)
 
 ## Point
