@@ -3,6 +3,7 @@
 .RData
 .Ruserdata
 roadmap/
+daily-logs.md
 _book/
 .quarto/
 *_files/
