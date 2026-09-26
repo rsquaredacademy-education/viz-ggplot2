@@ -2,10 +2,16 @@
 
 ## Introduction
 
-In this chapter, we will learn to quickly build a set 
-of plots that are routinely used to explore data using `qplot()`. It can be 
-used to quickly create plots but also has certain limitations. Nevertheless, if 
-you want to quickly explore data using a single function, `qplot()` is your friend.
+In this chapter, we will quickly build a set of plots that are routinely
+used to explore data using `ggplot()` combined with a `geom_*()` layer.
+Every plot follows the same recipe: map variables to aesthetics in
+`aes()` and add the geometry that draws them.
+
+:::{.callout-note}
+`qplot()` was deprecated in ggplot2 3.4.0. It still appears in older
+tutorials, but all examples in this book use `ggplot() + geom_*()`,
+which is the supported syntax going forward.
+:::
 
 ```{r gg1, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
 library(ggplot2)
@@ -16,125 +22,137 @@ library(dplyr)
 
 We will use the following libraries in this chapter:
 
-- [readr](http://readr.tidyverse.org/)
-- [ggplot2](http://ggplot2.tidyverse.org/)
+- [readr](https://readr.tidyverse.org/)
+- [ggplot2](https://ggplot2.tidyverse.org/)
 
-All the data sets used in this chapter can be found [here](https://github.com/rsquaredacademy/datasets) 
+All the data sets used in this chapter can be found [here](https://github.com/rsquaredacademy/datasets)
 and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/3b25fa07c60d44d561819d2c6ab77978).
 
 ## Scatter Plot
 
-Scatter plots are used to examine the relationship between two continuous 
-variables. The relationship can be examined across the levels of a categorical 
-variable as well. Let us begin by creating scatter plots. The first two inputs 
-are the variables/columns representing the X and Y axis. The next input is the 
-name of the data set.
+Scatter plots are used to examine the relationship between two continuous
+variables. The relationship can be examined across the levels of a categorical
+variable as well. Let us begin by creating scatter plots. Map the X and Y
+variables inside `aes()` and add `geom_point()`.
 
 ```{r gg2, fig.align='center', fig.height=5, fig.width=6}
-qplot(disp, mpg, data = mtcars)
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_point()
 ```
 
-If you want the relationship between the two variables to be represented by 
-both points and line, use the `geom` argument and supply it the values using a 
-character vector.
+If you want the relationship between the two variables to be represented by
+both points and a line, add both layers.
 
 ```{r gg3, fig.align='center', fig.height=5, fig.width=6}
-qplot(disp, mpg, data = mtcars, geom = c('point', 'line'))
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_point() +
+  geom_line()
 ```
 
-The color of the points can be mapped to a categorical variable, in our case 
-`cyl`, using the color argument. Ensure that the variable is categorical using 
+The color of the points can be mapped to a categorical variable, in our case
+`cyl`, using the `color` aesthetic. Ensure that the variable is categorical using
 `factor()`.
 
 ```{r gg4, fig.align='center', fig.height=5, fig.width=6}
-qplot(disp, mpg, data = mtcars, color = factor(cyl))
+ggplot(mtcars, aes(disp, mpg, color = factor(cyl))) +
+  geom_point()
 ```
 
-The shape and size of the points can also be mapped to variables using the 
-`shape` and `size` argument as shown in the below examples.
+The shape and size of the points can also be mapped to variables using the
+`shape` and `size` aesthetics as shown in the below examples.
 
 ```{r gg5, fig.align='center', fig.height=5, fig.width=6}
-qplot(disp, mpg, data = mtcars, shape = factor(cyl))
+ggplot(mtcars, aes(disp, mpg, shape = factor(cyl))) +
+  geom_point()
 ```
 
-Ensure that size is mapped to a continuous variable. 
+Ensure that size is mapped to a continuous variable.
 
 ```{r gg6, fig.align='center', fig.height=5, fig.width=6}
-qplot(disp, mpg, data = mtcars, size = qsec)
+ggplot(mtcars, aes(disp, mpg, size = qsec)) +
+  geom_point()
 ```
 
 ## Bar Plot
 
-A bar plot represents data in rectangular bars. The length of the bars are 
-proportional to the values they represent. Bar plots can be either horizontal 
-or vertical. The X axis of the plot represents the levels or the categories and 
-the Y axis represents the frequency/count of the variable. 
+A bar plot represents data in rectangular bars. The length of the bars are
+proportional to the values they represent. Bar plots can be either horizontal
+or vertical. The X axis of the plot represents the levels or the categories and
+the Y axis represents the frequency/count of the variable.
 
-To create a bar plot, the first input must be a categorical variable. You can 
-convert a variable to type `factor` (R equivalent of categorical) using the 
-`factor()` function. The next input is the name of the data set and the final 
-input is the `geom` which is supplied the value `'bar'`.
+To create a bar plot, map a categorical variable to `x`. You can
+convert a variable to type `factor` (R equivalent of categorical) using the
+`factor()` function, and add `geom_bar()`.
 
 ```{r gg7, fig.align='center', fig.height=5, fig.width=6}
-qplot(factor(cyl), data = mtcars, geom = c('bar'))
+ggplot(mtcars, aes(factor(cyl))) +
+  geom_bar()
 ```
-You can create a stacked bar plot using the `fill` argument and mapping it to 
-another categorical variable.
+You can create a stacked bar plot by mapping another categorical variable to
+`fill`.
 
 ```{r gg8, fig.align='center', fig.height=5, fig.width=6}
-qplot(factor(cyl), data = mtcars, geom = c('bar'), fill = factor(am))
+ggplot(mtcars, aes(factor(cyl), fill = factor(am))) +
+  geom_bar()
 ```
 
 ## Box Plot
 
-The box plot is a standardized way of displaying the distribution of data 
-based on the five number summary: minimum, first quartile, median, third 
-quartile, and maximum. Box plots are useful for detecting outliers and for 
-comparing distributions. It shows the shape, central tendancy and variability 
+The box plot is a standardized way of displaying the distribution of data
+based on the five number summary: minimum, first quartile, median, third
+quartile, and maximum. Box plots are useful for detecting outliers and for
+comparing distributions. It shows the shape, central tendancy and variability
 of the data.
 
-Box plots can be created by supplying the value `'boxplot'` to the `geom` 
-argument. The firstinput must be a categorical variable and the second must be 
-a continuous variable. 
+Box plots are created with `geom_boxplot()`. Map a categorical variable to
+`x` and a continuous variable to `y`.
 
 ```{r gg9, fig.align='center', fig.height=5, fig.width=6}
-qplot(factor(cyl), mpg, data = mtcars, geom = c('boxplot'))
+ggplot(mtcars, aes(factor(cyl), mpg)) +
+  geom_boxplot()
 ```
 
-Unlike `plot()`, we cannot create box plots using a single variable. If you are 
-not comparing the distribution of a variable across the levels of a categorical 
-variable, you must supply the value `1` as the first input as show below.
+To plot the distribution of a single continuous variable without any grouping,
+map only `y`. Modern ggplot2 accepts a single-variable boxplot natively.
 
 ```{r gg10, fig.align='center', fig.height=5, fig.width=6}
-qplot(factor(1), mpg, data = mtcars, geom = c('boxplot'))
+ggplot(mtcars, aes(y = mpg)) +
+  geom_boxplot()
 ```
+
+:::{.callout-tip}
+Older code (including earlier editions of this book) used
+`aes(x = factor(1))` as a dummy grouping variable for single boxplots.
+That workaround is no longer needed but still renders, so you may
+encounter it in the wild.
+:::
 
 ## Line Chart
 
-Line charts are used to examing trends across time. To create a line chart, 
-supply the value `'line'` to the `geom` argument. The first two inputs should 
-be names of the columns/variables representing the X and Y axis, and the third 
-input must be the name of the data set.
+Line charts are used to examing trends across time. Map the time variable to
+`x`, the measurement to `y`, and add `geom_line()`.
 
 ```{r gg12, fig.align='center', fig.height=5, fig.width=6}
-qplot(x = date, y = unemploy, data = economics, geom = c('line'))
+ggplot(economics, aes(date, unemploy)) +
+  geom_line()
 ```
 
-The appearance of the line can be modified using the `color` argument as shown below.
+The appearance of the line can be modified by setting the `color` outside
+`aes()` as shown below.
 
 ```{r gg13, fig.align='center', fig.height=5, fig.width=6}
-qplot(x = date, y = unemploy, data = economics, geom = c('line'),
-      color = 'red')
+ggplot(economics, aes(date, unemploy)) +
+  geom_line(color = 'red')
 ```
 
 ## Histogram
 
-A histogram is a plot that can be used to examine the shape and spread of 
-continuous data. It looks very similar to a bar graph and can be used to detect 
-outliers and skewness in data. A histogram is created using the `bins` argument 
-as shown below. The first input is the name of the continuous variable and the 
-second is the name of the data set.
+A histogram is a plot that can be used to examine the shape and spread of
+continuous data. It looks very similar to a bar graph and can be used to detect
+outliers and skewness in data. Map the continuous variable to `x` and add
+`geom_histogram()`, controlling detail with `bins`.
 
 ```{r gg14, fig.align='center', fig.height=5, fig.width=6}
-qplot(mpg, data = mtcars, bins = 5)
+ggplot(mtcars, aes(mpg)) +
+  geom_histogram(bins = 5)
 ```
