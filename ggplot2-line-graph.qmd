@@ -85,12 +85,12 @@ ggplot(gdp, aes(year, india)) +
 
 ### Line Size
 
-The width of the line can be modified using the `size` argument. It can take 
+The width of the line can be modified using the `linewidth` argument. It can take
 any value above 0 as input.
 
 ```{r line4, fig.align='center'}
 ggplot(gdp, aes(year, india)) +
-  geom_line(size = 2)
+  geom_line(linewidth = 2)
 ```
 
 ## Multiple Lines
@@ -145,7 +145,7 @@ case, the plot does not look either elegant or intuitive.
 
 ```{r line9, fig.align='center'}
 ggplot(gdp2, aes(year, gdp, group = country)) +
-  geom_line(aes(size = country))
+  geom_line(aes(linewidth = country))
 ```
 
 Remember that in all the above cases, we mapped the arguments to a variable 

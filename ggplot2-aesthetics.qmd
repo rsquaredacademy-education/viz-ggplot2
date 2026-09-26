@@ -211,11 +211,11 @@ ggplot(gdp, aes(year, india)) +
   geom_line(linetype = 'dashed')
 ```
 
-The width of the line can be modified using the `size` argument.
+The width of the line can be modified using the `linewidth` argument.
 
 ```{r aes18, fig.align='center', fig.height=5, fig.width=6}
 ggplot(gdp, aes(year, india)) +
-  geom_line(size = 2)
+  geom_line(linewidth = 2)
 ```
 
 Now let us map the aesthetics to the variables. The data used in the above 
@@ -258,12 +258,12 @@ ggplot(gdp2, aes(year, gdp, group = country)) +
   geom_line(aes(linetype = country))
 ```
 
-In the below instance, we assign different width to the lines using the `size`
+In the below instance, we assign different width to the lines using the `linewidth`
 argument.
 
 ```{r aes23, fig.align='center', fig.height=5, fig.width=6}
 ggplot(gdp2, aes(year, gdp, group = country)) +
-  geom_line(aes(size = country))
+  geom_line(aes(linewidth = country))
 ```
 
 Before we wrap up, let us quickly see how we can map aesthetics to variables 

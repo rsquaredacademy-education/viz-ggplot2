@@ -137,19 +137,19 @@ ggplot(ecom) +
 
 ## Line Size
 
-Use the `size` argument to modify the width of the border of the histogram bins. 
+Use the `linewidth` argument to modify the width of the border of the histogram bins. 
 It can take any value greater than `0`.
 
 ```{r hist10, fig.align='center'}
 ggplot(ecom) +
   geom_histogram(aes(n_visit), bins = 5, fill = 'white', 
-    color = 'blue', size = 1.25)
+    color = 'blue', linewidth = 1.25)
 ```
 
 ## Map Variables
 
 You can map the aesthetics to variables as well. In the below example, we map
-`fill` to the device variable. You can try mapping color, linetype and size to 
+`fill` to the device variable. You can try mapping color, linetype and linewidth to
 variables as well.
 
 ```{r hist7, fig.align='center'}

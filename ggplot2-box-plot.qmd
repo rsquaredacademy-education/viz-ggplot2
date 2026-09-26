@@ -196,12 +196,12 @@ ggplot(tidy_returns) +
   geom_boxplot(aes(x = stock, y = returns), color = c('blue', 'red', 'green', 'yellow', 'brown')) 
 ```
 
-The width of the border can be changed using the `size` argument. It can take
+The width of the border can be changed using the `linewidth` argument. It can take
 any value greater than `0`.
 
 ```{r box17, fig.align='center'}
 ggplot(tidy_returns) +
-  geom_boxplot(aes(x = stock, y = returns), size = 1.5) 
+  geom_boxplot(aes(x = stock, y = returns), linewidth = 1.5) 
 ```
 
 To change the line type of the border, use the `linetype` argument. It can take

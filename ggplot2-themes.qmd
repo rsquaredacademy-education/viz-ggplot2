@@ -48,22 +48,22 @@ p + theme(axis.title.x = element_text(color = "red", size = 10, face = "italic")
 ### Ticks
 
 To modify the appearance of the axis ticks, use the `axis.ticks` argument. You can
-change the color, size, linetype and length of the ticks using the `element_line()`
+change the color, linewidth, linetype and length of the ticks using the `element_line()`
 function as shown below. 
 
 ```{r theme5, fig.align='center'}
-p + theme(axis.ticks = element_line(color = 'blue', size = 1.25, linetype = 2), 
+p + theme(axis.ticks = element_line(color = 'blue', linewidth = 1.25, linetype = 2), 
           axis.ticks.length = unit(1, "cm"))
 ```
 
 ### Line
 
 The `axis.line` argument should be used to modify the appearance of the 
-axis lines. You can change the color, size and linetype of the line using
+axis lines. You can change the color, linewidth and linetype of the line using
 the `element_line()` function.
 
 ```{r theme6, fig.align='center'}
-p + theme(axis.line = element_line(color = 'red', size = 1.5, linetype = 3))
+p + theme(axis.line = element_line(color = 'red', linewidth = 1.5, linetype = 3))
 ```
 
 ## Legend

@@ -129,10 +129,10 @@ ggplot(ecom) +
   geom_bar(aes(device), fill = 'white',  color = 'black', linetype = 2)
 ```
 
-The width of the bar line can be modified using the `size` argument. It can
+The width of the bar line can be modified using the `linewidth` argument. It can
 take any value greater than `0`.
 
 ```{r bar6, fig.align='center'}
 ggplot(ecom) +
-  geom_bar(aes(device), fill = 'white', color = 'black', size = 2)
+  geom_bar(aes(device), fill = 'white', color = 'black', linewidth = 2)
 ```
