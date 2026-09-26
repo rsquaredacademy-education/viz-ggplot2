@@ -29,6 +29,19 @@ ggplot(mtcars) +
   geom_point(aes(disp, mpg))
 ```
 
+:::{.callout-tip}
+## Try it in your browser
+Edit the code below and press **Run**. It executes entirely in your browser
+via [WebR](https://docs.r-wasm.org/webr/latest/) — no R installation needed.
+The runtime (~30 MB) downloads once, on this page only.
+:::
+
+```{webr-r}
+library(ggplot2)
+ggplot(mtcars, aes(disp, mpg)) +
+  geom_point(color = "blue")
+```
+
 ## Jitter
 
 If you want to avoid over plotting, use the `position` argument and supply it 
