@@ -80,7 +80,7 @@ ggplot(mtcars) +
 
 As you can see above, `ggplot2` returns a warning message indicating data related
 to 4 cylinders has been dropped. If you observe the legend, it now represents 
-only 4 and 6 cylinders.
+only 6 and 8 cylinders.
 
 ### Labels {.unnumbered}
 
@@ -200,7 +200,7 @@ ggplot(mtcars) +
 
 As you can see above, `ggplot2` returns a warning message indicating data related
 to 4 cylinders has been dropped. If you observe the legend, it now represents 
-only 4 and 6 cylinders.
+only 6 and 8 cylinders.
 
 ### Breaks {.unnumbered}
 
@@ -314,7 +314,7 @@ ggplot(mtcars) +
 
 As you can see above, `ggplot2` returns a warning message indicating data related
 to 4 cylinders has been dropped. If you observe the legend, it now represents 
-only 4 and 6 cylinders.
+only 6 and 8 cylinders.
 
 ### Breaks {.unnumbered}
 
@@ -810,6 +810,6 @@ categorical variables.
 ggplot(mtcars) +
   geom_point(aes(disp, mpg, color = hp, size = wt, shape = factor(gear))) + 
   guides(color = guide_colorbar(title = "Horsepower"),
-    shape = guide_legend(title = "Weight"), size = guide_legend(title = "Gear")
+    shape = guide_legend(title = "Gear"), size = guide_legend(title = "Weight")
   )
 ```
