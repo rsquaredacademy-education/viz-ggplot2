@@ -60,7 +60,7 @@
 
 [[redirects]]
   from = "https://viz-ggplot2.rsquaredacademy.com/legend.html"
-  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-legend.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-modify-legend.html"
   status = 301
   force = true
 
@@ -73,6 +73,24 @@
 [[redirects]]
   from = "https://viz-ggplot2.rsquaredacademy.com/themes.html"
   to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-themes.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/guiaxes.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-modify-axis.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/intro.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/index.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-legends.html"
+  to = "https://viz-ggplot2.rsquaredacademy.com/ggplot2-modify-legend.html"
   status = 301
   force = true
 
