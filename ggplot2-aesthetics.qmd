@@ -220,13 +220,13 @@ ggplot(gdp, aes(year, india)) +
 
 Now let us map the aesthetics to the variables. The data used in the above 
 example cannot be used as we need a variable with country names. We will use 
-`gather()` function from the `tidyr` package to reshape the data.
+`pivot_longer()` function from the `tidyr` package to reshape the data.
 
 ```{r aes19, fig.align='center', fig.height=5, fig.width=6}
-gdp2 <- 
-  gdp %>% 
-  select(year, growth, india, china) %>% 
-  gather(key = country, value = gdp, -year)
+gdp2 <-
+  gdp |>
+  select(year, growth, india, china) |>
+  tidyr::pivot_longer(cols = -year, names_to = "country", values_to = "gdp")
 
 gdp2
 ```
