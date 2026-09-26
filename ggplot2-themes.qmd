@@ -103,8 +103,7 @@ The appearance fo the title of the legend can be modified using the
 using `element_text()`.
 
 ```{r theme35, fig.align='center'}
-p + theme(legend.title = element_text(color = 'blue', face = 'bold'),
-          legend.title.align = 0.1)
+p + theme(legend.title = element_text(color = 'blue', face = 'bold', hjust = 0.1))
 ```
 
 ### Position 
