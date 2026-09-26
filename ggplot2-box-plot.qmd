@@ -47,18 +47,22 @@ daily_returns
 
 ## Single Plot
 
-If you are not comparing the distribution of continuous data, you can create 
-box plot for a single variable. Unlike `plot()`, where we could just use 
-1 input, in ggplot2, we must specify a value for the X axis and it must be
-categorical data. Since we are not comparing distributions, we will use `1`
-as the value for the X axis and wrap it inside `factor()` to treat it as a
-categorical variable. In the below example, we examine the distribution of 
-stock returns of Apple. 
+If you are not comparing the distribution of continuous data, you can create
+box plot for a single variable. Map the variable to `y` and add
+`geom_boxplot()`. In the below example, we examine the distribution of
+stock returns of Apple.
 
 ```{r box2, fig.align='center'}
 ggplot(daily_returns) +
-  geom_boxplot(aes(x = factor(1), y = AAPL))
+  geom_boxplot(aes(y = AAPL))
 ```
+
+:::{.callout-tip}
+Older code (including earlier editions of this book) used
+`aes(x = factor(1))` as a dummy grouping variable for single boxplots.
+That workaround is no longer needed but still renders, so you may
+encounter it in the wild.
+:::
 
 ## Compare Distributions
 
