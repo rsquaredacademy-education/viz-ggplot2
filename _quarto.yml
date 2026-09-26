@@ -2,10 +2,25 @@ project:
   type: book
   output-dir: _book
 
+# Interactive R cells (scatter pilot only) via WebAssembly.
+filters:
+  - webr
+
+quarto-required: ">=1.6.0"
+
+sitemap: true
+
+website:
+  site-url: https://viz-ggplot2.rsquaredacademy.com/
+  description: "Learn ggplot2 in R: recipes for scatter, line, bar, box, facets, themes - run in browser."
+  open-graph: true
+  twitter-card: true
+  # google-analytics: "G-XXXXXXXXXX" # TODO: add GA4 ID when available
+
 book:
   title: "Data Visualization with ggplot2"
   author: "Aravind Hebbali"
-  site-url: https://viz-ggplot2.rsquaredacademy.com/
+  downloads: [pdf, epub]
   chapters:
     - index.qmd
     - about-the-author.qmd
@@ -24,22 +39,32 @@ book:
     - ggplot2-facets.qmd
     - ggplot2-themes.qmd
 
+execute:
+  freeze: auto
+  warning: false
+
 format:
   html:
     theme:
       light: flatly
       dark: darkly
+    toc-depth: 3
     search: true
     code-copy: true
+    code-overflow: wrap
     fig-align: center
     fig-dpi: 192
     include-in-header: google-analytics.html
     repo-url: https://github.com/rsquaredacademy-education/viz-ggplot2/
   pdf:
     pdf-engine: typst
-    toc: true
+    papersize: us-letter
+    toc-depth: 3
+    code-overflow: wrap
+    # PNG figures: sidesteps external pdfcrop tooling entirely.
+    # 300 dpi stays print-crisp.
+    fig-format: png
+    fig-dpi: 300
   epub:
-    toc: true
-
-execute:
-  warning: false
+    toc-depth: 2
+    code-overflow: wrap
