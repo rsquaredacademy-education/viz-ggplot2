@@ -85,14 +85,14 @@ confidence interval must be displayed using the `se` argument.
 
 ```{r geoms6, fig.align='center'}
 ggplot(mtcars, aes(x = wt, y = mpg)) +
-  geom_smooth(method = 'lm', se = TRUE)
+  geom_smooth(method = 'lm', formula = y ~ x, se = TRUE)
 ```
 
 Here we use the `'loess'` method to fit the regression line.
 
 ```{r geoms7, fig.align='center'}
 ggplot(mtcars, aes(x = wt, y = mpg)) +
-  geom_smooth(method = 'loess', se = FALSE)
+  geom_smooth(method = 'loess', formula = y ~ x, se = FALSE)
 ```
 
 ## Bar 

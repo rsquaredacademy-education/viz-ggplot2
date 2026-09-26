@@ -164,7 +164,7 @@ technique by supplying the value `'lm'` to the `method` argument.
 ```{r aes12a, fig.align='center'}
 ggplot(mtcars, aes(disp, mpg)) +
   geom_point(position = 'jitter') +
-  geom_smooth(method = 'lm', se = FALSE)
+  geom_smooth(method = 'lm', formula = y ~ x, se = FALSE)
 ```
 
 The `se` argument will add a confidence interval around the regression line, 
@@ -175,7 +175,7 @@ if set to `TRUE`.
 ```{r aes13a, fig.align='center'}
 ggplot(mtcars, aes(disp, mpg)) +
   geom_point(position = 'jitter') +
-  geom_smooth(method = 'lm', se = TRUE)
+  geom_smooth(method = 'lm', formula = y ~ x, se = TRUE)
 ```
 
 #### Loess Method
@@ -186,7 +186,7 @@ squares method to fit the regression line.
 ```{r aes14a, fig.align='center'}
 ggplot(mtcars, aes(disp, mpg)) +
   geom_point(position = 'jitter') +
-  geom_smooth(method = 'loess', se = FALSE)
+  geom_smooth(method = 'loess', formula = y ~ x, se = FALSE)
 ```
 
 ### Intercept & Slope
