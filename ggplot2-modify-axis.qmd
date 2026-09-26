@@ -11,6 +11,9 @@ following functions:
     - `scale_x_discrete()`
     - `scale_y_discrete()`
 
+```{r guide1, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
+library(ggplot2)
+```
 
 ## Continuous Axis
 
