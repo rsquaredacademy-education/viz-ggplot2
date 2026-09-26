@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://viz-ggplot2.rsquaredacademy.com/sitemap.xml
