@@ -27,10 +27,10 @@ library(readr)
 
 We will use the following libraries in this chapter:
 
-- [readr](http://readr.tidyverse.org/)
-- [ggplot2](http://ggplot2.tidyverse.org/)
-- [dplyr](http://dplyr.tidyverse.org/)
-- [tidyr](http://tidyr.tidyverse.org/)
+- [readr](https://readr.tidyverse.org/)
+- [ggplot2](https://ggplot2.tidyverse.org/)
+- [dplyr](https://dplyr.tidyverse.org/)
+- [tidyr](https://tidyr.tidyverse.org/)
 
 All the data sets used in this chapter can be found [here](https://github.com/rsquaredacademy/datasets) 
 and code can be downloaded from [here](https://gist.github.com/rsquaredacademy/a596a4604b2ebda163313caa272f05cd).
