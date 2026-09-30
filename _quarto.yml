@@ -40,6 +40,13 @@ book:
     - ggplot2-legend-shape-size-alpha.qmd
     - ggplot2-facets.qmd
     - ggplot2-themes.qmd
+    - ggplot2-position-stats.qmd
+    - ggplot2-scales-accessibility.qmd
+    - ggplot2-reshaping.qmd
+    - ggplot2-label-polish.qmd
+    - ggplot2-finale-polish.qmd
+    - ggplot2-export-communicate.qmd
+    - cheatsheet.qmd
 
 execute:
   freeze: auto

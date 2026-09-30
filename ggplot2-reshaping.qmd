@@ -1,0 +1,83 @@
+# Data Reshaping for ggplot2 {#ggplot2-reshaping}
+
+In this chapter, we will learn the one idea that unlocks faceting,
+grouped aesthetics and multi-series line graphs: long versus wide data.
+
+:::{.callout-note}
+## Why this matters
+
+ggplot2 maps one column to one aesthetic. Wide tables (one column per
+series) must be reshaped to long tables (one key column plus one value
+column) before color, fill or facets can separate the series.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+`gather()` appears in older answers but is retired. Always use
+`tidyr::pivot_longer()` in new code.
+:::
+
+```{r rsh-setup, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
+library(ggplot2)
+library(tidyr)
+```
+
+## Wide Data
+
+Wide data keeps each series in its own column. Here quarterly revenue
+for two regions sits in `north` and `south`:
+
+```{r rsh1}
+wide <- data.frame(
+  quarter = c("Q1", "Q2", "Q3", "Q4"),
+  north = c(120, 150, 135, 180),
+  south = c(100, 130, 160, 175)
+)
+wide
+```
+
+Plotting this directly forces one layer per series — repetitive and
+unscalable.
+
+## Long Data
+
+`pivot_longer()` collapses the series columns into a `region` key
+column and a `revenue` value column:
+
+```{r rsh2}
+long <- tidyr::pivot_longer(wide, cols = c(north, south),
+  names_to = "region", values_to = "revenue")
+long
+```
+
+## Plotting Long Data
+
+One mapping now draws both series, distinguished by color:
+
+```{r rsh3, fig.align='center'}
+ggplot(long) +
+  geom_line(aes(quarter, revenue, color = region, group = region), linewidth = 1) +
+  geom_point(aes(quarter, revenue, color = region), size = 2)
+```
+
+The same long shape powers facets and dodged bars with no extra
+reshaping.
+
+## Modern Pipe
+
+Chain reshaping into plotting with the native pipe `|>`:
+
+```{r rsh4, fig.align='center'}
+wide |>
+  tidyr::pivot_longer(cols = c(north, south), names_to = "region", values_to = "revenue") |>
+  ggplot() +
+  geom_bar(aes(region, revenue, fill = quarter), stat = "identity",
+    position = position_dodge(width = 0.8))
+```
+
+## Where to go next {.unnumbered}
+
+- tidyr `pivot_longer()` reference for multi-column specs
+- Line Graphs chapter for multi-series line recipes
+- Faceting chapter for small multiples of long data

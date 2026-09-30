@@ -1,0 +1,80 @@
+# Label Polishing & Wrapping {#ggplot2-label-polish}
+
+In this chapter, we will polish text that overflows: wrapping long
+axis labels and legend entries with `stringr` and `scales`.
+
+:::{.callout-note}
+## Why this matters
+
+Long category names overlap and wreck otherwise clean charts. Wrapped
+labels keep every category readable without shrinking fonts to
+microscopic sizes.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Angling text 90 degrees feels like a fix but forces readers to tilt
+their heads. Wrap first; rotate only when wrapping cannot save the
+layout.
+:::
+
+```{r lab-setup, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
+library(ggplot2)
+library(stringr)
+library(scales)
+```
+
+## The Overflow Problem
+
+Long labels collide on crowded axes:
+
+```{r lab1, fig.align='center'}
+df <- data.frame(
+  program = c("Engineering and Technology", "Business Administration",
+    "Health and Medical Sciences", "Arts and Humanities"),
+  students = c(320, 280, 240, 190)
+)
+ggplot(df) +
+  geom_bar(aes(program, students), stat = "identity", fill = "steelblue") +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1))
+```
+
+## Wrapping with stringr
+
+`str_wrap()` inserts line breaks at a fixed width:
+
+```{r lab2, fig.align='center'}
+ggplot(df) +
+  geom_bar(aes(stringr::str_wrap(program, width = 15), students),
+    stat = "identity", fill = "steelblue") +
+  labs(x = "Program")
+```
+
+## Wrapping Inside Scales
+
+`label_wrap()` wraps at the scale level, keeping the underlying data
+untouched:
+
+```{r lab3, fig.align='center'}
+ggplot(df) +
+  geom_bar(aes(program, students), stat = "identity", fill = "steelblue") +
+  scale_x_discrete(labels = scales::label_wrap(15))
+```
+
+## Wrapping Long Titles
+
+The same helper tidies wrapped plot titles and subtitles:
+
+```{r lab4, fig.align='center'}
+ggplot(df) +
+  geom_bar(aes(stringr::str_wrap(program, width = 15), students),
+    stat = "identity", fill = "steelblue") +
+  labs(x = "Program",
+    title = stringr::str_wrap("Student enrollment across four academic programs in 2024", width = 40))
+```
+
+## Where to go next {.unnumbered}
+
+- stringr reference for wider text manipulation
+- Themes chapter for font sizes that pair with wrapped labels

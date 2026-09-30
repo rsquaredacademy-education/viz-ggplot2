@@ -1,0 +1,8 @@
+# ggplot2 Modern Recipe Cheat Sheet {#ggplot2-cheatsheet}
+
+*Coming in Phase 3: a printable two-page quick reference of every
+recipe in this book — geoms, aesthetics, scales, facets, themes and
+export settings.*
+
+Meanwhile, use the chapter list in the sidebar as your lookup index:
+each chart chapter is a standalone recipe.

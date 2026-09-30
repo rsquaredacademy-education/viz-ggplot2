@@ -1,0 +1,17 @@
+{
+  "hash": "5d974da0cb72c81f2626894e2d042062",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Finale: Publication Polish with patchwork, ggrepel & ggtext {#ggplot2-finale-polish}\n\nIn this chapter, we will combine multi-plot layouts (`patchwork`),\ncollision-free labels (`ggrepel`) and rich text (`ggtext`) into three\npolished before/after case studies.\n\n:::{.callout-note}\n## Why this matters\n\nIndividual plots answer single questions. Combining them into one\ncomposed figure with clean labels is what separates an exploratory\nchart from a published one.\n:::\n\n:::{.callout-warning}\n## Common pitfall\n\nEach extension adds load time and new syntax. Master core ggplot2\nfirst; reach for these only for final figures.\n:::\n\n\n::: {.cell}\n\n:::\n\n\n## Case 1: Multi-Plot Layout\n\nBefore: two related plots shown separately. After: one composed\nfigure with a shared title.\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\np1 <- ggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl))) +\n  labs(title = \"Displacement vs mileage\")\np2 <- ggplot(mtcars) +\n  geom_boxplot(aes(factor(cyl), mpg, fill = factor(cyl))) +\n  labs(title = \"Mileage by cylinders\")\np1 + p2 + plot_annotation(title = \"Engine size explains fuel economy\")\n```\n\n::: {.cell-output-display}\n![](ggplot2-finale-polish_files/figure-html/fin1-1.png){fig-align='center' width=1344}\n:::\n:::\n\n\nStack vertically with `/` and collect legends with\n`plot_layout(guides = \"collect\")`:\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\np1 / p2 + plot_layout(guides = \"collect\")\n```\n\n::: {.cell-output-display}\n![](ggplot2-finale-polish_files/figure-html/fin2-1.png){fig-align='center' width=1344}\n:::\n:::\n\n\n## Case 2: Collision-Free Labels\n\nBefore: `geom_text()` labels pile onto each other. After:\n`geom_text_repel()` pushes them apart with thin leader lines.\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\ncars <- mtcars\ncars$model <- rownames(mtcars)\nefficient <- cars[cars$mpg > 30, ]\nggplot(cars) +\n  geom_point(aes(disp, mpg)) +\n  ggrepel::geom_text_repel(data = efficient, aes(disp, mpg, label = model), size = 3)\n```\n\n::: {.cell-output-display}\n![](ggplot2-finale-polish_files/figure-html/fin3-1.png){fig-align='center' width=1344}\n:::\n:::\n\n\n## Case 3: Rich Text Titles\n\nBefore: plain titles. After: `element_markdown()` renders color and\nemphasis inline.\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl))) +\n  labs(title = \"Heavier engines drink <b style='color:#d62728'>more fuel</b>\") +\n  theme(plot.title = ggtext::element_markdown())\n```\n\n::: {.cell-output-display}\n![](ggplot2-finale-polish_files/figure-html/fin4-1.png){fig-align='center' width=1344}\n:::\n:::\n\n\n## Where to go next {.unnumbered}\n\n- patchwork reference for nested and tagged layouts\n- ggrepel and ggtext references for label-heavy figures\n- Export chapter to save the composed figure at print resolution\n",
+    "supporting": [
+      "ggplot2-finale-polish_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

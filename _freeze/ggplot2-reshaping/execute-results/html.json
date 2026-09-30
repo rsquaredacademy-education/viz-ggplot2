@@ -1,0 +1,17 @@
+{
+  "hash": "62a9b02c12f1df64eb5a13409a21f2a2",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Data Reshaping for ggplot2 {#ggplot2-reshaping}\n\nIn this chapter, we will learn the one idea that unlocks faceting,\ngrouped aesthetics and multi-series line graphs: long versus wide data.\n\n:::{.callout-note}\n## Why this matters\n\nggplot2 maps one column to one aesthetic. Wide tables (one column per\nseries) must be reshaped to long tables (one key column plus one value\ncolumn) before color, fill or facets can separate the series.\n:::\n\n:::{.callout-warning}\n## Common pitfall\n\n`gather()` appears in older answers but is retired. Always use\n`tidyr::pivot_longer()` in new code.\n:::\n\n\n::: {.cell}\n\n:::\n\n\n## Wide Data\n\nWide data keeps each series in its own column. Here quarterly revenue\nfor two regions sits in `north` and `south`:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nwide <- data.frame(\n  quarter = c(\"Q1\", \"Q2\", \"Q3\", \"Q4\"),\n  north = c(120, 150, 135, 180),\n  south = c(100, 130, 160, 175)\n)\nwide\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n  quarter north south\n1      Q1   120   100\n2      Q2   150   130\n3      Q3   135   160\n4      Q4   180   175\n```\n\n\n:::\n:::\n\n\nPlotting this directly forces one layer per series — repetitive and\nunscalable.\n\n## Long Data\n\n`pivot_longer()` collapses the series columns into a `region` key\ncolumn and a `revenue` value column:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlong <- tidyr::pivot_longer(wide, cols = c(north, south),\n  names_to = \"region\", values_to = \"revenue\")\nlong\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n# A tibble: 8 × 3\n  quarter region revenue\n  <chr>   <chr>    <dbl>\n1 Q1      north      120\n2 Q1      south      100\n3 Q2      north      150\n4 Q2      south      130\n5 Q3      north      135\n6 Q3      south      160\n7 Q4      north      180\n8 Q4      south      175\n```\n\n\n:::\n:::\n\n\n## Plotting Long Data\n\nOne mapping now draws both series, distinguished by color:\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nggplot(long) +\n  geom_line(aes(quarter, revenue, color = region, group = region), linewidth = 1) +\n  geom_point(aes(quarter, revenue, color = region), size = 2)\n```\n\n::: {.cell-output-display}\n![](ggplot2-reshaping_files/figure-html/rsh3-1.png){fig-align='center' width=1344}\n:::\n:::\n\n\nThe same long shape powers facets and dodged bars with no extra\nreshaping.\n\n## Modern Pipe\n\nChain reshaping into plotting with the native pipe `|>`:\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nwide |>\n  tidyr::pivot_longer(cols = c(north, south), names_to = \"region\", values_to = \"revenue\") |>\n  ggplot() +\n  geom_bar(aes(region, revenue, fill = quarter), stat = \"identity\",\n    position = position_dodge(width = 0.8))\n```\n\n::: {.cell-output-display}\n![](ggplot2-reshaping_files/figure-html/rsh4-1.png){fig-align='center' width=1344}\n:::\n:::\n\n\n## Where to go next {.unnumbered}\n\n- tidyr `pivot_longer()` reference for multi-column specs\n- Line Graphs chapter for multi-series line recipes\n- Faceting chapter for small multiples of long data\n",
+    "supporting": [
+      "ggplot2-reshaping_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

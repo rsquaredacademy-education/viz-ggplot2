@@ -1,0 +1,17 @@
+{
+  "hash": "b89badd0ceb685cd6e8e86e457bc9d81",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Export & Communicate {#ggplot2-export-communicate}\n\nIn this chapter, we will save figures at print resolution with\n`ggsave()` and run a storytelling checklist before sharing.\n\n:::{.callout-note}\n## Why this matters\n\nA great on-screen plot that exports blurry or unlabeled fails at the\nfinish line. Export settings and a final message check are what your\naudience actually sees.\n:::\n\n:::{.callout-warning}\n## Common pitfall\n\nScreenshots of the RStudio plot pane are low resolution and carry UI\nchrome. Always export with `ggsave()` for anything you share.\n:::\n\n\n::: {.cell}\n\n:::\n\n\n## Saving with ggsave\n\n`ggsave()` writes the last plot. Set width, height and dpi\nexplicitly for print-crisp output:\n\n\n::: {.cell}\n\n```{.r .cell-code}\np <- ggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl))) +\n  labs(title = \"Displacement vs mileage\",\n    x = \"Displacement (cu. in.)\", y = \"Miles per gallon\",\n    color = \"Cylinders\")\n\nggplot2::ggsave(\"displacement-vs-mileage.png\", plot = p,\n  width = 8, height = 6, dpi = 300)\n```\n:::\n\n\nMatch dimensions to the destination: 8x6 inches suits slides, while\nnarrower widths (e.g. 6x4) fit single-column manuscripts.\n\n## Vector Formats\n\nFor manuscripts and posters, export PDF or SVG so lines stay sharp at\nany zoom:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nggplot2::ggsave(\"displacement-vs-mileage.pdf\", plot = p, width = 8, height = 6)\nggplot2::ggsave(\"displacement-vs-mileage.svg\", plot = p, width = 8, height = 6)\n```\n:::\n\n\n## Storytelling Checklist\n\nBefore sharing any figure, run this Knaflic-inspired check:\n\n- **Context:** does the title state the conclusion, not just the topic?\n- **Clutter:** are gridlines, borders and decimals reduced to the minimum?\n- **Focus:** is the key series emphasized with color while the rest recede?\n- **Labels:** are axes, units and sources stated so the figure stands alone?\n- **Honesty:** does the axis start at zero for bars, and are missing data disclosed?\n\n## Before and After\n\nApply the checklist to a default scatter plot: add a message-first\ntitle, direct axis units and a restrained palette.\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl)), size = 2.5) +\n  labs(title = \"Heavier engines get fewer miles per gallon\",\n    x = \"Displacement (cu. in.)\", y = \"Miles per gallon\", color = \"Cylinders\") +\n  theme_minimal()\n```\n\n::: {.cell-output-display}\n![](ggplot2-export-communicate_files/figure-html/exp3-1.png){fig-align='center' width=1344}\n:::\n:::\n\n\n## Where to go next {.unnumbered}\n\n- Storytelling with Data (Knaflic) for the full narrative framework\n- Claus Wilke, Fundamentals of Data Visualization, for design principles\n",
+    "supporting": [
+      "ggplot2-export-communicate_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

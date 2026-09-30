@@ -1,0 +1,17 @@
+{
+  "hash": "c6808ebde9488f6385ce5deb1db3c0c2",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Label Polishing & Wrapping {#ggplot2-label-polish}\n\nIn this chapter, we will polish text that overflows: wrapping long\naxis labels and legend entries with `stringr` and `scales`.\n\n:::{.callout-note}\n## Why this matters\n\nLong category names overlap and wreck otherwise clean charts. Wrapped\nlabels keep every category readable without shrinking fonts to\nmicroscopic sizes.\n:::\n\n:::{.callout-warning}\n## Common pitfall\n\nAngling text 90 degrees feels like a fix but forces readers to tilt\ntheir heads. Wrap first; rotate only when wrapping cannot save the\nlayout.\n:::\n\n\n::: {.cell}\n\n:::\n\n\n## The Overflow Problem\n\nLong labels collide on crowded axes:\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\ndf <- data.frame(\n  program = c(\"Engineering and Technology\", \"Business Administration\",\n    \"Health and Medical Sciences\", \"Arts and Humanities\"),\n  students = c(320, 280, 240, 190)\n)\nggplot(df) +\n  geom_bar(aes(program, students), stat = \"identity\", fill = \"steelblue\") +\n  theme(axis.text.x = element_text(angle = 30, hjust = 1))\n```\n\n::: {.cell-output-display}\n![](ggplot2-label-polish_files/figure-html/lab1-1.png){fig-align='center' width=1344}\n:::\n:::\n\n\n## Wrapping with stringr\n\n`str_wrap()` inserts line breaks at a fixed width:\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nggplot(df) +\n  geom_bar(aes(stringr::str_wrap(program, width = 15), students),\n    stat = \"identity\", fill = \"steelblue\") +\n  labs(x = \"Program\")\n```\n\n::: {.cell-output-display}\n![](ggplot2-label-polish_files/figure-html/lab2-1.png){fig-align='center' width=1344}\n:::\n:::\n\n\n## Wrapping Inside Scales\n\n`label_wrap()` wraps at the scale level, keeping the underlying data\nuntouched:\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nggplot(df) +\n  geom_bar(aes(program, students), stat = \"identity\", fill = \"steelblue\") +\n  scale_x_discrete(labels = scales::label_wrap(15))\n```\n\n::: {.cell-output-display}\n![](ggplot2-label-polish_files/figure-html/lab3-1.png){fig-align='center' width=1344}\n:::\n:::\n\n\n## Wrapping Long Titles\n\nThe same helper tidies wrapped plot titles and subtitles:\n\n\n::: {.cell layout-align=\"center\"}\n\n```{.r .cell-code}\nggplot(df) +\n  geom_bar(aes(stringr::str_wrap(program, width = 15), students),\n    stat = \"identity\", fill = \"steelblue\") +\n  labs(x = \"Program\",\n    title = stringr::str_wrap(\"Student enrollment across four academic programs in 2024\", width = 40))\n```\n\n::: {.cell-output-display}\n![](ggplot2-label-polish_files/figure-html/lab4-1.png){fig-align='center' width=1344}\n:::\n:::\n\n\n## Where to go next {.unnumbered}\n\n- stringr reference for wider text manipulation\n- Themes chapter for font sizes that pair with wrapped labels\n",
+    "supporting": [
+      "ggplot2-label-polish_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

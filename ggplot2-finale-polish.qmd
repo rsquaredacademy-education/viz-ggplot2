@@ -1,0 +1,81 @@
+# Finale: Publication Polish with patchwork, ggrepel & ggtext {#ggplot2-finale-polish}
+
+In this chapter, we will combine multi-plot layouts (`patchwork`),
+collision-free labels (`ggrepel`) and rich text (`ggtext`) into three
+polished before/after case studies.
+
+:::{.callout-note}
+## Why this matters
+
+Individual plots answer single questions. Combining them into one
+composed figure with clean labels is what separates an exploratory
+chart from a published one.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Each extension adds load time and new syntax. Master core ggplot2
+first; reach for these only for final figures.
+:::
+
+```{r fin-setup, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
+library(ggplot2)
+library(patchwork)
+library(ggrepel)
+library(ggtext)
+```
+
+## Case 1: Multi-Plot Layout
+
+Before: two related plots shown separately. After: one composed
+figure with a shared title.
+
+```{r fin1, fig.align='center'}
+p1 <- ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  labs(title = "Displacement vs mileage")
+p2 <- ggplot(mtcars) +
+  geom_boxplot(aes(factor(cyl), mpg, fill = factor(cyl))) +
+  labs(title = "Mileage by cylinders")
+p1 + p2 + plot_annotation(title = "Engine size explains fuel economy")
+```
+
+Stack vertically with `/` and collect legends with
+`plot_layout(guides = "collect")`:
+
+```{r fin2, fig.align='center'}
+p1 / p2 + plot_layout(guides = "collect")
+```
+
+## Case 2: Collision-Free Labels
+
+Before: `geom_text()` labels pile onto each other. After:
+`geom_text_repel()` pushes them apart with thin leader lines.
+
+```{r fin3, fig.align='center'}
+cars <- mtcars
+cars$model <- rownames(mtcars)
+efficient <- cars[cars$mpg > 30, ]
+ggplot(cars) +
+  geom_point(aes(disp, mpg)) +
+  ggrepel::geom_text_repel(data = efficient, aes(disp, mpg, label = model), size = 3)
+```
+
+## Case 3: Rich Text Titles
+
+Before: plain titles. After: `element_markdown()` renders color and
+emphasis inline.
+
+```{r fin4, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, color = factor(cyl))) +
+  labs(title = "Heavier engines drink <b style='color:#d62728'>more fuel</b>") +
+  theme(plot.title = ggtext::element_markdown())
+```
+
+## Where to go next {.unnumbered}
+
+- patchwork reference for nested and tagged layouts
+- ggrepel and ggtext references for label-heavy figures
+- Export chapter to save the composed figure at print resolution
