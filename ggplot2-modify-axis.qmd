@@ -170,6 +170,14 @@ ggplot(mtcars) + geom_bar(aes(factor(cyl))) +
     breaks = c("4", "6", "8"), position = "bottom")
 ```
 
+## Exercises
+
+1. Set custom breaks on the x axis with `scale_x_continuous()`.
+2. Zoom to `mpg > 20` with `coord_cartesian()` without dropping data.
+3. Explain when `coord_cartesian()` beats `limits` for zooming.
+
+Worked solutions in `solutions/axis.md` (attempt first).
+
 ## Where to go next {.unnumbered}
 
 - ggplot2 book (ggplot2-book.org) for theory behind this layer

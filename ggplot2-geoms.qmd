@@ -278,6 +278,14 @@ ggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +
   geom_text(check_overlap = TRUE, size = 2)
 ```
 
+## Exercises
+
+1. Draw `disp` vs `mpg` points plus a `geom_smooth()` trend (`formula = y ~ x`).
+2. Draw a histogram of `mpg` with 10 bins.
+3. Pick the right geom for median mileage per cylinder class and justify it.
+
+Worked solutions in `solutions/geoms.md` (attempt first).
+
 ## Where to go next {.unnumbered}
 
 - ggplot2 book (ggplot2-book.org) for theory behind this layer

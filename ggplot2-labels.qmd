@@ -259,6 +259,14 @@ ggplot(mtcars) +
     face = 'italic', size = 8, vjust = 0.3, angle = 90))
 ```
 
+## Exercises
+
+1. Add `x`, `y` and `title` labels to a `disp` vs `mpg` scatter plot.
+2. Rename a legend title with the `name` argument of a scale function.
+3. Rewrite a default-titled plot so the title states the conclusion.
+
+Worked solutions in `solutions/labels.md` (attempt first).
+
 ## Where to go next {.unnumbered}
 
 - ggplot2 book (ggplot2-book.org) for theory behind this layer

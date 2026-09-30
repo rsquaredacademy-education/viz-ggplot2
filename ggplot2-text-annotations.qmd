@@ -119,6 +119,14 @@ ggplot(mtcars) +
            color = 'red', size = 6, fontface = 'bold', angle = 25)
 ```
 
+## Exercises
+
+1. Annotate the highest-mpg car with `annotate("text", ...)`.
+2. Label only cars with `mpg > 30` using `geom_text()`.
+3. Decide which two points deserve labels and justify the restraint.
+
+Worked solutions in `solutions/annotations.md` (attempt first).
+
 ## Where to go next {.unnumbered}
 
 - ggplot2 book (ggplot2-book.org) for theory behind this layer

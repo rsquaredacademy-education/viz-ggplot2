@@ -187,6 +187,14 @@ ggplot(mtcars) +
   theme_void()
 ```
 
+## Exercises
+
+1. Apply `theme_minimal()` to a scatter plot.
+2. Enlarge all text with `theme(text = element_text(size = 14))`.
+3. Build a reusable custom theme and explain what it standardizes.
+
+Worked solutions in `solutions/themes.md` (attempt first).
+
 ## Where to go next {.unnumbered}
 
 - ggplot2 book (ggplot2-book.org) for theory behind this layer

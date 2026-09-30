@@ -344,6 +344,14 @@ ggplot(mtcars) +
 ```
 
 
+## Exercises
+
+1. Map `shape` to cylinders with `scale_shape_manual(values = ...)`.
+2. Control point spread with `scale_size_continuous(range = ...)`.
+3. Explain why `size`/`alpha` must map to continuous variables.
+
+Worked solutions in `solutions/legend-shape-size-alpha.md` (attempt first).
+
 ## Where to go next {.unnumbered}
 
 - ggplot2 book scales and guides chapters

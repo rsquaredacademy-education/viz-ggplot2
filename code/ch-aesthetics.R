@@ -1,0 +1,10 @@
+# Chapter exercises verification (run from repo root).
+library(ggplot2)
+p1 <- ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl)), size = 3)
+p2 <- ggplot(economics) + geom_line(aes(date, unemploy), linewidth = 1)
+wide <- data.frame(q = c("Q1", "Q2"), a = c(1, 2), b = c(3, 4))
+long <- tidyr::pivot_longer(wide, cols = c(a, b), names_to = "series", values_to = "value")
+p3 <- ggplot(long) + geom_line(aes(q, value, color = series, group = series))
+invisible(lapply(list(p1, p2, p3), ggplot_build))
+stopifnot(nrow(long) == 4)
+message("ch-aesthetics OK")

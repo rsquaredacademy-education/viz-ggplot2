@@ -244,6 +244,14 @@ ggplot(mtcars) +
 ```
 
 
+## Exercises
+
+1. Recolor cylinder groups with `scale_color_manual(values = ...)`.
+2. Rename legend entries with the `labels` argument.
+3. Show only 4- and 8-cylinder levels with `breaks` and justify vs `limits`.
+
+Worked solutions in `solutions/legend-color-fill.md` (attempt first).
+
 ## Where to go next {.unnumbered}
 
 - ggplot2 book scales and guides chapters

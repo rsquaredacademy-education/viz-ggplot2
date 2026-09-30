@@ -178,6 +178,14 @@ ggplot(mtcars, aes(disp, mpg)) +
   facet_wrap(c("cyl", "gear"), ncol = 2)
 ```
 
+## Exercises
+
+1. Facet `disp` vs `mpg` by cylinders with `facet_wrap()`.
+2. Grid `gear` rows against `carb` columns with `facet_grid()`.
+3. Decide when facets beat color grouping and justify it.
+
+Worked solutions in `solutions/facets.md` (attempt first).
+
 ## Where to go next {.unnumbered}
 
 - ggplot2 book (ggplot2-book.org) for theory behind this layer
