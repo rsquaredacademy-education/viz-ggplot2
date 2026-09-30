@@ -7,3 +7,6 @@ daily-logs.md
 _book/
 .quarto/
 *_files/
+
+/.quarto/
+**/*.quarto_ipynb

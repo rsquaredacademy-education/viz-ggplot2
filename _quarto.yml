@@ -36,6 +36,8 @@ book:
     - ggplot2-histogram.qmd
     - ggplot2-modify-axis.qmd
     - ggplot2-modify-legend.qmd
+    - ggplot2-legend-color-fill.qmd
+    - ggplot2-legend-shape-size-alpha.qmd
     - ggplot2-facets.qmd
     - ggplot2-themes.qmd
 

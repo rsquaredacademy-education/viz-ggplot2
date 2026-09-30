@@ -1,0 +1,349 @@
+# Legend: Shape Size and Alpha {#ggplot2-legend-shape-size-alpha}
+
+In this chapter, we modify legends when shape, size or alpha is mapped to variables.
+
+:::{.callout-note}
+## Why this matters
+
+Shape, size and alpha encode extra variables without new panels; map size and alpha to continuous variables only.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Mapping size or alpha to a discrete variable produces a misleading legend.
+:::
+
+```{r setup-legend-cf, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+```
+
+## Shape
+
+We will learn to modify the following using `scale_shape_manual` when `shape` is mapped to categorical variables:
+
+- title
+- breaks
+- limits
+- labels
+- values
+
+### Plot {.unnumbered}
+
+Let us start with a scatter plot examining the relationship between displacement
+and miles per gallon from the mtcars data set. We will map the shape of the points
+to the `cyl` variable. 
+
+```{r legs16, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl)))
+```
+
+As you can see, the legend acts as a guide for the `shape` aesthetic. Now, let 
+us learn to modify the different aspects of the legend.
+
+### Title {.unnumbered}
+
+The title of the legend (`factor(cyl)`) is not very intuitive. If the user does 
+not know the underlying data, they will not be able to make any sense out of it. 
+Let us change it to `Cylinders` using the `name` argument.
+
+```{r legs17, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(name = "Cylinders", values = c(4, 12, 24))
+```
+
+If you have mapped shape/size to a discrete variable which has less than six 
+categories, you can use `scale_shape()`.
+
+```{r legs18, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape(name = 'Cylinders')
+```
+
+### Values {.unnumbered}
+
+To change the default shapes in the legend, use the `values` argument and
+supply a numeric vector of shapes. The number of shapes specified 
+must be equal to the number of levels in the categorical variable mapped.
+In the below example, `cyl` has 3 levels (4, 6, 8) and hence we have specified
+3 different shapes.
+
+```{r legs19, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(values = c(4, 12, 24))
+```
+
+### Labels {.unnumbered}
+
+The labels in the legend can be modified using the `labels` argument. Let us 
+change the labels to `Four`, `Six` and `Eight` in the next example. Ensure that
+the labels are intuitive and easy to interpret for the end user of the plot.
+
+```{r legs20, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(values = c(4, 12, 24), labels = c('Four', 'Six', 'Eight'))
+```
+
+### Limits {.unnumbered}
+
+Let us assume that we want to modify the data to be displayed i.e. instead of 
+examining the relationship between mileage and displacement for all cars, we 
+desire to look at only cars with at least 6 cylinders. One way to approach this
+would be to filter the data using `filter` from dplyr and then visualize it. 
+Instead, we will use the `limits` argument and filter the data for visualization.
+
+
+```{r legs21, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(values = c(4, 24), limits = c(6, 8))
+```
+
+As you can see above, `ggplot2` returns a warning message indicating data related
+to 4 cylinders has been dropped. If you observe the legend, it now represents 
+only 6 and 8 cylinders.
+
+### Breaks {.unnumbered}
+
+When there are large number of levels in the mapped variable, you may not 
+want the labels in the legend to represent all of them. In such cases, we can 
+use the breaks argument and specify the labels to be used. In the below case, 
+we use the `breaks` argument to ensure that the labels in legend represent 
+two levels (4, 8) of the mapped variable.
+
+```{r legs22, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(values = c(4, 12, 24), breaks = c(4, 8))
+```
+
+### Putting it all together... {.unnumbered}
+
+```{r legs23, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, shape = factor(cyl))) +
+  scale_shape_manual(name = "Cylinders", labels = c('Six', 'Eight'),  
+     values = c(4, 24), limits = c(6, 8), breaks = c(6, 8))
+```
+
+## Size
+
+We will learn to modify the following using `scale_size_continuous` when `size` aesthetic is mapped to variables:
+
+- title
+- breaks
+- limits
+- range
+- labels
+- values
+
+### Plot {.unnumbered}
+
+Let us start with a scatter plot examining the relationship between displacement
+and miles per gallon from the mtcars data set. We will map the size of the points
+to the `hp` variable. Remember, `size` must always be mapped to a continuous 
+variable.
+
+```{r legs24}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp))
+```
+
+As you can see, the legend acts as a guide for the `size` aesthetic. Now, let 
+us learn to modify the different aspects of the legend.
+
+### Title {.unnumbered}
+
+The title of the legend (`hp`) is not very intuitive. If the user does 
+not know the underlying data, they will not be able to make any sense out of it. 
+Let us change it to `Horsepower` using the `name` argument.
+
+```{r legs25}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(name = "Horsepower")
+```
+
+### Range {.unnumbered}
+
+The range of the size of points can be modified using the `range` argument. We
+need to specify a lower and upper range using a numeric vector. In the below
+example, we use `range` and supply the lower and upper limits as `3` and `6`. 
+The size of the points will now lie between `3` and `6` only.
+
+```{r legs26}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(range = c(3, 6))
+```
+
+### Limits {.unnumbered}
+
+Let us assume that we want to modify the data to be displayed i.e. instead of 
+examining the relationship between mileage and displacement for all cars, we 
+desire to look at only cars whose horsepower is between `100` and `350`. 
+One way to approach this would be to filter the data using `filter` from dplyr 
+and then visualize it. Instead, we will use the `limits` argument and filter 
+the data for visualization.
+
+```{r legs27}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(limits = c(100, 350))
+```
+
+### Breaks {.unnumbered}
+
+When the range of the variable mapped to size is large, you may not 
+want the labels in the legend to represent all of them. In such cases, we can 
+use the breaks argument and specify the labels to be used. In the below case, 
+we use the `breaks` argument to ensure that the labels in legend represent 
+certain midpoints (125, 200, 275) of the mapped variable.
+
+```{r legs28}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(breaks = c(125, 200, 275))
+```
+
+### Labels {.unnumbered}
+
+The labels in the legend can be modified using the `labels` argument. Let us 
+change the labels to "1 Hundred", "2 Hundred" and "3 Hundred" in the next example. 
+Ensure that the labels are intuitive and easy to interpret for the end user of 
+the plot.
+
+```{r legs29}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(breaks = c(100, 200, 300),
+    labels = c("1 Hundred", "2 Hundred", "3 Hundred"))
+```
+
+### Putting it all together... {.unnumbered}
+
+```{r legs30}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, size = hp)) +
+  scale_size_continuous(name = "Horsepower", range = c(3, 6), 
+    limits = c(0, 400), breaks = c(100, 200, 300),
+    labels = c("1 Hundred", "2 Hundred", "3 Hundred"))
+```
+
+## Transparency 
+
+We will learn to modify the following using `scale_alpha_continuous()` when `alpha` or transparency is mapped to variables:
+
+- title
+- breaks
+- limits
+- range
+- labels
+- values
+
+### Plot {.unnumbered}
+
+Let us start with a scatter plot examining the relationship between displacement
+and miles per gallon from the mtcars data set. We will map the transparency of 
+the points to the `hp` variable. Remember, `alpha` must always be mapped to a 
+continuous variable.
+
+```{r legs31, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue')
+```
+
+As you can see, the legend acts as a guide for the `alpha` aesthetic. Now, let 
+us learn to modify the different aspects of the legend.
+
+### Title {.unnumbered}
+
+The title of the legend (`hp`) is not very intuitive. If the user does 
+not know the underlying data, they will not be able to make any sense out of it. 
+Let us change it to `Horsepower` using the `name` argument.
+
+```{r legs32, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous("Horsepower")
+```
+
+### Breaks {.unnumbered}
+
+When the range of the variable mapped to size is large, you may not 
+want the labels in the legend to represent all of them. In such cases, we can 
+use the breaks argument and specify the labels to be used. In the below case, 
+we use the `breaks` argument to ensure that the labels in legend represent 
+certain midpoints (125, 200, 275) of the mapped variable.
+
+```{r legs33, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(breaks = c(125, 200, 275))
+```
+
+### Limits {.unnumbered}
+
+Let us assume that we want to modify the data to be displayed i.e. instead of 
+examining the relationship between mileage and displacement for all cars, we 
+desire to look at only cars whose horsepower is between `100` and `350`. 
+One way to approach this would be to filter the data using `filter` from dplyr 
+and then visualize it. Instead, we will use the `limits` argument and filter 
+the data for visualization.
+
+```{r legs34, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(limits = c(100, 350))
+```
+
+### Range {.unnumbered}
+
+The range of the transparency of points can be modified using the `range` 
+argument. We need to specify a lower and upper range using a numeric vector. 
+In the below example, we use `range` and supply the lower and upper limits as 
+`0.4` and `0.8`. The transparency of the points will now lie between `0.4` and 
+`0.8` only.
+
+```{r legs35, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(range = c(0.4, 0.8))
+```
+
+### Labels {.unnumbered}
+
+The labels in the legend can be modified using the `labels` argument. Let us 
+change the labels to "1 Hundred", "2 Hundred" and "3 Hundred" in the next example. 
+Ensure that the labels are intuitive and easy to interpret for the end user of 
+the plot.
+
+```{r legs36, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous(breaks = c(100, 200, 300),
+    labels = c("1 Hundred", "2 Hundred", 
+      "3 Hundred"))
+```
+
+### Putting it all together... {.unnumbered}
+
+```{r legs37, fig.align='center'}
+ggplot(mtcars) +
+  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +
+  scale_alpha_continuous("Horsepower", breaks = c(100, 200, 300),
+    limits = c(100, 350), range = c(0.4, 0.8),
+    labels = c("1 Hundred", "2 Hundred", "3 Hundred"))
+```
+
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book scales and guides chapters
