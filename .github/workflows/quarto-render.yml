@@ -16,8 +16,8 @@ jobs:
         with:
           version: "1.7.32"
 
-      - name: Install Typst (PDF engine)
-        run: quarto install tool typst --no-prompt
+      - name: Setup Typst
+        uses: typst-community/setup-typst@v4
 
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -33,13 +33,18 @@ jobs:
             dplyr
             readr
             tidyr
+            scales
+            stringr
+            patchwork
+            ggrepel
+            ggtext
 
       - name: Render book (HTML + PDF + EPUB)
         run: quarto render
 
       - name: Verify preserved slugs and multi-format output
         run: |
-          for f in index about-the-author ggplot2-quicktour ggplot2-geoms ggplot2-aesthetics ggplot2-labels ggplot2-text-annotations ggplot2-scatter-plot ggplot2-line-graph ggplot2-bar-plot ggplot2-box-plot ggplot2-histogram ggplot2-modify-axis ggplot2-modify-legend ggplot2-facets ggplot2-themes; do
+          for f in index about-the-author ggplot2-quicktour ggplot2-geoms ggplot2-aesthetics ggplot2-labels ggplot2-text-annotations ggplot2-scatter-plot ggplot2-line-graph ggplot2-bar-plot ggplot2-box-plot ggplot2-histogram ggplot2-modify-axis ggplot2-modify-legend ggplot2-legend-color-fill ggplot2-legend-shape-size-alpha ggplot2-facets ggplot2-themes ggplot2-position-stats ggplot2-scales-accessibility ggplot2-reshaping ggplot2-label-polish ggplot2-finale-polish ggplot2-export-communicate cheatsheet; do
             test -f "_book/$f.html" || { echo "MISSING SLUG: _book/$f.html"; exit 1; }
           done
           ls _book/*.pdf _book/*.epub
