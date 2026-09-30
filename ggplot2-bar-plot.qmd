@@ -149,6 +149,14 @@ ggplot(ecom) +
   geom_bar(aes(device), fill = 'white', color = 'black', linewidth = 2)
 ```
 
+## Exercises
+
+1. Draw counts of cars per cylinder class from `mtcars`.
+2. Group by gears with dodged bars, gap tuned via `position_dodge(width = 0.8)`.
+3. Rewrite the plot with a message-first title; keep bars starting at zero.
+
+Worked solutions in `solutions/bar.md` (attempt first).
+
 ## Where to go next {.unnumbered}
 
 - ggplot2 book (ggplot2-book.org) for theory behind this layer

@@ -169,6 +169,14 @@ ggplot(ecom) +
   geom_histogram(aes(n_visit, fill = device), bins = 7)
 ```
 
+## Exercises
+
+1. Draw the `mpg` distribution from `mtcars` with 10 bins.
+2. Map density instead of counts using `after_stat()`.
+3. Rewrite the plot with a message-first title and labeled axes.
+
+Worked solutions in `solutions/histogram.md` (attempt first).
+
 ## Where to go next {.unnumbered}
 
 - ggplot2 book (ggplot2-book.org) for theory behind this layer
