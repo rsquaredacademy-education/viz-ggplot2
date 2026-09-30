@@ -2,6 +2,18 @@
 
 ## Introduction
 
+:::{.callout-note}
+## Why this chart
+
+Bars encode amounts with length, making comparisons across categories instant.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Truncating the value axis exaggerates differences; start bars at zero unless you say otherwise.
+:::
+
 In this chapter, we will learn to:
 
 - build 
@@ -136,3 +148,8 @@ take any value greater than `0`.
 ggplot(ecom) +
   geom_bar(aes(device), fill = 'white', color = 'black', linewidth = 2)
 ```
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book (ggplot2-book.org) for theory behind this layer
+- Claus Wilke, Fundamentals of Data Visualization, for perception guidance

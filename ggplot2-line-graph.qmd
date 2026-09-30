@@ -2,6 +2,18 @@
 
 ## Introduction
 
+:::{.callout-note}
+## Why this chart
+
+Line graphs show change over an ordered axis, usually time; slope is the message.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Unsorted or gappy x values draw zigzag lines; sort by x and handle missing periods explicitly.
+:::
+
 In this chapter, we will learn to:
 
 - build 
@@ -150,3 +162,8 @@ ggplot(gdp2, aes(year, gdp, group = country)) +
 
 Remember that in all the above cases, we mapped the arguments to a variable 
 inside `aes()`.
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book (ggplot2-book.org) for theory behind this layer
+- Claus Wilke, Fundamentals of Data Visualization, for perception guidance

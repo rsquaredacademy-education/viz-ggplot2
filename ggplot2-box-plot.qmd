@@ -2,6 +2,18 @@
 
 ## Introduction
 
+:::{.callout-note}
+## Why this chart
+
+Box plots compress a distribution into median, quartiles and outliers for fast group comparison.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Hiding sample size misleads; a slim box from n=5 looks as confident as one from n=5000.
+:::
+
 In this chapter, we will learn to:
 
 - build box plots
@@ -234,3 +246,8 @@ to the box borders.
 ggplot(tidy_returns) +
   geom_boxplot(aes(x = stock, y = returns, color = stock)) 
 ```
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book (ggplot2-book.org) for theory behind this layer
+- Claus Wilke, Fundamentals of Data Visualization, for perception guidance

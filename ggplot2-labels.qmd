@@ -2,6 +2,18 @@
 
 ## Introduction
 
+:::{.callout-note}
+## Why this chart
+
+Axis labels and titles turn a plot into a message; they are the cheapest readability win.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Tiny or default labels (e.g. snake_case column names) force readers to guess the message.
+:::
+
 In this chapter, we will learn to:
 
 - add title and subtitle to the plot
@@ -246,3 +258,8 @@ ggplot(mtcars) +
   theme(axis.title.y = element_text(color = 'blue', family = 'Arial',
     face = 'italic', size = 8, vjust = 0.3, angle = 90))
 ```
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book (ggplot2-book.org) for theory behind this layer
+- Claus Wilke, Fundamentals of Data Visualization, for perception guidance

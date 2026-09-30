@@ -2,6 +2,18 @@
 
 ## Introduction
 
+:::{.callout-note}
+## Why this chart
+
+Histograms show the shape of one continuous variable: center, spread, skew and gaps.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Bin width drives the story; try several widths before concluding a distribution is bimodal.
+:::
+
 In this chapter, we will learn to
 
 - build histogram
@@ -156,3 +168,8 @@ variables as well.
 ggplot(ecom) +
   geom_histogram(aes(n_visit, fill = device), bins = 7)
 ```
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book (ggplot2-book.org) for theory behind this layer
+- Claus Wilke, Fundamentals of Data Visualization, for perception guidance

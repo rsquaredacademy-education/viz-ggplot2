@@ -2,6 +2,18 @@
 
 ## Introduction
 
+:::{.callout-note}
+## Why this chart
+
+Geoms are the marks readers see: points, lines, bars, smooths. Pick the geom that matches your data type.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Layering geoms with different data without matching aesthetics silently misaligns marks.
+:::
+
 In this chapter, we will create some of the most routinely 
 used plots to explore data using the `geom_*` functions. 
 
@@ -265,3 +277,8 @@ modify the appearance and location of the text in another post.
 ggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +
   geom_text(check_overlap = TRUE, size = 2)
 ```
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book (ggplot2-book.org) for theory behind this layer
+- Claus Wilke, Fundamentals of Data Visualization, for perception guidance

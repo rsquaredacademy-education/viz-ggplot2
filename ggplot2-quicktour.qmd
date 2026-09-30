@@ -2,6 +2,18 @@
 
 ## Introduction
 
+:::{.callout-note}
+## Why this chart
+
+A 5-minute on-ramp: one ggplot() plus one geom_*() draws your first chart.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Skipping labs() early produces cryptic default titles; label axes from the start.
+:::
+
 In this chapter, we will quickly build a set of plots that are routinely
 used to explore data using `ggplot()` combined with a `geom_*()` layer.
 Every plot follows the same recipe: map variables to aesthetics in
@@ -156,3 +168,8 @@ outliers and skewness in data. Map the continuous variable to `x` and add
 ggplot(mtcars, aes(mpg)) +
   geom_histogram(bins = 5)
 ```
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book (ggplot2-book.org) for theory behind this layer
+- Claus Wilke, Fundamentals of Data Visualization, for perception guidance

@@ -2,6 +2,18 @@
 
 ## Introduction
 
+:::{.callout-note}
+## Why this chart
+
+Aesthetics map variables to position, color, size and shape so patterns pop out.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Putting a constant inside aes() (e.g. aes(color='red')) creates a bogus legend; constants belong outside aes().
+:::
+
 In this chapter, we will focus on the aesthetics i.e. color, shape, size, alpha, 
 line type, line width etc. We can map these to variables or specify values for 
 them. If we want to map the above to variables, we have to specify them within 
@@ -300,3 +312,8 @@ ggplot(ecom) +
 In all the above cases, you can observe that when we are mapping aesthetics 
 such as color, fill, shape, size or linetype to variables, they are all wrapped 
 inside `aes()`.
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book (ggplot2-book.org) for theory behind this layer
+- Claus Wilke, Fundamentals of Data Visualization, for perception guidance

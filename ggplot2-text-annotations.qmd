@@ -2,6 +2,18 @@
 
 ## Introduction
 
+:::{.callout-note}
+## Why this chart
+
+Direct labels and annotations point at the story instead of making readers scan a legend.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Over-annotating every point creates clutter; annotate only the points that change the conclusion.
+:::
+
 In this chapter, we will learn to add text to the plots.
 
 - add custom text 
@@ -106,3 +118,8 @@ ggplot(mtcars) +
   annotate('text', x = 200, y = 30, label = 'Sample Text',
            color = 'red', size = 6, fontface = 'bold', angle = 25)
 ```
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book (ggplot2-book.org) for theory behind this layer
+- Claus Wilke, Fundamentals of Data Visualization, for perception guidance

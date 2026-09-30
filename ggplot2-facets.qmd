@@ -2,6 +2,18 @@
 
 ## Introduction
 
+:::{.callout-note}
+## Why this chart
+
+Facets split one plot into small multiples sharing scales, so group differences are comparable.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Too many facet levels shrink each panel past readability; filter or wrap sensibly.
+:::
+
 In this chapter, we will learn about faceting i.e. combining plots.
 
 ```{r facet, echo=FALSE, eval=TRUE, results='hide', message=FALSE}
@@ -165,3 +177,8 @@ ggplot(mtcars, aes(disp, mpg)) +
   geom_point() +
   facet_wrap(c("cyl", "gear"), ncol = 2)
 ```
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book (ggplot2-book.org) for theory behind this layer
+- Claus Wilke, Fundamentals of Data Visualization, for perception guidance

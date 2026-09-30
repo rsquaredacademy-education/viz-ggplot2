@@ -2,6 +2,18 @@
 
 ## Introduction
 
+:::{.callout-note}
+## Why this chart
+
+Themes take a correct plot to publication-ready: fonts, gridlines and background tuned once, reused everywhere.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Styling before the data mapping is right wastes effort; get geoms and scales correct first.
+:::
+
 In this final chapter, we will learn to modify the appearance of all non data 
 components of the plot such as:
 
@@ -174,3 +186,8 @@ ggplot(mtcars) +
   geom_point(aes(disp, mpg)) +
   theme_void()
 ```
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book (ggplot2-book.org) for theory behind this layer
+- Claus Wilke, Fundamentals of Data Visualization, for perception guidance

@@ -1,6 +1,18 @@
 # Modify Axis {#ggplot2-modify-axis}
 
 In this chapter, we will learn how to modify the X and Y axis using the 
+
+:::{.callout-note}
+## Why this chart
+
+Axis scales, breaks and labels decide what readers can read off the chart.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Fighting default breaks with manual limits can clip data; prefer coord_cartesian() to zoom without dropping.
+:::
 following functions:
 
 - Continuous Axis
@@ -157,3 +169,8 @@ ggplot(mtcars) + geom_bar(aes(factor(cyl))) +
     labels = c("4" = "Four", "6" = "Six", "8" = "Eight"),
     breaks = c("4", "6", "8"), position = "bottom")
 ```
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book (ggplot2-book.org) for theory behind this layer
+- Claus Wilke, Fundamentals of Data Visualization, for perception guidance

@@ -2,6 +2,18 @@
 
 ## Introduction
 
+:::{.callout-note}
+## Why this chart
+
+Scatter plots reveal the relationship between two continuous variables: direction, strength and outliers.
+:::
+
+:::{.callout-warning}
+## Common pitfall
+
+Overplotting hides density; use alpha transparency or jitter when points pile up.
+:::
+
 In this chapter, we will: 
 
 - build scatter plots
@@ -219,3 +231,8 @@ ggplot(mtcars, aes(disp, mpg)) +
   geom_abline(slope = -0.04122, intercept = 29.59985)
 ```
 
+
+## Where to go next {.unnumbered}
+
+- ggplot2 book (ggplot2-book.org) for theory behind this layer
+- Claus Wilke, Fundamentals of Data Visualization, for perception guidance
