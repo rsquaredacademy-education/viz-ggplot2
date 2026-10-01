@@ -1,0 +1,84 @@
+name: Build & Deploy to Netlify (docs/)
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "release"
+
+      # PDF uses lualatex (callouts via tcolorbox); install TinyTeX.
+      - name: Setup TinyTeX
+        run: quarto install tinytex
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "4.5"
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            knitr
+            rmarkdown
+            ggplot2
+            dplyr
+            readr
+            tidyr
+            scales
+            stringr
+            patchwork
+            ggrepel
+            ggtext
+
+      - name: Render HTML
+        run: quarto render --to html --output-dir /tmp/stage-html
+
+      - name: Render PDF
+        run: quarto render --to pdf --output-dir /tmp/stage-pdf || echo "PDF_FAILED=1" >> $GITHUB_ENV
+
+      - name: Render ePub
+        run: quarto render --to epub --output-dir /tmp/stage-epub || echo "EPUB_FAILED=1" >> $GITHUB_ENV
+
+      - name: Verify preserved slugs
+        run: |
+          for f in index about-the-author ggplot2-quicktour ggplot2-geoms ggplot2-aesthetics ggplot2-labels ggplot2-text-annotations ggplot2-scatter-plot ggplot2-line-graph ggplot2-bar-plot ggplot2-box-plot ggplot2-histogram ggplot2-modify-axis ggplot2-modify-legend ggplot2-legend-color-fill ggplot2-legend-shape-size-alpha ggplot2-facets ggplot2-themes ggplot2-position-stats ggplot2-scales-accessibility ggplot2-reshaping ggplot2-label-polish ggplot2-finale-polish ggplot2-export-communicate cheatsheet; do
+            test -f "/tmp/stage-html/$f.html" || { echo "MISSING SLUG: /tmp/stage-html/$f.html"; exit 1; }
+          done
+
+      - name: Assemble docs
+        run: |
+          rm -rf docs && mkdir -p docs
+          cp -r /tmp/stage-html/. docs/
+          cp /tmp/stage-pdf/*.pdf docs/ 2>/dev/null || echo "No PDF staged (PDF_FAILED=${PDF_FAILED:-0})"
+          cp /tmp/stage-epub/*.epub docs/ 2>/dev/null || echo "No ePub staged (EPUB_FAILED=${EPUB_FAILED:-0})"
+          cp netlify.toml robots.txt google02e424888b5e2def.html 404.html docs/ 2>/dev/null || true
+          bash scripts/make-sitemap.sh docs https://viz-ggplot2.rsquaredacademy.com
+          rm -rf docs/docs
+          test -f docs/sitemap.xml || { echo "sitemap.xml missing after assemble"; exit 1; }
+          ls docs/
+
+      - name: Verify redirects
+        run: bash scripts/test-redirects.sh docs
+
+      - name: Link check (advisory)
+        uses: lycheeverse/lychee-action@v2
+        continue-on-error: true
+        with:
+          args: "docs/**/*.html --root-dir docs --exclude 'mailto:*'"
+
+      - name: Commit docs
+        if: github.event_name != 'pull_request'
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: rebuild site via ci"
+          file_pattern: docs/
