@@ -3,9 +3,8 @@ project:
   output-dir: _book
 
 # Interactive R cells (scatter pilot only) via WebAssembly.
-filters:
-  - webr
-
+# Scoped to HTML: the webr lua filter rewrites the AST and breaks
+# the Typst template's #callout definition for PDF output.
 quarto-required: ">=1.6.0"
 
 sitemap: true
@@ -54,6 +53,8 @@ execute:
 
 format:
   html:
+    filters:
+      - webr
     theme:
       light: flatly
       dark: darkly
