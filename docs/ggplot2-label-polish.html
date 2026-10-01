@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Line Graphs – Data Visualization with ggplot2</title>
+<title>20&nbsp; Label Polishing &amp; Wrapping – Data Visualization with ggplot2</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -71,8 +71,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ggplot2-bar-plot.html" rel="next">
-<link href="./ggplot2-scatter-plot.html" rel="prev">
+<link href="./ggplot2-finale-polish.html" rel="next">
+<link href="./ggplot2-reshaping.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -298,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot2-line-graph.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Line Graphs</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot2-label-polish.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Label Polishing &amp; Wrapping</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -393,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ggplot2-line-graph.html" class="sidebar-item-text sidebar-link active">
+  <a href="./ggplot2-line-graph.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Line Graphs</span></span></a>
   </div>
 </li>
@@ -471,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ggplot2-label-polish.html" class="sidebar-item-text sidebar-link">
+  <a href="./ggplot2-label-polish.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Label Polishing &amp; Wrapping</span></span></a>
   </div>
 </li>
@@ -503,22 +503,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">7.1</span> Introduction</a></li>
-  <li><a href="#case-study" id="toc-case-study" class="nav-link" data-scroll-target="#case-study"><span class="header-section-number">7.2</span> Case Study</a>
-  <ul class="collapse">
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">7.2.1</span> Data</a></li>
-  </ul></li>
-  <li><a href="#line-chart" id="toc-line-chart" class="nav-link" data-scroll-target="#line-chart"><span class="header-section-number">7.3</span> Line Chart</a>
-  <ul class="collapse">
-  <li><a href="#line-color" id="toc-line-color" class="nav-link" data-scroll-target="#line-color"><span class="header-section-number">7.3.1</span> Line Color</a></li>
-  <li><a href="#line-type" id="toc-line-type" class="nav-link" data-scroll-target="#line-type"><span class="header-section-number">7.3.2</span> Line Type</a></li>
-  <li><a href="#line-size" id="toc-line-size" class="nav-link" data-scroll-target="#line-size"><span class="header-section-number">7.3.3</span> Line Size</a></li>
-  </ul></li>
-  <li><a href="#multiple-lines" id="toc-multiple-lines" class="nav-link" data-scroll-target="#multiple-lines"><span class="header-section-number">7.4</span> Multiple Lines</a>
-  <ul class="collapse">
-  <li><a href="#modify-data" id="toc-modify-data" class="nav-link" data-scroll-target="#modify-data"><span class="header-section-number">7.4.1</span> Modify Data</a></li>
-  </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">7.5</span> Exercises</a></li>
+  <li><a href="#the-overflow-problem" id="toc-the-overflow-problem" class="nav-link active" data-scroll-target="#the-overflow-problem"><span class="header-section-number">20.1</span> The Overflow Problem</a></li>
+  <li><a href="#wrapping-with-stringr" id="toc-wrapping-with-stringr" class="nav-link" data-scroll-target="#wrapping-with-stringr"><span class="header-section-number">20.2</span> Wrapping with stringr</a></li>
+  <li><a href="#wrapping-inside-scales" id="toc-wrapping-inside-scales" class="nav-link" data-scroll-target="#wrapping-inside-scales"><span class="header-section-number">20.3</span> Wrapping Inside Scales</a></li>
+  <li><a href="#wrapping-long-titles" id="toc-wrapping-long-titles" class="nav-link" data-scroll-target="#wrapping-long-titles"><span class="header-section-number">20.4</span> Wrapping Long Titles</a></li>
   <li><a href="#where-to-go-next" id="toc-where-to-go-next" class="nav-link" data-scroll-target="#where-to-go-next">Where to go next</a></li>
   </ul>
 </nav>
@@ -529,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="ggplot2-line-graph" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Line Graphs</span></span></h1>
+<h1 class="title"><span id="ggplot2-label-polish" class="quarto-section-identifier"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Label Polishing &amp; Wrapping</span></span></h1>
 </div>
 
 
@@ -546,19 +534,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1</span> Introduction</h2>
+<p>In this chapter, we will polish text that overflows: wrapping long axis labels and legend entries with <code>stringr</code> and <code>scales</code>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why this chart
+<span class="screen-reader-only">Note</span>Why this matters
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Line graphs show change over an ordered axis, usually time; slope is the message.</p>
+<p>Long category names overlap and wreck otherwise clean charts. Wrapped labels keep every category readable without shrinking fonts to microscopic sizes.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -571,229 +558,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Unsorted or gappy x values draw zigzag lines; sort by x and handle missing periods explicitly.</p>
+<p>Angling text 90 degrees feels like a fix but forces readers to tilt their heads. Wrap first; rotate only when wrapping cannot save the layout.</p>
 </div>
 </div>
-<p>In this chapter, we will learn to:</p>
-<ul>
-<li>build
-<ul>
-<li>simple line chart</li>
-<li>grouped line chart</li>
-</ul></li>
-<li>map aesthetics to variables</li>
-<li>modify line
-<ul>
-<li>color</li>
-<li>type</li>
-<li>size</li>
-</ul></li>
-</ul>
-</section>
-<section id="case-study" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="case-study"><span class="header-section-number">7.2</span> Case Study</h2>
-<p>We will use a data set related to GDP growth rate. You can download it from <a href="https://github.com/rsquaredacademy/datasets/blob/master/gdp.csv">here</a>. It contains GDP (Gross Domestic Product) growth data for the BRICS (Brazil, Russia, India, China, South Africa) for the years 2000 to 2005.</p>
-<section id="data" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="data"><span class="header-section-number">7.2.1</span> Data</h3>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gdp <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>gdp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-   ...1     X year       growth india china
-  &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     1     1 2000-01-01      6     5     8
-2     2     2 2001-01-01      9     9     5
-3     3     3 2002-01-01      8     8     6
-4     4     4 2003-01-01      9     8     8
-5     5     5 2004-01-01      9     5     9
-6     6     6 2005-01-01      8     7     8</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="line-chart" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="line-chart"><span class="header-section-number">7.3</span> Line Chart</h2>
-<p>To create a line chart, use <code>geom_line()</code>. In the below example, we examine the GDP growth rate trend of India for the years 2000 to 2005.</p>
+<section id="the-overflow-problem" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="the-overflow-problem"><span class="header-section-number">20.1</span> The Overflow Problem</h2>
+<p>Long labels collide on crowded axes:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">program =</span> <span class="fu">c</span>(<span class="st">"Engineering and Technology"</span>, <span class="st">"Business Administration"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Health and Medical Sciences"</span>, <span class="st">"Arts and Humanities"</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">students =</span> <span class="fu">c</span>(<span class="dv">320</span>, <span class="dv">280</span>, <span class="dv">240</span>, <span class="dv">190</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(program, students), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">30</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line100-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="line-color" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="line-color"><span class="header-section-number">7.3.1</span> Line Color</h3>
-<p>To modify the color of the line, use the <code>color</code> argument and supply it a valid color name. In the below example, we modify the color of the line to <code>'blue'</code>. Remember that the <code>color</code> argument should be outside <code>aes()</code>.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">'blue'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-label-polish_files/figure-html/lab1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="line-type" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="line-type"><span class="header-section-number">7.3.2</span> Line Type</h3>
-<p>The line type can be modified using the <code>linetype</code> argument. It can take 7 different values. You can specify the line type either using numbers or words as shown below:</p>
-<ul>
-<li>0 : blank</li>
-<li>1 : solid</li>
-<li>2 : dashed</li>
-<li>3 : dotted</li>
-<li>4 : dotdash</li>
-<li>5 : longdash</li>
-<li>6 : twodash</li>
-</ul>
-<p>Let us modify the line type to dashed style by supplying the value <code>2</code> to the <code>linetype</code> argument.</p>
+<section id="wrapping-with-stringr" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="wrapping-with-stringr"><span class="header-section-number">20.2</span> Wrapping with stringr</h2>
+<p><code>str_wrap()</code> inserts line breaks at a fixed width:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(stringr<span class="sc">::</span><span class="fu">str_wrap</span>(program, <span class="at">width =</span> <span class="dv">15</span>), students),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Program"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The above example can be recreated by supplying the value <code>'dashed'</code> instead of <code>2</code>.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="st">'dashed'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-label-polish_files/figure-html/lab2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="line-size" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="line-size"><span class="header-section-number">7.3.3</span> Line Size</h3>
-<p>The width of the line can be modified using the <code>linewidth</code> argument. It can take any value above 0 as input.</p>
+<section id="wrapping-inside-scales" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="wrapping-inside-scales"><span class="header-section-number">20.3</span> Wrapping Inside Scales</h2>
+<p><code>label_wrap()</code> wraps at the scale level, keeping the underlying data untouched:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(program, students), <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_wrap</span>(<span class="dv">15</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-label-polish_files/figure-html/lab3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-</section>
-<section id="multiple-lines" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="multiple-lines"><span class="header-section-number">7.4</span> Multiple Lines</h2>
-<section id="modify-data" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="modify-data"><span class="header-section-number">7.4.1</span> Modify Data</h3>
-<p>Now let us map the aesthetics to the variables. The data used in the above example cannot be used as we need a variable with country names. We will use <code>pivot_longer()</code> function from the <code>tidyr</code> package to reshape the data.</p>
+<section id="wrapping-long-titles" class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="wrapping-long-titles"><span class="header-section-number">20.4</span> Wrapping Long Titles</h2>
+<p>The same helper tidies wrapped plot titles and subtitles:</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gdp2 <span class="ot">&lt;-</span> gdp <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, growth, india, china) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>year, <span class="at">names_to =</span> <span class="st">"country"</span>, <span class="at">values_to =</span> <span class="st">"gdp"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>gdp2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 18 × 3
-   year       country   gdp
-   &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
- 1 2000-01-01 growth      6
- 2 2000-01-01 india       5
- 3 2000-01-01 china       8
- 4 2001-01-01 growth      9
- 5 2001-01-01 india       9
- 6 2001-01-01 china       5
- 7 2002-01-01 growth      8
- 8 2002-01-01 india       8
- 9 2002-01-01 china       6
-10 2003-01-01 growth      9
-11 2003-01-01 india       8
-12 2003-01-01 china       8
-13 2004-01-01 growth      9
-14 2004-01-01 india       5
-15 2004-01-01 china       9
-16 2005-01-01 growth      8
-17 2005-01-01 india       7
-18 2005-01-01 china       8</code></pre>
-</div>
-</div>
-<p>In the original data, to plot GDP trend of multiple countries we will have to use <code>geom_line()</code> multiple times. But in the reshaped data, we have the country names as one of the variables and this can be used along with the <code>group</code> argument to plot data of multiple countries with a single line of code as shown below. By mapping country to the <code>group</code> argument, we have plotted data of all countries.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp2, <span class="fu">aes</span>(year, gdp, <span class="at">group =</span> country)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(stringr<span class="sc">::</span><span class="fu">str_wrap</span>(program, <span class="at">width =</span> <span class="dv">15</span>), students),</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">fill =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Program"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> stringr<span class="sc">::</span><span class="fu">str_wrap</span>(<span class="st">"Student enrollment across four academic programs in 2024"</span>, <span class="at">width =</span> <span class="dv">40</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-label-polish_files/figure-html/lab4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>In the above plot, we cannot distinguish between the lines and there is no way to identify which line represents which country. To make it easier to identify the trend of different countries, let us map the <code>color</code> argument to the variable country as shown below. Now, each country will be represented by line of different color.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp2, <span class="fu">aes</span>(year, gdp, <span class="at">group =</span> country)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> country))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We can map <code>linetype</code> argument to country as well. In this case, each country will be represented by a different line type.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp2, <span class="fu">aes</span>(year, gdp, <span class="at">group =</span> country)) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> country))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We can map the width of the line to the variable country as well. But in this case, the plot does not look either elegant or intuitive.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp2, <span class="fu">aes</span>(year, gdp, <span class="at">group =</span> country)) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linewidth =</span> country))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Remember that in all the above cases, we mapped the arguments to a variable inside <code>aes()</code>.</p>
-</section>
-</section>
-<section id="exercises" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">7.5</span> Exercises</h2>
-<ol type="1">
-<li>Draw the <code>unemploy</code> series from <code>economics</code> over <code>date</code> with <code>linewidth = 1</code>.</li>
-<li>Reshape <code>unemploy</code> + <code>uempmed</code> to long format and draw both series distinguished by color.</li>
-<li>Rewrite the plot with a message-first title and units on the y axis.</li>
-</ol>
-<p>Worked solutions in <code>solutions/line.md</code> (attempt first).</p>
 </section>
 <section id="where-to-go-next" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="where-to-go-next">Where to go next</h2>
 <ul>
-<li>ggplot2 book (ggplot2-book.org) for theory behind this layer</li>
-<li>Claus Wilke, Fundamentals of Data Visualization, for perception guidance</li>
+<li>stringr reference for wider text manipulation</li>
+<li>Themes chapter for font sizes that pair with wrapped labels</li>
 </ul>
 
 
@@ -1215,13 +1059,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ggplot2-scatter-plot.html" class="pagination-link" aria-label="Scatter Plots">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scatter Plots</span></span>
+      <a href="./ggplot2-reshaping.html" class="pagination-link" aria-label="Data Reshaping for ggplot2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Data Reshaping for ggplot2</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ggplot2-bar-plot.html" class="pagination-link" aria-label="Bar Plots">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Bar Plots</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ggplot2-finale-polish.html" class="pagination-link" aria-label="Finale: Publication Polish with patchwork, ggrepel &amp; ggtext">
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Finale: Publication Polish with patchwork, ggrepel &amp; ggtext</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

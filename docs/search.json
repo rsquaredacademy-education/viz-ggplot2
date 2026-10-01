@@ -1,0 +1,1732 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Visualization with ggplot2",
+    "section": "",
+    "text": "Preface\nThis work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "index.html#software-information",
+    "href": "index.html#software-information",
+    "title": "Data Visualization with ggplot2",
+    "section": "Software information",
+    "text": "Software information\nThe R session information when compiling this book is shown below:\n\nsessionInfo()\n\nR version 4.5.2 (2025-10-31 ucrt)\nPlatform: x86_64-w64-mingw32/x64\nRunning under: Windows 10 x64 (build 19045)\n\nMatrix products: default\n  LAPACK version 3.12.1\n\nlocale:\n[1] LC_COLLATE=English_India.utf8  LC_CTYPE=English_India.utf8   \n[3] LC_MONETARY=English_India.utf8 LC_NUMERIC=C                  \n[5] LC_TIME=English_India.utf8    \n\ntime zone: Asia/Calcutta\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nloaded via a namespace (and not attached):\n [1] htmlwidgets_1.6.4 compiler_4.5.2    fastmap_1.2.0     cli_3.6.5        \n [5] tools_4.5.2       htmltools_0.5.9   rmarkdown_2.30    knitr_1.50       \n [9] jsonlite_2.0.0    xfun_0.61         digest_0.6.39     rlang_1.2.0      \n[13] evaluate_1.0.5   \n\n\nWe do not add prompts (&gt; and +) to R source code in this book, and we comment out the text output with two hashes ## by default, as you can see from the R session information above. This is for your convenience when you want to copy and run the code (the text output will be ignored since it is commented out). Package names are in bold text (e.g., rmarkdown), and function names are followed by parentheses (e.g., bookdown::render_book()). The double-colon operator :: means accessing an object from a package.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "about-the-author.html",
+    "href": "about-the-author.html",
+    "title": "About the Author",
+    "section": "",
+    "text": "Aravind Hebbali is the founder of Rsquared Academy. He earned his Masters in Economics from Madras School of Economics. As an active R user, he has authored several R packages such as\n\nolsrr\nrfm\ndescriptr\nblorr\nxplorerr\n\nIn 2015, he founded Rsquared Academy, a free and open source education initiative with focus on data science and analytics. Apart from self paced online courses, Rsquared Academy offers customized learning modules for corporates and universities.\nYou can find him on GitHub.",
+    "crumbs": [
+      "About the Author"
+    ]
+  },
+  {
+    "objectID": "ggplot2-quicktour.html",
+    "href": "ggplot2-quicktour.html",
+    "title": "1  Quick Tour",
+    "section": "",
+    "text": "1.1 Introduction\nIn this chapter, we will quickly build a set of plots that are routinely used to explore data using ggplot() combined with a geom_*() layer. Every plot follows the same recipe: map variables to aesthetics in aes() and add the geometry that draws them.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quick Tour</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-quicktour.html#introduction",
+    "href": "ggplot2-quicktour.html#introduction",
+    "title": "1  Quick Tour",
+    "section": "",
+    "text": "NoteWhy this chart\n\n\n\nA 5-minute on-ramp: one ggplot() plus one geom_*() draws your first chart.\n\n\n\n\n\n\n\n\nWarningCommon pitfall\n\n\n\nSkipping labs() early produces cryptic default titles; label axes from the start.\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nqplot() was deprecated in ggplot2 3.4.0. It still appears in older tutorials, but all examples in this book use ggplot() + geom_*(), which is the supported syntax going forward.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quick Tour</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-quicktour.html#libraries-code-data",
+    "href": "ggplot2-quicktour.html#libraries-code-data",
+    "title": "1  Quick Tour",
+    "section": "1.2 Libraries, Code & Data",
+    "text": "1.2 Libraries, Code & Data\nWe will use the following libraries in this chapter:\n\nreadr\nggplot2\n\nAll the data sets used in this chapter can be found here and code can be downloaded from here.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quick Tour</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-quicktour.html#scatter-plot",
+    "href": "ggplot2-quicktour.html#scatter-plot",
+    "title": "1  Quick Tour",
+    "section": "1.3 Scatter Plot",
+    "text": "1.3 Scatter Plot\nScatter plots are used to examine the relationship between two continuous variables. The relationship can be examined across the levels of a categorical variable as well. Let us begin by creating scatter plots. Map the X and Y variables inside aes() and add geom_point().\n\nggplot(mtcars, aes(disp, mpg)) +\n  geom_point()\n\n\n\n\n\n\n\n\nIf you want the relationship between the two variables to be represented by both points and a line, add both layers.\n\nggplot(mtcars, aes(disp, mpg)) +\n  geom_point() +\n  geom_line()\n\n\n\n\n\n\n\n\nThe color of the points can be mapped to a categorical variable, in our case cyl, using the color aesthetic. Ensure that the variable is categorical using factor().\n\nggplot(mtcars, aes(disp, mpg, color = factor(cyl))) +\n  geom_point()\n\n\n\n\n\n\n\n\nThe shape and size of the points can also be mapped to variables using the shape and size aesthetics as shown in the below examples.\n\nggplot(mtcars, aes(disp, mpg, shape = factor(cyl))) +\n  geom_point()\n\n\n\n\n\n\n\n\nEnsure that size is mapped to a continuous variable.\n\nggplot(mtcars, aes(disp, mpg, size = qsec)) +\n  geom_point()",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quick Tour</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-quicktour.html#bar-plot",
+    "href": "ggplot2-quicktour.html#bar-plot",
+    "title": "1  Quick Tour",
+    "section": "1.4 Bar Plot",
+    "text": "1.4 Bar Plot\nA bar plot represents data in rectangular bars. The length of the bars are proportional to the values they represent. Bar plots can be either horizontal or vertical. The X axis of the plot represents the levels or the categories and the Y axis represents the frequency/count of the variable.\nTo create a bar plot, map a categorical variable to x. You can convert a variable to type factor (R equivalent of categorical) using the factor() function, and add geom_bar().\n\nggplot(mtcars, aes(factor(cyl))) +\n  geom_bar()\n\n\n\n\n\n\n\n\nYou can create a stacked bar plot by mapping another categorical variable to fill.\n\nggplot(mtcars, aes(factor(cyl), fill = factor(am))) +\n  geom_bar()",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quick Tour</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-quicktour.html#box-plot",
+    "href": "ggplot2-quicktour.html#box-plot",
+    "title": "1  Quick Tour",
+    "section": "1.5 Box Plot",
+    "text": "1.5 Box Plot\nThe box plot is a standardized way of displaying the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum. Box plots are useful for detecting outliers and for comparing distributions. It shows the shape, central tendancy and variability of the data.\nBox plots are created with geom_boxplot(). Map a categorical variable to x and a continuous variable to y.\n\nggplot(mtcars, aes(factor(cyl), mpg)) +\n  geom_boxplot()\n\n\n\n\n\n\n\n\nTo plot the distribution of a single continuous variable without any grouping, map only y. Modern ggplot2 accepts a single-variable boxplot natively.\n\nggplot(mtcars, aes(y = mpg)) +\n  geom_boxplot()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nOlder code (including earlier editions of this book) used aes(x = factor(1)) as a dummy grouping variable for single boxplots. That workaround is no longer needed but still renders, so you may encounter it in the wild.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quick Tour</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-quicktour.html#line-chart",
+    "href": "ggplot2-quicktour.html#line-chart",
+    "title": "1  Quick Tour",
+    "section": "1.6 Line Chart",
+    "text": "1.6 Line Chart\nLine charts are used to examing trends across time. Map the time variable to x, the measurement to y, and add geom_line().\n\nggplot(economics, aes(date, unemploy)) +\n  geom_line()\n\n\n\n\n\n\n\n\nThe appearance of the line can be modified by setting the color outside aes() as shown below.\n\nggplot(economics, aes(date, unemploy)) +\n  geom_line(color = 'red')",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quick Tour</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-quicktour.html#histogram",
+    "href": "ggplot2-quicktour.html#histogram",
+    "title": "1  Quick Tour",
+    "section": "1.7 Histogram",
+    "text": "1.7 Histogram\nA histogram is a plot that can be used to examine the shape and spread of continuous data. It looks very similar to a bar graph and can be used to detect outliers and skewness in data. Map the continuous variable to x and add geom_histogram(), controlling detail with bins.\n\nggplot(mtcars, aes(mpg)) +\n  geom_histogram(bins = 5)",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quick Tour</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-quicktour.html#exercises",
+    "href": "ggplot2-quicktour.html#exercises",
+    "title": "1  Quick Tour",
+    "section": "1.8 Exercises",
+    "text": "1.8 Exercises\n\nDraw a ggplot(mtcars) scatter of disp vs mpg with geom_point().\nAdd color by cylinders and a labs() title.\nExplain in one sentence why qplot() is legacy code.\n\nWorked solutions in solutions/scatter.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quick Tour</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-quicktour.html#where-to-go-next",
+    "href": "ggplot2-quicktour.html#where-to-go-next",
+    "title": "1  Quick Tour",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org) for theory behind this layer\nClaus Wilke, Fundamentals of Data Visualization, for perception guidance",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Quick Tour</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html",
+    "href": "ggplot2-geoms.html",
+    "title": "2  Geoms",
+    "section": "",
+    "text": "2.1 Introduction\nIn this chapter, we will create some of the most routinely used plots to explore data using the geom_* functions.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html#introduction",
+    "href": "ggplot2-geoms.html#introduction",
+    "title": "2  Geoms",
+    "section": "",
+    "text": "NoteWhy this chart\n\n\n\nGeoms are the marks readers see: points, lines, bars, smooths. Pick the geom that matches your data type.\n\n\n\n\n\n\n\n\nWarningCommon pitfall\n\n\n\nLayering geoms with different data without matching aesthetics silently misaligns marks.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html#libraries-code-data",
+    "href": "ggplot2-geoms.html#libraries-code-data",
+    "title": "2  Geoms",
+    "section": "2.2 Libraries, Code & Data",
+    "text": "2.2 Libraries, Code & Data\nWe will use the following libraries in this chapter:\n\nreadr\nggplot2\ntibble\ndplyr\n\nAll the data sets used in this chapter can be found here and code can be downloaded from here.\n\n2.2.1 Data\n\necom &lt;- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')\necom\n\n# A tibble: 1,000 × 11\n      id referrer device bouncers n_visit n_pages duration country      purchase\n   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;lgl&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;lgl&gt;   \n 1     1 google   laptop TRUE          10       1      693 Czech Repub… FALSE   \n 2     2 yahoo    tablet TRUE           9       1      459 Yemen        FALSE   \n 3     3 direct   laptop TRUE           0       1      996 Brazil       FALSE   \n 4     4 bing     tablet FALSE          3      18      468 China        TRUE    \n 5     5 yahoo    mobile TRUE           9       1      955 Poland       FALSE   \n 6     6 yahoo    laptop FALSE          5       5      135 South Africa FALSE   \n 7     7 yahoo    mobile TRUE          10       1       75 Bangladesh   FALSE   \n 8     8 direct   mobile TRUE          10       1      908 Indonesia    FALSE   \n 9     9 bing     mobile FALSE          3      19      209 Netherlands  FALSE   \n10    10 google   mobile TRUE           6       1      208 Czech Repub… FALSE   \n# ℹ 990 more rows\n# ℹ 2 more variables: order_items &lt;dbl&gt;, order_value &lt;dbl&gt;\n\n\n\n\n2.2.2 Data Dictionary\n\nid: row id\nreferrer: referrer website/search engine\ndevice: device used to visit the website\nbouncers: whether the visit bounced (single page viewed)\nn_visit: number of visits\nn_pages: number of pages visited\nduration: time spent on the website (in seconds)\ncountry: country of origin\npurchase: whether visitor purchased\norder_items: number of items ordered\norder_value: order value of visitor (in dollars)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html#point",
+    "href": "ggplot2-geoms.html#point",
+    "title": "2  Geoms",
+    "section": "2.3 Point",
+    "text": "2.3 Point\nA scatter plot displays the relationship between two continuous variables. In ggplot2, we can build a scatter plot using geom_point(). Scatter plots can show you visually\n\nthe strength of the relationship between the variables\nthe direction of the relationship between the variables\nand whether outliers exist\n\nThe variables representing the X and Y axis can be specified either in ggplot() or in geom_point(). We will learn to modify the appearance of the points in a different post.\n\nggplot(ecom, aes(x = n_pages, y = duration)) + \n  geom_point()",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html#regression-line",
+    "href": "ggplot2-geoms.html#regression-line",
+    "title": "2  Geoms",
+    "section": "2.4 Regression Line",
+    "text": "2.4 Regression Line\nA regression line can be fit using either:\n\ngeom_abline()\ngeom_smooth()\n\nIf you are using geom_abline(), you need to specify the intercept and slope as shown in the below example:\n\nggplot(mtcars, aes(x = wt, y = mpg)) +\n  geom_point() + \n  geom_abline(intercept = 37.285, slope = -5.344)\n\n\n\n\n\n\n\n\nIf you are using geom_smooth(), you need to specify the method of fitting the line, which can be lm or loess. You also need to indicate whether the confidence interval must be displayed using the se argument.\n\nggplot(mtcars, aes(x = wt, y = mpg)) +\n  geom_smooth(method = 'lm', formula = y ~ x, se = TRUE)\n\n\n\n\n\n\n\n\nHere we use the 'loess' method to fit the regression line.\n\nggplot(mtcars, aes(x = wt, y = mpg)) +\n  geom_smooth(method = 'loess', formula = y ~ x, se = FALSE)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html#bar",
+    "href": "ggplot2-geoms.html#bar",
+    "title": "2  Geoms",
+    "section": "2.5 Bar",
+    "text": "2.5 Bar\nBar plots present grouped data with rectangular bars. The bars may represent the frequency of the groups or values. Bar plots can be:\n\nhorizontal\nvertical\ngrouped\nstacked\nproportional\n\n\n2.5.1 Frequency\n\nggplot(ecom, aes(x = factor(device))) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\n\n2.5.2 Weight\nIf the bars should represent a continuous variable, use the weight argument within aes(). In the below example, the bars do not represent the count of devices, instead, they represent the total order value for each device type.\n\nggplot(ecom, aes(x = factor(device))) +\n  geom_bar(aes(weight = order_value))\n\n\n\n\n\n\n\n\n\n\n2.5.3 Stacked Bar Plot\nTo create a stacked bar plot, the fill argument must be mapped to a categorical variable.\n\nggplot(ecom, aes(x = factor(device))) +\n  geom_bar(aes(fill = purchase))\n\n\n\n\n\n\n\n\n\n\n2.5.4 Horizontal Bar Plot\nA horizontal bar plot can be created by flipping the coordinate axes using the coord_flip() function.\n\nggplot(ecom, aes(x = factor(device))) +\n  geom_bar(aes(fill = purchase)) +\n  coord_flip()",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html#columns",
+    "href": "ggplot2-geoms.html#columns",
+    "title": "2  Geoms",
+    "section": "2.6 Columns",
+    "text": "2.6 Columns\nIf the data has already been summarized, you can use geom_col() instead of geom_bar(). In the below example, we have the total visits for each device type. The data has already been summarized and as such we cannot use geom_bar().\n\ndevice &lt;- c('laptop', 'mobile', 'tablet')\nvisits &lt;- c(30000, 12000, 5000)\ntraffic &lt;- tibble::tibble(device, visits)\nggplot(traffic, aes(x = device, y = visits)) +\n  geom_col(fill = 'blue')",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html#boxplot",
+    "href": "ggplot2-geoms.html#boxplot",
+    "title": "2  Geoms",
+    "section": "2.7 Boxplot",
+    "text": "2.7 Boxplot\nThe box plot is a standardized way of displaying the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum. Box plots are useful for detecting outliers and for comparing distributions. It shows the shape, central tendancy and variability of the data. Use geom_boxplot() to create a box plot.\n\nggplot(ecom, aes(x = factor(device), y = n_pages)) +\n  geom_boxplot()",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html#histogram",
+    "href": "ggplot2-geoms.html#histogram",
+    "title": "2  Geoms",
+    "section": "2.8 Histogram",
+    "text": "2.8 Histogram\nA histogram is a plot that can be used to examine the shape and spread of continuous data. It looks very similar to a bar graph and can be used to detect outliers and skewness in data. Use geom_histogram() to create a histogram.\n\nggplot(ecom, aes(x = duration)) +\n  geom_histogram()\n\n\n\n\n\n\n\n\nYou can control the number of bins using the bins argument.\n\nggplot(ecom, aes(x = duration)) +\n  geom_histogram(bins = 5)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html#line",
+    "href": "ggplot2-geoms.html#line",
+    "title": "2  Geoms",
+    "section": "2.9 Line",
+    "text": "2.9 Line\nLine charts are used to examine trends over time. We will use a different data set for exploring line plots.\n\n2.9.1 Data\n\ngdp &lt;- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')\ngdp\n\n# A tibble: 6 × 6\n   ...1     X year       growth india china\n  &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     1     1 2000-01-01      6     5     8\n2     2     2 2001-01-01      9     9     5\n3     3     3 2002-01-01      8     8     6\n4     4     4 2003-01-01      9     8     8\n5     5     5 2004-01-01      9     5     9\n6     6     6 2005-01-01      8     7     8\n\n\nUse geom_line() to create a line chart. In the below plot, we chart the GDP of India, the fastest growing economy in emerging markets, across years.\n\nggplot(gdp, aes(year, india)) +\n  geom_line()\n\n\n\n\n\n\n\n\nThe color and line type can be modified using the color and linetype arguments. We will explore the different line types in an upcoming post.\n\nggplot(gdp, aes(year, india)) +\n  geom_line(color = 'blue', linetype = 'dashed')\n\n\n\n\n\n\n\n\nAdd horizontal or vertical lines using\n\ngeom_hline()\ngeom_vline()\n\n\n\n2.9.2 Horizontal Line\nTo add a horizontal line, the Y axis intercept must be supplied using the yintercept argument.\n\nggplot(mtcars, aes(x = wt, y = mpg)) +\n  geom_point() +\n  geom_hline(yintercept = 30) \n\n\n\n\n\n\n\n\n\n\n2.9.3 Vertical Line\nFor the vertical line, the X axis intercept must be supplied using the xintercept argument.\n\nggplot(mtcars, aes(x = wt, y = mpg)) +\n  geom_point() +\n  geom_vline(xintercept = 5)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html#label",
+    "href": "ggplot2-geoms.html#label",
+    "title": "2  Geoms",
+    "section": "2.10 Label",
+    "text": "2.10 Label\nYou can label the points using geom_label().\n\nggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +\n  geom_label()",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html#text",
+    "href": "ggplot2-geoms.html#text",
+    "title": "2  Geoms",
+    "section": "2.11 Text",
+    "text": "2.11 Text\ngeom_text() offers another way to add text to the plots. We will learn to modify the appearance and location of the text in another post.\n\nggplot(mtcars, aes(disp, mpg, label = rownames(mtcars))) +\n  geom_text(check_overlap = TRUE, size = 2)",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html#exercises",
+    "href": "ggplot2-geoms.html#exercises",
+    "title": "2  Geoms",
+    "section": "2.12 Exercises",
+    "text": "2.12 Exercises\n\nDraw disp vs mpg points plus a geom_smooth() trend (formula = y ~ x).\nDraw a histogram of mpg with 10 bins.\nPick the right geom for median mileage per cylinder class and justify it.\n\nWorked solutions in solutions/geoms.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-geoms.html#where-to-go-next",
+    "href": "ggplot2-geoms.html#where-to-go-next",
+    "title": "2  Geoms",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org) for theory behind this layer\nClaus Wilke, Fundamentals of Data Visualization, for perception guidance",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Geoms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-aesthetics.html",
+    "href": "ggplot2-aesthetics.html",
+    "title": "3  Aesthetics",
+    "section": "",
+    "text": "3.1 Introduction\nIn this chapter, we will focus on the aesthetics i.e. color, shape, size, alpha, line type, line width etc. We can map these to variables or specify values for them. If we want to map the above to variables, we have to specify them within the aes() function. We will look at both methods in the following sections.\nExplore aesthetics such as",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Aesthetics</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-aesthetics.html#introduction",
+    "href": "ggplot2-aesthetics.html#introduction",
+    "title": "3  Aesthetics",
+    "section": "",
+    "text": "NoteWhy this chart\n\n\n\nAesthetics map variables to position, color, size and shape so patterns pop out.\n\n\n\n\n\n\n\n\nWarningCommon pitfall\n\n\n\nPutting a constant inside aes() (e.g. aes(color=‘red’)) creates a bogus legend; constants belong outside aes().\n\n\n\n\n\ncolor\nshape\nsize\nfill\nalpha\nwidth",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Aesthetics</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-aesthetics.html#libraries-code-data",
+    "href": "ggplot2-aesthetics.html#libraries-code-data",
+    "title": "3  Aesthetics",
+    "section": "3.2 Libraries, Code & Data",
+    "text": "3.2 Libraries, Code & Data\nWe will use the following libraries in this chapter:\n\nreadr\nggplot2\ndplyr\ntidyr\n\nAll the data sets used in this chapter can be found here and code can be downloaded from here.\n\n3.2.1 Data\n\necom &lt;- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')\necom\n\n# A tibble: 1,000 × 11\n      id referrer device bouncers n_visit n_pages duration country      purchase\n   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;lgl&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;lgl&gt;   \n 1     1 google   laptop TRUE          10       1      693 Czech Repub… FALSE   \n 2     2 yahoo    tablet TRUE           9       1      459 Yemen        FALSE   \n 3     3 direct   laptop TRUE           0       1      996 Brazil       FALSE   \n 4     4 bing     tablet FALSE          3      18      468 China        TRUE    \n 5     5 yahoo    mobile TRUE           9       1      955 Poland       FALSE   \n 6     6 yahoo    laptop FALSE          5       5      135 South Africa FALSE   \n 7     7 yahoo    mobile TRUE          10       1       75 Bangladesh   FALSE   \n 8     8 direct   mobile TRUE          10       1      908 Indonesia    FALSE   \n 9     9 bing     mobile FALSE          3      19      209 Netherlands  FALSE   \n10    10 google   mobile TRUE           6       1      208 Czech Repub… FALSE   \n# ℹ 990 more rows\n# ℹ 2 more variables: order_items &lt;dbl&gt;, order_value &lt;dbl&gt;\n\n\n\n\n3.2.2 Data Dictionary\n\nid: row id\nreferrer: referrer website/search engine\ndevice: device used to visit the website\nbouncers: whether the visit bounced (single page viewed)\nn_visit: number of visits\nn_pages: number of pages visited\nduration: time spent on the website (in seconds)\ncountry: country of origin\npurchase: whether visitor purchased\norder_items: number of items ordered\norder_value: order value of visitor (in dollars)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Aesthetics</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-aesthetics.html#color",
+    "href": "ggplot2-aesthetics.html#color",
+    "title": "3  Aesthetics",
+    "section": "3.3 Color",
+    "text": "3.3 Color\nIn ggplot2, when we mention color or colour, it usually refers to the color of the geoms. The fill argument is used to specify the color of the shapes in certain cases. In this first section, we will see how we can specify the color for the different geoms we learnt in the previous chapter.\n\n3.3.1 Point\nFor points, the color argument specifies the color of the point for certain shapes and border for others. The fill argument is used to specify the background for some shapes and will not work with other shapes. Let us look at an example:\n\nggplot(mtcars, aes(x = disp, y = mpg, color = factor(cyl))) +\n  geom_point()\n\n\n\n\n\n\n\n\nWe can map the variable to color in the geom_point() function as well since it inherits the data from the ggplot() function.\n\nggplot(mtcars, aes(x = disp, y = mpg)) +\n  geom_point(aes(color = factor(cyl)))\n\n\n\n\n\n\n\n\nIf you do not want to map a variable to color, you can specify it separately using the color argument but in this case it should be outside the aes() function.\n\nggplot(mtcars, aes(x = disp, y = mpg)) +\n  geom_point(color = 'blue')\n\n\n\n\n\n\n\n\nNow we will change the shape of the points to understand the difference between color and fill arguments. It can be again mapped to variables or values. Let us map shape to variables.\n\nggplot(mtcars, aes(x = disp, y = mpg, shape = factor(cyl))) +\n  geom_point()\n\n\n\n\n\n\n\n\nLet us map shape to cyl in the geom_point() function. Remember, when you are mapping an aesthetic to a variable, it must be inside aes().\n\nggplot(mtcars, aes(x = disp, y = mpg)) +\n  geom_point(aes(shape = factor(cyl)))\n\n\n\n\n\n\n\n\nInstead of mapping shape to a variable, let us specify a value for shape. In this case, shape is not wrapped inside aes() as we are not mapping it to a variable.\n\nggplot(mtcars, aes(x = disp, y = mpg)) +\n  geom_point(shape = 5)\n\n\n\n\n\n\n\n\nLet us specify a color for the point using color argument.\n\nggplot(mtcars, aes(x = disp, y = mpg)) +\n  geom_point(shape = 5, color = 'blue')\n\n\n\n\n\n\n\n\nBackground color cannot be added for all shapes. In the below example, we try to modify the background color using the fill argument but it does not work.\n\nggplot(mtcars, aes(x = disp, y = mpg)) +\n  geom_point(shape = 5, fill = 'blue')\n\n\n\n\n\n\n\n\nSince the shape number is now greater than 21, fill argument will add background color in the below case.\n\nggplot(mtcars, aes(x = disp, y = mpg)) +\n  geom_point(shape = 22, fill = 'blue')\n\n\n\n\n\n\n\n\nIn shapes greater than number 21, color argument will modify the border of the shape.\n\nggplot(mtcars, aes(x = disp, y = mpg)) +\n  geom_point(shape = 22, color = 'blue')\n\n\n\n\n\n\n\n\nLet us map size of points to a variable. It is advised to map size only to continuous variables and not categorical variables.\n\nggplot(mtcars, aes(x = disp, y = mpg, size = disp)) +\n  geom_point()\n\n\n\n\n\n\n\n\nIf you map size to categorical variables, ggplot2 will throw a warning.\n\nggplot(mtcars, aes(x = disp, y = mpg)) +\n  geom_point(size = 4)\n\n\n\n\n\n\n\n\nTo modify the opacity of the color, use the alpha argument.\n\nggplot(mtcars, aes(x = disp, y = mpg)) +\n  geom_point(aes(alpha = factor(cyl)), color = 'blue')",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Aesthetics</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-aesthetics.html#line-chart",
+    "href": "ggplot2-aesthetics.html#line-chart",
+    "title": "3  Aesthetics",
+    "section": "3.4 Line Chart",
+    "text": "3.4 Line Chart\nSo far we have focussed on geom_point() to learn how to map aesthetics to variables. To explore line type and line width, we will use geom_line(). In the previous chapter, we used geom_line() to build line charts. Now we will modify the appearance of the line. In the section below, we will specify values for color, line type and width. In the next section, we will map the same to variables in the data. We will use a new data set. You can download it from here. It contains GDP (Gross Domestic Product) growth data for the BRICS (Brazil, Russia, India, China, South Africa) for the years 2000 to 2005.\n\n3.4.1 Data\n\ngdp &lt;- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')\n\nA line chart can be created using geom_line(). In the below example, we examine the GDP trend of India and modify the color of the line to 'blue'.\n\nggplot(gdp, aes(year, india)) +\n  geom_line(color = 'blue')\n\n\n\n\n\n\n\n\nTo modify the line type, use the linetype argument. It can take values between 1 and 5.\n\nggplot(gdp, aes(year, india)) +\n  geom_line(linetype = 2)\n\n\n\n\n\n\n\n\nThe line type can also be mentioned in the following way:\n\nggplot(gdp, aes(year, india)) +\n  geom_line(linetype = 'dashed')\n\n\n\n\n\n\n\n\nThe width of the line can be modified using the linewidth argument.\n\nggplot(gdp, aes(year, india)) +\n  geom_line(linewidth = 2)\n\n\n\n\n\n\n\n\nNow let us map the aesthetics to the variables. The data used in the above example cannot be used as we need a variable with country names. We will use pivot_longer() function from the tidyr package to reshape the data.\n\ngdp2 &lt;-\n  gdp |&gt;\n  select(year, growth, india, china) |&gt;\n  tidyr::pivot_longer(cols = -year, names_to = \"country\", values_to = \"gdp\")\n\ngdp2\n\n# A tibble: 18 × 3\n   year       country   gdp\n   &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n 1 2000-01-01 growth      6\n 2 2000-01-01 india       5\n 3 2000-01-01 china       8\n 4 2001-01-01 growth      9\n 5 2001-01-01 india       9\n 6 2001-01-01 china       5\n 7 2002-01-01 growth      8\n 8 2002-01-01 india       8\n 9 2002-01-01 china       6\n10 2003-01-01 growth      9\n11 2003-01-01 india       8\n12 2003-01-01 china       8\n13 2004-01-01 growth      9\n14 2004-01-01 india       5\n15 2004-01-01 china       9\n16 2005-01-01 growth      8\n17 2005-01-01 india       7\n18 2005-01-01 china       8\n\n\nTo map the aesthetics to a variable, we must use the group argument. In the below example, we map the aesthetics to country. But we cannot distinguish between the lines as their color, width and line type are the same. We have easily plotted the GDP trend of all countries using the group argument. Now, let us ensure that we can distinguish and identidy them using different aesthetics.\n\nggplot(gdp2, aes(year, gdp, group = country)) +\n  geom_line()\n\n\n\n\n\n\n\n\nLet us begin by ensuring that the lines have different color using the color argument within aes() and assigning it the variable country.\n\nggplot(gdp2, aes(year, gdp, group = country)) +\n  geom_line(aes(color = country))\n\n\n\n\n\n\n\n\nInstead of color, now we modify the line type using the linetype argument.\n\nggplot(gdp2, aes(year, gdp, group = country)) +\n  geom_line(aes(linetype = country))\n\n\n\n\n\n\n\n\nIn the below instance, we assign different width to the lines using the linewidth argument.\n\nggplot(gdp2, aes(year, gdp, group = country)) +\n  geom_line(aes(linewidth = country))\n\n\n\n\n\n\n\n\nBefore we wrap up, let us quickly see how we can map aesthetics to variables for different plots.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Aesthetics</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-aesthetics.html#bar-plots",
+    "href": "ggplot2-aesthetics.html#bar-plots",
+    "title": "3  Aesthetics",
+    "section": "3.5 Bar Plots",
+    "text": "3.5 Bar Plots\nHere we create a stacked bar plot by mapping fill to purchase.\n\nggplot(ecom, aes(device, fill = purchase)) +\n  geom_bar()",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Aesthetics</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-aesthetics.html#histograms",
+    "href": "ggplot2-aesthetics.html#histograms",
+    "title": "3  Aesthetics",
+    "section": "3.6 Histograms",
+    "text": "3.6 Histograms\nInstead of a bar chart, we create a histogram and again map fill to purchase.\n\nggplot(ecom) +\n  geom_histogram(aes(duration, fill = purchase), bins = 10)",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Aesthetics</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-aesthetics.html#box-plots",
+    "href": "ggplot2-aesthetics.html#box-plots",
+    "title": "3  Aesthetics",
+    "section": "3.7 Box Plots",
+    "text": "3.7 Box Plots\nWe repeat the same exercise below, but replace the bar plot with a box plot.\n\nggplot(ecom) +\n  geom_boxplot(aes(device, duration, fill = purchase))\n\n\n\n\n\n\n\n\nIn all the above cases, you can observe that when we are mapping aesthetics such as color, fill, shape, size or linetype to variables, they are all wrapped inside aes().",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Aesthetics</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-aesthetics.html#exercises",
+    "href": "ggplot2-aesthetics.html#exercises",
+    "title": "3  Aesthetics",
+    "section": "3.8 Exercises",
+    "text": "3.8 Exercises\n\nMap color to cylinders and set a constant point size = 3 outside aes().\nMap linewidth (not size) to a line geom and explain the difference.\nReshape a two-column wide table with pivot_longer() and map the key to color.\n\nWorked solutions in solutions/aesthetics.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Aesthetics</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-aesthetics.html#where-to-go-next",
+    "href": "ggplot2-aesthetics.html#where-to-go-next",
+    "title": "3  Aesthetics",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org) for theory behind this layer\nClaus Wilke, Fundamentals of Data Visualization, for perception guidance",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Aesthetics</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-labels.html",
+    "href": "ggplot2-labels.html",
+    "title": "4  Labels",
+    "section": "",
+    "text": "4.1 Introduction\nIn this chapter, we will learn to:",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Labels</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-labels.html#introduction",
+    "href": "ggplot2-labels.html#introduction",
+    "title": "4  Labels",
+    "section": "",
+    "text": "NoteWhy this chart\n\n\n\nAxis labels and titles turn a plot into a message; they are the cheapest readability win.\n\n\n\n\n\n\n\n\nWarningCommon pitfall\n\n\n\nTiny or default labels (e.g. snake_case column names) force readers to guess the message.\n\n\n\n\nadd title and subtitle to the plot\nmodify axis labels\nmodify axis range\nremove axis\nformat axis",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Labels</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-labels.html#basic-plot",
+    "href": "ggplot2-labels.html#basic-plot",
+    "title": "4  Labels",
+    "section": "4.2 Basic Plot",
+    "text": "4.2 Basic Plot\nLet us start with a simple scatter plot. We will continue to use the mtcars data set and examine the relationship between displacement and miles per gallon using geom_point().\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg))",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Labels</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-labels.html#title-subtitle",
+    "href": "ggplot2-labels.html#title-subtitle",
+    "title": "4  Labels",
+    "section": "4.3 Title & Subtitle",
+    "text": "4.3 Title & Subtitle\nThere are two ways to add title to a plot:\n\nggtitle()\nlabs()\n\n\n4.3.1 ggtitle()\nLet us explore the ggtitle() function first. It takes two arguments:\n\nlabel: title of the plot\nsubtitle: subtitle of the plot\n\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  ggtitle(label = 'Displacement vs Mileage', subtitle = 'disp vs mpg')",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Labels</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-labels.html#axis-labels",
+    "href": "ggplot2-labels.html#axis-labels",
+    "title": "4  Labels",
+    "section": "4.4 Axis Labels",
+    "text": "4.4 Axis Labels\nYou can add labels to the axis using:\n\nxlab()\nylab()\nlabs()\n\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  xlab('Displacement') + ylab('Miles Per Gallon')",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Labels</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-labels.html#labs",
+    "href": "ggplot2-labels.html#labs",
+    "title": "4  Labels",
+    "section": "4.5 Labs",
+    "text": "4.5 Labs\nThe labs() function can be used to add the following to a plot:\n\ntitle\nsubtitle\nX axis label\nY axis label\n\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  labs(title = 'Displacement vs Mileage', subtitle = 'disp vs mpg', \n    x = 'Displacement', y = 'Miles Per Gallon')",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Labels</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-labels.html#axis-range",
+    "href": "ggplot2-labels.html#axis-range",
+    "title": "4  Labels",
+    "section": "4.6 Axis Range",
+    "text": "4.6 Axis Range\nIn certain scenarios, you may want to modify the range of the axis. In ggplot2, we can achieve this using:\n\nxlim()\nylim()\nexpand_limits()\nxlim() and ylim() take a numeric vector of length 2 as input\nexpand_limits() takes two numeric vectors (each of length 2), one for each axis\nin all of the above functions, the first element represents the lower limit and the second element represents the upper limit\n\n\n4.6.1 X Axis\nIn the below example, we limit the range of the X axis between 0 and 600 using xlim.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  xlim(c(0, 600))\n\n\n\n\n\n\n\n\n\n\n4.6.2 Y Axis\nLet us limit the range of the Y axis between 0 and 40.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  ylim(c(0, 40))\n\n\n\n\n\n\n\n\n\n\n4.6.3 Expand Limits\nLet us use expand_limits() to limit the range of both the X and Y axis. The first input is the range for the X axis and the second input for the Y axis. In both the cases, we use a numeric vector of length 2 to specify the lower and upper limit.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  expand_limits(x = c(0, 600), y = c(0, 40))\n\n\n\n\n\n\n\n\n\n\n4.6.4 Remove Axis Labels\nIf you want to remove the axis labels all together, use the theme() function. It allows us to modify every aspect of the theme of the plot. Within theme(), set the following to element_blank().\n\naxis.title.x\naxis.title.y\n\nelement_blank() will remove the title of the X and Y axis.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  theme(axis.title.x = element_blank(), axis.title.y = element_blank())",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Labels</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-labels.html#format-title-axis-labels",
+    "href": "ggplot2-labels.html#format-title-axis-labels",
+    "title": "4  Labels",
+    "section": "4.7 Format Title & Axis Labels",
+    "text": "4.7 Format Title & Axis Labels\nTo format the title or the axis labels, we have to modify the theme of the plot using the theme() function. We can modify:\n\ncolor\nfont family\nfont face\nfont size\nhorizontal alignment\nand angle\n\nIn addition to theme(), we will also use element_text(). It should be used whenever you want to modify the appearance of any text element of your plot.\n\n4.7.1 Color\nIn the below example, we use the color argument within element_text() to modify the color of the title of the plot to 'blue'.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +\n  theme(plot.title = element_text(color = 'blue'))\n\n\n\n\n\n\n\n\n\n\n4.7.2 Font Family\nLet us change the font family of the plot title to 'Arial' by using the family argument.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +\n  theme(plot.title = element_text(family = 'Arial'))\n\n\n\n\n\n\n\n\n\n\n4.7.3 Font Face\nThe font face can be any of the following:\n\nplain\nbold\nitalic\nbold.italic\n\nThe face argument can be used to modify the font face of the title of the plot.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +\n  theme(plot.title = element_text(face = 'bold'))\n\n\n\n\n\n\n\n\n\n\n4.7.4 Font Size\nThe size of the title of the plot can be modified using the size argument.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +\n  theme(plot.title = element_text(size = 8))",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Labels</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-labels.html#horizontal-alignment",
+    "href": "ggplot2-labels.html#horizontal-alignment",
+    "title": "4  Labels",
+    "section": "4.8 Horizontal Alignment",
+    "text": "4.8 Horizontal Alignment\nTo modify the horizontal alignment of the title, use the hjust argument. It can take values between 0 and 1. If the value is closer to 0, the text will be left-aligned and viceversa.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +\n  theme(plot.title = element_text(hjust = 0.3))",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Labels</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-labels.html#putting-it-all-together",
+    "href": "ggplot2-labels.html#putting-it-all-together",
+    "title": "4  Labels",
+    "section": "4.9 Putting it all together…",
+    "text": "4.9 Putting it all together…\n\n4.9.1 Title\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) + ggtitle('Diaplacement vs Mileage') +\n  theme(plot.title = element_text(color = 'blue', family = 'Arial',\n    face = 'bold', size = 12, hjust = 0.5))\n\n\n\n\n\n\n\n\n\n\n4.9.2 X axis label\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) + xlab('Diaplacement') +\n  theme(axis.title.x = element_text(color = 'blue', family = 'Arial',\n    face = 'bold', size = 8, hjust = 0.5, angle = 15))\n\n\n\n\n\n\n\n\n\n\n4.9.3 Y axis label\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) + ylab('Miles Per Gallon') +\n  theme(axis.title.y = element_text(color = 'blue', family = 'Arial',\n    face = 'italic', size = 8, vjust = 0.3, angle = 90))",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Labels</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-labels.html#exercises",
+    "href": "ggplot2-labels.html#exercises",
+    "title": "4  Labels",
+    "section": "4.10 Exercises",
+    "text": "4.10 Exercises\n\nAdd x, y and title labels to a disp vs mpg scatter plot.\nRename a legend title with the name argument of a scale function.\nRewrite a default-titled plot so the title states the conclusion.\n\nWorked solutions in solutions/labels.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Labels</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-labels.html#where-to-go-next",
+    "href": "ggplot2-labels.html#where-to-go-next",
+    "title": "4  Labels",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org) for theory behind this layer\nClaus Wilke, Fundamentals of Data Visualization, for perception guidance",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Labels</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-text-annotations.html",
+    "href": "ggplot2-text-annotations.html",
+    "title": "5  Text Annotations",
+    "section": "",
+    "text": "5.1 Introduction\nIn this chapter, we will learn to add text to the plots.",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Text Annotations</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-text-annotations.html#introduction",
+    "href": "ggplot2-text-annotations.html#introduction",
+    "title": "5  Text Annotations",
+    "section": "",
+    "text": "NoteWhy this chart\n\n\n\nDirect labels and annotations point at the story instead of making readers scan a legend.\n\n\n\n\n\n\n\n\nWarningCommon pitfall\n\n\n\nOver-annotating every point creates clutter; annotate only the points that change the conclusion.\n\n\n\n\nadd custom text\nmodify color\nmodify size\nmodify fontface\nmodify angle",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Text Annotations</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-text-annotations.html#annotate",
+    "href": "ggplot2-text-annotations.html#annotate",
+    "title": "5  Text Annotations",
+    "section": "5.2 Annotate",
+    "text": "5.2 Annotate\nWe will use the annotate() function to add custom text to the plots. You can use the annotate() function to add rectangles/segments/pointrange as well but our focus will be on adding text. Let us start with a simple scatter plot.\nannotate() takes the following arguments:\n\ngeom : specify text\nx : x axis location\ny : y axis location\nlabel : custom text\ncolor : color of text\nsize : size of text\nfontface : fontface of text\nangle : angle of text\n\n\n5.2.1 Add Text\nLet us begin by adding text to a scatter plot. We will use the mtcars data set and continue to examine the relationship between displacement and miles per gallon. To add the text, we have to indicate that we are using annotate() for adding text, and we do this by ensuring that the first input is the word 'text'. Now, ggplot2 knows that it should add a text to the plot but it still needs other information such as:\n\nwhere should the text appear on the plot i.e. location of the text\nand the text itself\n\nWe will provide the location by specifying points on the X and Y axis which are also the second and third inputs to annotate() and the final input is the text itself, which in our example is 'Sample Text'.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  annotate('text', x = 200, y = 30, label = 'Sample Text')\n\n\n\n\n\n\n\n\n\n\n5.2.2 Color\nNow that we know how to add text, let us look at modifying the appearance of the text. To change the color, use the color argument. In the below example, we modify the color to 'red'.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  annotate('text', x = 200, y = 30, label = 'Sample Text', color = 'red')\n\n\n\n\n\n\n\n\n\n\n5.2.3 Size\nThe size argument can be used to modify the size of the text.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  annotate('text', x = 200, y = 30, label = 'Sample Text', size = 6)\n\n\n\n\n\n\n\n\n\n\n5.2.4 Font\nTo choose a font of your liking, use the font argument and supply it a valid value.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  annotate('text', x = 200, y = 30, label = 'Sample Text', fontface = 'bold')\n\n\n\n\n\n\n\n\n\n\n5.2.5 Angle\nThe angle of the text can also be modified using the angle argument. In the below example, we modify the angle of the text to 25.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  annotate('text', x = 200, y = 30, label = 'Sample Text', angle = 25)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Text Annotations</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-text-annotations.html#putting-it-all-together..",
+    "href": "ggplot2-text-annotations.html#putting-it-all-together..",
+    "title": "5  Text Annotations",
+    "section": "5.3 Putting it all together..",
+    "text": "5.3 Putting it all together..\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  annotate('text', x = 200, y = 30, label = 'Sample Text',\n           color = 'red', size = 6, fontface = 'bold', angle = 25)",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Text Annotations</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-text-annotations.html#exercises",
+    "href": "ggplot2-text-annotations.html#exercises",
+    "title": "5  Text Annotations",
+    "section": "5.4 Exercises",
+    "text": "5.4 Exercises\n\nAnnotate the highest-mpg car with annotate(\"text\", ...).\nLabel only cars with mpg &gt; 30 using geom_text().\nDecide which two points deserve labels and justify the restraint.\n\nWorked solutions in solutions/annotations.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Text Annotations</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-text-annotations.html#where-to-go-next",
+    "href": "ggplot2-text-annotations.html#where-to-go-next",
+    "title": "5  Text Annotations",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org) for theory behind this layer\nClaus Wilke, Fundamentals of Data Visualization, for perception guidance",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Text Annotations</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scatter-plot.html",
+    "href": "ggplot2-scatter-plot.html",
+    "title": "6  Scatter Plots",
+    "section": "",
+    "text": "6.1 Introduction\nIn this chapter, we will:",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Scatter Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scatter-plot.html#introduction",
+    "href": "ggplot2-scatter-plot.html#introduction",
+    "title": "6  Scatter Plots",
+    "section": "",
+    "text": "NoteWhy this chart\n\n\n\nScatter plots reveal the relationship between two continuous variables: direction, strength and outliers.\n\n\n\n\n\n\n\n\nWarningCommon pitfall\n\n\n\nOverplotting hides density; use alpha transparency or jitter when points pile up.\n\n\n\n\nbuild scatter plots\nmodify point\n\ncolor\nfill\nalpha\nshape\nsize\n\nfit regression line",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Scatter Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scatter-plot.html#basic-plot",
+    "href": "ggplot2-scatter-plot.html#basic-plot",
+    "title": "6  Scatter Plots",
+    "section": "6.2 Basic Plot",
+    "text": "6.2 Basic Plot\nAs we did in the previous chapter, let us begin by creating a scatter plot using\ngeom_point() to examine the relationship between displacement and miles per gallon using the mtcars data.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTipTry it in your browser\n\n\n\nEdit the code below and press Run. It executes entirely in your browser via WebR — no R installation needed. The runtime (~30 MB) downloads once, on this page only.\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Scatter Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scatter-plot.html#jitter",
+    "href": "ggplot2-scatter-plot.html#jitter",
+    "title": "6  Scatter Plots",
+    "section": "6.3 Jitter",
+    "text": "6.3 Jitter\nIf you want to avoid over plotting, use the position argument and supply it the value 'jitter'. It adds random noise to a plot and makes it easier to read.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg), position = 'jitter')\n\n\n\n\n\n\n\n\nAnother way to avoid over plotting is to use geom_jitter().\n\nggplot(mtcars) +\n  geom_jitter(aes(disp, mpg))",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Scatter Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scatter-plot.html#aesthetics",
+    "href": "ggplot2-scatter-plot.html#aesthetics",
+    "title": "6  Scatter Plots",
+    "section": "6.4 Aesthetics",
+    "text": "6.4 Aesthetics\nNow let us modify the appearance of the points. There are two ways:\n\nspecify values\nmap them to variables using aes()\n\n\n6.4.1 Specify Values\n\n6.4.1.1 Color\nTo modify the color of the points, you can use the color argument and supply it a valid color name. In the below example, we change the color of the points to 'blue'. Keep in mind that the color argument should be outside aes().\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg), color = 'blue', position = 'jitter')\n\n\n\n\n\n\n\n\n\n\n6.4.1.2 Alpha\nThe transparency of the color can be modified using the alpha argument. It takes values between 0 and 1.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg), color = 'blue', alpha = 0.4, position = 'jitter')\n\n\n\n\n\n\n\n\n\n\n6.4.1.3 Shape\nThe shape of the points can be modified using the shape argument. It takes values between 0 and 25.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg), shape = 3, position = 'jitter')\n\n\n\n\n\n\n\n\n\n\n6.4.1.4 Size\nThe size of the points can be modified using the size argument. It can take any value greater than 0.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg), size = 3, position = 'jitter')\n\n\n\n\n\n\n\n\n\n\n\n6.4.2 Map Variables\nSo far, we have specified values for color, shape, size etc. Now, let us map them to variables using aes().\n\n6.4.2.1 Color\nYou can modify the color of the points by mapping them to a variable using aes(). It allows you to examine the relationship between two continuous variables at different levels of a categorical variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl)), \n             position = 'jitter')\n\n\n\n\n\n\n\n\nThe color can be mapped to a conitnuous variable as well and in this case you will be able to examine the relationship betweem two continuous variable for a range of value of a third variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = hp), \n             position = 'jitter')\n\n\n\n\n\n\n\n\n\n\n6.4.2.2 Shape\nShape can be mapped to categorical variables. In the below example, we use factor() to convert cyl to categorical data before mapping shape to it. ggplot2 will throw an error if you map shape to a continuous variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, shape = factor(cyl)), position = 'jitter')\n\n\n\n\n\n\n\n\n\n\n6.4.2.3 Size\nSize must be always mapped to continuous variables. In the below example, we have mapped size to hp variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, size = hp), color = 'blue', position = 'jitter')\n\n\n\n\n\n\n\n\nIf you map size to categorical data as shown in the below example, ggplot2 will throw a warning.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, size = factor(cyl)), color = 'blue', position = 'jitter')",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Scatter Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scatter-plot.html#regression-line",
+    "href": "ggplot2-scatter-plot.html#regression-line",
+    "title": "6  Scatter Plots",
+    "section": "6.5 Regression Line",
+    "text": "6.5 Regression Line\ngeom_smooth() allows us to fit a regression line to the plot. By default it will use least squares method to fit the line but you can also use the loess method. In the below example, we fit a regression line using the least squares technique by supplying the value 'lm' to the method argument.\n\nggplot(mtcars, aes(disp, mpg)) +\n  geom_point(position = 'jitter') +\n  geom_smooth(method = 'lm', formula = y ~ x, se = FALSE)\n\n\n\n\n\n\n\n\nThe se argument will add a confidence interval around the regression line, if set to TRUE.\n\n6.5.0.1 Conf. Interval\n\nggplot(mtcars, aes(disp, mpg)) +\n  geom_point(position = 'jitter') +\n  geom_smooth(method = 'lm', formula = y ~ x, se = TRUE)\n\n\n\n\n\n\n\n\n\n\n6.5.0.2 Loess Method\nIn the below example, we use the loess method instead of the default least squares method to fit the regression line.\n\nggplot(mtcars, aes(disp, mpg)) +\n  geom_point(position = 'jitter') +\n  geom_smooth(method = 'loess', formula = y ~ x, se = FALSE)\n\n\n\n\n\n\n\n\n\n\n6.5.1 Intercept & Slope\nIf you know the intercept and the slope of the line, you can use geom_abline(). Let us regress mpg over disp and then use the result to add the line.\n\nlm(mpg ~ disp, data = mtcars)\n\n\nCall:\nlm(formula = mpg ~ disp, data = mtcars)\n\nCoefficients:\n(Intercept)         disp  \n   29.59985     -0.04122  \n\n\n\n\n6.5.2 Add Line\n\nggplot(mtcars, aes(disp, mpg)) +\n  geom_point(position = 'jitter') +\n  geom_abline(slope = -0.04122, intercept = 29.59985)",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Scatter Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scatter-plot.html#exercises",
+    "href": "ggplot2-scatter-plot.html#exercises",
+    "title": "6  Scatter Plots",
+    "section": "6.6 Exercises",
+    "text": "6.6 Exercises\n\nColor the disp vs mpg points by cylinders with a plain Cylinders title.\nAdd a trend line with geom_smooth(): explicit formula = y ~ x, no confidence band.\nRewrite the plot with a message-first title and theme_minimal().\n\nWorked solutions in solutions/scatter.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Scatter Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scatter-plot.html#where-to-go-next",
+    "href": "ggplot2-scatter-plot.html#where-to-go-next",
+    "title": "6  Scatter Plots",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org) for theory behind this layer\nClaus Wilke, Fundamentals of Data Visualization, for perception guidance",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Scatter Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-line-graph.html",
+    "href": "ggplot2-line-graph.html",
+    "title": "7  Line Graphs",
+    "section": "",
+    "text": "7.1 Introduction\nIn this chapter, we will learn to:",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Line Graphs</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-line-graph.html#introduction",
+    "href": "ggplot2-line-graph.html#introduction",
+    "title": "7  Line Graphs",
+    "section": "",
+    "text": "NoteWhy this chart\n\n\n\nLine graphs show change over an ordered axis, usually time; slope is the message.\n\n\n\n\n\n\n\n\nWarningCommon pitfall\n\n\n\nUnsorted or gappy x values draw zigzag lines; sort by x and handle missing periods explicitly.\n\n\n\n\nbuild\n\nsimple line chart\ngrouped line chart\n\nmap aesthetics to variables\nmodify line\n\ncolor\ntype\nsize",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Line Graphs</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-line-graph.html#case-study",
+    "href": "ggplot2-line-graph.html#case-study",
+    "title": "7  Line Graphs",
+    "section": "7.2 Case Study",
+    "text": "7.2 Case Study\nWe will use a data set related to GDP growth rate. You can download it from here. It contains GDP (Gross Domestic Product) growth data for the BRICS (Brazil, Russia, India, China, South Africa) for the years 2000 to 2005.\n\n7.2.1 Data\n\ngdp &lt;- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv')\ngdp\n\n# A tibble: 6 × 6\n   ...1     X year       growth india china\n  &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     1     1 2000-01-01      6     5     8\n2     2     2 2001-01-01      9     9     5\n3     3     3 2002-01-01      8     8     6\n4     4     4 2003-01-01      9     8     8\n5     5     5 2004-01-01      9     5     9\n6     6     6 2005-01-01      8     7     8",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Line Graphs</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-line-graph.html#line-chart",
+    "href": "ggplot2-line-graph.html#line-chart",
+    "title": "7  Line Graphs",
+    "section": "7.3 Line Chart",
+    "text": "7.3 Line Chart\nTo create a line chart, use geom_line(). In the below example, we examine the GDP growth rate trend of India for the years 2000 to 2005.\n\nggplot(gdp, aes(year, india)) +\n  geom_line()\n\n\n\n\n\n\n\n\n\n7.3.1 Line Color\nTo modify the color of the line, use the color argument and supply it a valid color name. In the below example, we modify the color of the line to 'blue'. Remember that the color argument should be outside aes().\n\nggplot(gdp, aes(year, india)) +\n  geom_line(color = 'blue')\n\n\n\n\n\n\n\n\n\n\n7.3.2 Line Type\nThe line type can be modified using the linetype argument. It can take 7 different values. You can specify the line type either using numbers or words as shown below:\n\n0 : blank\n1 : solid\n2 : dashed\n3 : dotted\n4 : dotdash\n5 : longdash\n6 : twodash\n\nLet us modify the line type to dashed style by supplying the value 2 to the linetype argument.\n\nggplot(gdp, aes(year, india)) +\n  geom_line(linetype = 2)\n\n\n\n\n\n\n\n\nThe above example can be recreated by supplying the value 'dashed' instead of 2.\n\nggplot(gdp, aes(year, india)) +\n  geom_line(linetype = 'dashed')\n\n\n\n\n\n\n\n\n\n\n7.3.3 Line Size\nThe width of the line can be modified using the linewidth argument. It can take any value above 0 as input.\n\nggplot(gdp, aes(year, india)) +\n  geom_line(linewidth = 2)",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Line Graphs</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-line-graph.html#multiple-lines",
+    "href": "ggplot2-line-graph.html#multiple-lines",
+    "title": "7  Line Graphs",
+    "section": "7.4 Multiple Lines",
+    "text": "7.4 Multiple Lines\n\n7.4.1 Modify Data\nNow let us map the aesthetics to the variables. The data used in the above example cannot be used as we need a variable with country names. We will use pivot_longer() function from the tidyr package to reshape the data.\n\ngdp2 &lt;- gdp |&gt;\n  select(year, growth, india, china) |&gt;\n  tidyr::pivot_longer(cols = -year, names_to = \"country\", values_to = \"gdp\")\n\ngdp2\n\n# A tibble: 18 × 3\n   year       country   gdp\n   &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;\n 1 2000-01-01 growth      6\n 2 2000-01-01 india       5\n 3 2000-01-01 china       8\n 4 2001-01-01 growth      9\n 5 2001-01-01 india       9\n 6 2001-01-01 china       5\n 7 2002-01-01 growth      8\n 8 2002-01-01 india       8\n 9 2002-01-01 china       6\n10 2003-01-01 growth      9\n11 2003-01-01 india       8\n12 2003-01-01 china       8\n13 2004-01-01 growth      9\n14 2004-01-01 india       5\n15 2004-01-01 china       9\n16 2005-01-01 growth      8\n17 2005-01-01 india       7\n18 2005-01-01 china       8\n\n\nIn the original data, to plot GDP trend of multiple countries we will have to use geom_line() multiple times. But in the reshaped data, we have the country names as one of the variables and this can be used along with the group argument to plot data of multiple countries with a single line of code as shown below. By mapping country to the group argument, we have plotted data of all countries.\n\nggplot(gdp2, aes(year, gdp, group = country)) +\n  geom_line()\n\n\n\n\n\n\n\n\nIn the above plot, we cannot distinguish between the lines and there is no way to identify which line represents which country. To make it easier to identify the trend of different countries, let us map the color argument to the variable country as shown below. Now, each country will be represented by line of different color.\n\nggplot(gdp2, aes(year, gdp, group = country)) +\n  geom_line(aes(color = country))\n\n\n\n\n\n\n\n\nWe can map linetype argument to country as well. In this case, each country will be represented by a different line type.\n\nggplot(gdp2, aes(year, gdp, group = country)) +\n  geom_line(aes(linetype = country))\n\n\n\n\n\n\n\n\nWe can map the width of the line to the variable country as well. But in this case, the plot does not look either elegant or intuitive.\n\nggplot(gdp2, aes(year, gdp, group = country)) +\n  geom_line(aes(linewidth = country))\n\n\n\n\n\n\n\n\nRemember that in all the above cases, we mapped the arguments to a variable inside aes().",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Line Graphs</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-line-graph.html#exercises",
+    "href": "ggplot2-line-graph.html#exercises",
+    "title": "7  Line Graphs",
+    "section": "7.5 Exercises",
+    "text": "7.5 Exercises\n\nDraw the unemploy series from economics over date with linewidth = 1.\nReshape unemploy + uempmed to long format and draw both series distinguished by color.\nRewrite the plot with a message-first title and units on the y axis.\n\nWorked solutions in solutions/line.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Line Graphs</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-line-graph.html#where-to-go-next",
+    "href": "ggplot2-line-graph.html#where-to-go-next",
+    "title": "7  Line Graphs",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org) for theory behind this layer\nClaus Wilke, Fundamentals of Data Visualization, for perception guidance",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Line Graphs</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-bar-plot.html",
+    "href": "ggplot2-bar-plot.html",
+    "title": "8  Bar Plots",
+    "section": "",
+    "text": "8.1 Introduction\nIn this chapter, we will learn to:",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bar Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-bar-plot.html#introduction",
+    "href": "ggplot2-bar-plot.html#introduction",
+    "title": "8  Bar Plots",
+    "section": "",
+    "text": "NoteWhy this chart\n\n\n\nBars encode amounts with length, making comparisons across categories instant.\n\n\n\n\n\n\n\n\nWarningCommon pitfall\n\n\n\nTruncating the value axis exaggerates differences; start bars at zero unless you say otherwise.\n\n\n\n\nbuild\n\nsimple bar plot\nstacked bar plot\ngrouped bar plot\nproportional bar plot\n\nmap aesthetics to variables\nspecify values for\n\nbar color\nbar line color\nbar line type\nbar line size",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bar Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-bar-plot.html#data",
+    "href": "ggplot2-bar-plot.html#data",
+    "title": "8  Bar Plots",
+    "section": "8.2 Data",
+    "text": "8.2 Data\n\necom &lt;- read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/ecom.csv',\n  col_types = list(col_factor(levels = c('Desktop', 'Mobile', 'Tablet')), \n  col_logical(), col_logical(), \n  col_factor(levels = c('Affiliates', 'Direct', 'Display', 'Organic', 'Paid', 'Referral', 'Social'))))\necom\n\n# A tibble: 5,000 × 4\n   device  bouncers purchase referrer  \n   &lt;fct&gt;   &lt;lgl&gt;    &lt;lgl&gt;    &lt;fct&gt;     \n 1 Desktop FALSE    FALSE    Affiliates\n 2 Mobile  FALSE    FALSE    Affiliates\n 3 Desktop TRUE     FALSE    Organic   \n 4 Desktop FALSE    FALSE    Organic   \n 5 Mobile  TRUE     FALSE    Direct    \n 6 Desktop TRUE     FALSE    Direct    \n 7 Desktop FALSE    FALSE    Referral  \n 8 Tablet  TRUE     FALSE    Organic   \n 9 Mobile  TRUE     FALSE    Social    \n10 Desktop TRUE     FALSE    Organic   \n# ℹ 4,990 more rows\n\n\n\n8.2.1 Data Dictionary\n\ndevice: device used to visit the website\nbouncers: whether visit was a bouncer (exit website from landing page)\npurchase: whether visitor purchased\nreferrer: referrer website/search engine",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bar Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-bar-plot.html#basic-plot",
+    "href": "ggplot2-bar-plot.html#basic-plot",
+    "title": "8  Bar Plots",
+    "section": "8.3 Basic Plot",
+    "text": "8.3 Basic Plot\nWe can create a bar plot using geom_bar(). It takes a single input, a categorical variable. In the below example, we plot the number of visits for each device type.\n\nggplot(ecom) +\n  geom_bar(aes(device))",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bar Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-bar-plot.html#bar-color",
+    "href": "ggplot2-bar-plot.html#bar-color",
+    "title": "8  Bar Plots",
+    "section": "8.4 Bar Color",
+    "text": "8.4 Bar Color\nThe color of the bars can be modified using the fill argument. In the below example, we assign different colors to the 3 bars in the plot. If you use the color argument, it will modify the color of the bar line and not the background color of the bars. We will look at that later in the chapter.\n\nggplot(ecom) +\n  geom_bar(aes(device), fill = c('red', 'blue', 'green'))",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bar Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-bar-plot.html#stacked-bar-plot",
+    "href": "ggplot2-bar-plot.html#stacked-bar-plot",
+    "title": "8  Bar Plots",
+    "section": "8.5 Stacked Bar Plot",
+    "text": "8.5 Stacked Bar Plot\nIf you want to look at distribution of one categorical variable across the levels of another categorical variable, you can create a stacked bar plot. In ggplot2, a stacked bar plot is created by mapping the fill argument to the second categorical variable. In the below example, we have mapped fill to referrer variable.\n\nggplot(ecom) +\n  geom_bar(aes(device, fill = referrer))",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bar Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-bar-plot.html#grouped-bar-plot",
+    "href": "ggplot2-bar-plot.html#grouped-bar-plot",
+    "title": "8  Bar Plots",
+    "section": "8.6 Grouped Bar Plot",
+    "text": "8.6 Grouped Bar Plot\nGrouped bar plots are a variation of stacked bar plots. Instead of being stacked on top of one another, the bars are placed next to one another and grouped by levels. In the below example, we create a grouped bar plot and you can observe that the bars are placed next to one another instead of being stacked as was shown in the previous example. To create a grouped bar plot, use the position argument and set it to 'dodge'.\n\nggplot(ecom) +\n  geom_bar(aes(device, fill = referrer), position = 'dodge')",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bar Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-bar-plot.html#proportional-bar-plot",
+    "href": "ggplot2-bar-plot.html#proportional-bar-plot",
+    "title": "8  Bar Plots",
+    "section": "8.7 Proportional Bar Plot",
+    "text": "8.7 Proportional Bar Plot\nIn a proportional bar plot, the height of all the bars is proportional or same. To create a proportional bar plot, use the position argument and set it to 'fill'.\n\nggplot(ecom) +\n  geom_bar(aes(device, fill = referrer), position = 'fill')",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bar Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-bar-plot.html#horizontal-bar-plot",
+    "href": "ggplot2-bar-plot.html#horizontal-bar-plot",
+    "title": "8  Bar Plots",
+    "section": "8.8 Horizontal Bar Plot",
+    "text": "8.8 Horizontal Bar Plot\nA horizontal bar plot can be created by flipping the coordinate axes of a regular plot. To flip the axes, use coord_flip() as shown below.\n\nggplot(ecom) +\n  geom_bar(aes(device, fill = referrer)) +\n  coord_flip()",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bar Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-bar-plot.html#bar-line",
+    "href": "ggplot2-bar-plot.html#bar-line",
+    "title": "8  Bar Plots",
+    "section": "8.9 Bar Line",
+    "text": "8.9 Bar Line\nThe color of the bar line can be modified using the color argument. The color can be specified either using its name or hex code.\n\nggplot(ecom) +\n  geom_bar(aes(device), fill = 'white', color = c('red', 'blue', 'green'))\n\n\n\n\n\n\n\n\nTo modify the line type of the bar line, use the linetype argument. It can take values between 0 and 6.\n\nggplot(ecom) +\n  geom_bar(aes(device), fill = 'white',  color = 'black', linetype = 2)\n\n\n\n\n\n\n\n\nThe width of the bar line can be modified using the linewidth argument. It can take any value greater than 0.\n\nggplot(ecom) +\n  geom_bar(aes(device), fill = 'white', color = 'black', linewidth = 2)",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bar Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-bar-plot.html#exercises",
+    "href": "ggplot2-bar-plot.html#exercises",
+    "title": "8  Bar Plots",
+    "section": "8.10 Exercises",
+    "text": "8.10 Exercises\n\nDraw counts of cars per cylinder class from mtcars.\nGroup by gears with dodged bars, gap tuned via position_dodge(width = 0.8).\nRewrite the plot with a message-first title; keep bars starting at zero.\n\nWorked solutions in solutions/bar.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bar Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-bar-plot.html#where-to-go-next",
+    "href": "ggplot2-bar-plot.html#where-to-go-next",
+    "title": "8  Bar Plots",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org) for theory behind this layer\nClaus Wilke, Fundamentals of Data Visualization, for perception guidance",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Bar Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-box-plot.html",
+    "href": "ggplot2-box-plot.html",
+    "title": "9  Box Plots",
+    "section": "",
+    "text": "9.1 Introduction\nIn this chapter, we will learn to:\nThe box plot is a standardized way of displaying the distribution of data. It is useful for detecting outliers and for comparing distributions and shows the shape, central tendancy and variability of the data.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Box Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-box-plot.html#introduction",
+    "href": "ggplot2-box-plot.html#introduction",
+    "title": "9  Box Plots",
+    "section": "",
+    "text": "NoteWhy this chart\n\n\n\nBox plots compress a distribution into median, quartiles and outliers for fast group comparison.\n\n\n\n\n\n\n\n\nWarningCommon pitfall\n\n\n\nHiding sample size misleads; a slim box from n=5 looks as confident as one from n=5000.\n\n\n\n\nbuild box plots\nmodify box\n\ncolor\nfill\nalpha\nline size\nline type\n\nmodify outlier\n\ncolor\nshape\nsize\nalpha",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Box Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-box-plot.html#structure",
+    "href": "ggplot2-box-plot.html#structure",
+    "title": "9  Box Plots",
+    "section": "9.2 Structure",
+    "text": "9.2 Structure\n\nthe body of the boxplot consists of a “box” (hence, the name), which goes from the first quartile (Q1) to the third quartile (Q3)\nwithin the box, a vertical line is drawn at the Q2, the median of the data set\ntwo horizontal lines, called whiskers, extend from the front and back of the box\nthe front whisker goes from Q1 to the smallest non-outlier in the data set, and the back whisker goes from Q3 to the largest non-outlier\nif the data set includes one or more outliers, they are plotted separately as points on the chart",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Box Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-box-plot.html#data",
+    "href": "ggplot2-box-plot.html#data",
+    "title": "9  Box Plots",
+    "section": "9.3 Data",
+    "text": "9.3 Data\nWe are going to use two different data sets in this chapter. Both the data sets have the same data but are in different formats.\n\ndaily_returns &lt;- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/tickers.csv')\ndaily_returns\n\n# A tibble: 250 × 5\n      AAPL   AMZN      FB    GOOG    MSFT\n     &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;\n 1  1.38    24.2   2.12    22.4    1.12  \n 2  2.83     3.25 -0.860    5.99   0.767 \n 3 -0.0394   9.91  1.45     6.75   0.973 \n 4  0.108    3.76 -0.770  -10.7   -0.285 \n 5  1.64    19.8   4.75     8.66   0.501 \n 6  0.0689   5.33 -0.300   -0.930  0.256 \n 7 -0.561   -5.21 -0.630   -7.28  -0.708 \n 8  0.551    0.25 -0.460    0.690  0.128 \n 9 -0.217  -13.6   0.0300   6.56   0.0786\n10 -0.108   -4.25  0.460    2.60   0.472 \n# ℹ 240 more rows",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Box Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-box-plot.html#single-plot",
+    "href": "ggplot2-box-plot.html#single-plot",
+    "title": "9  Box Plots",
+    "section": "9.4 Single Plot",
+    "text": "9.4 Single Plot\nIf you are not comparing the distribution of continuous data, you can create box plot for a single variable. Map the variable to y and add geom_boxplot(). In the below example, we examine the distribution of stock returns of Apple.\n\nggplot(daily_returns) +\n  geom_boxplot(aes(y = AAPL))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nOlder code (including earlier editions of this book) used aes(x = factor(1)) as a dummy grouping variable for single boxplots. That workaround is no longer needed but still renders, so you may encounter it in the wild.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Box Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-box-plot.html#compare-distributions",
+    "href": "ggplot2-box-plot.html#compare-distributions",
+    "title": "9  Box Plots",
+    "section": "9.5 Compare Distributions",
+    "text": "9.5 Compare Distributions\n\n9.5.1 Data\nFor the rest of the chapter, we will use the below data set. Instead of 5 columns, we have two columns. One for the stock names and another for returns.\n\ntidy_returns &lt;- \n  read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/tidy_tickers.csv',\n  col_types = list(col_factor(levels = c('AAPL', 'AMZN', 'FB', 'GOOG', 'MSFT')), col_double()))\ntidy_returns\n\n# A tibble: 1,254 × 2\n   stock returns\n   &lt;fct&gt;   &lt;dbl&gt;\n 1 AAPL   1.38  \n 2 AAPL   2.83  \n 3 AAPL  -0.0394\n 4 AAPL   0.108 \n 5 AAPL   1.64  \n 6 AAPL   0.0689\n 7 AAPL  -0.561 \n 8 AAPL   0.551 \n 9 AAPL  -0.217 \n10 AAPL  -0.108 \n# ℹ 1,244 more rows\n\n\nWith the above data, let us create a box plot where we compate the distribution of stock returns of different companies. We map X axis to the column with stock names and Y axis to the column with stock returns. Note that, the column names are wrapped inside aes().\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns))\n\n\n\n\n\n\n\n\nTo create a horizontal bar plot, we can use coord_flip() which will flip the coordinate axes.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Box Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-box-plot.html#horizontal-box-plot",
+    "href": "ggplot2-box-plot.html#horizontal-box-plot",
+    "title": "9  Box Plots",
+    "section": "9.6 Horizontal Box Plot",
+    "text": "9.6 Horizontal Box Plot\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns)) +\n  coord_flip()\n\n\n\n\n\n\n\n\n\n9.6.1 Notch\nNotches are used to compare medians. You can use the notch argument and set it to TRUE.\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns),\n    notch = TRUE) \n\n\n\n\n\n\n\n\n\n\n9.6.2 Jitter\nJust for comparison, let us plot the returns as points on top of the box plot using geom_jitter(). We modify the color of the points using the color argument and the spread using the width argument.\n\nggplot(tidy_returns, aes(x = stock, y = returns)) +\n  geom_boxplot() +\n  geom_jitter(width = 0.2, color = 'blue')",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Box Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-box-plot.html#outliers",
+    "href": "ggplot2-box-plot.html#outliers",
+    "title": "9  Box Plots",
+    "section": "9.7 Outliers",
+    "text": "9.7 Outliers\nTo highlight extreme observations, we can modify the appearance of outliers using the following:\n\ncolor\nshape\nsize\nalpha\n\nTo modify the color of the outliers, use the outlier.color argument. The color can be specified either using its name or the associated hex code.\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns), outlier.color = 'red')\n\n\n\n\n\n\n\n\nThe shape of the outlier can be modified using the outlier.shape argument. It can take values between 0 and 25.\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns), outlier.shape = 23) \n\n\n\n\n\n\n\n\nThe size of the outlier can be modified using the outlier.size argument. It can take any value greater than 0.\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns), outlier.size = 3) \n\n\n\n\n\n\n\n\nYou can play around with the transparency of the outlier using the outlier.alpha argument. It can take values between 0 and 1.\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns), outlier.color = 'blue', outlier.alpha = 0.3)",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Box Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-box-plot.html#aesthetics",
+    "href": "ggplot2-box-plot.html#aesthetics",
+    "title": "9  Box Plots",
+    "section": "9.8 Aesthetics",
+    "text": "9.8 Aesthetics\nThe appearance of the box can be controlled using the following:\n\ncolor\nfill\nalpha\nline type\nline width\n\n\n9.8.1 Specify Values\nThe background color of the box can be modified using the fill argument. The color can be specified either using its name or the associated hex code.\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns), fill = c('blue', 'red', 'green', 'yellow', 'brown')) \n\n\n\n\n\n\n\n\nTo modify the transparency of the background color, use the alpha argument. It can take any value between 0 and 1.\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns), fill = 'blue', alpha = 0.3) \n\n\n\n\n\n\n\n\nThe color of the border can be modified using the color argument. The color can be specified either using its name or the associated hex code.\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns), color = c('blue', 'red', 'green', 'yellow', 'brown')) \n\n\n\n\n\n\n\n\nThe width of the border can be changed using the linewidth argument. It can take any value greater than 0.\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns), linewidth = 1.5) \n\n\n\n\n\n\n\n\nTo change the line type of the border, use the linetype argument. It can take any value between 0 and 6.\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns), linetype = 2)",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Box Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-box-plot.html#map-variables",
+    "href": "ggplot2-box-plot.html#map-variables",
+    "title": "9  Box Plots",
+    "section": "9.9 Map Variables",
+    "text": "9.9 Map Variables\nInstead of specifying values, we can map fill and color to variables as well. In the below example, we map fill to the variable stock. It assigns different colors to the different stocks.\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns, fill = stock)) \n\n\n\n\n\n\n\n\nLet us map color to the variable stock. It will assign different colors to the box borders.\n\nggplot(tidy_returns) +\n  geom_boxplot(aes(x = stock, y = returns, color = stock))",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Box Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-box-plot.html#exercises",
+    "href": "ggplot2-box-plot.html#exercises",
+    "title": "9  Box Plots",
+    "section": "9.10 Exercises",
+    "text": "9.10 Exercises\n\nDraw mileage by cylinders from mtcars.\nDraw a single-variable boxplot of mpg using modern syntax (no factor(1)).\nRewrite the grouped plot with a message-first title and no redundant legend.\n\nWorked solutions in solutions/box.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Box Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-box-plot.html#where-to-go-next",
+    "href": "ggplot2-box-plot.html#where-to-go-next",
+    "title": "9  Box Plots",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org) for theory behind this layer\nClaus Wilke, Fundamentals of Data Visualization, for perception guidance",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Box Plots</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-histogram.html",
+    "href": "ggplot2-histogram.html",
+    "title": "10  Histograms",
+    "section": "",
+    "text": "10.1 Introduction\nIn this chapter, we will learn to\nA histogram is a plot that can be used to examine the shape and spread of continuous data. It looks very similar to a bar graph and can be used to detect outliers and skewness in data. The histogram graphically shows the following:\nTo construct a histogram, the data is split into intervals called bins. The intervals may or may not be equal sized. For each bin, the number of data points that fall into it are counted (frequency). The Y axis of the histogram represents the frequency and the X axis represents the variable.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Histograms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-histogram.html#introduction",
+    "href": "ggplot2-histogram.html#introduction",
+    "title": "10  Histograms",
+    "section": "",
+    "text": "NoteWhy this chart\n\n\n\nHistograms show the shape of one continuous variable: center, spread, skew and gaps.\n\n\n\n\n\n\n\n\nWarningCommon pitfall\n\n\n\nBin width drives the story; try several widths before concluding a distribution is bimodal.\n\n\n\n\nbuild histogram\nspecify bins\nmodify\n\ncolor\nfill\nalpha\nbin width\nline type\nline size\n\nmap aesthetics to variables\n\n\n\ncenter (location) of the data\nspread (dispersion) of the data\nskewness\noutliers\npresence of multiple modes",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Histograms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-histogram.html#data",
+    "href": "ggplot2-histogram.html#data",
+    "title": "10  Histograms",
+    "section": "10.2 Data",
+    "text": "10.2 Data\n\necom &lt;- readr::read_csv('https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv')\necom\n\n# A tibble: 1,000 × 11\n      id referrer device bouncers n_visit n_pages duration country      purchase\n   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;lgl&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;lgl&gt;   \n 1     1 google   laptop TRUE          10       1      693 Czech Repub… FALSE   \n 2     2 yahoo    tablet TRUE           9       1      459 Yemen        FALSE   \n 3     3 direct   laptop TRUE           0       1      996 Brazil       FALSE   \n 4     4 bing     tablet FALSE          3      18      468 China        TRUE    \n 5     5 yahoo    mobile TRUE           9       1      955 Poland       FALSE   \n 6     6 yahoo    laptop FALSE          5       5      135 South Africa FALSE   \n 7     7 yahoo    mobile TRUE          10       1       75 Bangladesh   FALSE   \n 8     8 direct   mobile TRUE          10       1      908 Indonesia    FALSE   \n 9     9 bing     mobile FALSE          3      19      209 Netherlands  FALSE   \n10    10 google   mobile TRUE           6       1      208 Czech Repub… FALSE   \n# ℹ 990 more rows\n# ℹ 2 more variables: order_items &lt;dbl&gt;, order_value &lt;dbl&gt;\n\n\n\n10.2.1 Data Dictionary\n\nid: row id\nreferrer: referrer website/search engine\ndevice: device used to visit the website\nbouncers: whether the visit bounced (single page viewed)\nn_visit: number of visits\nn_pages: number of pages visited\nduration: time spent on the website (in seconds)\ncountry: country of origin\npurchase: whether visitor purchased\norder_items: number of items ordered\norder_value: order value of visitor (in dollars)",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Histograms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-histogram.html#plot",
+    "href": "ggplot2-histogram.html#plot",
+    "title": "10  Histograms",
+    "section": "10.3 Plot",
+    "text": "10.3 Plot\nTo create a histogram, we will use geom_histogram() and specify the variable name within aes(). In the below example, we create histogram of the variable n_visit.\n\nggplot(ecom) +\n  geom_histogram(aes(n_visit))\n\n\n\n\n\n\n\n\n\n10.3.1 Specify Bins\nThe default number of bins in ggplot2 is 30. You can modify the number of bins using the bins argument. In the below example, we create a histogram with 7 bins.\n\nggplot(ecom) +\n  geom_histogram(aes(n_visit), bins = 7)",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Histograms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-histogram.html#aesthetics",
+    "href": "ggplot2-histogram.html#aesthetics",
+    "title": "10  Histograms",
+    "section": "10.4 Aesthetics",
+    "text": "10.4 Aesthetics\nNow that we know how to create a histogram, let us learn to modify its appearance. We will begin with the background color. Use the fill argument to modify the background color of the histogram. In the below case, we change the color of the histogram to ‘blue’.\n\nggplot(ecom) +\n  geom_histogram(aes(n_visit), bins = 7, fill = 'blue')\n\n\n\n\n\n\n\n\nAs we have learnt before, the transparency of the background color can be modified using the alpha argument. It can take any value between 0 and 1.\n\nggplot(ecom) +\n  geom_histogram(aes(n_visit), bins = 7, fill = 'blue', alpha = 0.3)\n\n\n\n\n\n\n\n\nThe color of the histogram border can be modified using the color argument. The color can be specified either using its name or the associated hex code.\n\nggplot(ecom) +\n  geom_histogram(aes(n_visit), bins = 7, fill = 'white', color = 'blue')",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Histograms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-histogram.html#putting-it-all-together",
+    "href": "ggplot2-histogram.html#putting-it-all-together",
+    "title": "10  Histograms",
+    "section": "10.5 Putting it all together…",
+    "text": "10.5 Putting it all together…\nLet us modify the bins, the background and border color of the histogram in the below example.\n\nggplot(ecom) +\n  geom_histogram(aes(n_visit), bins = 7, fill = 'blue', color = 'white')",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Histograms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-histogram.html#bin-width",
+    "href": "ggplot2-histogram.html#bin-width",
+    "title": "10  Histograms",
+    "section": "10.6 Bin Width",
+    "text": "10.6 Bin Width\nAnother way to control the number of bins in a histogram is by using the binwidth argument. In this case, we specify the width of the bins instead of the number of bins. As you can see, in the below example, we do not use the bins argument when using the binwidth argument. You can use either of them but not both.\n\nggplot(ecom) +\n  geom_histogram(aes(n_visit), binwidth = 2, fill = 'blue', color = 'black')",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Histograms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-histogram.html#line-type",
+    "href": "ggplot2-histogram.html#line-type",
+    "title": "10  Histograms",
+    "section": "10.7 Line Type",
+    "text": "10.7 Line Type\nThe line type of the histogram border can be modified using the linetype argument. It can take any integer value between 0 and 6.\n\nggplot(ecom) +\n  geom_histogram(aes(n_visit), bins = 5, fill = 'white', \n    color = 'blue', linetype = 3)",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Histograms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-histogram.html#line-size",
+    "href": "ggplot2-histogram.html#line-size",
+    "title": "10  Histograms",
+    "section": "10.8 Line Size",
+    "text": "10.8 Line Size\nUse the linewidth argument to modify the width of the border of the histogram bins. It can take any value greater than 0.\n\nggplot(ecom) +\n  geom_histogram(aes(n_visit), bins = 5, fill = 'white', \n    color = 'blue', linewidth = 1.25)",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Histograms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-histogram.html#map-variables",
+    "href": "ggplot2-histogram.html#map-variables",
+    "title": "10  Histograms",
+    "section": "10.9 Map Variables",
+    "text": "10.9 Map Variables\nYou can map the aesthetics to variables as well. In the below example, we map fill to the device variable. You can try mapping color, linetype and linewidth to variables as well.\n\nggplot(ecom) +\n  geom_histogram(aes(n_visit, fill = device), bins = 7)",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Histograms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-histogram.html#exercises",
+    "href": "ggplot2-histogram.html#exercises",
+    "title": "10  Histograms",
+    "section": "10.10 Exercises",
+    "text": "10.10 Exercises\n\nDraw the mpg distribution from mtcars with 10 bins.\nMap density instead of counts using after_stat().\nRewrite the plot with a message-first title and labeled axes.\n\nWorked solutions in solutions/histogram.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Histograms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-histogram.html#where-to-go-next",
+    "href": "ggplot2-histogram.html#where-to-go-next",
+    "title": "10  Histograms",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org) for theory behind this layer\nClaus Wilke, Fundamentals of Data Visualization, for perception guidance",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Histograms</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-modify-axis.html",
+    "href": "ggplot2-modify-axis.html",
+    "title": "11  Modify Axis",
+    "section": "",
+    "text": "11.1 Continuous Axis\nIn this chapter, we will learn how to modify the X and Y axis using the\nfollowing functions:\nIf the X and Y axis represent continuous data, we can use scale_x_continuous() and scale_y_continuous() to modify the axis. They take the following arguments:\nLet us continue with the scatter plot we have used in previous chapter.\nggplot(mtcars) +\n  geom_point(aes(disp, mpg))\nThe name argument is used to modify the X axis label. In the below example, we change the X axis label to 'Displacement'. In previous chapters, we have used xlab() to work with the X axis label.\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  scale_x_continuous(name = \"Displacement\")\nTo modify the range, use the limits argument. It takes a vector of length 2 i.e. 2 values, the lower and upper limit of the range. It is an alternative for xlim().\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  scale_x_continuous(limits = c(0, 600))\nIn the above plot, the ticks on the X axis appear at 0, 200, 400 and 600. Let us say we want the ticks to appear more closer i.e. the difference between the tick should be reduced by 50. The breaks argument will allow us to specify where the ticks appear. It takes a numeric vector equal to the length of the number of ticks.\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  scale_x_continuous(breaks = c(150, 300, 450))\nWe can change the tick labels using the labels argument. In the below example, we use words instead of numbers. When adding labels, we need to ensure that the length of the breaks and labels are same.\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  scale_x_continuous(breaks = c(150, 300, 450),\n    labels = c('One Hundred Fifty', 'Three Hundred', 'Four Hundred Fifty'))\nThe position of the axes can be changed using the position argument. In the below example, we can move the axes to the top of the plot by supplying the value 'top'.\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  scale_x_continuous(position = 'top')",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Modify Axis</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-modify-axis.html#continuous-axis",
+    "href": "ggplot2-modify-axis.html#continuous-axis",
+    "title": "11  Modify Axis",
+    "section": "",
+    "text": "name\nlimits\nbreaks\nlabels\nposition\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11.1.1 Putting it all together..\n\nggplot(mtcars) + geom_point(aes(disp, mpg)) +\n  scale_x_continuous(name = \"Displacement\", limits = c(0, 600),\n                     breaks = c(0, 150, 300, 450, 600), position = 'top',\n                     labels = c('0', '150', '300', '450', '600'))\n\n\n\n\n\n\n\n\n\n\n11.1.2 Y Axis - Continuous\n\nggplot(mtcars) + geom_point(aes(disp, mpg)) +\n  scale_y_continuous(name = \"Miles Per Gallon\", limits = c(0, 45),\n                     breaks = c(0, 15, 30, 45), position = 'right',\n                     labels = c('0', '15', '30', '45'))",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Modify Axis</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-modify-axis.html#discrete-axis",
+    "href": "ggplot2-modify-axis.html#discrete-axis",
+    "title": "11  Modify Axis",
+    "section": "11.2 Discrete Axis",
+    "text": "11.2 Discrete Axis\nIf the X and Y axis represent discrete or categorical data, scale_x_discrete() and scale_y_discrete() can be used to modify them. They take the following arguments:\n\nname\nlabels\nbreaks\nposition\n\nThe above options serve the same purpose as in the case of continuous scales.\n\n11.2.1 Axis Label\n\nggplot(mtcars) +\n  geom_bar(aes(factor(cyl))) +\n  scale_x_discrete(name = \"Number of Cylinders\")\n\n\n\n\n\n\n\n\n\n\n11.2.2 Axis Tick Labels\n\nggplot(mtcars) +\n  geom_bar(aes(factor(cyl))) +\n  scale_x_discrete(labels = c(\"4\" = \"Four\", \"6\" = \"Six\", \"8\" = \"Eight\"))\n\n\n\n\n\n\n\n\n\n\n11.2.3 Axis Breaks\n\nggplot(mtcars) +\n  geom_bar(aes(factor(cyl))) +\n  scale_x_discrete(breaks = c(\"4\", \"6\", \"8\"))\n\n\n\n\n\n\n\n\n\n\n11.2.4 Axis Position\n\nggplot(mtcars) +\n  geom_bar(aes(factor(cyl))) +\n  scale_x_discrete(position = 'bottom')",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Modify Axis</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-modify-axis.html#putting-it-all-together",
+    "href": "ggplot2-modify-axis.html#putting-it-all-together",
+    "title": "11  Modify Axis",
+    "section": "11.3 Putting it all together…",
+    "text": "11.3 Putting it all together…\n\nggplot(mtcars) + geom_bar(aes(factor(cyl))) +\n  scale_x_discrete(name = \"Number of Cylinders\",\n    labels = c(\"4\" = \"Four\", \"6\" = \"Six\", \"8\" = \"Eight\"),\n    breaks = c(\"4\", \"6\", \"8\"), position = \"bottom\")",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Modify Axis</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-modify-axis.html#exercises",
+    "href": "ggplot2-modify-axis.html#exercises",
+    "title": "11  Modify Axis",
+    "section": "11.4 Exercises",
+    "text": "11.4 Exercises\n\nSet custom breaks on the x axis with scale_x_continuous().\nZoom to mpg &gt; 20 with coord_cartesian() without dropping data.\nExplain when coord_cartesian() beats limits for zooming.\n\nWorked solutions in solutions/axis.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Modify Axis</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-modify-axis.html#where-to-go-next",
+    "href": "ggplot2-modify-axis.html#where-to-go-next",
+    "title": "11  Modify Axis",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org) for theory behind this layer\nClaus Wilke, Fundamentals of Data Visualization, for perception guidance",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Modify Axis</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-modify-legend.html",
+    "href": "ggplot2-modify-legend.html",
+    "title": "12  Modify Legend",
+    "section": "",
+    "text": "12.1 Guide\nIn this chapter, we customize legend guides: titles, labels and colorbars using the guide argument with guide_legend() and guide_colorbar().\nIn this section, we will learn to modify\nSo far, we have learnt to modify the components of a legend using scale_* family of functions. Now, we will use the guide argument and supply it values using the guide_legend() function.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Modify Legend</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-modify-legend.html#guide",
+    "href": "ggplot2-modify-legend.html#guide",
+    "title": "12  Modify Legend",
+    "section": "",
+    "text": "title\nlabel\nand bar\n\n\n\nTitle\n\nTitle Alignment\nThe horizontal alignment of the title can be managed using the title.hjust argument. It can take any value between 0 and 1.\n\n0 (left)\n1 (right)\n\nIn the below example, we align the title to the center by assigning the value 0.5.\n\nggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(values = c(\"red\", \"blue\", \"green\"),\n    guide = guide_legend(title = \"Cylinders\", title.hjust = 0.5))\n\n\n\n\n\n\n\n\n\n\nTitle Alignment (Vertical)\nTo manage the vertical alignment of the title, use title.vjust.\n\nggplot(mtcars) + geom_point(aes(disp, mpg, color = hp)) +\n  scale_color_continuous(guide = guide_colorbar(\n    title = \"Horsepower\", title.position = \"top\", title.vjust = 1))\n\n\n\n\n\n\n\n\n\n\nTitle Position\nThe position of the title can be managed using title.position argument. It can be positioned at:\n\ntop\nbottom\nleft\nright\n\n\nggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(values = c(\"red\", \"blue\", \"green\"),\n    guide = guide_legend(title = \"Cylinders\", title.hjust = 0.5, \n      title.position = \"top\"))\n\n\n\n\n\n\n\n\n\n\n\nLabel\n\nLabel Position\nThe position of the label can be managed using the label.position argument. It can be positioned at:\n\ntop\nbottom\nleft\nright\n\nIn the below example, we position the label at right.\n\nggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(values = c(\"red\", \"blue\", \"green\"),\n    guide = guide_legend(label.position = \"right\"))\n\n\n\n\n\n\n\n\n\n\nLabel Alignment\nThe horizontal alignment of the label can be managed using the label.hjust argument. It can take any value between 0 and 1.\n\n0 (left)\n1 (right)\n\nIn the below example, we align the label to the center by assigning the value 0.5.\n\nalignment\n\n0 (left)\n1 (right)\n\n\n\nggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(values = c(\"red\", \"blue\", \"green\"),\n    guide = guide_legend(label.hjust = 0.5))\n\n\n\n\n\n\n\n\n\n\nLabels Alignment (Vertical)\nThe vertical alignment of the label can be managed using the label.vjust argument.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = hp)) +\n  scale_color_continuous(guide = guide_colorbar(\n    label.vjust = 0.8))\n\n\n\n\n\n\n\n\n\n\nDirection\nThe direction of the label can be either horizontal or vertical and it can be set using the direction argument.\n\nggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(values = c(\"red\", \"blue\", \"green\"),\n    guide = guide_legend(direction = \"horizontal\"))\n\n\n\n\n\n\n\n\n\n\nRows\nThe label can be spread across multiple rows using the nrow argument. In the below example, the label is spread across 2 rows.\n\nggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(values = c(\"red\", \"blue\", \"green\"),\n    guide = guide_legend(nrow = 2))\n\n\n\n\n\n\n\n\n\n\nReverse\nThe order of the labels can be reversed using the reverse argument. We need to supply logical values i.e. either TRUE or FALSE. If TRUE, the order will be reversed.\n\nggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(values = c(\"red\", \"blue\", \"green\"),\n    guide = guide_legend(reverse = TRUE))\n\n\n\n\n\n\n\n\n\n\nPutting it all together…\n\nggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(values = c(\"red\", \"blue\", \"green\"),\n    guide = guide_legend(title = \"Cylinders\", title.hjust = 0.5, \n      title.position = \"top\", label.position = \"right\", \n      direction = \"horizontal\", label.hjust = 0.5, nrow = 2, reverse = TRUE)\n  )\n\n\n\n\n\n\n\n\n\n\n\nLegend Bar\nSo far we have looked at modifying components of the legend when it acts as a guide for color, fill or shape i.e. when the aesthetics have been mapped to a categorical variable. In this section, you will learn about guide_colorbar() which will allow us to modify the legend when the aesthetics are mapped to a continuous variable.\n\nPlot\nLet us start with a scatter plot examining the relationship between displacement and miles per gallon from the mtcars data set. We will map the color of the points to the hp variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = hp))\n\n\n\n\n\n\n\n\n\n\nWidth\nThe width of the bar can be modified using the barwidth argument. It is used inside the guide_colorbar() function which itself is supplied to the guide argument of scale_color_continuous().\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = hp)) +\n  scale_color_continuous(guide = guide_colorbar(\n    barwidth = 10))\n\n\n\n\n\n\n\n\n\n\nHeight\nSimilarly, the height of the bar can be modified using the barheight argument.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = hp)) +\n  scale_color_continuous(guide = guide_colorbar(\n    barheight = 3))\n\n\n\n\n\n\n\n\n\n\nBins\nThe nbin argument allows us to specify the number of bins in the bar.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = hp)) +\n  scale_color_continuous(guide = guide_colorbar(\n    nbin = 4))\n\n\n\n\n\n\n\n\n\n\nTicks\nThe ticks of the bar can be removed using the ticks argument and setting it to FALSE.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = hp)) +\n  scale_color_continuous(guide = guide_colorbar(\n    ticks = FALSE))\n\n\n\n\n\n\n\n\n\n\nUpper/Lower Limits\nThe upper and lower limits of the bars can be drawn or undrawn using the draw.ulim and draw.llim arguments. They both accept logical values.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = hp)) +\n  scale_color_continuous(guide = guide_colorbar(\n    draw.ulim = TRUE, draw.llim = FALSE))\n\n\n\n\n\n\n\n\n\n\n12.1.0.1 Guides: Color, Shape & Size\nThe guides() function can be used to create multiple legends to act as a guide for color, shape, size etc. as shown below. First, we map color, shape and size to different variables. Next, in the guides() function, we supply values to each of the above aesthetics to indicate the type of legend.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = hp, \n    size = qsec, shape = factor(gear))) + \n  guides(color = \"colorbar\", shape = \"legend\", size = \"legend\")\n\n\n\n\n\n\n\n\n\n\nGuides: Title\nTo modify the components of the different legends, we must use the guide_* family of functions. In the below example, we use guide_colorbar() for the legend acting as guide for color mapped to a continuous variable and guide_legend() for the legends acting as guide for shape/size mapped to categorical variables.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = hp, size = wt, shape = factor(gear))) + \n  guides(color = guide_colorbar(title = \"Horsepower\"),\n    shape = guide_legend(title = \"Gear\"), size = guide_legend(title = \"Weight\")\n  )",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Modify Legend</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-modify-legend.html#exercises",
+    "href": "ggplot2-modify-legend.html#exercises",
+    "title": "12  Modify Legend",
+    "section": "12.2 Exercises",
+    "text": "12.2 Exercises\n\nCenter a legend title with guide_legend(title.hjust = 0.5).\nMove discrete legend labels with label.position.\nSize a colorbar with barwidth/barheight for a continuous guide.\n\nWorked solutions in solutions/legend.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Modify Legend</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-modify-legend.html#where-to-go-next",
+    "href": "ggplot2-modify-legend.html#where-to-go-next",
+    "title": "12  Modify Legend",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book scales and guides chapters",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Modify Legend</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-legend-color-fill.html",
+    "href": "ggplot2-legend-color-fill.html",
+    "title": "13  Legend: Color and Fill",
+    "section": "",
+    "text": "13.1 Color\nIn this chapter, we modify legend title, breaks, limits, labels and values when color or fill is mapped to categorical variables.\nWe will learn to modify the following when color is mapped to categorical variables:",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Legend: Color and Fill</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-legend-color-fill.html#color",
+    "href": "ggplot2-legend-color-fill.html#color",
+    "title": "13  Legend: Color and Fill",
+    "section": "",
+    "text": "title\nbreaks\nlimits\nlabels\nvalues\n\n\nBasic Plot\nLet us start with a scatter plot examining the relationship between displacement and miles per gallon from the mtcars data set. We will map the color of the points to the cyl variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl)))\n\n\n\n\n\n\n\n\nAs you can see, the legend acts as a guide for the color aesthetic. Now, let us learn to modify the different aspects of the legend.\n\n\nValues\nTo change the default colors in the legend, use the values argument and supply a character vector of color names. The number of colors specified must be equal to the number of levels in the categorical variable mapped. In the below example, cyl has 3 levels (4, 6, 8) and hence we have specified 3 colors.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(values = c(\"red\", \"blue\", \"green\"))\n\n\n\n\n\n\n\n\n\n\nTitle\nIn the previous example, the title of the legend (factor(cyl)) is not very intuitive. If the user does not know the underlying data, they will not be able to make any sense out of it. Let us change it to Cylinders using the name argument.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(name = \"Cylinders\", \n    values = c(\"red\", \"blue\", \"green\"))\n\n\n\n\n\n\n\n\nNow, the user will know that the different colors represent number of cylinders in the car.\n\n\nLimits\nLet us assume that we want to modify the data to be displayed i.e. instead of examining the relationship between mileage and displacement for all cars, we desire to look at only cars with at least 6 cylinders. One way to approach this would be to filter the data using filter from dplyr and then visualize it. Instead, we will use the limits argument and filter the data for visualization.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(values = c(\"red\", \"blue\", \"green\"), limits = c(6, 8))\n\n\n\n\n\n\n\n\nAs you can see above, ggplot2 returns a warning message indicating data related to 4 cylinders has been dropped. If you observe the legend, it now represents only 6 and 8 cylinders.\n\n\nLabels\nThe labels in the legend can be modified using the labels argument. Let us change the labels to Four, Six and Eight in the next example. Ensure that the labels are intuitive and easy to interpret for the end user of the plot.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(values = c(\"red\", \"blue\", \"green\"),\n    labels = c('Four', 'Six', 'Eight'))\n\n\n\n\n\n\n\n\n\n\nBreaks\nWhen there are large number of levels in the mapped variable, you may not want the labels in the legend to represent all of them. In such cases, we can use the breaks argument and specify the labels to be used. In the below case, we use the breaks argument to ensure that the labels in legend represent two levels (4, 8) of the mapped variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(values = c(\"red\", \"blue\", \"green\"),\n    breaks = c(4, 8))\n\n\n\n\n\n\n\n\n\n\nPutting it all together…\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_manual(name = \"Cylinders\", values = c(\"red\", \"blue\", \"green\"),\n    labels = c('Four', 'Six', 'Eight'), limits = c(4, 6, 8), breaks = c(4, 6, 8))",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Legend: Color and Fill</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-legend-color-fill.html#fill",
+    "href": "ggplot2-legend-color-fill.html#fill",
+    "title": "13  Legend: Color and Fill",
+    "section": "13.2 Fill",
+    "text": "13.2 Fill\nwe will learn to modify the following using scale_fill_manual() when fill is mapped to categorical variables:\n\ntitle\nbreaks\nlimits\nlabels\nvalues\n\n\nPlot\nLet us start with a scatter plot examining the relationship between displacement and miles per gallon from the mtcars data set. We will map fill to the cyl variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22)\n\n\n\n\n\n\n\n\nAs you can see, the legend acts as a guide for the color aesthetic. Now, let us learn to modify the different aspects of the legend.\n\n\nTitle\nThe title of the legend (factor(cyl)) is not very intuitive. If the user does not know the underlying data, they will not be able to make any sense out of it. Let us change it to Cylinders using the name argument.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +\n  scale_fill_manual(name = \"Cylinders\", \n    values = c(\"red\", \"blue\", \"green\"))\n\n\n\n\n\n\n\n\n\n\nValues\nTo change the default colors in the legend, use the values argument and supply a character vector of color names. The number of colors specified must be equal to the number of levels in the categorical variable mapped. In the below example, cyl has 3 levels (4, 6, 8) and hence we have specified 3 colors.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +\n  scale_fill_manual(values = c(\"red\", \"blue\", \"green\"))\n\n\n\n\n\n\n\n\n\n\nLabels\nThe labels in the legend can be modified using the labels argument. Let us change the labels to Four, Six and Eight in the next example. Ensure that the labels are intuitive and easy to interpret for the end user of the plot.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +\n  scale_fill_manual(values = c(\"red\", \"blue\", \"green\"),\n    labels = c('Four', 'Six', 'Eight'))\n\n\n\n\n\n\n\n\n\n\nLimits\nLet us assume that we want to modify the data to be displayed i.e. instead of examining the relationship between mileage and displacement for all cars, we desire to look at only cars with at least 6 cylinders. One way to approach this would be to filter the data using filter from dplyr and then visualize it. Instead, we will use the limits argument and filter the data for visualization.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +\n  scale_fill_manual(values = c(\"red\", \"blue\", \"green\"),\n    limits = c(6, 8))\n\n\n\n\n\n\n\n\nAs you can see above, ggplot2 returns a warning message indicating data related to 4 cylinders has been dropped. If you observe the legend, it now represents only 6 and 8 cylinders.\n\n\nBreaks\nWhen there are large number of levels in the mapped variable, you may not want the labels in the legend to represent all of them. In such cases, we can use the breaks argument and specify the labels to be used. In the below case, we use the breaks argument to ensure that the labels in legend represent two levels (4, 8) of the mapped variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +\n  scale_fill_manual(values = c(\"red\", \"blue\", \"green\"),\n    breaks = c(4, 8))\n\n\n\n\n\n\n\n\n\n\nPutting it all together…\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, fill = factor(cyl)), shape = 22) +\n  scale_fill_manual(name = \"Cylinders\", values = c(\"red\", \"blue\", \"green\"),\n    labels = c('Four', 'Six', 'Eight'), limits = c(4, 6, 8), breaks = c(4, 6, 8))",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Legend: Color and Fill</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-legend-color-fill.html#exercises",
+    "href": "ggplot2-legend-color-fill.html#exercises",
+    "title": "13  Legend: Color and Fill",
+    "section": "13.3 Exercises",
+    "text": "13.3 Exercises\n\nRecolor cylinder groups with scale_color_manual(values = ...).\nRename legend entries with the labels argument.\nShow only 4- and 8-cylinder levels with breaks and justify vs limits.\n\nWorked solutions in solutions/legend-color-fill.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Legend: Color and Fill</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-legend-color-fill.html#where-to-go-next",
+    "href": "ggplot2-legend-color-fill.html#where-to-go-next",
+    "title": "13  Legend: Color and Fill",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book scales and guides chapters",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Legend: Color and Fill</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-legend-shape-size-alpha.html",
+    "href": "ggplot2-legend-shape-size-alpha.html",
+    "title": "14  Legend: Shape Size and Alpha",
+    "section": "",
+    "text": "14.1 Shape\nIn this chapter, we modify legends when shape, size or alpha is mapped to variables.\nWe will learn to modify the following using scale_shape_manual when shape is mapped to categorical variables:",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Legend: Shape Size and Alpha</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-legend-shape-size-alpha.html#shape",
+    "href": "ggplot2-legend-shape-size-alpha.html#shape",
+    "title": "14  Legend: Shape Size and Alpha",
+    "section": "",
+    "text": "title\nbreaks\nlimits\nlabels\nvalues\n\n\nPlot\nLet us start with a scatter plot examining the relationship between displacement and miles per gallon from the mtcars data set. We will map the shape of the points to the cyl variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, shape = factor(cyl)))\n\n\n\n\n\n\n\n\nAs you can see, the legend acts as a guide for the shape aesthetic. Now, let us learn to modify the different aspects of the legend.\n\n\nTitle\nThe title of the legend (factor(cyl)) is not very intuitive. If the user does not know the underlying data, they will not be able to make any sense out of it. Let us change it to Cylinders using the name argument.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, shape = factor(cyl))) +\n  scale_shape_manual(name = \"Cylinders\", values = c(4, 12, 24))\n\n\n\n\n\n\n\n\nIf you have mapped shape/size to a discrete variable which has less than six categories, you can use scale_shape().\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, shape = factor(cyl))) +\n  scale_shape(name = 'Cylinders')\n\n\n\n\n\n\n\n\n\n\nValues\nTo change the default shapes in the legend, use the values argument and supply a numeric vector of shapes. The number of shapes specified must be equal to the number of levels in the categorical variable mapped. In the below example, cyl has 3 levels (4, 6, 8) and hence we have specified 3 different shapes.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, shape = factor(cyl))) +\n  scale_shape_manual(values = c(4, 12, 24))\n\n\n\n\n\n\n\n\n\n\nLabels\nThe labels in the legend can be modified using the labels argument. Let us change the labels to Four, Six and Eight in the next example. Ensure that the labels are intuitive and easy to interpret for the end user of the plot.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, shape = factor(cyl))) +\n  scale_shape_manual(values = c(4, 12, 24), labels = c('Four', 'Six', 'Eight'))\n\n\n\n\n\n\n\n\n\n\nLimits\nLet us assume that we want to modify the data to be displayed i.e. instead of examining the relationship between mileage and displacement for all cars, we desire to look at only cars with at least 6 cylinders. One way to approach this would be to filter the data using filter from dplyr and then visualize it. Instead, we will use the limits argument and filter the data for visualization.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, shape = factor(cyl))) +\n  scale_shape_manual(values = c(4, 24), limits = c(6, 8))\n\n\n\n\n\n\n\n\nAs you can see above, ggplot2 returns a warning message indicating data related to 4 cylinders has been dropped. If you observe the legend, it now represents only 6 and 8 cylinders.\n\n\nBreaks\nWhen there are large number of levels in the mapped variable, you may not want the labels in the legend to represent all of them. In such cases, we can use the breaks argument and specify the labels to be used. In the below case, we use the breaks argument to ensure that the labels in legend represent two levels (4, 8) of the mapped variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, shape = factor(cyl))) +\n  scale_shape_manual(values = c(4, 12, 24), breaks = c(4, 8))\n\n\n\n\n\n\n\n\n\n\nPutting it all together…\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, shape = factor(cyl))) +\n  scale_shape_manual(name = \"Cylinders\", labels = c('Six', 'Eight'),  \n     values = c(4, 24), limits = c(6, 8), breaks = c(6, 8))",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Legend: Shape Size and Alpha</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-legend-shape-size-alpha.html#size",
+    "href": "ggplot2-legend-shape-size-alpha.html#size",
+    "title": "14  Legend: Shape Size and Alpha",
+    "section": "14.2 Size",
+    "text": "14.2 Size\nWe will learn to modify the following using scale_size_continuous when size aesthetic is mapped to variables:\n\ntitle\nbreaks\nlimits\nrange\nlabels\nvalues\n\n\nPlot\nLet us start with a scatter plot examining the relationship between displacement and miles per gallon from the mtcars data set. We will map the size of the points to the hp variable. Remember, size must always be mapped to a continuous variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, size = hp))\n\n\n\n\n\n\n\n\nAs you can see, the legend acts as a guide for the size aesthetic. Now, let us learn to modify the different aspects of the legend.\n\n\nTitle\nThe title of the legend (hp) is not very intuitive. If the user does not know the underlying data, they will not be able to make any sense out of it. Let us change it to Horsepower using the name argument.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, size = hp)) +\n  scale_size_continuous(name = \"Horsepower\")\n\n\n\n\n\n\n\n\n\n\nRange\nThe range of the size of points can be modified using the range argument. We need to specify a lower and upper range using a numeric vector. In the below example, we use range and supply the lower and upper limits as 3 and 6. The size of the points will now lie between 3 and 6 only.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, size = hp)) +\n  scale_size_continuous(range = c(3, 6))\n\n\n\n\n\n\n\n\n\n\nLimits\nLet us assume that we want to modify the data to be displayed i.e. instead of examining the relationship between mileage and displacement for all cars, we desire to look at only cars whose horsepower is between 100 and 350. One way to approach this would be to filter the data using filter from dplyr and then visualize it. Instead, we will use the limits argument and filter the data for visualization.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, size = hp)) +\n  scale_size_continuous(limits = c(100, 350))\n\n\n\n\n\n\n\n\n\n\nBreaks\nWhen the range of the variable mapped to size is large, you may not want the labels in the legend to represent all of them. In such cases, we can use the breaks argument and specify the labels to be used. In the below case, we use the breaks argument to ensure that the labels in legend represent certain midpoints (125, 200, 275) of the mapped variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, size = hp)) +\n  scale_size_continuous(breaks = c(125, 200, 275))\n\n\n\n\n\n\n\n\n\n\nLabels\nThe labels in the legend can be modified using the labels argument. Let us change the labels to “1 Hundred”, “2 Hundred” and “3 Hundred” in the next example. Ensure that the labels are intuitive and easy to interpret for the end user of the plot.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, size = hp)) +\n  scale_size_continuous(breaks = c(100, 200, 300),\n    labels = c(\"1 Hundred\", \"2 Hundred\", \"3 Hundred\"))\n\n\n\n\n\n\n\n\n\n\nPutting it all together…\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, size = hp)) +\n  scale_size_continuous(name = \"Horsepower\", range = c(3, 6), \n    limits = c(0, 400), breaks = c(100, 200, 300),\n    labels = c(\"1 Hundred\", \"2 Hundred\", \"3 Hundred\"))",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Legend: Shape Size and Alpha</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-legend-shape-size-alpha.html#transparency",
+    "href": "ggplot2-legend-shape-size-alpha.html#transparency",
+    "title": "14  Legend: Shape Size and Alpha",
+    "section": "14.3 Transparency",
+    "text": "14.3 Transparency\nWe will learn to modify the following using scale_alpha_continuous() when alpha or transparency is mapped to variables:\n\ntitle\nbreaks\nlimits\nrange\nlabels\nvalues\n\n\nPlot\nLet us start with a scatter plot examining the relationship between displacement and miles per gallon from the mtcars data set. We will map the transparency of the points to the hp variable. Remember, alpha must always be mapped to a continuous variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, alpha = hp), color = 'blue')\n\n\n\n\n\n\n\n\nAs you can see, the legend acts as a guide for the alpha aesthetic. Now, let us learn to modify the different aspects of the legend.\n\n\nTitle\nThe title of the legend (hp) is not very intuitive. If the user does not know the underlying data, they will not be able to make any sense out of it. Let us change it to Horsepower using the name argument.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +\n  scale_alpha_continuous(\"Horsepower\")\n\n\n\n\n\n\n\n\n\n\nBreaks\nWhen the range of the variable mapped to size is large, you may not want the labels in the legend to represent all of them. In such cases, we can use the breaks argument and specify the labels to be used. In the below case, we use the breaks argument to ensure that the labels in legend represent certain midpoints (125, 200, 275) of the mapped variable.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +\n  scale_alpha_continuous(breaks = c(125, 200, 275))\n\n\n\n\n\n\n\n\n\n\nLimits\nLet us assume that we want to modify the data to be displayed i.e. instead of examining the relationship between mileage and displacement for all cars, we desire to look at only cars whose horsepower is between 100 and 350. One way to approach this would be to filter the data using filter from dplyr and then visualize it. Instead, we will use the limits argument and filter the data for visualization.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +\n  scale_alpha_continuous(limits = c(100, 350))\n\n\n\n\n\n\n\n\n\n\nRange\nThe range of the transparency of points can be modified using the range argument. We need to specify a lower and upper range using a numeric vector. In the below example, we use range and supply the lower and upper limits as 0.4 and 0.8. The transparency of the points will now lie between 0.4 and 0.8 only.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +\n  scale_alpha_continuous(range = c(0.4, 0.8))\n\n\n\n\n\n\n\n\n\n\nLabels\nThe labels in the legend can be modified using the labels argument. Let us change the labels to “1 Hundred”, “2 Hundred” and “3 Hundred” in the next example. Ensure that the labels are intuitive and easy to interpret for the end user of the plot.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +\n  scale_alpha_continuous(breaks = c(100, 200, 300),\n    labels = c(\"1 Hundred\", \"2 Hundred\", \n      \"3 Hundred\"))\n\n\n\n\n\n\n\n\n\n\nPutting it all together…\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, alpha = hp), color = 'blue') +\n  scale_alpha_continuous(\"Horsepower\", breaks = c(100, 200, 300),\n    limits = c(100, 350), range = c(0.4, 0.8),\n    labels = c(\"1 Hundred\", \"2 Hundred\", \"3 Hundred\"))",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Legend: Shape Size and Alpha</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-legend-shape-size-alpha.html#exercises",
+    "href": "ggplot2-legend-shape-size-alpha.html#exercises",
+    "title": "14  Legend: Shape Size and Alpha",
+    "section": "14.4 Exercises",
+    "text": "14.4 Exercises\n\nMap shape to cylinders with scale_shape_manual(values = ...).\nControl point spread with scale_size_continuous(range = ...).\nExplain why size/alpha must map to continuous variables.\n\nWorked solutions in solutions/legend-shape-size-alpha.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Legend: Shape Size and Alpha</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-legend-shape-size-alpha.html#where-to-go-next",
+    "href": "ggplot2-legend-shape-size-alpha.html#where-to-go-next",
+    "title": "14  Legend: Shape Size and Alpha",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book scales and guides chapters",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Legend: Shape Size and Alpha</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-facets.html",
+    "href": "ggplot2-facets.html",
+    "title": "15  Faceting",
+    "section": "",
+    "text": "15.1 Introduction\nIn this chapter, we will learn about faceting i.e. combining plots.\nLet us continue with the scatter plot examining the relationship between displacement and miles per gallon but let us make one additional change. We now want 3 sub plots for each type of cylinder. How can we do this? We can split or group the data by cylinder type and plot the subset of data which means dealing with 3 different data sets, plotting 3 plots and arranging them for comparison. ggplot2 offers the following 2 functions which allow us to plot subset of data with a simple formula based interface:\nFaceting allows us to create multiple sub plots. It partitions a plot into a matrix of panels with each panel showing a different subset of data.",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Faceting</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-facets.html#introduction",
+    "href": "ggplot2-facets.html#introduction",
+    "title": "15  Faceting",
+    "section": "",
+    "text": "NoteWhy this chart\n\n\n\nFacets split one plot into small multiples sharing scales, so group differences are comparable.\n\n\n\n\n\n\n\n\nWarningCommon pitfall\n\n\n\nToo many facet levels shrink each panel past readability; filter or wrap sensibly.\n\n\n\n\n\nfacet_grid()\nfacet_wrap()",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Faceting</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-facets.html#grid",
+    "href": "ggplot2-facets.html#grid",
+    "title": "15  Faceting",
+    "section": "15.2 Grid",
+    "text": "15.2 Grid\n\n15.2.1 Vertical\nfacet_grid() allows us to split up the data by one or two discrete variables and create sub plots. The sub plots can be arranged horizontally or vertically using a formula of the form vertical ~ horizontal. In the below example, 3 sub plots are created, one each for the levels of the cyl variable and the sub plots are arranged vertically\n\nggplot(mtcars, aes(disp, mpg)) + \n  geom_point() +\n  facet_grid(cyl ~ .)\n\n\n\n\n\n\n\n\n\n\n15.2.2 Horizontal\nBelow we reproduce the previous example but arrange the sub plots horizontally.\n\nggplot(mtcars, aes(disp, mpg)) + \n  geom_point() +\n  facet_grid(. ~ cyl)\n\n\n\n\n\n\n\n\n\n\n15.2.3 Vertical & Horizontal\nIn certain cases, we might want different discrete variables to represent the horizontal and vertical direction. In the below example, we examine the relationship between displacement and miles per gallon for different combinations of cyl and gear variables.\n\nggplot(mtcars, aes(disp, mpg)) + \n  geom_point() +\n  facet_grid(cyl ~ gear)\n\n\n\n\n\n\n\n\nBelow, we switch the variables representing the vertical and horizontal directions.\n\nggplot(mtcars, aes(disp, mpg)) + \n  geom_point() +\n  facet_grid(gear ~ cyl)\n\n\n\n\n\n\n\n\n\n\n15.2.4 Scales\nIf you carefully observe the second example, the range of X axis is same for all the 3 sub plots i.e. it is a fixed range. You can allow each of the sub plots to have different range using the scales argument and supplying it the value 'free'.\n\nggplot(mtcars, aes(disp, mpg, color = factor(cyl))) +\n  geom_point() + \n  facet_grid(. ~ cyl, scales = \"free\")\n\n\n\n\n\n\n\n\nNow, each of the sub plot has a different range.\n\n\n15.2.5 Switch Labels\nIn the third example, the labels are displayed at the bottom for X axis and at the right for the Y axis. It can be changed using the switch argument and supplying the value 'both'. The labels will now be displayed at the top for the X axis and at left for the Y axis. If you just want to change the labels for a particular axis, use the values x and y for the X and Y axis respectively.\n\nggplot(mtcars, aes(disp, mpg)) + \n  geom_point() + \n  facet_grid(cyl ~ gear, switch = \"both\")",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Faceting</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-facets.html#wrap",
+    "href": "ggplot2-facets.html#wrap",
+    "title": "15  Faceting",
+    "section": "15.3 Wrap",
+    "text": "15.3 Wrap\nfacet_wrap() allows us to arrange sub plots in a certain number of rows and columns. In the below example, we will use facet_wrap() to arrange the sub plots in a single row.\n\nggplot(mtcars, aes(disp, mpg)) +\n  geom_point() +\n  facet_wrap(~cyl)\n\n\n\n\n\n\n\n\n\n15.3.1 Specify Rows\nTo arrange the sub plots in a specific number of rows, use the nrow argument. In the below example, we arrange the sub plots in 2 rows.\n\nggplot(mtcars, aes(disp, mpg)) +\n  geom_point() +\n  facet_wrap(~cyl, nrow = 2)\n\n\n\n\n\n\n\n\n\n\n15.3.2 Specify Columns\nHere, we arrange the sub plots in 3 columns instead of rows using the ncol argument.\n\nggplot(mtcars, aes(disp, mpg)) +\n  geom_point() +\n  facet_wrap(~cyl, ncol = 3)\n\n\n\n\n\n\n\n\n\n\n15.3.3 Scales\nYou can allow each of the sub plots to have different range using the scales argument and supplying it the value 'free'.\n\nggplot(mtcars, aes(disp, mpg)) +\n  geom_point() +\n  facet_wrap(~cyl, scales = \"free\")\n\n\n\n\n\n\n\n\n\n\n15.3.4 Rows & Columns\nIf 2 discrete variables are used to create the sub plots, we can either use the formula interface to specify the variables as shown below\n\nggplot(mtcars, aes(disp, mpg)) +\n  geom_point() +\n  facet_wrap(~cyl + gear, nrow = 2)\n\n\n\n\n\n\n\n\nor use a character vector of variable names.\n\nggplot(mtcars, aes(disp, mpg)) +\n  geom_point() +\n  facet_wrap(c(\"cyl\", \"gear\"), ncol = 2)",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Faceting</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-facets.html#exercises",
+    "href": "ggplot2-facets.html#exercises",
+    "title": "15  Faceting",
+    "section": "15.4 Exercises",
+    "text": "15.4 Exercises\n\nFacet disp vs mpg by cylinders with facet_wrap().\nGrid gear rows against carb columns with facet_grid().\nDecide when facets beat color grouping and justify it.\n\nWorked solutions in solutions/facets.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Faceting</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-facets.html#where-to-go-next",
+    "href": "ggplot2-facets.html#where-to-go-next",
+    "title": "15  Faceting",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org) for theory behind this layer\nClaus Wilke, Fundamentals of Data Visualization, for perception guidance",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Faceting</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-themes.html",
+    "href": "ggplot2-themes.html",
+    "title": "16  Themes",
+    "section": "",
+    "text": "16.1 Introduction\nIn this final chapter, we will learn to modify the appearance of all non data components of the plot such as:",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Themes</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-themes.html#introduction",
+    "href": "ggplot2-themes.html#introduction",
+    "title": "16  Themes",
+    "section": "",
+    "text": "NoteWhy this chart\n\n\n\nThemes take a correct plot to publication-ready: fonts, gridlines and background tuned once, reused everywhere.\n\n\n\n\n\n\n\n\nWarningCommon pitfall\n\n\n\nStyling before the data mapping is right wastes effort; get geoms and scales correct first.\n\n\n\n\naxis\nlegend\npanel\nplot area\nbackground\nmargin\nfacets",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Themes</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-themes.html#basic-plot",
+    "href": "ggplot2-themes.html#basic-plot",
+    "title": "16  Themes",
+    "section": "16.2 Basic Plot",
+    "text": "16.2 Basic Plot\nWe will continue with the scatter plot examining the relationship between displacement and miles per gallon from the the mtcars data set.\n\np &lt;- ggplot(mtcars) +\n  geom_point(aes(disp, mpg))\np",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Themes</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-themes.html#axis",
+    "href": "ggplot2-themes.html#axis",
+    "title": "16  Themes",
+    "section": "16.3 Axis",
+    "text": "16.3 Axis\n\n16.3.1 Text\nThe axis.title.x argument can be used to modify the appearance of the X axis. In the below example, we modify the color and size of the title using the element_text() function. Remember, whenever you are trying to modify the appearance of a theme element which is a text, you must use element_text().\nYou can use axis.title.y to modify the Y axis title and to modify the title of both the axis together, use axis.title.\n\np + theme(axis.title.x = element_text(color = \"red\", size = 10, face = \"italic\"))\n\n\n\n\n\n\n\n\n\n\n16.3.2 Ticks\nTo modify the appearance of the axis ticks, use the axis.ticks argument. You can change the color, linewidth, linetype and length of the ticks using the element_line() function as shown below.\n\np + theme(axis.ticks = element_line(color = 'blue', linewidth = 1.25, linetype = 2), \n          axis.ticks.length = unit(1, \"cm\"))\n\n\n\n\n\n\n\n\n\n\n16.3.3 Line\nThe axis.line argument should be used to modify the appearance of the axis lines. You can change the color, linewidth and linetype of the line using the element_line() function.\n\np + theme(axis.line = element_line(color = 'red', linewidth = 1.5, linetype = 3))",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Themes</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-themes.html#legend",
+    "href": "ggplot2-themes.html#legend",
+    "title": "16  Themes",
+    "section": "16.4 Legend",
+    "text": "16.4 Legend\nNow, let us look at modifying the non-data components of a legend.\n\np &lt;- ggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl), shape = factor(gear)))\np\n\n\n\n\n\n\n\n\n\n16.4.1 Background\nThe background of the legend can be modified using the legend.background argument. You can change the background color, the border color and line type using element_rect().\n\np + theme(legend.background = element_rect(fill = 'gray', linetype = 3,  \n          color = \"black\"))\n\n\n\n\n\n\n\n\n\n\n16.4.2 Text\nThe appearance of the text can be modified using the legend.text argument. You can change the color, size and font using the element_text() function.\n\np + theme(legend.text = element_text(color = 'green', face = 'italic'))\n\n\n\n\n\n\n\n\n\n\n16.4.3 Title\nThe appearance of the title of the legend can be modified using the legend.title argument. You can change the color, size, font and alignment using element_text().\n\np + theme(legend.title = element_text(color = 'blue', face = 'bold', hjust = 0.1))\n\n\n\n\n\n\n\n\n\n\n16.4.4 Position\nThe position and direction of the legend can be changed using:\n\nlegend.position\nand legend.direction\n\n\np + theme(legend.position = \"top\", legend.direction = \"horizontal\")",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Themes</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-themes.html#themes",
+    "href": "ggplot2-themes.html#themes",
+    "title": "16  Themes",
+    "section": "16.5 Themes",
+    "text": "16.5 Themes\n\n16.5.1 Classic Dark on Light\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n16.5.2 Default Gray\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  theme_gray()\n\n\n\n\n\n\n\n\n\n\n16.5.3 Light\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  theme_light()\n\n\n\n\n\n\n\n\n\n\n16.5.4 Minimal\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  theme_minimal()\n\n\n\n\n\n\n\n\n\n\n16.5.5 Dark\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  theme_dark()\n\n\n\n\n\n\n\n\n\n\n16.5.6 Classic\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  theme_classic()\n\n\n\n\n\n\n\n\n\n\n16.5.7 Void (Empty)\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg)) +\n  theme_void()",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Themes</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-themes.html#exercises",
+    "href": "ggplot2-themes.html#exercises",
+    "title": "16  Themes",
+    "section": "16.6 Exercises",
+    "text": "16.6 Exercises\n\nApply theme_minimal() to a scatter plot.\nEnlarge all text with theme(text = element_text(size = 14)).\nBuild a reusable custom theme and explain what it standardizes.\n\nWorked solutions in solutions/themes.md (attempt first).",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Themes</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-themes.html#where-to-go-next",
+    "href": "ggplot2-themes.html#where-to-go-next",
+    "title": "16  Themes",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org) for theory behind this layer\nClaus Wilke, Fundamentals of Data Visualization, for perception guidance",
+    "crumbs": [
+      "<span class='chapter-number'>16</span>  <span class='chapter-title'>Themes</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-position-stats.html",
+    "href": "ggplot2-position-stats.html",
+    "title": "17  Position & Stats Tuning",
+    "section": "",
+    "text": "17.1 Position Dodge\nIn this chapter, we will fine-tune how ggplot2 arranges and transforms marks: parametric position adjustments, summary statistics and modern stat mapping syntax.\nGrouped bar plots dodge side by side. Control the gap with width — smaller values widen the gap between groups.\nggplot(mtcars) +\n  geom_bar(aes(factor(cyl), fill = factor(gear)), position = position_dodge(width = 0.8))",
+    "crumbs": [
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Position & Stats Tuning</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-position-stats.html#position-jitter",
+    "href": "ggplot2-position-stats.html#position-jitter",
+    "title": "17  Position & Stats Tuning",
+    "section": "17.2 Position Jitter",
+    "text": "17.2 Position Jitter\nJitter spreads overlapping points. Set width to spread horizontally and height = 0 when the y axis is exact and must not be distorted.\n\nggplot(mtcars) +\n  geom_point(aes(factor(cyl), mpg), position = position_jitter(width = 0.2, height = 0))\n\n\n\n\n\n\n\n\ngeom_jitter() is a shortcut with the same arguments:\n\nggplot(mtcars) +\n  geom_jitter(aes(factor(cyl), mpg), width = 0.2, height = 0)",
+    "crumbs": [
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Position & Stats Tuning</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-position-stats.html#position-stack",
+    "href": "ggplot2-position-stats.html#position-stack",
+    "title": "17  Position & Stats Tuning",
+    "section": "17.3 Position Stack",
+    "text": "17.3 Position Stack\nposition_stack() piles bars (the default for geom_bar()). Use it explicitly when combining stacked bars with labels:\n\nggplot(mtcars) +\n  geom_bar(aes(factor(cyl), fill = factor(gear)), position = position_stack())",
+    "crumbs": [
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Position & Stats Tuning</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-position-stats.html#stat-summary",
+    "href": "ggplot2-position-stats.html#stat-summary",
+    "title": "17  Position & Stats Tuning",
+    "section": "17.4 Stat Summary",
+    "text": "17.4 Stat Summary\nstat_summary() aggregates y values per x group on the fly. Here we plot mean horsepower per cylinder count:\n\nggplot(mtcars) +\n  stat_summary(aes(factor(cyl), hp), fun = mean, geom = \"bar\", fill = \"steelblue\")\n\n\n\n\n\n\n\n\nAdd spread with fun.min and fun.max:\n\nggplot(mtcars) +\n  stat_summary(aes(factor(cyl), hp), fun = mean, fun.min = min, fun.max = max,\n    geom = \"pointrange\", color = \"steelblue\")",
+    "crumbs": [
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Position & Stats Tuning</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-position-stats.html#after-stat",
+    "href": "ggplot2-position-stats.html#after-stat",
+    "title": "17  Position & Stats Tuning",
+    "section": "17.5 After Stat",
+    "text": "17.5 After Stat\nComputed statistics must be mapped with after_stat(). The old ..count.. syntax is deprecated. Here density is mapped on a histogram:\n\nggplot(mtcars) +\n  geom_histogram(aes(mpg, y = after_stat(density)), bins = 10,\n    fill = \"steelblue\", color = \"white\", linewidth = 0.5)",
+    "crumbs": [
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Position & Stats Tuning</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-position-stats.html#where-to-go-next",
+    "href": "ggplot2-position-stats.html#where-to-go-next",
+    "title": "17  Position & Stats Tuning",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nggplot2 book (ggplot2-book.org): position and statistical summaries chapters\nClaus Wilke, Fundamentals of Data Visualization: visualizing distributions",
+    "crumbs": [
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Position & Stats Tuning</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scales-accessibility.html",
+    "href": "ggplot2-scales-accessibility.html",
+    "title": "18  Scales, Formatting & Color Accessibility",
+    "section": "",
+    "text": "18.1 Percent Labels\nIn this chapter, we will format axis labels with the scales package, use colorblind-safe viridis palettes and check contrast for accessibility.\nlabel_percent() turns 0–1 fractions into readable percentages:\ndf &lt;- data.frame(group = c(\"A\", \"B\", \"C\"), share = c(0.45, 0.30, 0.25))\nggplot(df) +\n  geom_bar(aes(group, share), stat = \"identity\", fill = \"steelblue\") +\n  scale_y_continuous(labels = label_percent())",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Scales, Formatting & Color Accessibility</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scales-accessibility.html#dollar-labels",
+    "href": "ggplot2-scales-accessibility.html#dollar-labels",
+    "title": "18  Scales, Formatting & Color Accessibility",
+    "section": "18.2 Dollar Labels",
+    "text": "18.2 Dollar Labels\nlabel_dollar() formats currency axes:\n\nsales &lt;- data.frame(month = 1:6, revenue = c(12000, 15000, 13500, 18000, 21000, 19500))\nggplot(sales) +\n  geom_line(aes(month, revenue), linewidth = 1) +\n  geom_point(aes(month, revenue), size = 2) +\n  scale_y_continuous(labels = label_dollar())",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Scales, Formatting & Color Accessibility</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scales-accessibility.html#comma-labels",
+    "href": "ggplot2-scales-accessibility.html#comma-labels",
+    "title": "18  Scales, Formatting & Color Accessibility",
+    "section": "18.3 Comma Labels",
+    "text": "18.3 Comma Labels\nlabel_comma() keeps large counts readable:\n\ncounts &lt;- data.frame(year = 2019:2024, users = c(120000, 150000, 148000, 190000, 230000, 265000))\nggplot(counts) +\n  geom_bar(aes(factor(year), users), stat = \"identity\", fill = \"steelblue\") +\n  scale_y_continuous(labels = label_comma())",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Scales, Formatting & Color Accessibility</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scales-accessibility.html#viridis-palettes",
+    "href": "ggplot2-scales-accessibility.html#viridis-palettes",
+    "title": "18  Scales, Formatting & Color Accessibility",
+    "section": "18.4 Viridis Palettes",
+    "text": "18.4 Viridis Palettes\nViridis palettes are perceptually uniform and readable by most colorblind viewers. Use them for continuous fills:\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = hp)) +\n  scale_color_viridis_c()\n\n\n\n\n\n\n\n\nAnd for discrete groups:\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl))) +\n  scale_color_viridis_d()",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Scales, Formatting & Color Accessibility</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scales-accessibility.html#contrast-check",
+    "href": "ggplot2-scales-accessibility.html#contrast-check",
+    "title": "18  Scales, Formatting & Color Accessibility",
+    "section": "18.5 Contrast Check",
+    "text": "18.5 Contrast Check\nBefore publishing, verify your figure in grayscale: print it or desaturate it. If groups are still distinguishable by luminance, the contrast passes. The scale_*_viridis_*() palettes pass this test by design; hand-picked pastels often fail it.",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Scales, Formatting & Color Accessibility</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-scales-accessibility.html#where-to-go-next",
+    "href": "ggplot2-scales-accessibility.html#where-to-go-next",
+    "title": "18  Scales, Formatting & Color Accessibility",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nscales package reference: formatting functions gallery\nClaus Wilke, Fundamentals of Data Visualization: color chapters\nColorblind simulator (e.g. Coblis) to check exported figures",
+    "crumbs": [
+      "<span class='chapter-number'>18</span>  <span class='chapter-title'>Scales, Formatting & Color Accessibility</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-reshaping.html",
+    "href": "ggplot2-reshaping.html",
+    "title": "19  Data Reshaping for ggplot2",
+    "section": "",
+    "text": "19.1 Wide Data\nIn this chapter, we will learn the one idea that unlocks faceting, grouped aesthetics and multi-series line graphs: long versus wide data.\nWide data keeps each series in its own column. Here quarterly revenue for two regions sits in north and south:\nwide &lt;- data.frame(\n  quarter = c(\"Q1\", \"Q2\", \"Q3\", \"Q4\"),\n  north = c(120, 150, 135, 180),\n  south = c(100, 130, 160, 175)\n)\nwide\n\n  quarter north south\n1      Q1   120   100\n2      Q2   150   130\n3      Q3   135   160\n4      Q4   180   175\nPlotting this directly forces one layer per series — repetitive and unscalable.",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Data Reshaping for ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-reshaping.html#long-data",
+    "href": "ggplot2-reshaping.html#long-data",
+    "title": "19  Data Reshaping for ggplot2",
+    "section": "19.2 Long Data",
+    "text": "19.2 Long Data\npivot_longer() collapses the series columns into a region key column and a revenue value column:\n\nlong &lt;- tidyr::pivot_longer(wide, cols = c(north, south),\n  names_to = \"region\", values_to = \"revenue\")\nlong\n\n# A tibble: 8 × 3\n  quarter region revenue\n  &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;\n1 Q1      north      120\n2 Q1      south      100\n3 Q2      north      150\n4 Q2      south      130\n5 Q3      north      135\n6 Q3      south      160\n7 Q4      north      180\n8 Q4      south      175",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Data Reshaping for ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-reshaping.html#plotting-long-data",
+    "href": "ggplot2-reshaping.html#plotting-long-data",
+    "title": "19  Data Reshaping for ggplot2",
+    "section": "19.3 Plotting Long Data",
+    "text": "19.3 Plotting Long Data\nOne mapping now draws both series, distinguished by color:\n\nggplot(long) +\n  geom_line(aes(quarter, revenue, color = region, group = region), linewidth = 1) +\n  geom_point(aes(quarter, revenue, color = region), size = 2)\n\n\n\n\n\n\n\n\nThe same long shape powers facets and dodged bars with no extra reshaping.",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Data Reshaping for ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-reshaping.html#modern-pipe",
+    "href": "ggplot2-reshaping.html#modern-pipe",
+    "title": "19  Data Reshaping for ggplot2",
+    "section": "19.4 Modern Pipe",
+    "text": "19.4 Modern Pipe\nChain reshaping into plotting with the native pipe |&gt;:\n\nwide |&gt;\n  tidyr::pivot_longer(cols = c(north, south), names_to = \"region\", values_to = \"revenue\") |&gt;\n  ggplot() +\n  geom_bar(aes(region, revenue, fill = quarter), stat = \"identity\",\n    position = position_dodge(width = 0.8))",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Data Reshaping for ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-reshaping.html#where-to-go-next",
+    "href": "ggplot2-reshaping.html#where-to-go-next",
+    "title": "19  Data Reshaping for ggplot2",
+    "section": "Where to go next",
+    "text": "Where to go next\n\ntidyr pivot_longer() reference for multi-column specs\nLine Graphs chapter for multi-series line recipes\nFaceting chapter for small multiples of long data",
+    "crumbs": [
+      "<span class='chapter-number'>19</span>  <span class='chapter-title'>Data Reshaping for ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-label-polish.html",
+    "href": "ggplot2-label-polish.html",
+    "title": "20  Label Polishing & Wrapping",
+    "section": "",
+    "text": "20.1 The Overflow Problem\nIn this chapter, we will polish text that overflows: wrapping long axis labels and legend entries with stringr and scales.\nLong labels collide on crowded axes:\ndf &lt;- data.frame(\n  program = c(\"Engineering and Technology\", \"Business Administration\",\n    \"Health and Medical Sciences\", \"Arts and Humanities\"),\n  students = c(320, 280, 240, 190)\n)\nggplot(df) +\n  geom_bar(aes(program, students), stat = \"identity\", fill = \"steelblue\") +\n  theme(axis.text.x = element_text(angle = 30, hjust = 1))",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Label Polishing & Wrapping</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-label-polish.html#wrapping-with-stringr",
+    "href": "ggplot2-label-polish.html#wrapping-with-stringr",
+    "title": "20  Label Polishing & Wrapping",
+    "section": "20.2 Wrapping with stringr",
+    "text": "20.2 Wrapping with stringr\nstr_wrap() inserts line breaks at a fixed width:\n\nggplot(df) +\n  geom_bar(aes(stringr::str_wrap(program, width = 15), students),\n    stat = \"identity\", fill = \"steelblue\") +\n  labs(x = \"Program\")",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Label Polishing & Wrapping</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-label-polish.html#wrapping-inside-scales",
+    "href": "ggplot2-label-polish.html#wrapping-inside-scales",
+    "title": "20  Label Polishing & Wrapping",
+    "section": "20.3 Wrapping Inside Scales",
+    "text": "20.3 Wrapping Inside Scales\nlabel_wrap() wraps at the scale level, keeping the underlying data untouched:\n\nggplot(df) +\n  geom_bar(aes(program, students), stat = \"identity\", fill = \"steelblue\") +\n  scale_x_discrete(labels = scales::label_wrap(15))",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Label Polishing & Wrapping</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-label-polish.html#wrapping-long-titles",
+    "href": "ggplot2-label-polish.html#wrapping-long-titles",
+    "title": "20  Label Polishing & Wrapping",
+    "section": "20.4 Wrapping Long Titles",
+    "text": "20.4 Wrapping Long Titles\nThe same helper tidies wrapped plot titles and subtitles:\n\nggplot(df) +\n  geom_bar(aes(stringr::str_wrap(program, width = 15), students),\n    stat = \"identity\", fill = \"steelblue\") +\n  labs(x = \"Program\",\n    title = stringr::str_wrap(\"Student enrollment across four academic programs in 2024\", width = 40))",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Label Polishing & Wrapping</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-label-polish.html#where-to-go-next",
+    "href": "ggplot2-label-polish.html#where-to-go-next",
+    "title": "20  Label Polishing & Wrapping",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nstringr reference for wider text manipulation\nThemes chapter for font sizes that pair with wrapped labels",
+    "crumbs": [
+      "<span class='chapter-number'>20</span>  <span class='chapter-title'>Label Polishing & Wrapping</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-finale-polish.html",
+    "href": "ggplot2-finale-polish.html",
+    "title": "21  Finale: Publication Polish with patchwork, ggrepel & ggtext",
+    "section": "",
+    "text": "21.1 Case 1: Multi-Plot Layout\nIn this chapter, we will combine multi-plot layouts (patchwork), collision-free labels (ggrepel) and rich text (ggtext) into three polished before/after case studies.\nBefore: two related plots shown separately. After: one composed figure with a shared title.\np1 &lt;- ggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl))) +\n  labs(title = \"Displacement vs mileage\")\np2 &lt;- ggplot(mtcars) +\n  geom_boxplot(aes(factor(cyl), mpg, fill = factor(cyl))) +\n  labs(title = \"Mileage by cylinders\")\np1 + p2 + plot_annotation(title = \"Engine size explains fuel economy\")\nStack vertically with / and collect legends with plot_layout(guides = \"collect\"):\np1 / p2 + plot_layout(guides = \"collect\")",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Finale: Publication Polish with patchwork, ggrepel & ggtext</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-finale-polish.html#case-2-collision-free-labels",
+    "href": "ggplot2-finale-polish.html#case-2-collision-free-labels",
+    "title": "21  Finale: Publication Polish with patchwork, ggrepel & ggtext",
+    "section": "21.2 Case 2: Collision-Free Labels",
+    "text": "21.2 Case 2: Collision-Free Labels\nBefore: geom_text() labels pile onto each other. After: geom_text_repel() pushes them apart with thin leader lines.\n\ncars &lt;- mtcars\ncars$model &lt;- rownames(mtcars)\nefficient &lt;- cars[cars$mpg &gt; 30, ]\nggplot(cars) +\n  geom_point(aes(disp, mpg)) +\n  ggrepel::geom_text_repel(data = efficient, aes(disp, mpg, label = model), size = 3)",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Finale: Publication Polish with patchwork, ggrepel & ggtext</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-finale-polish.html#case-3-rich-text-titles",
+    "href": "ggplot2-finale-polish.html#case-3-rich-text-titles",
+    "title": "21  Finale: Publication Polish with patchwork, ggrepel & ggtext",
+    "section": "21.3 Case 3: Rich Text Titles",
+    "text": "21.3 Case 3: Rich Text Titles\nBefore: plain titles. After: element_markdown() renders color and emphasis inline.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl))) +\n  labs(title = \"Heavier engines drink &lt;b style='color:#d62728'&gt;more fuel&lt;/b&gt;\") +\n  theme(plot.title = ggtext::element_markdown())",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Finale: Publication Polish with patchwork, ggrepel & ggtext</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-finale-polish.html#where-to-go-next",
+    "href": "ggplot2-finale-polish.html#where-to-go-next",
+    "title": "21  Finale: Publication Polish with patchwork, ggrepel & ggtext",
+    "section": "Where to go next",
+    "text": "Where to go next\n\npatchwork reference for nested and tagged layouts\nggrepel and ggtext references for label-heavy figures\nExport chapter to save the composed figure at print resolution",
+    "crumbs": [
+      "<span class='chapter-number'>21</span>  <span class='chapter-title'>Finale: Publication Polish with patchwork, ggrepel & ggtext</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-export-communicate.html",
+    "href": "ggplot2-export-communicate.html",
+    "title": "22  Export & Communicate",
+    "section": "",
+    "text": "22.1 Saving with ggsave\nIn this chapter, we will save figures at print resolution with ggsave() and run a storytelling checklist before sharing.\nggsave() writes the last plot. Set width, height and dpi explicitly for print-crisp output:\np &lt;- ggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl))) +\n  labs(title = \"Displacement vs mileage\",\n    x = \"Displacement (cu. in.)\", y = \"Miles per gallon\",\n    color = \"Cylinders\")\n\nggplot2::ggsave(\"displacement-vs-mileage.png\", plot = p,\n  width = 8, height = 6, dpi = 300)\nMatch dimensions to the destination: 8x6 inches suits slides, while narrower widths (e.g. 6x4) fit single-column manuscripts.",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Export & Communicate</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-export-communicate.html#vector-formats",
+    "href": "ggplot2-export-communicate.html#vector-formats",
+    "title": "22  Export & Communicate",
+    "section": "22.2 Vector Formats",
+    "text": "22.2 Vector Formats\nFor manuscripts and posters, export PDF or SVG so lines stay sharp at any zoom:\n\nggplot2::ggsave(\"displacement-vs-mileage.pdf\", plot = p, width = 8, height = 6)\nggplot2::ggsave(\"displacement-vs-mileage.svg\", plot = p, width = 8, height = 6)",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Export & Communicate</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-export-communicate.html#storytelling-checklist",
+    "href": "ggplot2-export-communicate.html#storytelling-checklist",
+    "title": "22  Export & Communicate",
+    "section": "22.3 Storytelling Checklist",
+    "text": "22.3 Storytelling Checklist\nBefore sharing any figure, run this Knaflic-inspired check:\n\nContext: does the title state the conclusion, not just the topic?\nClutter: are gridlines, borders and decimals reduced to the minimum?\nFocus: is the key series emphasized with color while the rest recede?\nLabels: are axes, units and sources stated so the figure stands alone?\nHonesty: does the axis start at zero for bars, and are missing data disclosed?",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Export & Communicate</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-export-communicate.html#before-and-after",
+    "href": "ggplot2-export-communicate.html#before-and-after",
+    "title": "22  Export & Communicate",
+    "section": "22.4 Before and After",
+    "text": "22.4 Before and After\nApply the checklist to a default scatter plot: add a message-first title, direct axis units and a restrained palette.\n\nggplot(mtcars) +\n  geom_point(aes(disp, mpg, color = factor(cyl)), size = 2.5) +\n  labs(title = \"Heavier engines get fewer miles per gallon\",\n    x = \"Displacement (cu. in.)\", y = \"Miles per gallon\", color = \"Cylinders\") +\n  theme_minimal()",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Export & Communicate</span>"
+    ]
+  },
+  {
+    "objectID": "ggplot2-export-communicate.html#where-to-go-next",
+    "href": "ggplot2-export-communicate.html#where-to-go-next",
+    "title": "22  Export & Communicate",
+    "section": "Where to go next",
+    "text": "Where to go next\n\nStorytelling with Data (Knaflic) for the full narrative framework\nClaus Wilke, Fundamentals of Data Visualization, for design principles",
+    "crumbs": [
+      "<span class='chapter-number'>22</span>  <span class='chapter-title'>Export & Communicate</span>"
+    ]
+  },
+  {
+    "objectID": "cheatsheet.html",
+    "href": "cheatsheet.html",
+    "title": "23  ggplot2 Modern Recipe Cheat Sheet",
+    "section": "",
+    "text": "Coming in Phase 3: a printable two-page quick reference of every recipe in this book — geoms, aesthetics, scales, facets, themes and export settings.\nMeanwhile, use the chapter list in the sidebar as your lookup index: each chart chapter is a standalone recipe.",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>ggplot2 Modern Recipe Cheat Sheet</span>"
+    ]
+  }
+]

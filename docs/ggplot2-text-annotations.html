@@ -1,75 +1,39 @@
 <!DOCTYPE html>
-<html lang="" xml:lang="">
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Text Annotations | Data Visualization with ggplot2</title>
-  <meta name="description" content="Learn to visualize data with ggplot2." />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
 
-  <meta property="og:title" content="Chapter 5 Text Annotations | Data Visualization with ggplot2" />
-  <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="Learn to visualize data with ggplot2." />
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Text Annotations | Data Visualization with ggplot2" />
-  
-  <meta name="twitter:description" content="Learn to visualize data with ggplot2." />
-  
-
-<meta name="author" content="Aravind Hebbali" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<meta name="date" content="2021-06-05" />
-
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-  
-  
-<link rel="prev" href="ggplot2-labels.html"/>
-<link rel="next" href="ggplot2-scatter-plot.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
-
-
-
-
-
-
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-57270671-37"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-57270671-37');
-</script>
-
-
-<style type="text/css">
+<title>5&nbsp; Text Annotations – Data Visualization with ggplot2</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -90,405 +54,521 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./ggplot2-scatter-plot.html" rel="next">
+<link href="./ggplot2-labels.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-2955d62dbab0334639da62d0e9c176d5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-1052e45d5bb5bba50a03655832ef5fe1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-2955d62dbab0334639da62d0e9c176d5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<!-- Google tag (gtag.js) -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-TBQZNPNL1W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-TBQZNPNL1W');
+</script>
+
+
 </head>
 
-<body>
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
-
-
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="https://github.com/rsquaredacademy-education/viz-ggplot2/">Data Visualization with ggplot2</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
-<ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#software-information"><i class="fa fa-check"></i>Software information</a></li>
-</ul></li>
-<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
-<li class="chapter" data-level="1" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html"><i class="fa fa-check"></i><b>1</b> Quick Tour</a>
-<ul>
-<li class="chapter" data-level="1.1" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
-<li class="chapter" data-level="1.2" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#libraries-code-data"><i class="fa fa-check"></i><b>1.2</b> Libraries, Code &amp; Data</a></li>
-<li class="chapter" data-level="1.3" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#scatter-plot"><i class="fa fa-check"></i><b>1.3</b> Scatter Plot</a></li>
-<li class="chapter" data-level="1.4" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#bar-plot"><i class="fa fa-check"></i><b>1.4</b> Bar Plot</a></li>
-<li class="chapter" data-level="1.5" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#box-plot"><i class="fa fa-check"></i><b>1.5</b> Box Plot</a></li>
-<li class="chapter" data-level="1.6" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#line-chart"><i class="fa fa-check"></i><b>1.6</b> Line Chart</a></li>
-<li class="chapter" data-level="1.7" data-path="ggplot2-quicktour.html"><a href="ggplot2-quicktour.html#histogram"><i class="fa fa-check"></i><b>1.7</b> Histogram</a></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html"><i class="fa fa-check"></i><b>2</b> Geoms</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a></li>
-<li class="chapter" data-level="2.2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#libraries-code-data-1"><i class="fa fa-check"></i><b>2.2</b> Libraries, Code &amp; Data</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#data"><i class="fa fa-check"></i><b>2.2.1</b> Data</a></li>
-<li class="chapter" data-level="2.2.2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#data-dictionary"><i class="fa fa-check"></i><b>2.2.2</b> Data Dictionary</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#point"><i class="fa fa-check"></i><b>2.3</b> Point</a></li>
-<li class="chapter" data-level="2.4" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#regression-line"><i class="fa fa-check"></i><b>2.4</b> Regression Line</a></li>
-<li class="chapter" data-level="2.5" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#bar"><i class="fa fa-check"></i><b>2.5</b> Bar</a>
-<ul>
-<li class="chapter" data-level="2.5.1" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#frequency"><i class="fa fa-check"></i><b>2.5.1</b> Frequency</a></li>
-<li class="chapter" data-level="2.5.2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#weight"><i class="fa fa-check"></i><b>2.5.2</b> Weight</a></li>
-<li class="chapter" data-level="2.5.3" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#stacked-bar-plot"><i class="fa fa-check"></i><b>2.5.3</b> Stacked Bar Plot</a></li>
-<li class="chapter" data-level="2.5.4" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#horizontal-bar-plot"><i class="fa fa-check"></i><b>2.5.4</b> Horizontal Bar Plot</a></li>
-</ul></li>
-<li class="chapter" data-level="2.6" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#columns"><i class="fa fa-check"></i><b>2.6</b> Columns</a></li>
-<li class="chapter" data-level="2.7" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#boxplot"><i class="fa fa-check"></i><b>2.7</b> Boxplot</a></li>
-<li class="chapter" data-level="2.8" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#histogram-1"><i class="fa fa-check"></i><b>2.8</b> Histogram</a></li>
-<li class="chapter" data-level="2.9" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#line"><i class="fa fa-check"></i><b>2.9</b> Line</a>
-<ul>
-<li class="chapter" data-level="2.9.1" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#data-1"><i class="fa fa-check"></i><b>2.9.1</b> Data</a></li>
-<li class="chapter" data-level="2.9.2" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#horizontal-line"><i class="fa fa-check"></i><b>2.9.2</b> Horizontal Line</a></li>
-<li class="chapter" data-level="2.9.3" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#vertical-line"><i class="fa fa-check"></i><b>2.9.3</b> Vertical Line</a></li>
-</ul></li>
-<li class="chapter" data-level="2.10" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#label"><i class="fa fa-check"></i><b>2.10</b> Label</a></li>
-<li class="chapter" data-level="2.11" data-path="ggplot2-geoms.html"><a href="ggplot2-geoms.html#text"><i class="fa fa-check"></i><b>2.11</b> Text</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html"><i class="fa fa-check"></i><b>3</b> Aesthetics</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> Introduction</a></li>
-<li class="chapter" data-level="3.2" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#libraries-code-data-2"><i class="fa fa-check"></i><b>3.2</b> Libraries, Code &amp; Data</a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#data-2"><i class="fa fa-check"></i><b>3.2.1</b> Data</a></li>
-<li class="chapter" data-level="3.2.2" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#data-dictionary-1"><i class="fa fa-check"></i><b>3.2.2</b> Data Dictionary</a></li>
-</ul></li>
-<li class="chapter" data-level="3.3" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#color"><i class="fa fa-check"></i><b>3.3</b> Color</a>
-<ul>
-<li class="chapter" data-level="3.3.1" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#point-1"><i class="fa fa-check"></i><b>3.3.1</b> Point</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#line-chart-1"><i class="fa fa-check"></i><b>3.4</b> Line Chart</a>
-<ul>
-<li class="chapter" data-level="3.4.1" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#data-3"><i class="fa fa-check"></i><b>3.4.1</b> Data</a></li>
-</ul></li>
-<li class="chapter" data-level="3.5" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#bar-plots"><i class="fa fa-check"></i><b>3.5</b> Bar Plots</a></li>
-<li class="chapter" data-level="3.6" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#histograms"><i class="fa fa-check"></i><b>3.6</b> Histograms</a></li>
-<li class="chapter" data-level="3.7" data-path="ggplot2-aesthetics.html"><a href="ggplot2-aesthetics.html#box-plots"><i class="fa fa-check"></i><b>3.7</b> Box Plots</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html"><i class="fa fa-check"></i><b>4</b> Labels</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#introduction-3"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
-<li class="chapter" data-level="4.2" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#basic-plot"><i class="fa fa-check"></i><b>4.2</b> Basic Plot</a></li>
-<li class="chapter" data-level="4.3" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#title-subtitle"><i class="fa fa-check"></i><b>4.3</b> Title &amp; Subtitle</a>
-<ul>
-<li class="chapter" data-level="4.3.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#ggtitle"><i class="fa fa-check"></i><b>4.3.1</b> ggtitle()</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#axis-labels"><i class="fa fa-check"></i><b>4.4</b> Axis Labels</a></li>
-<li class="chapter" data-level="4.5" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#labs"><i class="fa fa-check"></i><b>4.5</b> Labs</a></li>
-<li class="chapter" data-level="4.6" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#axis-range"><i class="fa fa-check"></i><b>4.6</b> Axis Range</a>
-<ul>
-<li class="chapter" data-level="4.6.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#x-axis"><i class="fa fa-check"></i><b>4.6.1</b> X Axis</a></li>
-<li class="chapter" data-level="4.6.2" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#y-axis"><i class="fa fa-check"></i><b>4.6.2</b> Y Axis</a></li>
-<li class="chapter" data-level="4.6.3" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#expand-limits"><i class="fa fa-check"></i><b>4.6.3</b> Expand Limits</a></li>
-<li class="chapter" data-level="4.6.4" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#remove-axis-labels"><i class="fa fa-check"></i><b>4.6.4</b> Remove Axis Labels</a></li>
-</ul></li>
-<li class="chapter" data-level="4.7" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#format-title-axis-labels"><i class="fa fa-check"></i><b>4.7</b> Format Title &amp; Axis Labels</a>
-<ul>
-<li class="chapter" data-level="4.7.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#color-1"><i class="fa fa-check"></i><b>4.7.1</b> Color</a></li>
-<li class="chapter" data-level="4.7.2" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#font-family"><i class="fa fa-check"></i><b>4.7.2</b> Font Family</a></li>
-<li class="chapter" data-level="4.7.3" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#font-face"><i class="fa fa-check"></i><b>4.7.3</b> Font Face</a></li>
-<li class="chapter" data-level="4.7.4" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#font-size"><i class="fa fa-check"></i><b>4.7.4</b> Font Size</a></li>
-</ul></li>
-<li class="chapter" data-level="4.8" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#horizontal-alignment"><i class="fa fa-check"></i><b>4.8</b> Horizontal Alignment</a></li>
-<li class="chapter" data-level="4.9" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#putting-it-all-together"><i class="fa fa-check"></i><b>4.9</b> Putting it all together…</a>
-<ul>
-<li class="chapter" data-level="4.9.1" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#title"><i class="fa fa-check"></i><b>4.9.1</b> Title</a></li>
-<li class="chapter" data-level="4.9.2" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#x-axis-label"><i class="fa fa-check"></i><b>4.9.2</b> X axis label</a></li>
-<li class="chapter" data-level="4.9.3" data-path="ggplot2-labels.html"><a href="ggplot2-labels.html#y-axis-label"><i class="fa fa-check"></i><b>4.9.3</b> Y axis label</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html"><i class="fa fa-check"></i><b>5</b> Text Annotations</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#introduction-4"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
-<li class="chapter" data-level="5.2" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#annotate"><i class="fa fa-check"></i><b>5.2</b> Annotate</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#add-text"><i class="fa fa-check"></i><b>5.2.1</b> Add Text</a></li>
-<li class="chapter" data-level="5.2.2" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#color-2"><i class="fa fa-check"></i><b>5.2.2</b> Color</a></li>
-<li class="chapter" data-level="5.2.3" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#size"><i class="fa fa-check"></i><b>5.2.3</b> Size</a></li>
-<li class="chapter" data-level="5.2.4" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#font"><i class="fa fa-check"></i><b>5.2.4</b> Font</a></li>
-<li class="chapter" data-level="5.2.5" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#angle"><i class="fa fa-check"></i><b>5.2.5</b> Angle</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="ggplot2-text-annotations.html"><a href="ggplot2-text-annotations.html#putting-it-all-together.."><i class="fa fa-check"></i><b>5.3</b> Putting it all together..</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html"><i class="fa fa-check"></i><b>6</b> Scatter Plots</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#introduction-5"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
-<li class="chapter" data-level="6.2" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#basic-plot-1"><i class="fa fa-check"></i><b>6.2</b> Basic Plot</a></li>
-<li class="chapter" data-level="6.3" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#jitter"><i class="fa fa-check"></i><b>6.3</b> Jitter</a></li>
-<li class="chapter" data-level="6.4" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#aesthetics"><i class="fa fa-check"></i><b>6.4</b> Aesthetics</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#specify-values"><i class="fa fa-check"></i><b>6.4.1</b> Specify Values</a></li>
-<li class="chapter" data-level="6.4.2" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#map-variables"><i class="fa fa-check"></i><b>6.4.2</b> Map Variables</a></li>
-</ul></li>
-<li class="chapter" data-level="6.5" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#regression-line-1"><i class="fa fa-check"></i><b>6.5</b> Regression Line</a>
-<ul>
-<li class="chapter" data-level="6.5.1" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#intercept-slope"><i class="fa fa-check"></i><b>6.5.1</b> Intercept &amp; Slope</a></li>
-<li class="chapter" data-level="6.5.2" data-path="ggplot2-scatter-plot.html"><a href="ggplot2-scatter-plot.html#add-line"><i class="fa fa-check"></i><b>6.5.2</b> Add Line</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html"><i class="fa fa-check"></i><b>7</b> Line Graphs</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#introduction-6"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
-<li class="chapter" data-level="7.2" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#case-study"><i class="fa fa-check"></i><b>7.2</b> Case Study</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#data-4"><i class="fa fa-check"></i><b>7.2.1</b> Data</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#line-chart-2"><i class="fa fa-check"></i><b>7.3</b> Line Chart</a>
-<ul>
-<li class="chapter" data-level="7.3.1" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#line-color"><i class="fa fa-check"></i><b>7.3.1</b> Line Color</a></li>
-<li class="chapter" data-level="7.3.2" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#line-type"><i class="fa fa-check"></i><b>7.3.2</b> Line Type</a></li>
-<li class="chapter" data-level="7.3.3" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#line-size"><i class="fa fa-check"></i><b>7.3.3</b> Line Size</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#multiple-lines"><i class="fa fa-check"></i><b>7.4</b> Multiple Lines</a>
-<ul>
-<li class="chapter" data-level="7.4.1" data-path="ggplot2-line-graph.html"><a href="ggplot2-line-graph.html#modify-data"><i class="fa fa-check"></i><b>7.4.1</b> Modify Data</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html"><i class="fa fa-check"></i><b>8</b> Bar Plots</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#introduction-7"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
-<li class="chapter" data-level="8.2" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#data-5"><i class="fa fa-check"></i><b>8.2</b> Data</a>
-<ul>
-<li class="chapter" data-level="8.2.1" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#data-dictionary-2"><i class="fa fa-check"></i><b>8.2.1</b> Data Dictionary</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#basic-plot-2"><i class="fa fa-check"></i><b>8.3</b> Basic Plot</a></li>
-<li class="chapter" data-level="8.4" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#bar-color"><i class="fa fa-check"></i><b>8.4</b> Bar Color</a></li>
-<li class="chapter" data-level="8.5" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#stacked-bar-plot-1"><i class="fa fa-check"></i><b>8.5</b> Stacked Bar Plot</a></li>
-<li class="chapter" data-level="8.6" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#grouped-bar-plot"><i class="fa fa-check"></i><b>8.6</b> Grouped Bar Plot</a></li>
-<li class="chapter" data-level="8.7" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#proportional-bar-plot"><i class="fa fa-check"></i><b>8.7</b> Proportional Bar Plot</a></li>
-<li class="chapter" data-level="8.8" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#horizontal-bar-plot-1"><i class="fa fa-check"></i><b>8.8</b> Horizontal Bar Plot</a></li>
-<li class="chapter" data-level="8.9" data-path="ggplot2-bar-plot.html"><a href="ggplot2-bar-plot.html#bar-line"><i class="fa fa-check"></i><b>8.9</b> Bar Line</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html"><i class="fa fa-check"></i><b>9</b> Box Plots</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#introduction-8"><i class="fa fa-check"></i><b>9.1</b> Introduction</a></li>
-<li class="chapter" data-level="9.2" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#structure"><i class="fa fa-check"></i><b>9.2</b> Structure</a></li>
-<li class="chapter" data-level="9.3" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#data-6"><i class="fa fa-check"></i><b>9.3</b> Data</a></li>
-<li class="chapter" data-level="9.4" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#single-plot"><i class="fa fa-check"></i><b>9.4</b> Single Plot</a></li>
-<li class="chapter" data-level="9.5" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#compare-distributions"><i class="fa fa-check"></i><b>9.5</b> Compare Distributions</a>
-<ul>
-<li class="chapter" data-level="9.5.1" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#data-7"><i class="fa fa-check"></i><b>9.5.1</b> Data</a></li>
-</ul></li>
-<li class="chapter" data-level="9.6" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#horizontal-box-plot"><i class="fa fa-check"></i><b>9.6</b> Horizontal Box Plot</a>
-<ul>
-<li class="chapter" data-level="9.6.1" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#notch"><i class="fa fa-check"></i><b>9.6.1</b> Notch</a></li>
-<li class="chapter" data-level="9.6.2" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#jitter-1"><i class="fa fa-check"></i><b>9.6.2</b> Jitter</a></li>
-</ul></li>
-<li class="chapter" data-level="9.7" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#outliers"><i class="fa fa-check"></i><b>9.7</b> Outliers</a></li>
-<li class="chapter" data-level="9.8" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#aesthetics-1"><i class="fa fa-check"></i><b>9.8</b> Aesthetics</a>
-<ul>
-<li class="chapter" data-level="9.8.1" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#specify-values-1"><i class="fa fa-check"></i><b>9.8.1</b> Specify Values</a></li>
-</ul></li>
-<li class="chapter" data-level="9.9" data-path="ggplot2-box-plot.html"><a href="ggplot2-box-plot.html#map-variables-1"><i class="fa fa-check"></i><b>9.9</b> Map Variables</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html"><i class="fa fa-check"></i><b>10</b> Histograms</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#introduction-9"><i class="fa fa-check"></i><b>10.1</b> Introduction</a></li>
-<li class="chapter" data-level="10.2" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#data-8"><i class="fa fa-check"></i><b>10.2</b> Data</a>
-<ul>
-<li class="chapter" data-level="10.2.1" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#data-dictionary-3"><i class="fa fa-check"></i><b>10.2.1</b> Data Dictionary</a></li>
-</ul></li>
-<li class="chapter" data-level="10.3" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#plot"><i class="fa fa-check"></i><b>10.3</b> Plot</a>
-<ul>
-<li class="chapter" data-level="10.3.1" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#specify-bins"><i class="fa fa-check"></i><b>10.3.1</b> Specify Bins</a></li>
-</ul></li>
-<li class="chapter" data-level="10.4" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#aesthetics-2"><i class="fa fa-check"></i><b>10.4</b> Aesthetics</a></li>
-<li class="chapter" data-level="10.5" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#putting-it-all-together-1"><i class="fa fa-check"></i><b>10.5</b> Putting it all together…</a></li>
-<li class="chapter" data-level="10.6" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#bin-width"><i class="fa fa-check"></i><b>10.6</b> Bin Width</a></li>
-<li class="chapter" data-level="10.7" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#line-type-1"><i class="fa fa-check"></i><b>10.7</b> Line Type</a></li>
-<li class="chapter" data-level="10.8" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#line-size-1"><i class="fa fa-check"></i><b>10.8</b> Line Size</a></li>
-<li class="chapter" data-level="10.9" data-path="ggplot2-histogram.html"><a href="ggplot2-histogram.html#map-variables-2"><i class="fa fa-check"></i><b>10.9</b> Map Variables</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html"><i class="fa fa-check"></i><b>11</b> Modify Axis</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#continuous-axis"><i class="fa fa-check"></i><b>11.1</b> Continuous Axis</a>
-<ul>
-<li class="chapter" data-level="11.1.1" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#putting-it-all-together..-1"><i class="fa fa-check"></i><b>11.1.1</b> Putting it all together..</a></li>
-<li class="chapter" data-level="11.1.2" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#y-axis---continuous"><i class="fa fa-check"></i><b>11.1.2</b> Y Axis - Continuous</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#discrete-axis"><i class="fa fa-check"></i><b>11.2</b> Discrete Axis</a>
-<ul>
-<li class="chapter" data-level="11.2.1" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#axis-label"><i class="fa fa-check"></i><b>11.2.1</b> Axis Label</a></li>
-<li class="chapter" data-level="11.2.2" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#axis-tick-labels"><i class="fa fa-check"></i><b>11.2.2</b> Axis Tick Labels</a></li>
-<li class="chapter" data-level="11.2.3" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#axis-breaks"><i class="fa fa-check"></i><b>11.2.3</b> Axis Breaks</a></li>
-<li class="chapter" data-level="11.2.4" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#axis-position"><i class="fa fa-check"></i><b>11.2.4</b> Axis Position</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="ggplot2-modify-axis.html"><a href="ggplot2-modify-axis.html#putting-it-all-together-2"><i class="fa fa-check"></i><b>11.3</b> Putting it all together…</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html"><i class="fa fa-check"></i><b>12</b> Modify Legend</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#color-5"><i class="fa fa-check"></i><b>12.1</b> Color</a>
-<ul>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#basic-plot-3"><i class="fa fa-check"></i>Basic Plot</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#values"><i class="fa fa-check"></i>Values</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#title-1"><i class="fa fa-check"></i>Title</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#limits"><i class="fa fa-check"></i>Limits</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#labels"><i class="fa fa-check"></i>Labels</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#breaks"><i class="fa fa-check"></i>Breaks</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#putting-it-all-together-3"><i class="fa fa-check"></i>Putting it all together…</a></li>
-</ul></li>
-<li class="chapter" data-level="12.2" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#fill"><i class="fa fa-check"></i><b>12.2</b> Fill</a>
-<ul>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#plot-1"><i class="fa fa-check"></i>Plot</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#title-2"><i class="fa fa-check"></i>Title</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#values-1"><i class="fa fa-check"></i>Values</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#labels-1"><i class="fa fa-check"></i>Labels</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#limits-1"><i class="fa fa-check"></i>Limits</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#breaks-1"><i class="fa fa-check"></i>Breaks</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#putting-it-all-together-4"><i class="fa fa-check"></i>Putting it all together…</a></li>
-</ul></li>
-<li class="chapter" data-level="12.3" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#shape-2"><i class="fa fa-check"></i><b>12.3</b> Shape</a>
-<ul>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#plot-2"><i class="fa fa-check"></i>Plot</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#title-3"><i class="fa fa-check"></i>Title</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#values-2"><i class="fa fa-check"></i>Values</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#labels-2"><i class="fa fa-check"></i>Labels</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#limits-2"><i class="fa fa-check"></i>Limits</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#breaks-2"><i class="fa fa-check"></i>Breaks</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#putting-it-all-together-5"><i class="fa fa-check"></i>Putting it all together…</a></li>
-</ul></li>
-<li class="chapter" data-level="12.4" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#size-3"><i class="fa fa-check"></i><b>12.4</b> Size</a>
-<ul>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#plot-3"><i class="fa fa-check"></i>Plot</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#title-4"><i class="fa fa-check"></i>Title</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#range"><i class="fa fa-check"></i>Range</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#limits-3"><i class="fa fa-check"></i>Limits</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#breaks-3"><i class="fa fa-check"></i>Breaks</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#labels-3"><i class="fa fa-check"></i>Labels</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#putting-it-all-together-6"><i class="fa fa-check"></i>Putting it all together…</a></li>
-</ul></li>
-<li class="chapter" data-level="12.5" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#transparency"><i class="fa fa-check"></i><b>12.5</b> Transparency</a>
-<ul>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#plot-4"><i class="fa fa-check"></i>Plot</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#title-5"><i class="fa fa-check"></i>Title</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#breaks-4"><i class="fa fa-check"></i>Breaks</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#limits-4"><i class="fa fa-check"></i>Limits</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#range-1"><i class="fa fa-check"></i>Range</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#labels-4"><i class="fa fa-check"></i>Labels</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#putting-it-all-together-7"><i class="fa fa-check"></i>Putting it all together…</a></li>
-</ul></li>
-<li class="chapter" data-level="12.6" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#guide"><i class="fa fa-check"></i><b>12.6</b> Guide</a>
-<ul>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#title-6"><i class="fa fa-check"></i>Title</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#label-1"><i class="fa fa-check"></i>Label</a></li>
-<li class="chapter" data-level="" data-path="ggplot2-modify-legend.html"><a href="ggplot2-modify-legend.html#legend-bar"><i class="fa fa-check"></i>Legend Bar</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html"><i class="fa fa-check"></i><b>13</b> Faceting</a>
-<ul>
-<li class="chapter" data-level="13.1" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#introduction-10"><i class="fa fa-check"></i><b>13.1</b> Introduction</a></li>
-<li class="chapter" data-level="13.2" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#grid"><i class="fa fa-check"></i><b>13.2</b> Grid</a>
-<ul>
-<li class="chapter" data-level="13.2.1" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#vertical"><i class="fa fa-check"></i><b>13.2.1</b> Vertical</a></li>
-<li class="chapter" data-level="13.2.2" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#horizontal"><i class="fa fa-check"></i><b>13.2.2</b> Horizontal</a></li>
-<li class="chapter" data-level="13.2.3" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#vertical-horizontal"><i class="fa fa-check"></i><b>13.2.3</b> Vertical &amp; Horizontal</a></li>
-<li class="chapter" data-level="13.2.4" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#scales"><i class="fa fa-check"></i><b>13.2.4</b> Scales</a></li>
-<li class="chapter" data-level="13.2.5" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#switch-labels"><i class="fa fa-check"></i><b>13.2.5</b> Switch Labels</a></li>
-</ul></li>
-<li class="chapter" data-level="13.3" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#wrap"><i class="fa fa-check"></i><b>13.3</b> Wrap</a>
-<ul>
-<li class="chapter" data-level="13.3.1" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#specify-rows"><i class="fa fa-check"></i><b>13.3.1</b> Specify Rows</a></li>
-<li class="chapter" data-level="13.3.2" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#specify-columns"><i class="fa fa-check"></i><b>13.3.2</b> Specify Columns</a></li>
-<li class="chapter" data-level="13.3.3" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#scales-1"><i class="fa fa-check"></i><b>13.3.3</b> Scales</a></li>
-<li class="chapter" data-level="13.3.4" data-path="ggplot2-facets.html"><a href="ggplot2-facets.html#rows-columns"><i class="fa fa-check"></i><b>13.3.4</b> Rows &amp; Columns</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html"><i class="fa fa-check"></i><b>14</b> Themes</a>
-<ul>
-<li class="chapter" data-level="14.1" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#introduction-11"><i class="fa fa-check"></i><b>14.1</b> Introduction</a></li>
-<li class="chapter" data-level="14.2" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#basic-plot-4"><i class="fa fa-check"></i><b>14.2</b> Basic Plot</a></li>
-<li class="chapter" data-level="14.3" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#axis"><i class="fa fa-check"></i><b>14.3</b> Axis</a>
-<ul>
-<li class="chapter" data-level="14.3.1" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#text-1"><i class="fa fa-check"></i><b>14.3.1</b> Text</a></li>
-<li class="chapter" data-level="14.3.2" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#ticks-1"><i class="fa fa-check"></i><b>14.3.2</b> Ticks</a></li>
-<li class="chapter" data-level="14.3.3" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#line-1"><i class="fa fa-check"></i><b>14.3.3</b> Line</a></li>
-</ul></li>
-<li class="chapter" data-level="14.4" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#legend"><i class="fa fa-check"></i><b>14.4</b> Legend</a>
-<ul>
-<li class="chapter" data-level="14.4.1" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#background"><i class="fa fa-check"></i><b>14.4.1</b> Background</a></li>
-<li class="chapter" data-level="14.4.2" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#text-2"><i class="fa fa-check"></i><b>14.4.2</b> Text</a></li>
-<li class="chapter" data-level="14.4.3" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#title-7"><i class="fa fa-check"></i><b>14.4.3</b> Title</a></li>
-<li class="chapter" data-level="14.4.4" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#position"><i class="fa fa-check"></i><b>14.4.4</b> Position</a></li>
-</ul></li>
-<li class="chapter" data-level="14.5" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#themes"><i class="fa fa-check"></i><b>14.5</b> Themes</a>
-<ul>
-<li class="chapter" data-level="14.5.1" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#classic-dark-on-light"><i class="fa fa-check"></i><b>14.5.1</b> Classic Dark on Light</a></li>
-<li class="chapter" data-level="14.5.2" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#default-gray"><i class="fa fa-check"></i><b>14.5.2</b> Default Gray</a></li>
-<li class="chapter" data-level="14.5.3" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#light"><i class="fa fa-check"></i><b>14.5.3</b> Light</a></li>
-<li class="chapter" data-level="14.5.4" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#minimal"><i class="fa fa-check"></i><b>14.5.4</b> Minimal</a></li>
-<li class="chapter" data-level="14.5.5" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#dark"><i class="fa fa-check"></i><b>14.5.5</b> Dark</a></li>
-<li class="chapter" data-level="14.5.6" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#classic"><i class="fa fa-check"></i><b>14.5.6</b> Classic</a></li>
-<li class="chapter" data-level="14.5.7" data-path="ggplot2-themes.html"><a href="ggplot2-themes.html#void-empty"><i class="fa fa-check"></i><b>14.5.7</b> Void (Empty)</a></li>
-</ul></li>
-</ul></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-</ul>
-
-      </nav>
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot2-text-annotations.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Text Annotations</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
     </div>
-
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Visualization with ggplot2</a>
-          </h1>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data Visualization with ggplot2</a> 
+        <div class="sidebar-tools-main">
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Data-Visualization-with-ggplot2.pdf">
+              <i class="bi bi-file-pdf pe-1"></i>
+            Download PDF
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="./Data-Visualization-with-ggplot2.epub">
+              <i class="bi bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
         </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about-the-author.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the Author</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-quicktour.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quick Tour</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-geoms.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Geoms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-aesthetics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Aesthetics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-labels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Labels</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-text-annotations.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Text Annotations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-scatter-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scatter Plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-line-graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Line Graphs</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-bar-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Bar Plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-box-plot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Box Plots</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-histogram.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Histograms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-modify-axis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Modify Axis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-modify-legend.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Modify Legend</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-legend-color-fill.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Legend: Color and Fill</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-legend-shape-size-alpha.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Legend: Shape Size and Alpha</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-facets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Faceting</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-themes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Themes</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-position-stats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Position &amp; Stats Tuning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-scales-accessibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Scales, Formatting &amp; Color Accessibility</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-reshaping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Data Reshaping for ggplot2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-label-polish.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Label Polishing &amp; Wrapping</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-finale-polish.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Finale: Publication Polish with patchwork, ggrepel &amp; ggtext</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ggplot2-export-communicate.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Export &amp; Communicate</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cheatsheet.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">ggplot2 Modern Recipe Cheat Sheet</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">5.1</span> Introduction</a></li>
+  <li><a href="#annotate" id="toc-annotate" class="nav-link" data-scroll-target="#annotate"><span class="header-section-number">5.2</span> Annotate</a>
+  <ul class="collapse">
+  <li><a href="#add-text" id="toc-add-text" class="nav-link" data-scroll-target="#add-text"><span class="header-section-number">5.2.1</span> Add Text</a></li>
+  <li><a href="#color" id="toc-color" class="nav-link" data-scroll-target="#color"><span class="header-section-number">5.2.2</span> Color</a></li>
+  <li><a href="#size" id="toc-size" class="nav-link" data-scroll-target="#size"><span class="header-section-number">5.2.3</span> Size</a></li>
+  <li><a href="#font" id="toc-font" class="nav-link" data-scroll-target="#font"><span class="header-section-number">5.2.4</span> Font</a></li>
+  <li><a href="#angle" id="toc-angle" class="nav-link" data-scroll-target="#angle"><span class="header-section-number">5.2.5</span> Angle</a></li>
+  </ul></li>
+  <li><a href="#putting-it-all-together.." id="toc-putting-it-all-together.." class="nav-link" data-scroll-target="#putting-it-all-together.."><span class="header-section-number">5.3</span> Putting it all together..</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">5.4</span> Exercises</a></li>
+  <li><a href="#where-to-go-next" id="toc-where-to-go-next" class="nav-link" data-scroll-target="#where-to-go-next">Where to go next</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
 
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
 
-            <section class="normal" id="section-">
-<div id="ggplot2-text-annotations" class="section level1" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Text Annotations</h1>
-<div id="introduction-4" class="section level2" number="5.1">
-<h2><span class="header-section-number">5.1</span> Introduction</h2>
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="ggplot2-text-annotations" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Text Annotations</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">5.1</span> Introduction</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why this chart
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Direct labels and annotations point at the story instead of making readers scan a legend.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Common pitfall
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Over-annotating every point creates clutter; annotate only the points that change the conclusion.</p>
+</div>
+</div>
 <p>In this chapter, we will learn to add text to the plots.</p>
 <ul>
 <li>add custom text</li>
@@ -497,12 +577,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>modify fontface</li>
 <li>modify angle</li>
 </ul>
-</div>
-<div id="annotate" class="section level2" number="5.2">
-<h2><span class="header-section-number">5.2</span> Annotate</h2>
-<p>We will use the <code>annotate()</code> function to add custom text to the plots. You can
-use the <code>annotate()</code> function to add rectangles/segments/pointrange as well but
-our focus will be on adding text. Let us start with a simple scatter plot.</p>
+</section>
+<section id="annotate" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="annotate"><span class="header-section-number">5.2</span> Annotate</h2>
+<p>We will use the <code>annotate()</code> function to add custom text to the plots. You can use the <code>annotate()</code> function to add rectangles/segments/pointrange as well but our focus will be on adding text. Let us start with a simple scatter plot.</p>
 <p><code>annotate()</code> takes the following arguments:</p>
 <ul>
 <li><code>geom</code> : specify text</li>
@@ -514,131 +592,556 @@ our focus will be on adding text. Let us start with a simple scatter plot.</p>
 <li><code>fontface</code> : fontface of text</li>
 <li><code>angle</code> : angle of text</li>
 </ul>
-<div id="add-text" class="section level3" number="5.2.1">
-<h3><span class="header-section-number">5.2.1</span> Add Text</h3>
-<p>Let us begin by adding text to a scatter plot. We will use the mtcars data set
-and continue to examine the relationship between displacement and miles per
-gallon. To add the text, we have to indicate that we are using <code>annotate()</code>
-for adding text, and we do this by ensuring that the first input is the word
-<code>'text'</code>. Now, ggplot2 knows that it should add a text to the plot but it still
-needs other information such as:</p>
+<section id="add-text" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="add-text"><span class="header-section-number">5.2.1</span> Add Text</h3>
+<p>Let us begin by adding text to a scatter plot. We will use the mtcars data set and continue to examine the relationship between displacement and miles per gallon. To add the text, we have to indicate that we are using <code>annotate()</code> for adding text, and we do this by ensuring that the first input is the word <code>'text'</code>. Now, ggplot2 knows that it should add a text to the plot but it still needs other information such as:</p>
 <ul>
-<li>where should the text appear on the plot i.e. location of the text</li>
+<li>where should the text appear on the plot i.e.&nbsp;location of the text</li>
 <li>and the text itself</li>
 </ul>
-<p>We will provide the location by specifying points on the X and Y axis which are
-also the second and third inputs to <code>annotate()</code> and the final input is the text
-itself, which in our example is <code>'Sample Text'</code>.</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="ggplot2-text-annotations.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
-<span id="cb90-2"><a href="ggplot2-text-annotations.html#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
-<span id="cb90-3"><a href="ggplot2-text-annotations.html#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">label =</span> <span class="st">&#39;Sample Text&#39;</span>)</span></code></pre></div>
-<p><img src="data-visualization-with-ggplot2_files/figure-html/ann2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We will provide the location by specifying points on the X and Y axis which are also the second and third inputs to <code>annotate()</code> and the final input is the text itself, which in our example is <code>'Sample Text'</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">'text'</span>, <span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">label =</span> <span class="st">'Sample Text'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-text-annotations_files/figure-html/ann2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
 </div>
-<div id="color-2" class="section level3" number="5.2.2">
-<h3><span class="header-section-number">5.2.2</span> Color</h3>
-<p>Now that we know how to add text, let us look at modifying the appearance of
-the text. To change the color, use the <code>color</code> argument. In the below example,
-we modify the color to <code>'red'</code>.</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="ggplot2-text-annotations.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
-<span id="cb91-2"><a href="ggplot2-text-annotations.html#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
-<span id="cb91-3"><a href="ggplot2-text-annotations.html#cb91-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">label =</span> <span class="st">&#39;Sample Text&#39;</span>, <span class="at">color =</span> <span class="st">&#39;red&#39;</span>)</span></code></pre></div>
-<p><img src="data-visualization-with-ggplot2_files/figure-html/ann4-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
-<div id="size" class="section level3" number="5.2.3">
-<h3><span class="header-section-number">5.2.3</span> Size</h3>
+</div>
+</section>
+<section id="color" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="color"><span class="header-section-number">5.2.2</span> Color</h3>
+<p>Now that we know how to add text, let us look at modifying the appearance of the text. To change the color, use the <code>color</code> argument. In the below example, we modify the color to <code>'red'</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">'text'</span>, <span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">label =</span> <span class="st">'Sample Text'</span>, <span class="at">color =</span> <span class="st">'red'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-text-annotations_files/figure-html/ann4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="size" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="size"><span class="header-section-number">5.2.3</span> Size</h3>
 <p>The <code>size</code> argument can be used to modify the size of the text.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="ggplot2-text-annotations.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
-<span id="cb92-2"><a href="ggplot2-text-annotations.html#cb92-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
-<span id="cb92-3"><a href="ggplot2-text-annotations.html#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">label =</span> <span class="st">&#39;Sample Text&#39;</span>, <span class="at">size =</span> <span class="dv">6</span>)</span></code></pre></div>
-<p><img src="data-visualization-with-ggplot2_files/figure-html/ann5-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-<div id="font" class="section level3" number="5.2.4">
-<h3><span class="header-section-number">5.2.4</span> Font</h3>
-<p>To choose a font of your liking, use the <code>font</code> argument and supply it a valid
-value.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="ggplot2-text-annotations.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
-<span id="cb93-2"><a href="ggplot2-text-annotations.html#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
-<span id="cb93-3"><a href="ggplot2-text-annotations.html#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">label =</span> <span class="st">&#39;Sample Text&#39;</span>, <span class="at">fontface =</span> <span class="st">&#39;bold&#39;</span>)</span></code></pre></div>
-<p><img src="data-visualization-with-ggplot2_files/figure-html/ann6-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-<div id="angle" class="section level3" number="5.2.5">
-<h3><span class="header-section-number">5.2.5</span> Angle</h3>
-<p>The angle of the text can also be modified using the <code>angle</code> argument. In the
-below example, we modify the angle of the text to <code>25</code>.</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="ggplot2-text-annotations.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
-<span id="cb94-2"><a href="ggplot2-text-annotations.html#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
-<span id="cb94-3"><a href="ggplot2-text-annotations.html#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">label =</span> <span class="st">&#39;Sample Text&#39;</span>, <span class="at">angle =</span> <span class="dv">25</span>)</span></code></pre></div>
-<p><img src="data-visualization-with-ggplot2_files/figure-html/ann7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">'text'</span>, <span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">label =</span> <span class="st">'Sample Text'</span>, <span class="at">size =</span> <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-text-annotations_files/figure-html/ann5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
 </div>
 </div>
-<div id="putting-it-all-together.." class="section level2" number="5.3">
-<h2><span class="header-section-number">5.3</span> Putting it all together..</h2>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="ggplot2-text-annotations.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
-<span id="cb95-2"><a href="ggplot2-text-annotations.html#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
-<span id="cb95-3"><a href="ggplot2-text-annotations.html#cb95-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&#39;text&#39;</span>, <span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">label =</span> <span class="st">&#39;Sample Text&#39;</span>,</span>
-<span id="cb95-4"><a href="ggplot2-text-annotations.html#cb95-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">&#39;red&#39;</span>, <span class="at">size =</span> <span class="dv">6</span>, <span class="at">fontface =</span> <span class="st">&#39;bold&#39;</span>, <span class="at">angle =</span> <span class="dv">25</span>)</span></code></pre></div>
-<p><img src="data-visualization-with-ggplot2_files/figure-html/ann3-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</section>
+<section id="font" class="level3" data-number="5.2.4">
+<h3 data-number="5.2.4" class="anchored" data-anchor-id="font"><span class="header-section-number">5.2.4</span> Font</h3>
+<p>To choose a font of your liking, use the <code>font</code> argument and supply it a valid value.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">'text'</span>, <span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">label =</span> <span class="st">'Sample Text'</span>, <span class="at">fontface =</span> <span class="st">'bold'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-text-annotations_files/figure-html/ann6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="angle" class="level3" data-number="5.2.5">
+<h3 data-number="5.2.5" class="anchored" data-anchor-id="angle"><span class="header-section-number">5.2.5</span> Angle</h3>
+<p>The angle of the text can also be modified using the <code>angle</code> argument. In the below example, we modify the angle of the text to <code>25</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">'text'</span>, <span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">label =</span> <span class="st">'Sample Text'</span>, <span class="at">angle =</span> <span class="dv">25</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-text-annotations_files/figure-html/ann7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="putting-it-all-together.." class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="putting-it-all-together.."><span class="header-section-number">5.3</span> Putting it all together..</h2>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">'text'</span>, <span class="at">x =</span> <span class="dv">200</span>, <span class="at">y =</span> <span class="dv">30</span>, <span class="at">label =</span> <span class="st">'Sample Text'</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="st">'red'</span>, <span class="at">size =</span> <span class="dv">6</span>, <span class="at">fontface =</span> <span class="st">'bold'</span>, <span class="at">angle =</span> <span class="dv">25</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-text-annotations_files/figure-html/ann3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="exercises" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="exercises"><span class="header-section-number">5.4</span> Exercises</h2>
+<ol type="1">
+<li>Annotate the highest-mpg car with <code>annotate("text", ...)</code>.</li>
+<li>Label only cars with <code>mpg &gt; 30</code> using <code>geom_text()</code>.</li>
+<li>Decide which two points deserve labels and justify the restraint.</li>
+</ol>
+<p>Worked solutions in <code>solutions/annotations.md</code> (attempt first).</p>
+</section>
+<section id="where-to-go-next" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="where-to-go-next">Where to go next</h2>
+<ul>
+<li>ggplot2 book (ggplot2-book.org) for theory behind this layer</li>
+<li>Claus Wilke, Fundamentals of Data Visualization, for perception guidance</li>
+</ul>
 
-</div>
-</div>
-            </section>
 
-          </div>
-        </div>
-      </div>
-<a href="ggplot2-labels.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ggplot2-scatter-plot.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./ggplot2-labels.html" class="pagination-link" aria-label="Labels">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Labels</span></span>
+      </a>          
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
-<script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"toc": {
-"collapse": "section",
-"scroll_highlight": true
-}
-});
-});
-</script>
+  <div class="nav-page nav-page-next">
+      <a href="./ggplot2-scatter-plot.html" class="pagination-link" aria-label="Scatter Plots">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scatter Plots</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
 
-</body>
 
-</html>
+
+
+</body></html>

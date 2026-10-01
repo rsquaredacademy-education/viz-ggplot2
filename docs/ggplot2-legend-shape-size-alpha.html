@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Geoms – Data Visualization with ggplot2</title>
+<title>14&nbsp; Legend: Shape Size and Alpha – Data Visualization with ggplot2</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -71,8 +71,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ggplot2-aesthetics.html" rel="next">
-<link href="./ggplot2-quicktour.html" rel="prev">
+<link href="./ggplot2-facets.html" rel="next">
+<link href="./ggplot2-legend-color-fill.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -298,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot2-geoms.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Geoms</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot2-legend-shape-size-alpha.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Legend: Shape Size and Alpha</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -363,7 +363,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ggplot2-geoms.html" class="sidebar-item-text sidebar-link active">
+  <a href="./ggplot2-geoms.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Geoms</span></span></a>
   </div>
 </li>
@@ -435,7 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ggplot2-legend-shape-size-alpha.html" class="sidebar-item-text sidebar-link">
+  <a href="./ggplot2-legend-shape-size-alpha.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Legend: Shape Size and Alpha</span></span></a>
   </div>
 </li>
@@ -503,33 +503,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">2.1</span> Introduction</a></li>
-  <li><a href="#libraries-code-data" id="toc-libraries-code-data" class="nav-link" data-scroll-target="#libraries-code-data"><span class="header-section-number">2.2</span> Libraries, Code &amp; Data</a>
+  <li><a href="#shape" id="toc-shape" class="nav-link active" data-scroll-target="#shape"><span class="header-section-number">14.1</span> Shape</a>
   <ul class="collapse">
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">2.2.1</span> Data</a></li>
-  <li><a href="#data-dictionary" id="toc-data-dictionary" class="nav-link" data-scroll-target="#data-dictionary"><span class="header-section-number">2.2.2</span> Data Dictionary</a></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a></li>
+  <li><a href="#title" id="toc-title" class="nav-link" data-scroll-target="#title">Title</a></li>
+  <li><a href="#values" id="toc-values" class="nav-link" data-scroll-target="#values">Values</a></li>
+  <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels">Labels</a></li>
+  <li><a href="#limits" id="toc-limits" class="nav-link" data-scroll-target="#limits">Limits</a></li>
+  <li><a href="#breaks" id="toc-breaks" class="nav-link" data-scroll-target="#breaks">Breaks</a></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together">Putting it all together…</a></li>
   </ul></li>
-  <li><a href="#point" id="toc-point" class="nav-link" data-scroll-target="#point"><span class="header-section-number">2.3</span> Point</a></li>
-  <li><a href="#regression-line" id="toc-regression-line" class="nav-link" data-scroll-target="#regression-line"><span class="header-section-number">2.4</span> Regression Line</a></li>
-  <li><a href="#bar" id="toc-bar" class="nav-link" data-scroll-target="#bar"><span class="header-section-number">2.5</span> Bar</a>
+  <li><a href="#size" id="toc-size" class="nav-link" data-scroll-target="#size"><span class="header-section-number">14.2</span> Size</a>
   <ul class="collapse">
-  <li><a href="#frequency" id="toc-frequency" class="nav-link" data-scroll-target="#frequency"><span class="header-section-number">2.5.1</span> Frequency</a></li>
-  <li><a href="#weight" id="toc-weight" class="nav-link" data-scroll-target="#weight"><span class="header-section-number">2.5.2</span> Weight</a></li>
-  <li><a href="#stacked-bar-plot" id="toc-stacked-bar-plot" class="nav-link" data-scroll-target="#stacked-bar-plot"><span class="header-section-number">2.5.3</span> Stacked Bar Plot</a></li>
-  <li><a href="#horizontal-bar-plot" id="toc-horizontal-bar-plot" class="nav-link" data-scroll-target="#horizontal-bar-plot"><span class="header-section-number">2.5.4</span> Horizontal Bar Plot</a></li>
+  <li><a href="#plot-1" id="toc-plot-1" class="nav-link" data-scroll-target="#plot-1">Plot</a></li>
+  <li><a href="#title-1" id="toc-title-1" class="nav-link" data-scroll-target="#title-1">Title</a></li>
+  <li><a href="#range" id="toc-range" class="nav-link" data-scroll-target="#range">Range</a></li>
+  <li><a href="#limits-1" id="toc-limits-1" class="nav-link" data-scroll-target="#limits-1">Limits</a></li>
+  <li><a href="#breaks-1" id="toc-breaks-1" class="nav-link" data-scroll-target="#breaks-1">Breaks</a></li>
+  <li><a href="#labels-1" id="toc-labels-1" class="nav-link" data-scroll-target="#labels-1">Labels</a></li>
+  <li><a href="#putting-it-all-together-1" id="toc-putting-it-all-together-1" class="nav-link" data-scroll-target="#putting-it-all-together-1">Putting it all together…</a></li>
   </ul></li>
-  <li><a href="#columns" id="toc-columns" class="nav-link" data-scroll-target="#columns"><span class="header-section-number">2.6</span> Columns</a></li>
-  <li><a href="#boxplot" id="toc-boxplot" class="nav-link" data-scroll-target="#boxplot"><span class="header-section-number">2.7</span> Boxplot</a></li>
-  <li><a href="#histogram" id="toc-histogram" class="nav-link" data-scroll-target="#histogram"><span class="header-section-number">2.8</span> Histogram</a></li>
-  <li><a href="#line" id="toc-line" class="nav-link" data-scroll-target="#line"><span class="header-section-number">2.9</span> Line</a>
+  <li><a href="#transparency" id="toc-transparency" class="nav-link" data-scroll-target="#transparency"><span class="header-section-number">14.3</span> Transparency</a>
   <ul class="collapse">
-  <li><a href="#data-1" id="toc-data-1" class="nav-link" data-scroll-target="#data-1"><span class="header-section-number">2.9.1</span> Data</a></li>
-  <li><a href="#horizontal-line" id="toc-horizontal-line" class="nav-link" data-scroll-target="#horizontal-line"><span class="header-section-number">2.9.2</span> Horizontal Line</a></li>
-  <li><a href="#vertical-line" id="toc-vertical-line" class="nav-link" data-scroll-target="#vertical-line"><span class="header-section-number">2.9.3</span> Vertical Line</a></li>
+  <li><a href="#plot-2" id="toc-plot-2" class="nav-link" data-scroll-target="#plot-2">Plot</a></li>
+  <li><a href="#title-2" id="toc-title-2" class="nav-link" data-scroll-target="#title-2">Title</a></li>
+  <li><a href="#breaks-2" id="toc-breaks-2" class="nav-link" data-scroll-target="#breaks-2">Breaks</a></li>
+  <li><a href="#limits-2" id="toc-limits-2" class="nav-link" data-scroll-target="#limits-2">Limits</a></li>
+  <li><a href="#range-1" id="toc-range-1" class="nav-link" data-scroll-target="#range-1">Range</a></li>
+  <li><a href="#labels-2" id="toc-labels-2" class="nav-link" data-scroll-target="#labels-2">Labels</a></li>
+  <li><a href="#putting-it-all-together-2" id="toc-putting-it-all-together-2" class="nav-link" data-scroll-target="#putting-it-all-together-2">Putting it all together…</a></li>
   </ul></li>
-  <li><a href="#label" id="toc-label" class="nav-link" data-scroll-target="#label"><span class="header-section-number">2.10</span> Label</a></li>
-  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text"><span class="header-section-number">2.11</span> Text</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">2.12</span> Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">14.4</span> Exercises</a></li>
   <li><a href="#where-to-go-next" id="toc-where-to-go-next" class="nav-link" data-scroll-target="#where-to-go-next">Where to go next</a></li>
   </ul>
 </nav>
@@ -540,7 +544,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="ggplot2-geoms" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Geoms</span></span></h1>
+<h1 class="title"><span id="ggplot2-legend-shape-size-alpha" class="quarto-section-identifier"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Legend: Shape Size and Alpha</span></span></h1>
 </div>
 
 
@@ -557,19 +561,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2.1</span> Introduction</h2>
+<p>In this chapter, we modify legends when shape, size or alpha is mapped to variables.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why this chart
+<span class="screen-reader-only">Note</span>Why this matters
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Geoms are the marks readers see: points, lines, bars, smooths. Pick the geom that matches your data type.</p>
+<p>Shape, size and alpha encode extra variables without new panels; map size and alpha to continuous variables only.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -582,386 +585,412 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Layering geoms with different data without matching aesthetics silently misaligns marks.</p>
+<p>Mapping size or alpha to a discrete variable produces a misleading legend.</p>
 </div>
 </div>
-<p>In this chapter, we will create some of the most routinely used plots to explore data using the <code>geom_*</code> functions.</p>
-</section>
-<section id="libraries-code-data" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="libraries-code-data"><span class="header-section-number">2.2</span> Libraries, Code &amp; Data</h2>
-<p>We will use the following libraries in this chapter:</p>
+<section id="shape" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="shape"><span class="header-section-number">14.1</span> Shape</h2>
+<p>We will learn to modify the following using <code>scale_shape_manual</code> when <code>shape</code> is mapped to categorical variables:</p>
 <ul>
-<li><a href="https://readr.tidyverse.org/">readr</a></li>
-<li><a href="https://ggplot2.tidyverse.org/">ggplot2</a></li>
-<li><a href="https://tibble.tidyverse.org/">tibble</a></li>
-<li><a href="https://dplyr.tidyverse.org/">dplyr</a></li>
+<li>title</li>
+<li>breaks</li>
+<li>limits</li>
+<li>labels</li>
+<li>values</li>
 </ul>
-<p>All the data sets used in this chapter can be found <a href="https://github.com/rsquaredacademy/datasets">here</a> and code can be downloaded from <a href="https://gist.github.com/rsquaredacademy/2d0d5d5b60d0ef0f4d1b227c8fb0335d">here</a>.</p>
-<section id="data" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="data"><span class="header-section-number">2.2.1</span> Data</h3>
+<section id="plot" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="plot">Plot</h3>
+<p>Let us start with a scatter plot examining the relationship between displacement and miles per gallon from the mtcars data set. We will map the shape of the points to the <code>cyl</code> variable.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see, the legend acts as a guide for the <code>shape</code> aesthetic. Now, let us learn to modify the different aspects of the legend.</p>
+</section>
+<section id="title" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="title">Title</h3>
+<p>The title of the legend (<code>factor(cyl)</code>) is not very intuitive. If the user does not know the underlying data, they will not be able to make any sense out of it. Let us change it to <code>Cylinders</code> using the <code>name</code> argument.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">name =</span> <span class="st">"Cylinders"</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">24</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs17-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you have mapped shape/size to a discrete variable which has less than six categories, you can use <code>scale_shape()</code>.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape</span>(<span class="at">name =</span> <span class="st">'Cylinders'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs18-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="values" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="values">Values</h3>
+<p>To change the default shapes in the legend, use the <code>values</code> argument and supply a numeric vector of shapes. The number of shapes specified must be equal to the number of levels in the categorical variable mapped. In the below example, <code>cyl</code> has 3 levels (4, 6, 8) and hence we have specified 3 different shapes.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">24</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="labels" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="labels">Labels</h3>
+<p>The labels in the legend can be modified using the <code>labels</code> argument. Let us change the labels to <code>Four</code>, <code>Six</code> and <code>Eight</code> in the next example. Ensure that the labels are intuitive and easy to interpret for the end user of the plot.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">24</span>), <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'Four'</span>, <span class="st">'Six'</span>, <span class="st">'Eight'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="limits" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="limits">Limits</h3>
+<p>Let us assume that we want to modify the data to be displayed i.e.&nbsp;instead of examining the relationship between mileage and displacement for all cars, we desire to look at only cars with at least 6 cylinders. One way to approach this would be to filter the data using <code>filter</code> from dplyr and then visualize it. Instead, we will use the <code>limits</code> argument and filter the data for visualization.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see above, <code>ggplot2</code> returns a warning message indicating data related to 4 cylinders has been dropped. If you observe the legend, it now represents only 6 and 8 cylinders.</p>
+</section>
+<section id="breaks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="breaks">Breaks</h3>
+<p>When there are large number of levels in the mapped variable, you may not want the labels in the legend to represent all of them. In such cases, we can use the breaks argument and specify the labels to be used. In the below case, we use the <code>breaks</code> argument to ensure that the labels in legend represent two levels (4, 8) of the mapped variable.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">24</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs22-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="putting-it-all-together" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="putting-it-all-together">Putting it all together…</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">shape =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">name =</span> <span class="st">"Cylinders"</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'Six'</span>, <span class="st">'Eight'</span>),  </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">values =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">24</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">8</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs23-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="size" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="size"><span class="header-section-number">14.2</span> Size</h2>
+<p>We will learn to modify the following using <code>scale_size_continuous</code> when <code>size</code> aesthetic is mapped to variables:</p>
+<ul>
+<li>title</li>
+<li>breaks</li>
+<li>limits</li>
+<li>range</li>
+<li>labels</li>
+<li>values</li>
+</ul>
+<section id="plot-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="plot-1">Plot</h3>
+<p>Let us start with a scatter plot examining the relationship between displacement and miles per gallon from the mtcars data set. We will map the size of the points to the <code>hp</code> variable. Remember, <code>size</code> must always be mapped to a continuous variable.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>ecom <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rsquaredacademy/datasets/master/web.csv'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ecom</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1,000 × 11
-      id referrer device bouncers n_visit n_pages duration country      purchase
-   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;lgl&gt;      &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;lgl&gt;   
- 1     1 google   laptop TRUE          10       1      693 Czech Repub… FALSE   
- 2     2 yahoo    tablet TRUE           9       1      459 Yemen        FALSE   
- 3     3 direct   laptop TRUE           0       1      996 Brazil       FALSE   
- 4     4 bing     tablet FALSE          3      18      468 China        TRUE    
- 5     5 yahoo    mobile TRUE           9       1      955 Poland       FALSE   
- 6     6 yahoo    laptop FALSE          5       5      135 South Africa FALSE   
- 7     7 yahoo    mobile TRUE          10       1       75 Bangladesh   FALSE   
- 8     8 direct   mobile TRUE          10       1      908 Indonesia    FALSE   
- 9     9 bing     mobile FALSE          3      19      209 Netherlands  FALSE   
-10    10 google   mobile TRUE           6       1      208 Czech Repub… FALSE   
-# ℹ 990 more rows
-# ℹ 2 more variables: order_items &lt;dbl&gt;, order_value &lt;dbl&gt;</code></pre>
-</div>
-</div>
-</section>
-<section id="data-dictionary" class="level3" data-number="2.2.2">
-<h3 data-number="2.2.2" class="anchored" data-anchor-id="data-dictionary"><span class="header-section-number">2.2.2</span> Data Dictionary</h3>
-<ul>
-<li>id: row id</li>
-<li>referrer: referrer website/search engine</li>
-<li>device: device used to visit the website</li>
-<li>bouncers: whether the visit bounced (single page viewed)</li>
-<li>n_visit: number of visits</li>
-<li>n_pages: number of pages visited</li>
-<li>duration: time spent on the website (in seconds)</li>
-<li>country: country of origin</li>
-<li>purchase: whether visitor purchased</li>
-<li>order_items: number of items ordered</li>
-<li>order_value: order value of visitor (in dollars)</li>
-</ul>
-</section>
-</section>
-<section id="point" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="point"><span class="header-section-number">2.3</span> Point</h2>
-<p>A scatter plot displays the relationship between two continuous variables. In ggplot2, we can build a scatter plot using <code>geom_point()</code>. Scatter plots can show you visually</p>
-<ul>
-<li>the strength of the relationship between the variables</li>
-<li>the direction of the relationship between the variables</li>
-<li>and whether outliers exist</li>
-</ul>
-<p>The variables representing the X and Y axis can be specified either in <code>ggplot()</code> or in <code>geom_point()</code>. We will learn to modify the appearance of the points in a different post.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ecom, <span class="fu">aes</span>(<span class="at">x =</span> n_pages, <span class="at">y =</span> duration)) <span class="sc">+</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs24-1.png" class="img-fluid figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>As you can see, the legend acts as a guide for the <code>size</code> aesthetic. Now, let us learn to modify the different aspects of the legend.</p>
 </section>
-<section id="regression-line" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="regression-line"><span class="header-section-number">2.4</span> Regression Line</h2>
-<p>A regression line can be fit using either:</p>
-<ul>
-<li><code>geom_abline()</code></li>
-<li><code>geom_smooth()</code></li>
-</ul>
-<p>If you are using <code>geom_abline()</code>, you need to specify the intercept and slope as shown in the below example:</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">37.285</span>, <span class="at">slope =</span> <span class="sc">-</span><span class="fl">5.344</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>If you are using <code>geom_smooth()</code>, you need to specify the method of fitting the line, which can be <code>lm</code> or <code>loess</code>. You also need to indicate whether the confidence interval must be displayed using the <code>se</code> argument.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'lm'</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Here we use the <code>'loess'</code> method to fit the regression line.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">'loess'</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="bar" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="bar"><span class="header-section-number">2.5</span> Bar</h2>
-<p>Bar plots present grouped data with rectangular bars. The bars may represent the frequency of the groups or values. Bar plots can be:</p>
-<ul>
-<li>horizontal</li>
-<li>vertical</li>
-<li>grouped</li>
-<li>stacked</li>
-<li>proportional</li>
-</ul>
-<section id="frequency" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="frequency"><span class="header-section-number">2.5.1</span> Frequency</h3>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ecom, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(device))) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="weight" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="weight"><span class="header-section-number">2.5.2</span> Weight</h3>
-<p>If the bars should represent a continuous variable, use the <code>weight</code> argument within <code>aes()</code>. In the below example, the bars do not represent the count of devices, instead, they represent the total order value for each device type.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ecom, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(device))) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">weight =</span> order_value))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="stacked-bar-plot" class="level3" data-number="2.5.3">
-<h3 data-number="2.5.3" class="anchored" data-anchor-id="stacked-bar-plot"><span class="header-section-number">2.5.3</span> Stacked Bar Plot</h3>
-<p>To create a stacked bar plot, the <code>fill</code> argument must be mapped to a categorical variable.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ecom, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(device))) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> purchase))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="horizontal-bar-plot" class="level3" data-number="2.5.4">
-<h3 data-number="2.5.4" class="anchored" data-anchor-id="horizontal-bar-plot"><span class="header-section-number">2.5.4</span> Horizontal Bar Plot</h3>
-<p>A horizontal bar plot can be created by flipping the coordinate axes using the <code>coord_flip()</code> function.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ecom, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(device))) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">fill =</span> purchase)) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-</section>
-<section id="columns" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="columns"><span class="header-section-number">2.6</span> Columns</h2>
-<p>If the data has already been summarized, you can use <code>geom_col()</code> instead of <code>geom_bar()</code>. In the below example, we have the total visits for each device type. The data has already been summarized and as such we cannot use <code>geom_bar()</code>.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>device <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">'laptop'</span>, <span class="st">'mobile'</span>, <span class="st">'tablet'</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>visits <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">30000</span>, <span class="dv">12000</span>, <span class="dv">5000</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>traffic <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">tibble</span>(device, visits)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(traffic, <span class="fu">aes</span>(<span class="at">x =</span> device, <span class="at">y =</span> visits)) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">'blue'</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="boxplot" class="level2" data-number="2.7">
-<h2 data-number="2.7" class="anchored" data-anchor-id="boxplot"><span class="header-section-number">2.7</span> Boxplot</h2>
-<p>The box plot is a standardized way of displaying the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum. Box plots are useful for detecting outliers and for comparing distributions. It shows the shape, central tendancy and variability of the data. Use <code>geom_boxplot()</code> to create a box plot.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ecom, <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(device), <span class="at">y =</span> n_pages)) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="histogram" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="histogram"><span class="header-section-number">2.8</span> Histogram</h2>
-<p>A histogram is a plot that can be used to examine the shape and spread of continuous data. It looks very similar to a bar graph and can be used to detect outliers and skewness in data. Use <code>geom_histogram()</code> to create a histogram.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ecom, <span class="fu">aes</span>(<span class="at">x =</span> duration)) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms15-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>You can control the number of bins using the <code>bins</code> argument.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ecom, <span class="fu">aes</span>(<span class="at">x =</span> duration)) <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms16-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="line" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="line"><span class="header-section-number">2.9</span> Line</h2>
-<p>Line charts are used to examine trends over time. We will use a different data set for exploring line plots.</p>
-<section id="data-1" class="level3" data-number="2.9.1">
-<h3 data-number="2.9.1" class="anchored" data-anchor-id="data-1"><span class="header-section-number">2.9.1</span> Data</h3>
+<section id="title-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="title-1">Title</h3>
+<p>The title of the legend (<code>hp</code>) is not very intuitive. If the user does not know the underlying data, they will not be able to make any sense out of it. Let us change it to <code>Horsepower</code> using the <code>name</code> argument.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gdp <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv'</span>)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>gdp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-   ...1     X year       growth india china
-  &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     1     1 2000-01-01      6     5     8
-2     2     2 2001-01-01      9     9     5
-3     3     3 2002-01-01      8     8     6
-4     4     4 2003-01-01      9     8     8
-5     5     5 2004-01-01      9     5     9
-6     6     6 2005-01-01      8     7     8</code></pre>
-</div>
-</div>
-<p>Use <code>geom_line()</code> to create a line chart. In the below plot, we chart the GDP of India, the fastest growing economy in emerging markets, across years.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name =</span> <span class="st">"Horsepower"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geomline1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs25-1.png" class="img-fluid figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The color and line type can be modified using the <code>color</code> and <code>linetype</code> arguments. We will explore the different line types in an upcoming post.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">'blue'</span>, <span class="at">linetype =</span> <span class="st">'dashed'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="range" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="range">Range</h3>
+<p>The range of the size of points can be modified using the <code>range</code> argument. We need to specify a lower and upper range using a numeric vector. In the below example, we use <code>range</code> and supply the lower and upper limits as <code>3</code> and <code>6</code>. The size of the points will now lie between <code>3</code> and <code>6</code> only.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geomline2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs26-1.png" class="img-fluid figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Add horizontal or vertical lines using</p>
+</section>
+<section id="limits-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="limits-1">Limits</h3>
+<p>Let us assume that we want to modify the data to be displayed i.e.&nbsp;instead of examining the relationship between mileage and displacement for all cars, we desire to look at only cars whose horsepower is between <code>100</code> and <code>350</code>. One way to approach this would be to filter the data using <code>filter</code> from dplyr and then visualize it. Instead, we will use the <code>limits</code> argument and filter the data for visualization.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp)) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">350</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs27-1.png" class="img-fluid figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="breaks-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="breaks-1">Breaks</h3>
+<p>When the range of the variable mapped to size is large, you may not want the labels in the legend to represent all of them. In such cases, we can use the breaks argument and specify the labels to be used. In the below case, we use the <code>breaks</code> argument to ensure that the labels in legend represent certain midpoints (125, 200, 275) of the mapped variable.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp)) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">125</span>, <span class="dv">200</span>, <span class="dv">275</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs28-1.png" class="img-fluid figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="labels-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="labels-1">Labels</h3>
+<p>The labels in the legend can be modified using the <code>labels</code> argument. Let us change the labels to “1 Hundred”, “2 Hundred” and “3 Hundred” in the next example. Ensure that the labels are intuitive and easy to interpret for the end user of the plot.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp)) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"1 Hundred"</span>, <span class="st">"2 Hundred"</span>, <span class="st">"3 Hundred"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs29-1.png" class="img-fluid figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="putting-it-all-together-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="putting-it-all-together-1">Putting it all together…</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">size =</span> hp)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">name =</span> <span class="st">"Horsepower"</span>, <span class="at">range =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>), </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">400</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>),</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"1 Hundred"</span>, <span class="st">"2 Hundred"</span>, <span class="st">"3 Hundred"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs30-1.png" class="img-fluid figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="transparency" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="transparency"><span class="header-section-number">14.3</span> Transparency</h2>
+<p>We will learn to modify the following using <code>scale_alpha_continuous()</code> when <code>alpha</code> or transparency is mapped to variables:</p>
 <ul>
-<li><code>geom_hline()</code></li>
-<li><code>geom_vline()</code></li>
+<li>title</li>
+<li>breaks</li>
+<li>limits</li>
+<li>range</li>
+<li>labels</li>
+<li>values</li>
 </ul>
-</section>
-<section id="horizontal-line" class="level3" data-number="2.9.2">
-<h3 data-number="2.9.2" class="anchored" data-anchor-id="horizontal-line"><span class="header-section-number">2.9.2</span> Horizontal Line</h3>
-<p>To add a horizontal line, the Y axis intercept must be supplied using the <code>yintercept</code> argument.</p>
+<section id="plot-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="plot-2">Plot</h3>
+<p>Let us start with a scatter plot examining the relationship between displacement and miles per gallon from the mtcars data set. We will map the transparency of the points to the <code>hp</code> variable. Remember, <code>alpha</code> must always be mapped to a continuous variable.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">30</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">'blue'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs31-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see, the legend acts as a guide for the <code>alpha</code> aesthetic. Now, let us learn to modify the different aspects of the legend.</p>
+</section>
+<section id="title-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="title-2">Title</h3>
+<p>The title of the legend (<code>hp</code>) is not very intuitive. If the user does not know the underlying data, they will not be able to make any sense out of it. Let us change it to <code>Horsepower</code> using the <code>name</code> argument.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">'blue'</span>) <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="st">"Horsepower"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs32-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="vertical-line" class="level3" data-number="2.9.3">
-<h3 data-number="2.9.3" class="anchored" data-anchor-id="vertical-line"><span class="header-section-number">2.9.3</span> Vertical Line</h3>
-<p>For the vertical line, the X axis intercept must be supplied using the <code>xintercept</code> argument.</p>
+<section id="breaks-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="breaks-2">Breaks</h3>
+<p>When the range of the variable mapped to size is large, you may not want the labels in the legend to represent all of them. In such cases, we can use the breaks argument and specify the labels to be used. In the below case, we use the <code>breaks</code> argument to ensure that the labels in legend represent certain midpoints (125, 200, 275) of the mapped variable.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> wt, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">5</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">'blue'</span>) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">125</span>, <span class="dv">200</span>, <span class="dv">275</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs33-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="limits-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="limits-2">Limits</h3>
+<p>Let us assume that we want to modify the data to be displayed i.e.&nbsp;instead of examining the relationship between mileage and displacement for all cars, we desire to look at only cars whose horsepower is between <code>100</code> and <code>350</code>. One way to approach this would be to filter the data using <code>filter</code> from dplyr and then visualize it. Instead, we will use the <code>limits</code> argument and filter the data for visualization.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">'blue'</span>) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">350</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs34-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="range-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="range-1">Range</h3>
+<p>The range of the transparency of points can be modified using the <code>range</code> argument. We need to specify a lower and upper range using a numeric vector. In the below example, we use <code>range</code> and supply the lower and upper limits as <code>0.4</code> and <code>0.8</code>. The transparency of the points will now lie between <code>0.4</code> and <code>0.8</code> only.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">'blue'</span>) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs35-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="labels-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="labels-2">Labels</h3>
+<p>The labels in the legend can be modified using the <code>labels</code> argument. Let us change the labels to “1 Hundred”, “2 Hundred” and “3 Hundred” in the next example. Ensure that the labels are intuitive and easy to interpret for the end user of the plot.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">'blue'</span>) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>),</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"1 Hundred"</span>, <span class="st">"2 Hundred"</span>, </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"3 Hundred"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs36-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="putting-it-all-together-2" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="putting-it-all-together-2">Putting it all together…</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">alpha =</span> hp), <span class="at">color =</span> <span class="st">'blue'</span>) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_alpha_continuous</span>(<span class="st">"Horsepower"</span>, <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>),</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">350</span>), <span class="at">range =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.8</span>),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"1 Hundred"</span>, <span class="st">"2 Hundred"</span>, <span class="st">"3 Hundred"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-shape-size-alpha_files/figure-html/legs37-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="label" class="level2" data-number="2.10">
-<h2 data-number="2.10" class="anchored" data-anchor-id="label"><span class="header-section-number">2.10</span> Label</h2>
-<p>You can label the points using <code>geom_label()</code>.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(disp, mpg, <span class="at">label =</span> <span class="fu">rownames</span>(mtcars))) <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="text" class="level2" data-number="2.11">
-<h2 data-number="2.11" class="anchored" data-anchor-id="text"><span class="header-section-number">2.11</span> Text</h2>
-<p><code>geom_text()</code> offers another way to add text to the plots. We will learn to modify the appearance and location of the text in another post.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(disp, mpg, <span class="at">label =</span> <span class="fu">rownames</span>(mtcars))) <span class="sc">+</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">check_overlap =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-geoms_files/figure-html/geoms19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="exercises" class="level2" data-number="2.12">
-<h2 data-number="2.12" class="anchored" data-anchor-id="exercises"><span class="header-section-number">2.12</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="exercises"><span class="header-section-number">14.4</span> Exercises</h2>
 <ol type="1">
-<li>Draw <code>disp</code> vs <code>mpg</code> points plus a <code>geom_smooth()</code> trend (<code>formula = y ~ x</code>).</li>
-<li>Draw a histogram of <code>mpg</code> with 10 bins.</li>
-<li>Pick the right geom for median mileage per cylinder class and justify it.</li>
+<li>Map <code>shape</code> to cylinders with <code>scale_shape_manual(values = ...)</code>.</li>
+<li>Control point spread with <code>scale_size_continuous(range = ...)</code>.</li>
+<li>Explain why <code>size</code>/<code>alpha</code> must map to continuous variables.</li>
 </ol>
-<p>Worked solutions in <code>solutions/geoms.md</code> (attempt first).</p>
+<p>Worked solutions in <code>solutions/legend-shape-size-alpha.md</code> (attempt first).</p>
 </section>
 <section id="where-to-go-next" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="where-to-go-next">Where to go next</h2>
 <ul>
-<li>ggplot2 book (ggplot2-book.org) for theory behind this layer</li>
-<li>Claus Wilke, Fundamentals of Data Visualization, for perception guidance</li>
+<li>ggplot2 book scales and guides chapters</li>
 </ul>
 
 
@@ -1383,13 +1412,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ggplot2-quicktour.html" class="pagination-link" aria-label="Quick Tour">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Quick Tour</span></span>
+      <a href="./ggplot2-legend-color-fill.html" class="pagination-link" aria-label="Legend: Color and Fill">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Legend: Color and Fill</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ggplot2-aesthetics.html" class="pagination-link" aria-label="Aesthetics">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Aesthetics</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ggplot2-facets.html" class="pagination-link" aria-label="Faceting">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Faceting</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

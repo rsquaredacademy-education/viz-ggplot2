@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Line Graphs – Data Visualization with ggplot2</title>
+<title>13&nbsp; Legend: Color and Fill – Data Visualization with ggplot2</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -71,8 +71,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ggplot2-bar-plot.html" rel="next">
-<link href="./ggplot2-scatter-plot.html" rel="prev">
+<link href="./ggplot2-legend-shape-size-alpha.html" rel="next">
+<link href="./ggplot2-modify-legend.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -298,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot2-line-graph.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Line Graphs</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot2-legend-color-fill.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Legend: Color and Fill</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -393,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ggplot2-line-graph.html" class="sidebar-item-text sidebar-link active">
+  <a href="./ggplot2-line-graph.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Line Graphs</span></span></a>
   </div>
 </li>
@@ -429,7 +429,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ggplot2-legend-color-fill.html" class="sidebar-item-text sidebar-link">
+  <a href="./ggplot2-legend-color-fill.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Legend: Color and Fill</span></span></a>
   </div>
 </li>
@@ -503,22 +503,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">7.1</span> Introduction</a></li>
-  <li><a href="#case-study" id="toc-case-study" class="nav-link" data-scroll-target="#case-study"><span class="header-section-number">7.2</span> Case Study</a>
+  <li><a href="#color" id="toc-color" class="nav-link active" data-scroll-target="#color"><span class="header-section-number">13.1</span> Color</a>
   <ul class="collapse">
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">7.2.1</span> Data</a></li>
+  <li><a href="#basic-plot" id="toc-basic-plot" class="nav-link" data-scroll-target="#basic-plot">Basic Plot</a></li>
+  <li><a href="#values" id="toc-values" class="nav-link" data-scroll-target="#values">Values</a></li>
+  <li><a href="#title" id="toc-title" class="nav-link" data-scroll-target="#title">Title</a></li>
+  <li><a href="#limits" id="toc-limits" class="nav-link" data-scroll-target="#limits">Limits</a></li>
+  <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels">Labels</a></li>
+  <li><a href="#breaks" id="toc-breaks" class="nav-link" data-scroll-target="#breaks">Breaks</a></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together">Putting it all together…</a></li>
   </ul></li>
-  <li><a href="#line-chart" id="toc-line-chart" class="nav-link" data-scroll-target="#line-chart"><span class="header-section-number">7.3</span> Line Chart</a>
+  <li><a href="#fill" id="toc-fill" class="nav-link" data-scroll-target="#fill"><span class="header-section-number">13.2</span> Fill</a>
   <ul class="collapse">
-  <li><a href="#line-color" id="toc-line-color" class="nav-link" data-scroll-target="#line-color"><span class="header-section-number">7.3.1</span> Line Color</a></li>
-  <li><a href="#line-type" id="toc-line-type" class="nav-link" data-scroll-target="#line-type"><span class="header-section-number">7.3.2</span> Line Type</a></li>
-  <li><a href="#line-size" id="toc-line-size" class="nav-link" data-scroll-target="#line-size"><span class="header-section-number">7.3.3</span> Line Size</a></li>
+  <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a></li>
+  <li><a href="#title-1" id="toc-title-1" class="nav-link" data-scroll-target="#title-1">Title</a></li>
+  <li><a href="#values-1" id="toc-values-1" class="nav-link" data-scroll-target="#values-1">Values</a></li>
+  <li><a href="#labels-1" id="toc-labels-1" class="nav-link" data-scroll-target="#labels-1">Labels</a></li>
+  <li><a href="#limits-1" id="toc-limits-1" class="nav-link" data-scroll-target="#limits-1">Limits</a></li>
+  <li><a href="#breaks-1" id="toc-breaks-1" class="nav-link" data-scroll-target="#breaks-1">Breaks</a></li>
+  <li><a href="#putting-it-all-together-1" id="toc-putting-it-all-together-1" class="nav-link" data-scroll-target="#putting-it-all-together-1">Putting it all together…</a></li>
   </ul></li>
-  <li><a href="#multiple-lines" id="toc-multiple-lines" class="nav-link" data-scroll-target="#multiple-lines"><span class="header-section-number">7.4</span> Multiple Lines</a>
-  <ul class="collapse">
-  <li><a href="#modify-data" id="toc-modify-data" class="nav-link" data-scroll-target="#modify-data"><span class="header-section-number">7.4.1</span> Modify Data</a></li>
-  </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">7.5</span> Exercises</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">13.3</span> Exercises</a></li>
   <li><a href="#where-to-go-next" id="toc-where-to-go-next" class="nav-link" data-scroll-target="#where-to-go-next">Where to go next</a></li>
   </ul>
 </nav>
@@ -529,7 +534,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="ggplot2-line-graph" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Line Graphs</span></span></h1>
+<h1 class="title"><span id="ggplot2-legend-color-fill" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Legend: Color and Fill</span></span></h1>
 </div>
 
 
@@ -546,19 +551,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1</span> Introduction</h2>
+<p>In this chapter, we modify legend title, breaks, limits, labels and values when color or fill is mapped to categorical variables.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why this chart
+<span class="screen-reader-only">Note</span>Why this matters
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Line graphs show change over an ordered axis, usually time; slope is the message.</p>
+<p>Color and fill legends decode groups; keep titles plain words and show only needed breaks.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -571,229 +575,278 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Unsorted or gappy x values draw zigzag lines; sort by x and handle missing periods explicitly.</p>
+<p>Using limits silently drops data. Filter with dplyr when you mean to subset.</p>
 </div>
 </div>
-<p>In this chapter, we will learn to:</p>
+<section id="color" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="color"><span class="header-section-number">13.1</span> Color</h2>
+<p>We will learn to modify the following when <code>color</code> is mapped to categorical variables:</p>
 <ul>
-<li>build
-<ul>
-<li>simple line chart</li>
-<li>grouped line chart</li>
-</ul></li>
-<li>map aesthetics to variables</li>
-<li>modify line
-<ul>
-<li>color</li>
-<li>type</li>
-<li>size</li>
-</ul></li>
+<li>title</li>
+<li>breaks</li>
+<li>limits</li>
+<li>labels</li>
+<li>values</li>
 </ul>
+<section id="basic-plot" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="basic-plot">Basic Plot</h3>
+<p>Let us start with a scatter plot examining the relationship between displacement and miles per gallon from the mtcars data set. We will map the color of the points to the <code>cyl</code> variable.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see, the legend acts as a guide for the <code>color</code> aesthetic. Now, let us learn to modify the different aspects of the legend.</p>
 </section>
-<section id="case-study" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="case-study"><span class="header-section-number">7.2</span> Case Study</h2>
-<p>We will use a data set related to GDP growth rate. You can download it from <a href="https://github.com/rsquaredacademy/datasets/blob/master/gdp.csv">here</a>. It contains GDP (Gross Domestic Product) growth data for the BRICS (Brazil, Russia, India, China, South Africa) for the years 2000 to 2005.</p>
-<section id="data" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="data"><span class="header-section-number">7.2.1</span> Data</h3>
+<section id="values" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="values">Values</h3>
+<p>To change the default colors in the legend, use the <code>values</code> argument and supply a character vector of color names. The number of colors specified must be equal to the number of levels in the categorical variable mapped. In the below example, <code>cyl</code> has 3 levels (4, 6, 8) and hence we have specified 3 colors.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="title" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="title">Title</h3>
+<p>In the previous example, the title of the legend (<code>factor(cyl)</code>) is not very intuitive. If the user does not know the underlying data, they will not be able to make any sense out of it. Let us change it to <code>Cylinders</code> using the <code>name</code> argument.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">"Cylinders"</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now, the user will know that the different colors represent number of cylinders in the car.</p>
+</section>
+<section id="limits" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="limits">Limits</h3>
+<p>Let us assume that we want to modify the data to be displayed i.e.&nbsp;instead of examining the relationship between mileage and displacement for all cars, we desire to look at only cars with at least 6 cylinders. One way to approach this would be to filter the data using <code>filter</code> from dplyr and then visualize it. Instead, we will use the <code>limits</code> argument and filter the data for visualization.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc5-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see above, <code>ggplot2</code> returns a warning message indicating data related to 4 cylinders has been dropped. If you observe the legend, it now represents only 6 and 8 cylinders.</p>
+</section>
+<section id="labels" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="labels">Labels</h3>
+<p>The labels in the legend can be modified using the <code>labels</code> argument. Let us change the labels to <code>Four</code>, <code>Six</code> and <code>Eight</code> in the next example. Ensure that the labels are intuitive and easy to interpret for the end user of the plot.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'Four'</span>, <span class="st">'Six'</span>, <span class="st">'Eight'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="breaks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="breaks">Breaks</h3>
+<p>When there are large number of levels in the mapped variable, you may not want the labels in the legend to represent all of them. In such cases, we can use the breaks argument and specify the labels to be used. In the below case, we use the <code>breaks</code> argument to ensure that the labels in legend represent two levels (4, 8) of the mapped variable.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="putting-it-all-together" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="putting-it-all-together">Putting it all together…</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">name =</span> <span class="st">"Cylinders"</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'Four'</span>, <span class="st">'Six'</span>, <span class="st">'Eight'</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="fill" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="fill"><span class="header-section-number">13.2</span> Fill</h2>
+<p>we will learn to modify the following using <code>scale_fill_manual()</code> when <code>fill</code> is mapped to categorical variables:</p>
+<ul>
+<li>title</li>
+<li>breaks</li>
+<li>limits</li>
+<li>labels</li>
+<li>values</li>
+</ul>
+<section id="plot" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="plot">Plot</h3>
+<p>Let us start with a scatter plot examining the relationship between displacement and miles per gallon from the mtcars data set. We will map <code>fill</code> to the <code>cyl</code> variable.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gdp <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>gdp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-   ...1     X year       growth india china
-  &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     1     1 2000-01-01      6     5     8
-2     2     2 2001-01-01      9     9     5
-3     3     3 2002-01-01      8     8     6
-4     4     4 2003-01-01      9     8     8
-5     5     5 2004-01-01      9     5     9
-6     6     6 2005-01-01      8     7     8</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="line-chart" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="line-chart"><span class="header-section-number">7.3</span> Line Chart</h2>
-<p>To create a line chart, use <code>geom_line()</code>. In the below example, we examine the GDP growth rate trend of India for the years 2000 to 2005.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line100-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc9-1.png" class="img-fluid figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
-<section id="line-color" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="line-color"><span class="header-section-number">7.3.1</span> Line Color</h3>
-<p>To modify the color of the line, use the <code>color</code> argument and supply it a valid color name. In the below example, we modify the color of the line to <code>'blue'</code>. Remember that the <code>color</code> argument should be outside <code>aes()</code>.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">'blue'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>As you can see, the legend acts as a guide for the <code>color</code> aesthetic. Now, let us learn to modify the different aspects of the legend.</p>
+</section>
+<section id="title-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="title-1">Title</h3>
+<p>The title of the legend (<code>factor(cyl)</code>) is not very intuitive. If the user does not know the underlying data, they will not be able to make any sense out of it. Let us change it to <code>Cylinders</code> using the <code>name</code> argument.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Cylinders"</span>, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc10-1.png" class="img-fluid figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="line-type" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="line-type"><span class="header-section-number">7.3.2</span> Line Type</h3>
-<p>The line type can be modified using the <code>linetype</code> argument. It can take 7 different values. You can specify the line type either using numbers or words as shown below:</p>
-<ul>
-<li>0 : blank</li>
-<li>1 : solid</li>
-<li>2 : dashed</li>
-<li>3 : dotted</li>
-<li>4 : dotdash</li>
-<li>5 : longdash</li>
-<li>6 : twodash</li>
-</ul>
-<p>Let us modify the line type to dashed style by supplying the value <code>2</code> to the <code>linetype</code> argument.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="values-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="values-1">Values</h3>
+<p>To change the default colors in the legend, use the <code>values</code> argument and supply a character vector of color names. The number of colors specified must be equal to the number of levels in the categorical variable mapped. In the below example, <code>cyl</code> has 3 levels (4, 6, 8) and hence we have specified 3 colors.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The above example can be recreated by supplying the value <code>'dashed'</code> instead of <code>2</code>.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="st">'dashed'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc11-1.png" class="img-fluid figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="line-size" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="line-size"><span class="header-section-number">7.3.3</span> Line Size</h3>
-<p>The width of the line can be modified using the <code>linewidth</code> argument. It can take any value above 0 as input.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="labels-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="labels-1">Labels</h3>
+<p>The labels in the legend can be modified using the <code>labels</code> argument. Let us change the labels to <code>Four</code>, <code>Six</code> and <code>Eight</code> in the next example. Ensure that the labels are intuitive and easy to interpret for the end user of the plot.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'Four'</span>, <span class="st">'Six'</span>, <span class="st">'Eight'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div>
 <figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc12-1.png" class="img-fluid figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="limits-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="limits-1">Limits</h3>
+<p>Let us assume that we want to modify the data to be displayed i.e.&nbsp;instead of examining the relationship between mileage and displacement for all cars, we desire to look at only cars with at least 6 cylinders. One way to approach this would be to filter the data using <code>filter</code> from dplyr and then visualize it. Instead, we will use the <code>limits</code> argument and filter the data for visualization.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>),</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc13-1.png" class="img-fluid figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>As you can see above, <code>ggplot2</code> returns a warning message indicating data related to 4 cylinders has been dropped. If you observe the legend, it now represents only 6 and 8 cylinders.</p>
+</section>
+<section id="breaks-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="breaks-1">Breaks</h3>
+<p>When there are large number of levels in the mapped variable, you may not want the labels in the legend to represent all of them. In such cases, we can use the breaks argument and specify the labels to be used. In the below case, we use the <code>breaks</code> argument to ensure that the labels in legend represent two levels (4, 8) of the mapped variable.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>),</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc14-1.png" class="img-fluid figure-img" width="1344"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="putting-it-all-together-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="putting-it-all-together-1">Putting it all together…</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">fill =</span> <span class="fu">factor</span>(cyl)), <span class="at">shape =</span> <span class="dv">22</span>) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">"Cylinders"</span>, <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>),</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">'Four'</span>, <span class="st">'Six'</span>, <span class="st">'Eight'</span>), <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2-legend-color-fill_files/figure-html/legc15-1.png" class="img-fluid figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
 </section>
-<section id="multiple-lines" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="multiple-lines"><span class="header-section-number">7.4</span> Multiple Lines</h2>
-<section id="modify-data" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="modify-data"><span class="header-section-number">7.4.1</span> Modify Data</h3>
-<p>Now let us map the aesthetics to the variables. The data used in the above example cannot be used as we need a variable with country names. We will use <code>pivot_longer()</code> function from the <code>tidyr</code> package to reshape the data.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gdp2 <span class="ot">&lt;-</span> gdp <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, growth, india, china) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>year, <span class="at">names_to =</span> <span class="st">"country"</span>, <span class="at">values_to =</span> <span class="st">"gdp"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>gdp2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 18 × 3
-   year       country   gdp
-   &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
- 1 2000-01-01 growth      6
- 2 2000-01-01 india       5
- 3 2000-01-01 china       8
- 4 2001-01-01 growth      9
- 5 2001-01-01 india       9
- 6 2001-01-01 china       5
- 7 2002-01-01 growth      8
- 8 2002-01-01 india       8
- 9 2002-01-01 china       6
-10 2003-01-01 growth      9
-11 2003-01-01 india       8
-12 2003-01-01 china       8
-13 2004-01-01 growth      9
-14 2004-01-01 india       5
-15 2004-01-01 china       9
-16 2005-01-01 growth      8
-17 2005-01-01 india       7
-18 2005-01-01 china       8</code></pre>
-</div>
-</div>
-<p>In the original data, to plot GDP trend of multiple countries we will have to use <code>geom_line()</code> multiple times. But in the reshaped data, we have the country names as one of the variables and this can be used along with the <code>group</code> argument to plot data of multiple countries with a single line of code as shown below. By mapping country to the <code>group</code> argument, we have plotted data of all countries.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp2, <span class="fu">aes</span>(year, gdp, <span class="at">group =</span> country)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>In the above plot, we cannot distinguish between the lines and there is no way to identify which line represents which country. To make it easier to identify the trend of different countries, let us map the <code>color</code> argument to the variable country as shown below. Now, each country will be represented by line of different color.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp2, <span class="fu">aes</span>(year, gdp, <span class="at">group =</span> country)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> country))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We can map <code>linetype</code> argument to country as well. In this case, each country will be represented by a different line type.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp2, <span class="fu">aes</span>(year, gdp, <span class="at">group =</span> country)) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> country))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We can map the width of the line to the variable country as well. But in this case, the plot does not look either elegant or intuitive.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp2, <span class="fu">aes</span>(year, gdp, <span class="at">group =</span> country)) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linewidth =</span> country))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Remember that in all the above cases, we mapped the arguments to a variable inside <code>aes()</code>.</p>
-</section>
-</section>
-<section id="exercises" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">7.5</span> Exercises</h2>
+<section id="exercises" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="exercises"><span class="header-section-number">13.3</span> Exercises</h2>
 <ol type="1">
-<li>Draw the <code>unemploy</code> series from <code>economics</code> over <code>date</code> with <code>linewidth = 1</code>.</li>
-<li>Reshape <code>unemploy</code> + <code>uempmed</code> to long format and draw both series distinguished by color.</li>
-<li>Rewrite the plot with a message-first title and units on the y axis.</li>
+<li>Recolor cylinder groups with <code>scale_color_manual(values = ...)</code>.</li>
+<li>Rename legend entries with the <code>labels</code> argument.</li>
+<li>Show only 4- and 8-cylinder levels with <code>breaks</code> and justify vs <code>limits</code>.</li>
 </ol>
-<p>Worked solutions in <code>solutions/line.md</code> (attempt first).</p>
+<p>Worked solutions in <code>solutions/legend-color-fill.md</code> (attempt first).</p>
 </section>
 <section id="where-to-go-next" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="where-to-go-next">Where to go next</h2>
 <ul>
-<li>ggplot2 book (ggplot2-book.org) for theory behind this layer</li>
-<li>Claus Wilke, Fundamentals of Data Visualization, for perception guidance</li>
+<li>ggplot2 book scales and guides chapters</li>
 </ul>
 
 
@@ -1215,13 +1268,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ggplot2-scatter-plot.html" class="pagination-link" aria-label="Scatter Plots">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scatter Plots</span></span>
+      <a href="./ggplot2-modify-legend.html" class="pagination-link" aria-label="Modify Legend">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Modify Legend</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ggplot2-bar-plot.html" class="pagination-link" aria-label="Bar Plots">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Bar Plots</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ggplot2-legend-shape-size-alpha.html" class="pagination-link" aria-label="Legend: Shape Size and Alpha">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Legend: Shape Size and Alpha</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

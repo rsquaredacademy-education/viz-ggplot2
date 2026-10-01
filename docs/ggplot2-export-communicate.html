@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Line Graphs – Data Visualization with ggplot2</title>
+<title>22&nbsp; Export &amp; Communicate – Data Visualization with ggplot2</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -71,8 +71,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./ggplot2-bar-plot.html" rel="next">
-<link href="./ggplot2-scatter-plot.html" rel="prev">
+<link href="./cheatsheet.html" rel="next">
+<link href="./ggplot2-finale-polish.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -298,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot2-line-graph.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Line Graphs</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ggplot2-export-communicate.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Export &amp; Communicate</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -393,7 +393,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ggplot2-line-graph.html" class="sidebar-item-text sidebar-link active">
+  <a href="./ggplot2-line-graph.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Line Graphs</span></span></a>
   </div>
 </li>
@@ -483,7 +483,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ggplot2-export-communicate.html" class="sidebar-item-text sidebar-link">
+  <a href="./ggplot2-export-communicate.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Export &amp; Communicate</span></span></a>
   </div>
 </li>
@@ -503,22 +503,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">7.1</span> Introduction</a></li>
-  <li><a href="#case-study" id="toc-case-study" class="nav-link" data-scroll-target="#case-study"><span class="header-section-number">7.2</span> Case Study</a>
-  <ul class="collapse">
-  <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">7.2.1</span> Data</a></li>
-  </ul></li>
-  <li><a href="#line-chart" id="toc-line-chart" class="nav-link" data-scroll-target="#line-chart"><span class="header-section-number">7.3</span> Line Chart</a>
-  <ul class="collapse">
-  <li><a href="#line-color" id="toc-line-color" class="nav-link" data-scroll-target="#line-color"><span class="header-section-number">7.3.1</span> Line Color</a></li>
-  <li><a href="#line-type" id="toc-line-type" class="nav-link" data-scroll-target="#line-type"><span class="header-section-number">7.3.2</span> Line Type</a></li>
-  <li><a href="#line-size" id="toc-line-size" class="nav-link" data-scroll-target="#line-size"><span class="header-section-number">7.3.3</span> Line Size</a></li>
-  </ul></li>
-  <li><a href="#multiple-lines" id="toc-multiple-lines" class="nav-link" data-scroll-target="#multiple-lines"><span class="header-section-number">7.4</span> Multiple Lines</a>
-  <ul class="collapse">
-  <li><a href="#modify-data" id="toc-modify-data" class="nav-link" data-scroll-target="#modify-data"><span class="header-section-number">7.4.1</span> Modify Data</a></li>
-  </ul></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">7.5</span> Exercises</a></li>
+  <li><a href="#saving-with-ggsave" id="toc-saving-with-ggsave" class="nav-link active" data-scroll-target="#saving-with-ggsave"><span class="header-section-number">22.1</span> Saving with ggsave</a></li>
+  <li><a href="#vector-formats" id="toc-vector-formats" class="nav-link" data-scroll-target="#vector-formats"><span class="header-section-number">22.2</span> Vector Formats</a></li>
+  <li><a href="#storytelling-checklist" id="toc-storytelling-checklist" class="nav-link" data-scroll-target="#storytelling-checklist"><span class="header-section-number">22.3</span> Storytelling Checklist</a></li>
+  <li><a href="#before-and-after" id="toc-before-and-after" class="nav-link" data-scroll-target="#before-and-after"><span class="header-section-number">22.4</span> Before and After</a></li>
   <li><a href="#where-to-go-next" id="toc-where-to-go-next" class="nav-link" data-scroll-target="#where-to-go-next">Where to go next</a></li>
   </ul>
 </nav>
@@ -529,7 +517,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="ggplot2-line-graph" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Line Graphs</span></span></h1>
+<h1 class="title"><span id="ggplot2-export-communicate" class="quarto-section-identifier"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Export &amp; Communicate</span></span></h1>
 </div>
 
 
@@ -546,19 +534,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="introduction" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1</span> Introduction</h2>
+<p>In this chapter, we will save figures at print resolution with <code>ggsave()</code> and run a storytelling checklist before sharing.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Why this chart
+<span class="screen-reader-only">Note</span>Why this matters
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Line graphs show change over an ordered axis, usually time; slope is the message.</p>
+<p>A great on-screen plot that exports blurry or unlabeled fails at the finish line. Export settings and a final message check are what your audience actually sees.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
@@ -571,229 +558,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Unsorted or gappy x values draw zigzag lines; sort by x and handle missing periods explicitly.</p>
+<p>Screenshots of the RStudio plot pane are low resolution and carry UI chrome. Always export with <code>ggsave()</code> for anything you share.</p>
 </div>
 </div>
-<p>In this chapter, we will learn to:</p>
-<ul>
-<li>build
-<ul>
-<li>simple line chart</li>
-<li>grouped line chart</li>
-</ul></li>
-<li>map aesthetics to variables</li>
-<li>modify line
-<ul>
-<li>color</li>
-<li>type</li>
-<li>size</li>
-</ul></li>
-</ul>
-</section>
-<section id="case-study" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="case-study"><span class="header-section-number">7.2</span> Case Study</h2>
-<p>We will use a data set related to GDP growth rate. You can download it from <a href="https://github.com/rsquaredacademy/datasets/blob/master/gdp.csv">here</a>. It contains GDP (Gross Domestic Product) growth data for the BRICS (Brazil, Russia, India, China, South Africa) for the years 2000 to 2005.</p>
-<section id="data" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="data"><span class="header-section-number">7.2.1</span> Data</h3>
+<section id="saving-with-ggsave" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="saving-with-ggsave"><span class="header-section-number">22.1</span> Saving with ggsave</h2>
+<p><code>ggsave()</code> writes the last plot. Set width, height and dpi explicitly for print-crisp output:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>gdp <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rsquaredacademy/datasets/master/gdp.csv'</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>gdp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 6
-   ...1     X year       growth india china
-  &lt;dbl&gt; &lt;dbl&gt; &lt;date&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1     1     1 2000-01-01      6     5     8
-2     2     2 2001-01-01      9     9     5
-3     3     3 2002-01-01      8     8     6
-4     4     4 2003-01-01      9     8     8
-5     5     5 2004-01-01      9     5     9
-6     6     6 2005-01-01      8     7     8</code></pre>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Displacement vs mileage"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Displacement (cu. in.)"</span>, <span class="at">y =</span> <span class="st">"Miles per gallon"</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Cylinders"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="st">"displacement-vs-mileage.png"</span>, <span class="at">plot =</span> p,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>, <span class="at">dpi =</span> <span class="dv">300</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>Match dimensions to the destination: 8x6 inches suits slides, while narrower widths (e.g.&nbsp;6x4) fit single-column manuscripts.</p>
+</section>
+<section id="vector-formats" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="vector-formats"><span class="header-section-number">22.2</span> Vector Formats</h2>
+<p>For manuscripts and posters, export PDF or SVG so lines stay sharp at any zoom:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="st">"displacement-vs-mileage.pdf"</span>, <span class="at">plot =</span> p, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggsave</span>(<span class="st">"displacement-vs-mileage.svg"</span>, <span class="at">plot =</span> p, <span class="at">width =</span> <span class="dv">8</span>, <span class="at">height =</span> <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-</section>
-<section id="line-chart" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="line-chart"><span class="header-section-number">7.3</span> Line Chart</h2>
-<p>To create a line chart, use <code>geom_line()</code>. In the below example, we examine the GDP growth rate trend of India for the years 2000 to 2005.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line100-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<section id="line-color" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="line-color"><span class="header-section-number">7.3.1</span> Line Color</h3>
-<p>To modify the color of the line, use the <code>color</code> argument and supply it a valid color name. In the below example, we modify the color of the line to <code>'blue'</code>. Remember that the <code>color</code> argument should be outside <code>aes()</code>.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">'blue'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line1-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="line-type" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="line-type"><span class="header-section-number">7.3.2</span> Line Type</h3>
-<p>The line type can be modified using the <code>linetype</code> argument. It can take 7 different values. You can specify the line type either using numbers or words as shown below:</p>
+<section id="storytelling-checklist" class="level2" data-number="22.3">
+<h2 data-number="22.3" class="anchored" data-anchor-id="storytelling-checklist"><span class="header-section-number">22.3</span> Storytelling Checklist</h2>
+<p>Before sharing any figure, run this Knaflic-inspired check:</p>
 <ul>
-<li>0 : blank</li>
-<li>1 : solid</li>
-<li>2 : dashed</li>
-<li>3 : dotted</li>
-<li>4 : dotdash</li>
-<li>5 : longdash</li>
-<li>6 : twodash</li>
+<li><strong>Context:</strong> does the title state the conclusion, not just the topic?</li>
+<li><strong>Clutter:</strong> are gridlines, borders and decimals reduced to the minimum?</li>
+<li><strong>Focus:</strong> is the key series emphasized with color while the rest recede?</li>
+<li><strong>Labels:</strong> are axes, units and sources stated so the figure stands alone?</li>
+<li><strong>Honesty:</strong> does the axis start at zero for bars, and are missing data disclosed?</li>
 </ul>
-<p>Let us modify the line type to dashed style by supplying the value <code>2</code> to the <code>linetype</code> argument.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line2-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>The above example can be recreated by supplying the value <code>'dashed'</code> instead of <code>2</code>.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linetype =</span> <span class="st">'dashed'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
-<section id="line-size" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="line-size"><span class="header-section-number">7.3.3</span> Line Size</h3>
-<p>The width of the line can be modified using the <code>linewidth</code> argument. It can take any value above 0 as input.</p>
+<section id="before-and-after" class="level2" data-number="22.4">
+<h2 data-number="22.4" class="anchored" data-anchor-id="before-and-after"><span class="header-section-number">22.4</span> Before and After</h2>
+<p>Apply the checklist to a default scatter plot: add a message-first title, direct axis units and a restrained palette.</p>
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp, <span class="fu">aes</span>(year, india)) <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl)), <span class="at">size =</span> <span class="fl">2.5</span>) <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Heavier engines get fewer miles per gallon"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Displacement (cu. in.)"</span>, <span class="at">y =</span> <span class="st">"Miles per gallon"</span>, <span class="at">color =</span> <span class="st">"Cylinders"</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line4-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
+<p><img src="ggplot2-export-communicate_files/figure-html/exp3-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
 </figure>
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="multiple-lines" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="multiple-lines"><span class="header-section-number">7.4</span> Multiple Lines</h2>
-<section id="modify-data" class="level3" data-number="7.4.1">
-<h3 data-number="7.4.1" class="anchored" data-anchor-id="modify-data"><span class="header-section-number">7.4.1</span> Modify Data</h3>
-<p>Now let us map the aesthetics to the variables. The data used in the above example cannot be used as we need a variable with country names. We will use <code>pivot_longer()</code> function from the <code>tidyr</code> package to reshape the data.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gdp2 <span class="ot">&lt;-</span> gdp <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, growth, india, china) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span>year, <span class="at">names_to =</span> <span class="st">"country"</span>, <span class="at">values_to =</span> <span class="st">"gdp"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>gdp2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 18 × 3
-   year       country   gdp
-   &lt;date&gt;     &lt;chr&gt;   &lt;dbl&gt;
- 1 2000-01-01 growth      6
- 2 2000-01-01 india       5
- 3 2000-01-01 china       8
- 4 2001-01-01 growth      9
- 5 2001-01-01 india       9
- 6 2001-01-01 china       5
- 7 2002-01-01 growth      8
- 8 2002-01-01 india       8
- 9 2002-01-01 china       6
-10 2003-01-01 growth      9
-11 2003-01-01 india       8
-12 2003-01-01 china       8
-13 2004-01-01 growth      9
-14 2004-01-01 india       5
-15 2004-01-01 china       9
-16 2005-01-01 growth      8
-17 2005-01-01 india       7
-18 2005-01-01 china       8</code></pre>
-</div>
-</div>
-<p>In the original data, to plot GDP trend of multiple countries we will have to use <code>geom_line()</code> multiple times. But in the reshaped data, we have the country names as one of the variables and this can be used along with the <code>group</code> argument to plot data of multiple countries with a single line of code as shown below. By mapping country to the <code>group</code> argument, we have plotted data of all countries.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp2, <span class="fu">aes</span>(year, gdp, <span class="at">group =</span> country)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line6-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>In the above plot, we cannot distinguish between the lines and there is no way to identify which line represents which country. To make it easier to identify the trend of different countries, let us map the <code>color</code> argument to the variable country as shown below. Now, each country will be represented by line of different color.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp2, <span class="fu">aes</span>(year, gdp, <span class="at">group =</span> country)) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">color =</span> country))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line7-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We can map <code>linetype</code> argument to country as well. In this case, each country will be represented by a different line type.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp2, <span class="fu">aes</span>(year, gdp, <span class="at">group =</span> country)) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linetype =</span> country))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line8-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We can map the width of the line to the variable country as well. But in this case, the plot does not look either elegant or intuitive.</p>
-<div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gdp2, <span class="fu">aes</span>(year, gdp, <span class="at">group =</span> country)) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">linewidth =</span> country))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="ggplot2-line-graph_files/figure-html/line9-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1344"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Remember that in all the above cases, we mapped the arguments to a variable inside <code>aes()</code>.</p>
-</section>
-</section>
-<section id="exercises" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="exercises"><span class="header-section-number">7.5</span> Exercises</h2>
-<ol type="1">
-<li>Draw the <code>unemploy</code> series from <code>economics</code> over <code>date</code> with <code>linewidth = 1</code>.</li>
-<li>Reshape <code>unemploy</code> + <code>uempmed</code> to long format and draw both series distinguished by color.</li>
-<li>Rewrite the plot with a message-first title and units on the y axis.</li>
-</ol>
-<p>Worked solutions in <code>solutions/line.md</code> (attempt first).</p>
 </section>
 <section id="where-to-go-next" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="where-to-go-next">Where to go next</h2>
 <ul>
-<li>ggplot2 book (ggplot2-book.org) for theory behind this layer</li>
-<li>Claus Wilke, Fundamentals of Data Visualization, for perception guidance</li>
+<li>Storytelling with Data (Knaflic) for the full narrative framework</li>
+<li>Claus Wilke, Fundamentals of Data Visualization, for design principles</li>
 </ul>
 
 
@@ -1215,13 +1039,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ggplot2-scatter-plot.html" class="pagination-link" aria-label="Scatter Plots">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Scatter Plots</span></span>
+      <a href="./ggplot2-finale-polish.html" class="pagination-link" aria-label="Finale: Publication Polish with patchwork, ggrepel &amp; ggtext">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Finale: Publication Polish with patchwork, ggrepel &amp; ggtext</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ggplot2-bar-plot.html" class="pagination-link" aria-label="Bar Plots">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Bar Plots</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./cheatsheet.html" class="pagination-link" aria-label="ggplot2 Modern Recipe Cheat Sheet">
+        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">ggplot2 Modern Recipe Cheat Sheet</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
