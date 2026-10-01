@@ -67,7 +67,7 @@ format:
     include-in-header: google-analytics.html
     repo-url: https://github.com/rsquaredacademy-education/viz-ggplot2/
   pdf:
-    pdf-engine: typst
+    pdf-engine: lualatex
     papersize: us-letter
     toc-depth: 3
     code-overflow: wrap
