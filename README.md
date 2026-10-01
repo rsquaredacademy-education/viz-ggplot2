@@ -38,7 +38,7 @@ Free to read, built with [Quarto](https://quarto.org/).
 
 ```bash
 quarto preview                     # live HTML preview
-quarto render                      # full book (HTML + Typst PDF + ePub into _book/)
+quarto render                      # full book (HTML + PDF via lualatex + ePub into _book/)
 ```
 
 CI verifies slugs and multi-format outputs on render. `master` is the production branch.
