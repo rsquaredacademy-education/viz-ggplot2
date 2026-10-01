@@ -503,11 +503,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#guide" id="toc-guide" class="nav-link active" data-scroll-target="#guide"><span class="header-section-number">12.1</span> Guide</a>
+  <li><a href="#customize-legends-with-guides" id="toc-customize-legends-with-guides" class="nav-link active" data-scroll-target="#customize-legends-with-guides"><span class="header-section-number">12.1</span> Customize legends with guides</a>
   <ul class="collapse">
-  <li><a href="#title" id="toc-title" class="nav-link" data-scroll-target="#title">Title</a></li>
-  <li><a href="#label" id="toc-label" class="nav-link" data-scroll-target="#label">Label</a></li>
-  <li><a href="#legend-bar" id="toc-legend-bar" class="nav-link" data-scroll-target="#legend-bar">Legend Bar</a></li>
+  <li><a href="#change-the-guide-title" id="toc-change-the-guide-title" class="nav-link" data-scroll-target="#change-the-guide-title">Change the guide title</a></li>
+  <li><a href="#change-guide-labels" id="toc-change-guide-labels" class="nav-link" data-scroll-target="#change-guide-labels">Change guide labels</a></li>
+  <li><a href="#change-the-legend-color-bar" id="toc-change-the-legend-color-bar" class="nav-link" data-scroll-target="#change-the-legend-color-bar">Change the legend color bar</a></li>
   </ul></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">12.2</span> Exercises</a></li>
   <li><a href="#where-to-go-next" id="toc-where-to-go-next" class="nav-link" data-scroll-target="#where-to-go-next">Where to go next</a></li>
@@ -564,8 +564,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Over-customizing direction, rows and justification in one guide hurts readability. Change one element at a time.</p>
 </div>
 </div>
-<section id="guide" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="guide"><span class="header-section-number">12.1</span> Guide</h2>
+<section id="customize-legends-with-guides" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="customize-legends-with-guides"><span class="header-section-number">12.1</span> Customize legends with guides</h2>
 <p>In this section, we will learn to modify</p>
 <ul>
 <li>title</li>
@@ -573,8 +573,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>and bar</li>
 </ul>
 <p>So far, we have learnt to modify the components of a legend using <code>scale_*</code> family of functions. Now, we will use the <code>guide</code> argument and supply it values using the <code>guide_legend()</code> function.</p>
-<section id="title" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="title">Title</h3>
+<section id="change-the-guide-title" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="change-the-guide-title">Change the guide title</h3>
 <section id="title-alignment" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="title-alignment">Title Alignment</h4>
 <p>The horizontal alignment of the title can be managed using the <code>title.hjust</code> argument. It can take any value between <code>0</code> and <code>1</code>.</p>
@@ -636,8 +636,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="label" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="label">Label</h3>
+<section id="change-guide-labels" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="change-guide-labels">Change guide labels</h3>
 <section id="label-position" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="label-position">Label Position</h4>
 <p>The position of the label can be managed using the <code>label.position</code> argument. It can be positioned at:</p>
@@ -773,8 +773,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="legend-bar" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="legend-bar">Legend Bar</h3>
+<section id="change-the-legend-color-bar" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="change-the-legend-color-bar">Change the legend color bar</h3>
 <p>So far we have looked at modifying components of the legend when it acts as a guide for <code>color</code>, <code>fill</code> or <code>shape</code> i.e.&nbsp;when the aesthetics have been mapped to a categorical variable. In this section, you will learn about <code>guide_colorbar()</code> which will allow us to modify the legend when the aesthetics are mapped to a continuous variable.</p>
 <section id="plot" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="plot">Plot</h4>

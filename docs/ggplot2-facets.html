@@ -504,20 +504,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">15.1</span> Introduction</a></li>
-  <li><a href="#grid" id="toc-grid" class="nav-link" data-scroll-target="#grid"><span class="header-section-number">15.2</span> Grid</a>
+  <li><a href="#facet-grid" id="toc-facet-grid" class="nav-link" data-scroll-target="#facet-grid"><span class="header-section-number">15.2</span> Arrange facets in a grid</a>
   <ul class="collapse">
-  <li><a href="#vertical" id="toc-vertical" class="nav-link" data-scroll-target="#vertical"><span class="header-section-number">15.2.1</span> Vertical</a></li>
-  <li><a href="#horizontal" id="toc-horizontal" class="nav-link" data-scroll-target="#horizontal"><span class="header-section-number">15.2.2</span> Horizontal</a></li>
-  <li><a href="#vertical-horizontal" id="toc-vertical-horizontal" class="nav-link" data-scroll-target="#vertical-horizontal"><span class="header-section-number">15.2.3</span> Vertical &amp; Horizontal</a></li>
-  <li><a href="#scales" id="toc-scales" class="nav-link" data-scroll-target="#scales"><span class="header-section-number">15.2.4</span> Scales</a></li>
-  <li><a href="#switch-labels" id="toc-switch-labels" class="nav-link" data-scroll-target="#switch-labels"><span class="header-section-number">15.2.5</span> Switch Labels</a></li>
+  <li><a href="#facet-grid-vertical" id="toc-facet-grid-vertical" class="nav-link" data-scroll-target="#facet-grid-vertical"><span class="header-section-number">15.2.1</span> Stack facets vertically</a></li>
+  <li><a href="#facet-grid-horizontal" id="toc-facet-grid-horizontal" class="nav-link" data-scroll-target="#facet-grid-horizontal"><span class="header-section-number">15.2.2</span> Arrange facets horizontally</a></li>
+  <li><a href="#facet-grid-rows-columns" id="toc-facet-grid-rows-columns" class="nav-link" data-scroll-target="#facet-grid-rows-columns"><span class="header-section-number">15.2.3</span> Facet rows and columns together</a></li>
+  <li><a href="#facet-grid-free-scales" id="toc-facet-grid-free-scales" class="nav-link" data-scroll-target="#facet-grid-free-scales"><span class="header-section-number">15.2.4</span> Use free scales in a facet grid</a></li>
+  <li><a href="#facet-grid-switch" id="toc-facet-grid-switch" class="nav-link" data-scroll-target="#facet-grid-switch"><span class="header-section-number">15.2.5</span> Move facet labels with switch</a></li>
   </ul></li>
-  <li><a href="#wrap" id="toc-wrap" class="nav-link" data-scroll-target="#wrap"><span class="header-section-number">15.3</span> Wrap</a>
+  <li><a href="#facet-wrap" id="toc-facet-wrap" class="nav-link" data-scroll-target="#facet-wrap"><span class="header-section-number">15.3</span> Wrap facets into panels</a>
   <ul class="collapse">
-  <li><a href="#specify-rows" id="toc-specify-rows" class="nav-link" data-scroll-target="#specify-rows"><span class="header-section-number">15.3.1</span> Specify Rows</a></li>
-  <li><a href="#specify-columns" id="toc-specify-columns" class="nav-link" data-scroll-target="#specify-columns"><span class="header-section-number">15.3.2</span> Specify Columns</a></li>
-  <li><a href="#scales-1" id="toc-scales-1" class="nav-link" data-scroll-target="#scales-1"><span class="header-section-number">15.3.3</span> Scales</a></li>
-  <li><a href="#rows-columns" id="toc-rows-columns" class="nav-link" data-scroll-target="#rows-columns"><span class="header-section-number">15.3.4</span> Rows &amp; Columns</a></li>
+  <li><a href="#facet-wrap-rows" id="toc-facet-wrap-rows" class="nav-link" data-scroll-target="#facet-wrap-rows"><span class="header-section-number">15.3.1</span> Set facet rows</a></li>
+  <li><a href="#facet-wrap-columns" id="toc-facet-wrap-columns" class="nav-link" data-scroll-target="#facet-wrap-columns"><span class="header-section-number">15.3.2</span> Set facet columns</a></li>
+  <li><a href="#facet-wrap-free-scales" id="toc-facet-wrap-free-scales" class="nav-link" data-scroll-target="#facet-wrap-free-scales"><span class="header-section-number">15.3.3</span> Use free scales in wrapped facets</a></li>
+  <li><a href="#facet-wrap-rows-columns" id="toc-facet-wrap-rows-columns" class="nav-link" data-scroll-target="#facet-wrap-rows-columns"><span class="header-section-number">15.3.4</span> Set facet rows and columns</a></li>
   </ul></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">15.4</span> Exercises</a></li>
   <li><a href="#where-to-go-next" id="toc-where-to-go-next" class="nav-link" data-scroll-target="#where-to-go-next">Where to go next</a></li>
@@ -583,10 +583,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Faceting allows us to create multiple sub plots. It partitions a plot into a matrix of panels with each panel showing a different subset of data.</p>
 </section>
-<section id="grid" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="grid"><span class="header-section-number">15.2</span> Grid</h2>
-<section id="vertical" class="level3" data-number="15.2.1">
-<h3 data-number="15.2.1" class="anchored" data-anchor-id="vertical"><span class="header-section-number">15.2.1</span> Vertical</h3>
+<section id="facet-grid" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="facet-grid"><span class="header-section-number">15.2</span> Arrange facets in a grid</h2>
+<section id="facet-grid-vertical" class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="facet-grid-vertical"><span class="header-section-number">15.2.1</span> Stack facets vertically</h3>
 <p><code>facet_grid()</code> allows us to split up the data by one or two discrete variables and create sub plots. The sub plots can be arranged horizontally or vertically using a formula of the form <code>vertical ~ horizontal</code>. In the below example, 3 sub plots are created, one each for the levels of the <code>cyl</code> variable and the sub plots are arranged vertically</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span> </span>
@@ -601,8 +601,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="horizontal" class="level3" data-number="15.2.2">
-<h3 data-number="15.2.2" class="anchored" data-anchor-id="horizontal"><span class="header-section-number">15.2.2</span> Horizontal</h3>
+<section id="facet-grid-horizontal" class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="facet-grid-horizontal"><span class="header-section-number">15.2.2</span> Arrange facets horizontally</h3>
 <p>Below we reproduce the previous example but arrange the sub plots horizontally.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span> </span>
@@ -617,8 +617,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="vertical-horizontal" class="level3" data-number="15.2.3">
-<h3 data-number="15.2.3" class="anchored" data-anchor-id="vertical-horizontal"><span class="header-section-number">15.2.3</span> Vertical &amp; Horizontal</h3>
+<section id="facet-grid-rows-columns" class="level3" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="facet-grid-rows-columns"><span class="header-section-number">15.2.3</span> Facet rows and columns together</h3>
 <p>In certain cases, we might want different discrete variables to represent the horizontal and vertical direction. In the below example, we examine the relationship between displacement and miles per gallon for different combinations of <code>cyl</code> and <code>gear</code> variables.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span> </span>
@@ -646,8 +646,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="scales" class="level3" data-number="15.2.4">
-<h3 data-number="15.2.4" class="anchored" data-anchor-id="scales"><span class="header-section-number">15.2.4</span> Scales</h3>
+<section id="facet-grid-free-scales" class="level3" data-number="15.2.4">
+<h3 data-number="15.2.4" class="anchored" data-anchor-id="facet-grid-free-scales"><span class="header-section-number">15.2.4</span> Use free scales in a facet grid</h3>
 <p>If you carefully observe the second example, the range of <code>X</code> axis is same for all the 3 sub plots i.e.&nbsp;it is a fixed range. You can allow each of the sub plots to have different range using the <code>scales</code> argument and supplying it the value <code>'free'</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(disp, mpg, <span class="at">color =</span> <span class="fu">factor</span>(cyl))) <span class="sc">+</span></span>
@@ -663,8 +663,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Now, each of the sub plot has a different range.</p>
 </section>
-<section id="switch-labels" class="level3" data-number="15.2.5">
-<h3 data-number="15.2.5" class="anchored" data-anchor-id="switch-labels"><span class="header-section-number">15.2.5</span> Switch Labels</h3>
+<section id="facet-grid-switch" class="level3" data-number="15.2.5">
+<h3 data-number="15.2.5" class="anchored" data-anchor-id="facet-grid-switch"><span class="header-section-number">15.2.5</span> Move facet labels with switch</h3>
 <p>In the third example, the labels are displayed at the bottom for <code>X</code> axis and at the right for the <code>Y</code> axis. It can be changed using the <code>switch</code> argument and supplying the value <code>'both'</code>. The labels will now be displayed at the top for the <code>X</code> axis and at left for the <code>Y</code> axis. If you just want to change the labels for a particular axis, use the values <code>x</code> and <code>y</code> for the <code>X</code> and <code>Y</code> axis respectively.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span> </span>
@@ -680,8 +680,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="wrap" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="wrap"><span class="header-section-number">15.3</span> Wrap</h2>
+<section id="facet-wrap" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="facet-wrap"><span class="header-section-number">15.3</span> Wrap facets into panels</h2>
 <p><code>facet_wrap()</code> allows us to arrange sub plots in a certain number of rows and columns. In the below example, we will use <code>facet_wrap()</code> to arrange the sub plots in a single row.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
@@ -695,8 +695,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="specify-rows" class="level3" data-number="15.3.1">
-<h3 data-number="15.3.1" class="anchored" data-anchor-id="specify-rows"><span class="header-section-number">15.3.1</span> Specify Rows</h3>
+<section id="facet-wrap-rows" class="level3" data-number="15.3.1">
+<h3 data-number="15.3.1" class="anchored" data-anchor-id="facet-wrap-rows"><span class="header-section-number">15.3.1</span> Set facet rows</h3>
 <p>To arrange the sub plots in a specific number of rows, use the <code>nrow</code> argument. In the below example, we arrange the sub plots in 2 rows.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
@@ -711,8 +711,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="specify-columns" class="level3" data-number="15.3.2">
-<h3 data-number="15.3.2" class="anchored" data-anchor-id="specify-columns"><span class="header-section-number">15.3.2</span> Specify Columns</h3>
+<section id="facet-wrap-columns" class="level3" data-number="15.3.2">
+<h3 data-number="15.3.2" class="anchored" data-anchor-id="facet-wrap-columns"><span class="header-section-number">15.3.2</span> Set facet columns</h3>
 <p>Here, we arrange the sub plots in 3 columns instead of rows using the <code>ncol</code> argument.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
@@ -727,8 +727,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="scales-1" class="level3" data-number="15.3.3">
-<h3 data-number="15.3.3" class="anchored" data-anchor-id="scales-1"><span class="header-section-number">15.3.3</span> Scales</h3>
+<section id="facet-wrap-free-scales" class="level3" data-number="15.3.3">
+<h3 data-number="15.3.3" class="anchored" data-anchor-id="facet-wrap-free-scales"><span class="header-section-number">15.3.3</span> Use free scales in wrapped facets</h3>
 <p>You can allow each of the sub plots to have different range using the <code>scales</code> argument and supplying it the value <code>'free'</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>
@@ -743,8 +743,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="rows-columns" class="level3" data-number="15.3.4">
-<h3 data-number="15.3.4" class="anchored" data-anchor-id="rows-columns"><span class="header-section-number">15.3.4</span> Rows &amp; Columns</h3>
+<section id="facet-wrap-rows-columns" class="level3" data-number="15.3.4">
+<h3 data-number="15.3.4" class="anchored" data-anchor-id="facet-wrap-rows-columns"><span class="header-section-number">15.3.4</span> Set facet rows and columns</h3>
 <p>If 2 discrete variables are used to create the sub plots, we can either use the formula interface to specify the variables as shown below</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(disp, mpg)) <span class="sc">+</span></span>

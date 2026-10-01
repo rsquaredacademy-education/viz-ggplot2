@@ -503,24 +503,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#color" id="toc-color" class="nav-link active" data-scroll-target="#color"><span class="header-section-number">13.1</span> Color</a>
+  <li><a href="#change-legend-colors" id="toc-change-legend-colors" class="nav-link active" data-scroll-target="#change-legend-colors"><span class="header-section-number">13.1</span> Change legend colors</a>
   <ul class="collapse">
   <li><a href="#basic-plot" id="toc-basic-plot" class="nav-link" data-scroll-target="#basic-plot">Basic Plot</a></li>
-  <li><a href="#values" id="toc-values" class="nav-link" data-scroll-target="#values">Values</a></li>
-  <li><a href="#title" id="toc-title" class="nav-link" data-scroll-target="#title">Title</a></li>
-  <li><a href="#limits" id="toc-limits" class="nav-link" data-scroll-target="#limits">Limits</a></li>
-  <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels">Labels</a></li>
-  <li><a href="#breaks" id="toc-breaks" class="nav-link" data-scroll-target="#breaks">Breaks</a></li>
+  <li><a href="#color-legend-values" id="toc-color-legend-values" class="nav-link" data-scroll-target="#color-legend-values">Change legend color values</a></li>
+  <li><a href="#color-legend-title" id="toc-color-legend-title" class="nav-link" data-scroll-target="#color-legend-title">Change the legend title</a></li>
+  <li><a href="#color-legend-limits" id="toc-color-legend-limits" class="nav-link" data-scroll-target="#color-legend-limits">Change legend limits</a></li>
+  <li><a href="#color-legend-labels" id="toc-color-legend-labels" class="nav-link" data-scroll-target="#color-legend-labels">Change legend labels</a></li>
+  <li><a href="#color-legend-breaks" id="toc-color-legend-breaks" class="nav-link" data-scroll-target="#color-legend-breaks">Reorder or hide legend items with breaks</a></li>
   <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together">Putting it all together…</a></li>
   </ul></li>
-  <li><a href="#fill" id="toc-fill" class="nav-link" data-scroll-target="#fill"><span class="header-section-number">13.2</span> Fill</a>
+  <li><a href="#change-legend-fill-colors" id="toc-change-legend-fill-colors" class="nav-link" data-scroll-target="#change-legend-fill-colors"><span class="header-section-number">13.2</span> Change legend fill colors</a>
   <ul class="collapse">
   <li><a href="#plot" id="toc-plot" class="nav-link" data-scroll-target="#plot">Plot</a></li>
-  <li><a href="#title-1" id="toc-title-1" class="nav-link" data-scroll-target="#title-1">Title</a></li>
-  <li><a href="#values-1" id="toc-values-1" class="nav-link" data-scroll-target="#values-1">Values</a></li>
-  <li><a href="#labels-1" id="toc-labels-1" class="nav-link" data-scroll-target="#labels-1">Labels</a></li>
-  <li><a href="#limits-1" id="toc-limits-1" class="nav-link" data-scroll-target="#limits-1">Limits</a></li>
-  <li><a href="#breaks-1" id="toc-breaks-1" class="nav-link" data-scroll-target="#breaks-1">Breaks</a></li>
+  <li><a href="#fill-legend-title" id="toc-fill-legend-title" class="nav-link" data-scroll-target="#fill-legend-title">Change the legend title</a></li>
+  <li><a href="#fill-legend-values" id="toc-fill-legend-values" class="nav-link" data-scroll-target="#fill-legend-values">Change legend fill values</a></li>
+  <li><a href="#fill-legend-labels" id="toc-fill-legend-labels" class="nav-link" data-scroll-target="#fill-legend-labels">Change legend labels</a></li>
+  <li><a href="#fill-legend-limits" id="toc-fill-legend-limits" class="nav-link" data-scroll-target="#fill-legend-limits">Change legend limits</a></li>
+  <li><a href="#fill-legend-breaks" id="toc-fill-legend-breaks" class="nav-link" data-scroll-target="#fill-legend-breaks">Reorder or hide legend items with breaks</a></li>
   <li><a href="#putting-it-all-together-1" id="toc-putting-it-all-together-1" class="nav-link" data-scroll-target="#putting-it-all-together-1">Putting it all together…</a></li>
   </ul></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises"><span class="header-section-number">13.3</span> Exercises</a></li>
@@ -578,8 +578,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Using limits silently drops data. Filter with dplyr when you mean to subset.</p>
 </div>
 </div>
-<section id="color" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="color"><span class="header-section-number">13.1</span> Color</h2>
+<section id="change-legend-colors" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="change-legend-colors"><span class="header-section-number">13.1</span> Change legend colors</h2>
 <p>We will learn to modify the following when <code>color</code> is mapped to categorical variables:</p>
 <ul>
 <li>title</li>
@@ -604,8 +604,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>As you can see, the legend acts as a guide for the <code>color</code> aesthetic. Now, let us learn to modify the different aspects of the legend.</p>
 </section>
-<section id="values" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="values">Values</h3>
+<section id="color-legend-values" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="color-legend-values">Change legend color values</h3>
 <p>To change the default colors in the legend, use the <code>values</code> argument and supply a character vector of color names. The number of colors specified must be equal to the number of levels in the categorical variable mapped. In the below example, <code>cyl</code> has 3 levels (4, 6, 8) and hence we have specified 3 colors.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
@@ -620,8 +620,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="title" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="title">Title</h3>
+<section id="color-legend-title" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="color-legend-title">Change the legend title</h3>
 <p>In the previous example, the title of the legend (<code>factor(cyl)</code>) is not very intuitive. If the user does not know the underlying data, they will not be able to make any sense out of it. Let us change it to <code>Cylinders</code> using the <code>name</code> argument.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
@@ -638,8 +638,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Now, the user will know that the different colors represent number of cylinders in the car.</p>
 </section>
-<section id="limits" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="limits">Limits</h3>
+<section id="color-legend-limits" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="color-legend-limits">Change legend limits</h3>
 <p>Let us assume that we want to modify the data to be displayed i.e.&nbsp;instead of examining the relationship between mileage and displacement for all cars, we desire to look at only cars with at least 6 cylinders. One way to approach this would be to filter the data using <code>filter</code> from dplyr and then visualize it. Instead, we will use the <code>limits</code> argument and filter the data for visualization.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
@@ -655,8 +655,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>As you can see above, <code>ggplot2</code> returns a warning message indicating data related to 4 cylinders has been dropped. If you observe the legend, it now represents only 6 and 8 cylinders.</p>
 </section>
-<section id="labels" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="labels">Labels</h3>
+<section id="color-legend-labels" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="color-legend-labels">Change legend labels</h3>
 <p>The labels in the legend can be modified using the <code>labels</code> argument. Let us change the labels to <code>Four</code>, <code>Six</code> and <code>Eight</code> in the next example. Ensure that the labels are intuitive and easy to interpret for the end user of the plot.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
@@ -672,8 +672,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="breaks" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="breaks">Breaks</h3>
+<section id="color-legend-breaks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="color-legend-breaks">Reorder or hide legend items with breaks</h3>
 <p>When there are large number of levels in the mapped variable, you may not want the labels in the legend to represent all of them. In such cases, we can use the breaks argument and specify the labels to be used. In the below case, we use the <code>breaks</code> argument to ensure that the labels in legend represent two levels (4, 8) of the mapped variable.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
@@ -706,8 +706,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="fill" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="fill"><span class="header-section-number">13.2</span> Fill</h2>
+<section id="change-legend-fill-colors" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="change-legend-fill-colors"><span class="header-section-number">13.2</span> Change legend fill colors</h2>
 <p>we will learn to modify the following using <code>scale_fill_manual()</code> when <code>fill</code> is mapped to categorical variables:</p>
 <ul>
 <li>title</li>
@@ -732,8 +732,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>As you can see, the legend acts as a guide for the <code>color</code> aesthetic. Now, let us learn to modify the different aspects of the legend.</p>
 </section>
-<section id="title-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="title-1">Title</h3>
+<section id="fill-legend-title" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-legend-title">Change the legend title</h3>
 <p>The title of the legend (<code>factor(cyl)</code>) is not very intuitive. If the user does not know the underlying data, they will not be able to make any sense out of it. Let us change it to <code>Cylinders</code> using the <code>name</code> argument.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
@@ -749,8 +749,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="values-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="values-1">Values</h3>
+<section id="fill-legend-values" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-legend-values">Change legend fill values</h3>
 <p>To change the default colors in the legend, use the <code>values</code> argument and supply a character vector of color names. The number of colors specified must be equal to the number of levels in the categorical variable mapped. In the below example, <code>cyl</code> has 3 levels (4, 6, 8) and hence we have specified 3 colors.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
@@ -765,8 +765,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="labels-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="labels-1">Labels</h3>
+<section id="fill-legend-labels" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-legend-labels">Change legend labels</h3>
 <p>The labels in the legend can be modified using the <code>labels</code> argument. Let us change the labels to <code>Four</code>, <code>Six</code> and <code>Eight</code> in the next example. Ensure that the labels are intuitive and easy to interpret for the end user of the plot.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
@@ -782,8 +782,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="limits-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="limits-1">Limits</h3>
+<section id="fill-legend-limits" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-legend-limits">Change legend limits</h3>
 <p>Let us assume that we want to modify the data to be displayed i.e.&nbsp;instead of examining the relationship between mileage and displacement for all cars, we desire to look at only cars with at least 6 cylinders. One way to approach this would be to filter the data using <code>filter</code> from dplyr and then visualize it. Instead, we will use the <code>limits</code> argument and filter the data for visualization.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
@@ -800,8 +800,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>As you can see above, <code>ggplot2</code> returns a warning message indicating data related to 4 cylinders has been dropped. If you observe the legend, it now represents only 6 and 8 cylinders.</p>
 </section>
-<section id="breaks-1" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="breaks-1">Breaks</h3>
+<section id="fill-legend-breaks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-legend-breaks">Reorder or hide legend items with breaks</h3>
 <p>When there are large number of levels in the mapped variable, you may not want the labels in the legend to represent all of them. In such cases, we can use the breaks argument and specify the labels to be used. In the below case, we use the <code>breaks</code> argument to ensure that the labels in legend represent two levels (4, 8) of the mapped variable.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>

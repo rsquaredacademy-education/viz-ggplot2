@@ -505,20 +505,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">16.1</span> Introduction</a></li>
   <li><a href="#basic-plot" id="toc-basic-plot" class="nav-link" data-scroll-target="#basic-plot"><span class="header-section-number">16.2</span> Basic Plot</a></li>
-  <li><a href="#axis" id="toc-axis" class="nav-link" data-scroll-target="#axis"><span class="header-section-number">16.3</span> Axis</a>
+  <li><a href="#style-plot-axes" id="toc-style-plot-axes" class="nav-link" data-scroll-target="#style-plot-axes"><span class="header-section-number">16.3</span> Style plot axes</a>
   <ul class="collapse">
-  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text"><span class="header-section-number">16.3.1</span> Text</a></li>
-  <li><a href="#ticks" id="toc-ticks" class="nav-link" data-scroll-target="#ticks"><span class="header-section-number">16.3.2</span> Ticks</a></li>
-  <li><a href="#line" id="toc-line" class="nav-link" data-scroll-target="#line"><span class="header-section-number">16.3.3</span> Line</a></li>
+  <li><a href="#style-axis-text" id="toc-style-axis-text" class="nav-link" data-scroll-target="#style-axis-text"><span class="header-section-number">16.3.1</span> Style axis text</a></li>
+  <li><a href="#style-axis-ticks" id="toc-style-axis-ticks" class="nav-link" data-scroll-target="#style-axis-ticks"><span class="header-section-number">16.3.2</span> Style axis ticks</a></li>
+  <li><a href="#style-axis-lines" id="toc-style-axis-lines" class="nav-link" data-scroll-target="#style-axis-lines"><span class="header-section-number">16.3.3</span> Style axis lines</a></li>
   </ul></li>
-  <li><a href="#legend" id="toc-legend" class="nav-link" data-scroll-target="#legend"><span class="header-section-number">16.4</span> Legend</a>
+  <li><a href="#style-the-legend" id="toc-style-the-legend" class="nav-link" data-scroll-target="#style-the-legend"><span class="header-section-number">16.4</span> Style the legend</a>
   <ul class="collapse">
-  <li><a href="#background" id="toc-background" class="nav-link" data-scroll-target="#background"><span class="header-section-number">16.4.1</span> Background</a></li>
-  <li><a href="#text-1" id="toc-text-1" class="nav-link" data-scroll-target="#text-1"><span class="header-section-number">16.4.2</span> Text</a></li>
-  <li><a href="#title" id="toc-title" class="nav-link" data-scroll-target="#title"><span class="header-section-number">16.4.3</span> Title</a></li>
-  <li><a href="#position" id="toc-position" class="nav-link" data-scroll-target="#position"><span class="header-section-number">16.4.4</span> Position</a></li>
+  <li><a href="#style-legend-background" id="toc-style-legend-background" class="nav-link" data-scroll-target="#style-legend-background"><span class="header-section-number">16.4.1</span> Style the legend background</a></li>
+  <li><a href="#style-legend-text" id="toc-style-legend-text" class="nav-link" data-scroll-target="#style-legend-text"><span class="header-section-number">16.4.2</span> Style legend text</a></li>
+  <li><a href="#style-legend-title" id="toc-style-legend-title" class="nav-link" data-scroll-target="#style-legend-title"><span class="header-section-number">16.4.3</span> Style the legend title</a></li>
+  <li><a href="#move-the-legend-position" id="toc-move-the-legend-position" class="nav-link" data-scroll-target="#move-the-legend-position"><span class="header-section-number">16.4.4</span> Move the legend position</a></li>
   </ul></li>
-  <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes"><span class="header-section-number">16.5</span> Themes</a>
+  <li><a href="#apply-a-complete-theme" id="toc-apply-a-complete-theme" class="nav-link" data-scroll-target="#apply-a-complete-theme"><span class="header-section-number">16.5</span> Apply a complete theme</a>
   <ul class="collapse">
   <li><a href="#classic-dark-on-light" id="toc-classic-dark-on-light" class="nav-link" data-scroll-target="#classic-dark-on-light"><span class="header-section-number">16.5.1</span> Classic Dark on Light</a></li>
   <li><a href="#default-gray" id="toc-default-gray" class="nav-link" data-scroll-target="#default-gray"><span class="header-section-number">16.5.2</span> Default Gray</a></li>
@@ -611,10 +611,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="axis" class="level2" data-number="16.3">
-<h2 data-number="16.3" class="anchored" data-anchor-id="axis"><span class="header-section-number">16.3</span> Axis</h2>
-<section id="text" class="level3" data-number="16.3.1">
-<h3 data-number="16.3.1" class="anchored" data-anchor-id="text"><span class="header-section-number">16.3.1</span> Text</h3>
+<section id="style-plot-axes" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="style-plot-axes"><span class="header-section-number">16.3</span> Style plot axes</h2>
+<section id="style-axis-text" class="level3" data-number="16.3.1">
+<h3 data-number="16.3.1" class="anchored" data-anchor-id="style-axis-text"><span class="header-section-number">16.3.1</span> Style axis text</h3>
 <p>The <code>axis.title.x</code> argument can be used to modify the appearance of the <code>X</code> axis. In the below example, we modify the color and size of the title using the <code>element_text()</code> function. Remember, whenever you are trying to modify the appearance of a theme element which is a text, you must use <code>element_text()</code>.</p>
 <p>You can use <code>axis.title.y</code> to modify the <code>Y</code> axis title and to modify the title of both the axis together, use <code>axis.title</code>.</p>
 <div class="cell" data-layout-align="center">
@@ -628,8 +628,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="ticks" class="level3" data-number="16.3.2">
-<h3 data-number="16.3.2" class="anchored" data-anchor-id="ticks"><span class="header-section-number">16.3.2</span> Ticks</h3>
+<section id="style-axis-ticks" class="level3" data-number="16.3.2">
+<h3 data-number="16.3.2" class="anchored" data-anchor-id="style-axis-ticks"><span class="header-section-number">16.3.2</span> Style axis ticks</h3>
 <p>To modify the appearance of the axis ticks, use the <code>axis.ticks</code> argument. You can change the color, linewidth, linetype and length of the ticks using the <code>element_line()</code> function as shown below.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">'blue'</span>, <span class="at">linewidth =</span> <span class="fl">1.25</span>, <span class="at">linetype =</span> <span class="dv">2</span>), </span>
@@ -643,8 +643,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="line" class="level3" data-number="16.3.3">
-<h3 data-number="16.3.3" class="anchored" data-anchor-id="line"><span class="header-section-number">16.3.3</span> Line</h3>
+<section id="style-axis-lines" class="level3" data-number="16.3.3">
+<h3 data-number="16.3.3" class="anchored" data-anchor-id="style-axis-lines"><span class="header-section-number">16.3.3</span> Style axis lines</h3>
 <p>The <code>axis.line</code> argument should be used to modify the appearance of the axis lines. You can change the color, linewidth and linetype of the line using the <code>element_line()</code> function.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">'red'</span>, <span class="at">linewidth =</span> <span class="fl">1.5</span>, <span class="at">linetype =</span> <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -658,8 +658,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="legend" class="level2" data-number="16.4">
-<h2 data-number="16.4" class="anchored" data-anchor-id="legend"><span class="header-section-number">16.4</span> Legend</h2>
+<section id="style-the-legend" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="style-the-legend"><span class="header-section-number">16.4</span> Style the legend</h2>
 <p>Now, let us look at modifying the non-data components of a legend.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars) <span class="sc">+</span></span>
@@ -673,8 +673,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<section id="background" class="level3" data-number="16.4.1">
-<h3 data-number="16.4.1" class="anchored" data-anchor-id="background"><span class="header-section-number">16.4.1</span> Background</h3>
+<section id="style-legend-background" class="level3" data-number="16.4.1">
+<h3 data-number="16.4.1" class="anchored" data-anchor-id="style-legend-background"><span class="header-section-number">16.4.1</span> Style the legend background</h3>
 <p>The background of the legend can be modified using the <code>legend.background</code> argument. You can change the background color, the border color and line type using <code>element_rect()</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">'gray'</span>, <span class="at">linetype =</span> <span class="dv">3</span>,  </span>
@@ -688,8 +688,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="text-1" class="level3" data-number="16.4.2">
-<h3 data-number="16.4.2" class="anchored" data-anchor-id="text-1"><span class="header-section-number">16.4.2</span> Text</h3>
+<section id="style-legend-text" class="level3" data-number="16.4.2">
+<h3 data-number="16.4.2" class="anchored" data-anchor-id="style-legend-text"><span class="header-section-number">16.4.2</span> Style legend text</h3>
 <p>The appearance of the text can be modified using the <code>legend.text</code> argument. You can change the color, size and font using the <code>element_text()</code> function.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">'green'</span>, <span class="at">face =</span> <span class="st">'italic'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -702,8 +702,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="title" class="level3" data-number="16.4.3">
-<h3 data-number="16.4.3" class="anchored" data-anchor-id="title"><span class="header-section-number">16.4.3</span> Title</h3>
+<section id="style-legend-title" class="level3" data-number="16.4.3">
+<h3 data-number="16.4.3" class="anchored" data-anchor-id="style-legend-title"><span class="header-section-number">16.4.3</span> Style the legend title</h3>
 <p>The appearance of the title of the legend can be modified using the <code>legend.title</code> argument. You can change the color, size, font and alignment using <code>element_text()</code>.</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">'blue'</span>, <span class="at">face =</span> <span class="st">'bold'</span>, <span class="at">hjust =</span> <span class="fl">0.1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -716,8 +716,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="position" class="level3" data-number="16.4.4">
-<h3 data-number="16.4.4" class="anchored" data-anchor-id="position"><span class="header-section-number">16.4.4</span> Position</h3>
+<section id="move-the-legend-position" class="level3" data-number="16.4.4">
+<h3 data-number="16.4.4" class="anchored" data-anchor-id="move-the-legend-position"><span class="header-section-number">16.4.4</span> Move the legend position</h3>
 <p>The position and direction of the legend can be changed using:</p>
 <ul>
 <li><code>legend.position</code></li>
@@ -735,8 +735,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 </section>
-<section id="themes" class="level2" data-number="16.5">
-<h2 data-number="16.5" class="anchored" data-anchor-id="themes"><span class="header-section-number">16.5</span> Themes</h2>
+<section id="apply-a-complete-theme" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="apply-a-complete-theme"><span class="header-section-number">16.5</span> Apply a complete theme</h2>
 <section id="classic-dark-on-light" class="level3" data-number="16.5.1">
 <h3 data-number="16.5.1" class="anchored" data-anchor-id="classic-dark-on-light"><span class="header-section-number">16.5.1</span> Classic Dark on Light</h3>
 <div class="cell" data-layout-align="center">
