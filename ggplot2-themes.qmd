@@ -41,9 +41,9 @@ p <- ggplot(mtcars) +
 p
 ```
 
-## Axis 
+## Style plot axes {#style-plot-axes}
 
-### Text
+### Style axis text {#style-axis-text}
 
 The `axis.title.x` argument can be used to modify the appearance of the `X` 
 axis. In the below example, we modify the color and size of the title using
@@ -57,7 +57,7 @@ title of both the axis together, use `axis.title`.
 p + theme(axis.title.x = element_text(color = "red", size = 10, face = "italic"))
 ```
 
-### Ticks
+### Style axis ticks {#style-axis-ticks}
 
 To modify the appearance of the axis ticks, use the `axis.ticks` argument. You can
 change the color, linewidth, linetype and length of the ticks using the `element_line()`
@@ -68,7 +68,7 @@ p + theme(axis.ticks = element_line(color = 'blue', linewidth = 1.25, linetype =
           axis.ticks.length = unit(1, "cm"))
 ```
 
-### Line
+### Style axis lines {#style-axis-lines}
 
 The `axis.line` argument should be used to modify the appearance of the 
 axis lines. You can change the color, linewidth and linetype of the line using
@@ -78,7 +78,7 @@ the `element_line()` function.
 p + theme(axis.line = element_line(color = 'red', linewidth = 1.5, linetype = 3))
 ```
 
-## Legend
+## Style the legend {#style-the-legend}
 
 Now, let us look at modifying the non-data components of a legend.
 
@@ -88,7 +88,7 @@ p <- ggplot(mtcars) +
 p
 ```
 
-### Background 
+### Style the legend background {#style-legend-background}
 
 The background of the legend can be modified using the `legend.background`
 argument. You can change the background color, the border color and line type
@@ -99,7 +99,7 @@ p + theme(legend.background = element_rect(fill = 'gray', linetype = 3,
           color = "black"))
 ```
 
-### Text 
+### Style legend text {#style-legend-text}
 
 The appearance of the text can be modified using the `legend.text` argument.
 You can change the color, size and font using the `element_text()` function.
@@ -108,7 +108,7 @@ You can change the color, size and font using the `element_text()` function.
 p + theme(legend.text = element_text(color = 'green', face = 'italic'))
 ```
 
-### Title 
+### Style the legend title {#style-legend-title}
 
 The appearance of the title of the legend can be modified using the 
 `legend.title` argument. You can change the color, size, font and alignment
@@ -118,7 +118,7 @@ using `element_text()`.
 p + theme(legend.title = element_text(color = 'blue', face = 'bold', hjust = 0.1))
 ```
 
-### Position 
+### Move the legend position {#move-the-legend-position}
 
 The position and direction of the legend can be changed using:
 
@@ -129,7 +129,7 @@ The position and direction of the legend can be changed using:
 p + theme(legend.position = "top", legend.direction = "horizontal")
 ```
 
-## Themes
+## Apply a complete theme {#apply-a-complete-theme}
 
 ### Classic Dark on Light
 

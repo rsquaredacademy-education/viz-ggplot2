@@ -35,9 +35,9 @@ subset of data with a simple formula based interface:
 Faceting allows us to create multiple sub plots. It partitions a plot into a 
 matrix of panels with each panel showing a different subset of data.
 
-## Grid
+## Arrange facets in a grid {#facet-grid}
 
-### Vertical
+### Stack facets vertically {#facet-grid-vertical}
 
 `facet_grid()` allows us to split up the data by one or two discrete variables 
 and create sub plots. The sub plots can be arranged horizontally or vertically 
@@ -52,7 +52,7 @@ ggplot(mtcars, aes(disp, mpg)) +
   facet_grid(cyl ~ .)
 ```
 
-### Horizontal
+### Arrange facets horizontally {#facet-grid-horizontal}
 
 Below we reproduce the previous example but arrange the sub plots horizontally.
 
@@ -62,7 +62,7 @@ ggplot(mtcars, aes(disp, mpg)) +
   facet_grid(. ~ cyl)
 ```
 
-### Vertical & Horizontal
+### Facet rows and columns together {#facet-grid-rows-columns}
 
 In certain cases, we might want different discrete variables to represent the
 horizontal and vertical direction. In the below example, we examine the 
@@ -84,7 +84,7 @@ ggplot(mtcars, aes(disp, mpg)) +
   facet_grid(gear ~ cyl)
 ```
 
-### Scales
+### Use free scales in a facet grid {#facet-grid-free-scales}
 
 If you carefully observe the second example, the range of `X` axis is same for
 all the 3 sub plots i.e. it is a fixed range. You can allow each of the sub 
@@ -99,7 +99,7 @@ ggplot(mtcars, aes(disp, mpg, color = factor(cyl))) +
 
 Now, each of the sub plot has a different range.
 
-### Switch Labels
+### Move facet labels with switch {#facet-grid-switch}
 
 In the third example, the labels are displayed at the bottom for `X` axis and 
 at the right for the `Y` axis. It can be changed using the `switch` argument 
@@ -114,7 +114,7 @@ ggplot(mtcars, aes(disp, mpg)) +
   facet_grid(cyl ~ gear, switch = "both") 
 ```
 
-## Wrap
+## Wrap facets into panels {#facet-wrap}
 
 `facet_wrap()` allows us to arrange sub plots in a certain number of rows and 
 columns. In the below example, we will use `facet_wrap()` to arrange the sub 
@@ -126,7 +126,7 @@ ggplot(mtcars, aes(disp, mpg)) +
   facet_wrap(~cyl)
 ```
 
-### Specify Rows
+### Set facet rows {#facet-wrap-rows}
 
 To arrange the sub plots in a specific number of rows, use the `nrow` argument.
 In the below example, we arrange the sub plots in 2 rows.
@@ -137,7 +137,7 @@ ggplot(mtcars, aes(disp, mpg)) +
   facet_wrap(~cyl, nrow = 2)
 ```
 
-### Specify Columns
+### Set facet columns {#facet-wrap-columns}
 
 Here, we arrange the sub plots in 3 columns instead of rows using the `ncol`
 argument.
@@ -148,7 +148,7 @@ ggplot(mtcars, aes(disp, mpg)) +
   facet_wrap(~cyl, ncol = 3)
 ```
 
-### Scales
+### Use free scales in wrapped facets {#facet-wrap-free-scales}
 
 You can allow each of the sub plots to have different range using the `scales` 
 argument and supplying it the value `'free'`. 
@@ -159,7 +159,7 @@ ggplot(mtcars, aes(disp, mpg)) +
   facet_wrap(~cyl, scales = "free")
 ```
 
-### Rows & Columns
+### Set facet rows and columns {#facet-wrap-rows-columns}
 
 If 2 discrete variables are used to create the sub plots, we can either use
 the formula interface to specify the variables as shown below 

@@ -20,7 +20,7 @@ library(dplyr)
 library(tidyr)
 ```
 
-## Color
+## Change legend colors {#change-legend-colors}
 
 We will learn to modify the following when `color` is mapped to categorical variables:
 
@@ -50,7 +50,7 @@ ggplot(mtcars) +
 As you can see, the legend acts as a guide for the `color` aesthetic. Now, let 
 us learn to modify the different aspects of the legend.
 
-### Values {.unnumbered}
+### Change legend color values {#color-legend-values .unnumbered}
 
 To change the default colors in the legend, use the `values` argument and
 supply a character vector of color names. The number of colors specified 
@@ -64,7 +64,7 @@ ggplot(mtcars) +
   scale_color_manual(values = c("red", "blue", "green"))
 ```
 
-### Title {.unnumbered}
+### Change the legend title {#color-legend-title .unnumbered}
 
 In the previous example, the title of the legend (`factor(cyl)`) is not very
 intuitive. If the user does not know the underlying data, they will not be able
@@ -81,7 +81,7 @@ ggplot(mtcars) +
 Now, the user will know that the different colors represent number of cylinders in
 the car.
 
-### Limits {.unnumbered}
+### Change legend limits {#color-legend-limits .unnumbered}
 
 Let us assume that we want to modify the data to be displayed i.e. instead of 
 examining the relationship between mileage and displacement for all cars, we 
@@ -99,7 +99,7 @@ As you can see above, `ggplot2` returns a warning message indicating data relate
 to 4 cylinders has been dropped. If you observe the legend, it now represents 
 only 6 and 8 cylinders.
 
-### Labels {.unnumbered}
+### Change legend labels {#color-legend-labels .unnumbered}
 
 The labels in the legend can be modified using the `labels` argument. Let us 
 change the labels to `Four`, `Six` and `Eight` in the next example. Ensure that
@@ -112,7 +112,7 @@ ggplot(mtcars) +
     labels = c('Four', 'Six', 'Eight'))
 ```
 
-### Breaks {.unnumbered}
+### Reorder or hide legend items with breaks {#color-legend-breaks .unnumbered}
 
 When there are large number of levels in the mapped variable, you may not 
 want the labels in the legend to represent all of them. In such cases, we can 
@@ -136,7 +136,7 @@ ggplot(mtcars) +
     labels = c('Four', 'Six', 'Eight'), limits = c(4, 6, 8), breaks = c(4, 6, 8))
 ```
 
-## Fill
+## Change legend fill colors {#change-legend-fill-colors}
 
 we will learn to modify the following using `scale_fill_manual()` when `fill` is mapped to categorical variables:
 
@@ -160,7 +160,7 @@ ggplot(mtcars) +
 As you can see, the legend acts as a guide for the `color` aesthetic. Now, let 
 us learn to modify the different aspects of the legend.
 
-### Title {.unnumbered}
+### Change the legend title {#fill-legend-title .unnumbered}
 
 The title of the legend (`factor(cyl)`) is not very intuitive. If the user 
 does not know the underlying data, they will not be able to make any sense out 
@@ -173,7 +173,7 @@ ggplot(mtcars) +
     values = c("red", "blue", "green"))
 ```
 
-### Values {.unnumbered}
+### Change legend fill values {#fill-legend-values .unnumbered}
 
 To change the default colors in the legend, use the `values` argument and
 supply a character vector of color names. The number of colors specified 
@@ -187,7 +187,7 @@ ggplot(mtcars) +
   scale_fill_manual(values = c("red", "blue", "green"))
 ```
 
-### Labels {.unnumbered}
+### Change legend labels {#fill-legend-labels .unnumbered}
 
 The labels in the legend can be modified using the `labels` argument. Let us 
 change the labels to `Four`, `Six` and `Eight` in the next example. Ensure that
@@ -200,7 +200,7 @@ ggplot(mtcars) +
     labels = c('Four', 'Six', 'Eight'))
 ```
 
-### Limits {.unnumbered}
+### Change legend limits {#fill-legend-limits .unnumbered}
 
 Let us assume that we want to modify the data to be displayed i.e. instead of 
 examining the relationship between mileage and displacement for all cars, we 
@@ -219,7 +219,7 @@ As you can see above, `ggplot2` returns a warning message indicating data relate
 to 4 cylinders has been dropped. If you observe the legend, it now represents 
 only 6 and 8 cylinders.
 
-### Breaks {.unnumbered}
+### Reorder or hide legend items with breaks {#fill-legend-breaks .unnumbered}
 
 When there are large number of levels in the mapped variable, you may not 
 want the labels in the legend to represent all of them. In such cases, we can 
