@@ -110,7 +110,7 @@ ggplot(mtcars) +
   annotate('text', x = 200, y = 30, label = 'Sample Text', angle = 25)
 ```
 
-## Putting it all together..
+## Putting it all together
 
 ```{r ann3, fig.align='center'}
 ggplot(mtcars) +

@@ -230,7 +230,7 @@ ggplot(mtcars) +
   theme(plot.title = element_text(hjust = 0.3))
 ```
 
-## Putting it all together...
+## Putting it all together
 
 ### Title
 

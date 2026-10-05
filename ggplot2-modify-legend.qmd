@@ -166,7 +166,7 @@ ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +
     guide = guide_legend(reverse = TRUE))
 ```
 
-#### Putting it all together... {.unnumbered}
+#### Putting it all together {.unnumbered}
 
 ```{r legg47, fig.align='center'}
 ggplot(mtcars) + geom_point(aes(disp, mpg, color = factor(cyl))) +

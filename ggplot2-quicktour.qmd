@@ -175,7 +175,7 @@ ggplot(mtcars, aes(mpg)) +
 2. Add color by cylinders and a `labs()` title.
 3. Explain in one sentence why `qplot()` is legacy code.
 
-Worked solutions in `solutions/scatter.md` (attempt first).
+Worked solutions in `solutions/quicktour.md` (attempt first).
 
 ## Where to go next {.unnumbered}
 

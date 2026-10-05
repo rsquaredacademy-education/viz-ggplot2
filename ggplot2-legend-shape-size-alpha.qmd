@@ -124,7 +124,7 @@ ggplot(mtcars) +
   scale_shape_manual(values = c(4, 12, 24), breaks = c(4, 8))
 ```
 
-### Putting it all together... {.unnumbered}
+### Putting it all together {.unnumbered}
 
 ```{r legs23, fig.align='center'}
 ggplot(mtcars) +
@@ -227,7 +227,7 @@ ggplot(mtcars) +
     labels = c("1 Hundred", "2 Hundred", "3 Hundred"))
 ```
 
-### Putting it all together... {.unnumbered}
+### Putting it all together {.unnumbered}
 
 ```{r legs30}
 ggplot(mtcars) +
@@ -333,7 +333,7 @@ ggplot(mtcars) +
       "3 Hundred"))
 ```
 
-### Putting it all together... {.unnumbered}
+### Putting it all together {.unnumbered}
 
 ```{r legs37, fig.align='center'}
 ggplot(mtcars) +

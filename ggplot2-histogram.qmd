@@ -113,7 +113,7 @@ ggplot(ecom) +
   geom_histogram(aes(n_visit), bins = 7, fill = 'white', color = 'blue')
 ```
 
-## Putting it all together...
+## Putting it all together
 
 Let us modify the bins, the background and border color of the histogram in 
 the below example.

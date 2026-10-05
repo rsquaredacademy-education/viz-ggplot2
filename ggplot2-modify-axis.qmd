@@ -99,7 +99,7 @@ ggplot(mtcars) +
   scale_x_continuous(position = 'top')
 ```
 
-### Putting it all together..
+### Putting it all together
 
 ```{r guide8, fig.align='center'}
 ggplot(mtcars) + geom_point(aes(disp, mpg)) +
@@ -161,7 +161,7 @@ ggplot(mtcars) +
   scale_x_discrete(position = 'bottom')
 ```
 
-## Putting it all together...
+## Putting it all together
 
 ```{r guide15, fig.align='center'}
 ggplot(mtcars) + geom_bar(aes(factor(cyl))) +
