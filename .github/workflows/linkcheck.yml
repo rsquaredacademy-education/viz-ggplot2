@@ -1,0 +1,22 @@
+name: Link check
+
+# Weekly, separate from the build. The build's own link check is advisory and
+# runs on pre-deploy output; this one fails on the deployed site so a link that
+# rots between deploys is still caught.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+jobs:
+  lychee:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links in built site
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress './docs/**/*.html' --exclude 'mailto:*'
+          fail: true
