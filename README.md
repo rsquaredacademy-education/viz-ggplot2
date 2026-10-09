@@ -32,7 +32,7 @@ Free to read, built with [Quarto](https://quarto.org/).
 | 20 | Label Polish | `str_wrap()`, `label_wrap()` |
 | 21 | Finale Polish | `patchwork`, `ggrepel`, `ggtext` case studies |
 | 22 | Export & Communicate | `ggsave()` at 300 dpi + storytelling checklist |
-| A | Cheat Sheet | Two-page quick reference *(Phase 3)* |
+| 23 | Cheat Sheet | Two-page quick reference |
 
 ## Develop
 
