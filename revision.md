@@ -5,7 +5,7 @@
 **Author:** automated review pass, render-verified with Quarto 1.6.40
 
 Part of a workspace-wide standard for all six books, documented at
-[`viz-base/AUTHOR-STANDARDS.md`](https://github.com/rsquaredacademy-education/viz-base/blob/master/AUTHOR-STANDARDS.md). This file records only what changed in
+[`viz-base/AUTHOR-STANDARDS.md`](https://github.com/rsquaredacademy-publications/viz-base/blob/master/AUTHOR-STANDARDS.md). This file records only what changed in
 **this** repository.
 
 ---

@@ -65,7 +65,7 @@ format:
     fig-align: center
     fig-dpi: 192
     include-in-header: google-analytics.html
-    repo-url: https://github.com/rsquaredacademy-education/viz-ggplot2/
+    repo-url: https://github.com/rsquaredacademy-publications/viz-ggplot2/
   pdf:
     pdf-engine: lualatex
     papersize: us-letter
